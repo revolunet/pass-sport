@@ -1,8 +1,6 @@
 name: Test nginx redirections config
 
 on:
-  push:
-    branches-ignore: [ main ]
   pull_request:
     branches: [ main ]
     
