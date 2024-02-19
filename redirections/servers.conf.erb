@@ -18,7 +18,7 @@ server {
   }
 
   location /jeunes-et-familles/obtenir-mon-code/ {
-    proxy_pass  https://pass.sports.gouv.fr/obtenir-mon-code/;
+    proxy_pass  https://scalingo.url/obtenir-mon-code/;
     proxy_intercept_errors  on;
     proxy_set_header        Host                 pass.sports.gouv.fr;
     proxy_set_header        X-Real-IP            $remote_addr;
