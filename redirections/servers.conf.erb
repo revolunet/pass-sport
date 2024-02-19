@@ -1,13 +1,4 @@
-# Default empty server
 server {
-  listen <%= ENV['PORT'] %> default_server;
-  server_name _;
-  return 200;
-}
-
-server {
-  server_name pass.sports.gouv.fr;
-  listen <%= ENV['PORT'] %>;
   location / {
     proxy_pass https://wp-pass.sports.gouv.fr;
     proxy_intercept_errors  on;
