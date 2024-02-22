@@ -10,7 +10,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format:check": "prettier --check --ignore-path .gitignore \"**/*.+(ts|tsx|json)\"",
+    "format:write": "npm run format:check -- --write"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.7.2",
@@ -24,6 +26,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "prettier": "^3.2.5",
     "typescript": "^5"
   }
 }
