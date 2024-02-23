@@ -12,17 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: prepare before build
+      - name: Build & test staging
+        env:
+          NGINX_CONF: ./proxy-staging
         run: |
-           sudo apt-get install -qy make curl
-           uname -a
-
-      # - name: Build & test staging
-      #   run: |
-      #      set -e
-      #      ./proxy-staging/.ci/build-and-test.sh
+           cd .ci/
+           docker-compose run --rm check-nginx-conf
       
       - name: Build & test prod
+        env:
+          NGINX_CONF: ./proxy-prod
         run: |
-           cd ./proxy-prod/.ci/
+           cd .ci/
            docker-compose run --rm check-nginx-conf
