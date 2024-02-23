@@ -1,6 +1,7 @@
 server {
   location / {
     proxy_pass https://185.194.83.45;
+    proxy_redirect default;
     proxy_intercept_errors  on;
     proxy_set_header        Host                 pass.sports.gouv.fr;
     proxy_set_header        X-Real-IP            $remote_addr;
@@ -9,7 +10,8 @@ server {
   }
 
   location /jeunes-et-familles/obtenir-mon-code/ {
-    proxy_pass  https://scalingo.url/obtenir-mon-code/;
+    proxy_pass  https://dashboard.scalingo.com/;
+    proxy_redirect default;
     proxy_intercept_errors  on;
     proxy_set_header        Host                 pass.sports.gouv.fr;
     proxy_set_header        X-Real-IP            $remote_addr;

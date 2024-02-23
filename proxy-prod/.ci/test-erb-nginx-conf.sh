@@ -21,7 +21,6 @@ fi
 
 echo "# generate nginx $nginx_servers_conf file"
 # test nginx syntax
-export URL_STANDUP="${URL_STANDUP:-http://test}"
 export PORT=${PORT:-80}
 erb $nginx_servers_erb > /etc/nginx/conf.d/$nginx_servers_conf
 

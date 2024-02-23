@@ -6,7 +6,6 @@ services:
       - "80:80"
     environment:
       - PORT=${PORT:-80}
-      - URL_STANDUP=${URL_STANDUP:-http://test}
     command:
       - '/data/test-erb-nginx-conf.sh'
     volumes:

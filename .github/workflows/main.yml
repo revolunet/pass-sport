@@ -17,7 +17,12 @@ jobs:
            sudo apt-get install -qy make curl
            uname -a
 
-      - name: Build & test
+      # - name: Build & test staging
+      #   run: |
+      #      set -e
+      #      ./proxy-staging/.ci/build-and-test.sh
+      
+      - name: Build & test prod
         run: |
-           set -e
-           make -C ./redirections/.ci test
+           cd ./proxy-prod/.ci/
+           docker-compose run --rm check-nginx-conf
