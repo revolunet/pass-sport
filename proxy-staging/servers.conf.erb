@@ -1,6 +1,6 @@
 server {
   location / {
-    proxy_pass https:///siva-passsport-integ1.cegedim.cloud;
+    proxy_pass https:///siva-passsport-integ1.cegedim.cloud/;
     proxy_redirect default;
     proxy_intercept_errors  on;
     proxy_set_header        Host                 pass.sports.gouv.fr;
