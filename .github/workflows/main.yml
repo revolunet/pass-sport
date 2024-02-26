@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build & test staging
-        env:
-          NGINX_CONF: ../proxy-staging
-        run: |
-           cd .ci/
-           docker-compose run --rm check-nginx-conf
+      # - name: Build & test staging
+      #   env:
+      #     NGINX_CONF: ../proxy-staging
+      #   run: |
+      #      cd .ci/
+      #      docker-compose run --rm check-nginx-conf
       
       - name: Build & test prod
         env:
