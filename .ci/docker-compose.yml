@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  check-nginx-conf:
+    image: nginx:stable
+    command:
+      - '/data/test-erb-nginx-conf.sh'
+    volumes:
+      - ./test-erb-nginx-conf.sh:/data/test-erb-nginx-conf.sh
+      - ${NGINX_CONF}/servers.conf.erb:/data/servers.conf.erb

@@ -1,0 +1,27 @@
+name: Test nginx redirections config
+
+on:
+  pull_request:
+    branches: [ main ]
+    
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build & test staging
+        env:
+          NGINX_CONF: ../proxy-staging
+        run: |
+           cd .ci/
+           docker-compose run --rm check-nginx-conf
+      
+      - name: Build & test prod
+        env:
+          NGINX_CONF: ../proxy-prod
+        run: |
+           cd .ci/
+           docker-compose run --rm check-nginx-conf
