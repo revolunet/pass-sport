@@ -18,6 +18,7 @@ jobs:
           node-version: "20"
 
       - uses: actions/cache@v3
+        working-directory: ./site
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
@@ -30,9 +31,11 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install
+        working-directory: ./site
         run: npm install
 
       - name: Build
+        working-directory: ./site
         run: npm run build
       
       - name: Lint
