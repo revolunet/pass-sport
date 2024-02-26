@@ -1,4 +1,4 @@
-name: Test nginx redirections config
+name: Nginx config test
 
 on:
   pull_request:
