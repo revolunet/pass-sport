@@ -10,7 +10,7 @@ server {
   }
 
   location /jeunes-et-familles/obtenir-mon-code/ {
-    proxy_pass  https://dashboard.scalingo.com/;
+    proxy_pass  https://pass-sport-prod.osc-secnum-fr1.scalingo.io;
     proxy_redirect default;
     proxy_intercept_errors  on;
     proxy_set_header        Host                 pass.sports.gouv.fr;
