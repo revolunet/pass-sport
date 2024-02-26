@@ -13,4 +13,5 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Lint
+        working-directory: ./site
         run: npm run lint
