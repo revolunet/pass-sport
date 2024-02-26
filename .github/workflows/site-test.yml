@@ -1,9 +1,12 @@
-name: Test
+name: Site tests
 
 on:
   pull_request:
     branches: [ main ]
     
+defaults:
+  run:
+    working-directory: ./site
 
 jobs:
   lint:
@@ -32,10 +35,11 @@ jobs:
       - name: Install
         run: npm install
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build
         run: npm run build
       
-      - name: Lint
-        working-directory: ./site
-        run: npm run lint
+
 
