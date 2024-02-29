@@ -9,7 +9,7 @@ defaults:
     working-directory: ./site
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,13 +33,19 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Lint
         run: npm run lint
 
       - name: Build
         run: npm run build
+
+      - name: Accessibility test
+        run: |
+          npm run dev & npx -y wait-on http://localhost:3000
+          npm install -g pa11y
+          pa11y http://localhost:3000
       
 
 
