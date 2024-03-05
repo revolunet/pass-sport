@@ -12,8 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build & test staging
-        run: docker run --rm -v ${GITHUB_ACTION_PATH}/proxy-staging:/etc/nginx/conf.d/ nginx:stable sh -c "nginx -t -c /etc/nginx/nginx.conf 2>&1"
+      # - name: Build & test staging
+      #   run: docker-compose run  --rm check-nginx-conf"
       
       - name: Build & test prod
-        run: docker run --rm -v ${GITHUB_ACTION_PATH}/proxy-prod:/etc/nginx/conf.d/ nginx:stable sh -c "nginx -t -c /etc/nginx/nginx.conf 2>&1"
+        run: | 
+          cd .ci
+          docker-compose run  --rm check-nginx-conf
