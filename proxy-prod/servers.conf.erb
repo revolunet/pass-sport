@@ -26,7 +26,4 @@ server {
 }
 
 
-log_format  proxy_log  '[$time_local] $remote_addr - $remote_user "$host$request_uri" '
-'$status $body_bytes_sent "$http_referer" '
-'"$http_user_agent" "$http_x_forwarded_for"'
-' Proxy: "$proxy_host" "$upstream_addr"';
+log_format upstreamlog '[$time_local] $remote_addr - $remote_user - $server_name $host to: $upstream_addr: $request $status upstream_response_time $upstream_response_time msec $msec request_time $request_time';
