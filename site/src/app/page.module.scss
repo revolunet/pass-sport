@@ -7,6 +7,29 @@
   min-height: 100vh;
 }
 
+.hero {
+  &_background {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    &_blue {
+      background-color: var(--background-action-high-blue-france);
+      height: 580px;
+    }
+  }
+  &_container {
+    height: 630px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 28px; */
+    justify-content: flex-end;
+  }
+  &_color {
+    color: var(--text-inverted-grey);
+  }
+}
 .description {
   display: inherit;
   justify-content: inherit;
@@ -51,7 +74,9 @@
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
+  transition:
+    background 200ms,
+    border 200ms;
 }
 
 .card span {
@@ -98,7 +123,7 @@
 
 .center::before,
 .center::after {
-  content: "";
+  content: '';
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -194,11 +219,7 @@
     inset: auto 0 0;
     padding: 2rem;
     height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
+    background: linear-gradient(to bottom, transparent 0%, rgb(var(--background-end-rgb)) 40%);
     z-index: 1;
   }
 }
