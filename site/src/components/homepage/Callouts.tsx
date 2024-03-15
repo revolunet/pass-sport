@@ -8,7 +8,7 @@ const Callouts = () => {
         {calloutContents.map((content) => {
           return (
             <div className="fr-col-12 fr-col-lg-3">
-              <CallOut title={content.title}>{content.description} </CallOut>;
+              <CallOut title={content.title}>{content.description} </CallOut>
             </div>
           );
         })}
