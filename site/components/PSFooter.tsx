@@ -1,7 +1,11 @@
 import Footer from '@codegouvfr/react-dsfr/Footer';
 import defaultLogo from '../public/default-logo.svg';
 
-const defaultImgConf = { href: '#', imgUrl: defaultLogo.src, alt: 'string' };
+const defaultImgConf = {
+  linkProps: { title: '', href: '#' },
+  imgUrl: defaultLogo.src,
+  alt: 'string',
+};
 
 export default function PSFooter() {
   return (
