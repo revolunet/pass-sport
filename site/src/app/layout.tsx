@@ -6,6 +6,7 @@ import { getHtmlAttributes } from '@codegouvfr/react-dsfr/next-appdir/getHtmlAtt
 import { StartDsfr } from './StartDsfr';
 import { defaultColorScheme } from './defaultColorScheme';
 import Link from 'next/link';
+import PSFooter from '../../components/PSFooter';
 
 export const metadata: Metadata = {
   title: "Pass'Sport - Accueil",
@@ -27,6 +28,7 @@ export default function RootLayout({
       </head>
       <body>
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
+        <PSFooter></PSFooter>
       </body>
     </html>
   );
