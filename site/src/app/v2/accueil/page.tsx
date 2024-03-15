@@ -1,11 +1,11 @@
-import EmailForm from '../../../components/homepage/EmailForm';
+import EmailForm from '@/components/homepage/EmailForm';
 import passSportImage from '@/images/homepage/pass-sport.png';
 import Image from 'next/image';
 import { presentationPanels } from './page.messages';
-import PresentationTile from '../../../components/homepage/PresentationTile';
-import Video from '../../../components/homepage/Video';
-import Callouts from '../../../components/homepage/Callouts';
-import News from '../../../components/homepage/News';
+import PresentationTile from '@/components/homepage/PresentationTile';
+import Video from '@/components/homepage/Video';
+import Callouts from '@/components/homepage/Callouts';
+import News from '@/components/homepage/News';
 import styles from './page.module.scss';
 
 export default function Home() {
