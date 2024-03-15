@@ -1,0 +1,6 @@
+@import './sassVariables.module.scss';
+
+body {
+  max-width: $desktop;
+  margin: auto;
+}

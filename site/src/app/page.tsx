@@ -1,11 +1,11 @@
-import Button from '@codegouvfr/react-dsfr/Button';
-import { Input } from '@codegouvfr/react-dsfr/Input';
-import EmailForm from './components/homepage/EmailForm';
+import EmailForm from '../components/homepage/EmailForm';
 import passSportImage from '@/images/homepage/pass-sport.png';
 import Image from 'next/image';
 import { presentationPanels } from './page.messages';
-import PresentationTile from './components/homepage/PresentationTile';
-import Video from './components/homepage/Video';
+import PresentationTile from '../components/homepage/PresentationTile';
+import Video from '../components/homepage/Video';
+import Callouts from '../components/homepage/Callouts';
+import News from '../components/homepage/News';
 
 export default function Home() {
   return (
@@ -24,10 +24,11 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <h2>Mieux comprendre le Pass'Sport</h2>
         <Video />
+        <Callouts />
+        <News />
       </div>
-
-      <h2>Mieux comprendre le Pass'Sport</h2>
     </main>
   );
 }
