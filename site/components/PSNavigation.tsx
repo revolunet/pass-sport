@@ -1,5 +1,9 @@
 import Header from '@codegouvfr/react-dsfr/Header';
 
+export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
+  '/v2/une-question': 'Une question ? ',
+};
+
 export default function PSNavigation() {
   return (
     <div>
@@ -11,7 +15,7 @@ export default function PSNavigation() {
         }
         homeLinkProps={{
           href: '/v2/accueil',
-          title: 'Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)',
+          title: "Accueil - Nom de l’entité (ministère, secrétariat d'état, gouvernement)",
         }}
         navigation={[
           {
@@ -22,7 +26,7 @@ export default function PSNavigation() {
             text: 'Accueil',
           },
           {
-            text: "Tout savoir sur le pass'Sport",
+            text: "Tout savoir sur le Pass'Sport",
             menuLinks: [
               {
                 linkProps: {
@@ -41,14 +45,14 @@ export default function PSNavigation() {
           {
             isActive: true,
             linkProps: {
-              href: '/v2/questions',
+              href: '/v2/une-question',
               target: '_self',
             },
             text: 'Une questions ?',
           },
           {
             linkProps: {
-              href: '#',
+              href: '/v2/actualites-ressources',
               target: '_self',
             },
             text: 'Actualités et ressources',

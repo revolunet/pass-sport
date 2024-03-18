@@ -8,6 +8,7 @@ import { defaultColorScheme } from './defaultColorScheme';
 import Link from 'next/link';
 import PSFooter from '../../components/PSFooter';
 import PSNavigation from '../../components/PSNavigation';
+import PSBreadcrumb from '../../components/PSBreadcrumb/PSBreadcrumb';
 
 export const metadata: Metadata = {
   title: "Pass'Sport - Accueil",
@@ -28,7 +29,10 @@ export default function RootLayout({
         <DsfrHead Link={Link} />
       </head>
       <body>
+        {/* TODO: Skip for homepage */}
         <PSNavigation></PSNavigation>
+        <PSBreadcrumb></PSBreadcrumb>
+
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
         <PSFooter></PSFooter>
       </body>
