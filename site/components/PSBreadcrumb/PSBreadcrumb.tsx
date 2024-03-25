@@ -5,6 +5,7 @@ import styles from './psbreadcrumb.module.scss';
 import { Breadcrumb } from '@codegouvfr/react-dsfr/Breadcrumb';
 import { usePathname } from 'next/navigation';
 import { NAVIGATION_ITEM_MAP } from '../PSNavigation';
+import path from 'path';
 
 export default function PSBreadcrumb() {
   const paths: string = usePathname();
@@ -15,7 +16,7 @@ export default function PSBreadcrumb() {
   return (
     <div className={styles.container}>
       <div>
-        {paths !== '/v2/accueil' && (
+        {paths !== '/v2/accueil' && paths !== '/' && (
           <Breadcrumb
             homeLinkProps={{ href: '/v2/accueil' }}
             currentPageLabel={NAVIGATION_ITEM_MAP[paths]}
