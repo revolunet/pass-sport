@@ -5,7 +5,6 @@ import styles from './psbreadcrumb.module.scss';
 import { Breadcrumb } from '@codegouvfr/react-dsfr/Breadcrumb';
 import { usePathname } from 'next/navigation';
 import { NAVIGATION_ITEM_MAP } from '../PSNavigation';
-import path from 'path';
 
 export default function PSBreadcrumb() {
   const paths: string = usePathname();
