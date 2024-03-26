@@ -9,8 +9,8 @@ export default function TitleHeader({ title, subtitle }: IProps) {
   return (
     <div className={styles.container}>
       <div className={styles.titlewrapper}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.subtitle}>{subtitle}</div>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.subtitle}>{subtitle}</p>
       </div>
     </div>
   );

@@ -8,7 +8,6 @@ import { NAVIGATION_ITEM_MAP } from '../PSNavigation';
 
 export default function PSBreadcrumb() {
   const paths: string = usePathname();
-  console.debug(paths);
   if (paths == '/v2/accueil') {
     return null;
   }
