@@ -29,7 +29,6 @@ export default function RootLayout({
         <DsfrHead Link={Link} />
       </head>
       <body>
-        {/* TODO: Skip for homepage */}
         <PSNavigation></PSNavigation>
         <PSBreadcrumb></PSBreadcrumb>
 
