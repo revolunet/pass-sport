@@ -41,8 +41,6 @@ export default async function TrouverUnClub() {
             border
             detail={club.adresse + ', ' + club.com_arm_name}
             enlargeLink
-            imageAlt="texte alternatif de l’image"
-            imageUrl="https://www.systeme-de-design.gouv.fr/img/placeholder.16x9.png"
             linkProps={{
               href: '#',
             }}
