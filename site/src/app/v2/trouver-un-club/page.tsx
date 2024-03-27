@@ -38,6 +38,7 @@ export default async function TrouverUnClub() {
                 {a}
               </Badge>
             ))}
+            imageAlt=""
             border
             detail={club.adresse + ', ' + club.com_arm_name}
             enlargeLink
