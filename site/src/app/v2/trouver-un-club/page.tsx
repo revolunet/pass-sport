@@ -28,7 +28,7 @@ export default async function TrouverUnClub() {
     <div>
       <TitleHeader
         title="Trouver un club adhérent"
-        subtitle={'Plus de ' + clubs_response.total_count + '  clubs labelisés trouvés'}
+        subtitle={'Plus de ' + clubs_response.total_count + '  clubs labelisés'}
       ></TitleHeader>
       <div className={style.wrapper}>
         <div className={style.container}>
