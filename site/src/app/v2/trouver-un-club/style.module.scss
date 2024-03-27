@@ -1,6 +1,7 @@
+@import '../../variables';
 
 .wrapper {
-  max-width: 78vw;
+  max-width: $max-width;
   margin: auto;
   margin-top: 50px;
   margin-bottom: 80px;

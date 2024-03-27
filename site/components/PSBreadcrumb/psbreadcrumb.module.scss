@@ -1,3 +1,5 @@
+@import '../../src/app/variables';
+
 .container {
     background-color: #ECECFE;
     padding-left: 3em;
@@ -5,7 +7,7 @@
     padding-bottom: 1rem;
     div {
         margin: auto;
-        max-width: 78em;
+        max-width: $max-width;
         background-color: #ECECFE;
         nav {
             margin: auto;

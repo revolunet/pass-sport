@@ -1,5 +1,4 @@
 import TitleHeader from '../../../../components/TitleHeader/TitleHeader';
-import styles from './questions.module.scss';
 
 export default function Questions() {
   return (
