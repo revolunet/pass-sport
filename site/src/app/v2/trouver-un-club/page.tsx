@@ -34,6 +34,7 @@ export default async function TrouverUnClub() {
         <div className={style.container}>
           {/* <ClubFilterBar></ClubFilterBar> */}
           {clubs_response.results.map((club) => (
+            /** @ts-ignore */
             <Card
               key={club.nom}
               className={style.item}
