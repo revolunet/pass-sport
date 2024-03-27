@@ -8,7 +8,7 @@ import Callouts from '@/components/homepage/Callouts';
 import News from '@/components/homepage/News';
 import styles from './page.module.scss';
 
-export default function Home() {
+export default function Accueil() {
   return (
     <main>
       <section className={styles.hero}>
