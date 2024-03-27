@@ -19,12 +19,12 @@ const EmailForm: React.FC = () => {
 
         <ul className={`fr-btns-group--inline fr-btns-group--right ${styles.buttonGroup}`}>
           <li>
-            <Button className={styles.button1} priority="tertiary">
+            <Button className={styles.button1} priority="tertiary" size="large">
               Je n'ai pas d'adresse éléctronique
             </Button>
           </li>
           <li>
-            <Button className={styles.button2} priority="secondary">
+            <Button className={styles.button2} priority="secondary" size="large">
               Vérifier mon éligibilité
             </Button>
           </li>
