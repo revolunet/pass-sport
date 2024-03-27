@@ -25,7 +25,7 @@ export default async function TrouverUnClub() {
             key={club.nom}
             className={style.item}
             background
-            badge={club.activites.slice(0, 3).map((a) => (
+            badge={club.activites.slice(0, 1).map((a) => (
               <Badge key={a} severity="new">
                 {a}
               </Badge>
@@ -41,6 +41,9 @@ export default async function TrouverUnClub() {
             size="medium"
             start={
               <ul className="fr-tags-group">
+                <li>
+                  <Tag>{club.activites.length} activités</Tag>
+                </li>
                 {club.handicap === 'Oui' && (
                   <li>
                     <Tag> Handicap</Tag>
