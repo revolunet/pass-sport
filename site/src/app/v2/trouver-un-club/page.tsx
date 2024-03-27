@@ -4,11 +4,18 @@ import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import style from './style.module.scss';
 
 const getClubs = async (): Promise<SportGouvJSONResponse> => {
+  const queryString = new URLSearchParams('nom%20is%20not%20null&limit=20');
+
   const response = await fetch(
-    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records',
+    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records?+aa' +
+      queryString,
   );
+
   if (!response.ok) {
-    throw new Error('Failed to fetch data');
+    return {
+      results: [],
+      total_count: 0,
+    };
   }
 
   return response.json();
@@ -18,6 +25,7 @@ export default async function TrouverUnClub() {
   const clubs_response: SportGouvJSONResponse = await getClubs();
   return (
     <div className={style.wrapper}>
+      <div>{clubs_response.total_count} clubs labelisés trouvés</div>
       <div className={style.container}>
         {/* <ClubFilterBar></ClubFilterBar> */}
         {clubs_response.results.map((club) => (

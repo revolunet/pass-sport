@@ -2,14 +2,15 @@
 .wrapper {
   max-width: 78vw;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 50px;
   margin-bottom: 80px;
 }
 
 .container {
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     gap: 2vw;
 }
 
