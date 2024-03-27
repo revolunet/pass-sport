@@ -1,10 +1,16 @@
+'use client';
 import Header from '@codegouvfr/react-dsfr/Header';
+import { usePathname } from 'next/navigation';
 
 export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/une-question': 'Une question ? ',
 };
 
 export default function PSNavigation() {
+  const paths: string = usePathname();
+  const isActive = (path: string) => {
+    return paths.includes(path);
+  };
   return (
     <div>
       <Header
@@ -19,6 +25,7 @@ export default function PSNavigation() {
         }}
         navigation={[
           {
+            isActive: isActive('/v2/accueil'),
             linkProps: {
               href: '/v2/accueil',
               target: '_self',
@@ -26,6 +33,7 @@ export default function PSNavigation() {
             text: 'Accueil',
           },
           {
+            isActive: isActive('/v2/questions'),
             text: "Tout savoir sur le Pass'Sport",
             menuLinks: [
               {
@@ -43,7 +51,6 @@ export default function PSNavigation() {
             ],
           },
           {
-            isActive: true,
             linkProps: {
               href: '/v2/une-question',
               target: '_self',
@@ -51,11 +58,20 @@ export default function PSNavigation() {
             text: 'Une questions ?',
           },
           {
+            isActive: isActive('/v2/actualites-ressources'),
             linkProps: {
               href: '/v2/actualites-ressources',
               target: '_self',
             },
             text: 'Actualités et ressources',
+          },
+          {
+            isActive: isActive('/v2/trouver-un-club'),
+            linkProps: {
+              href: '/v2/trouver-un-club',
+              target: '_self',
+            },
+            text: 'Trouver un club',
           },
         ]}
       />
