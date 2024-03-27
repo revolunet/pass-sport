@@ -16,7 +16,7 @@ export default function Home() {
           <div className={styles.hero_background_blue}></div>
         </div>
         <div className={styles.hero_container}>
-          <Image src={passSportImage} alt="" />
+          <Image src={passSportImage} alt="logo Pass'sport" />
 
           <h1 className={styles.hero_color}>Testez votre éligibilité</h1>
           <p className={styles.hero_color}>
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="fr-container">
+      <section className={`fr-container ${styles.tiles}`}>
         <div className="fr-grid-row fr-grid-row--gutters">
           {presentationPanels.map((panel) => (
             <div className="fr-col-12 fr-col-lg-3">
@@ -34,10 +34,30 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="fr-container">
         <h2>Mieux comprendre le Pass'Sport</h2>
-        <Video />
-        <Callouts />
-        <News />
+        <div className={`${styles.sizer}`}>
+          <Video />
+        </div>
+
+        <div className={` ${styles.sizer}`}>
+          <Callouts />
+        </div>
+      </section>
+
+      <section className={`fr-container ${styles.news}`}>
+        <h2>Les actualités du pass'Sport</h2>
+        <div className={`${styles.sizer} ${styles.news_wrapper}`}>
+          <News />
+        </div>
+      </section>
+
+      <div className={styles.rectangle}>
+        <div className={styles.rectangle_background}>
+          <div className={styles.rectangle_background_blue}></div>
+        </div>
       </div>
     </main>
   );

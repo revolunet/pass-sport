@@ -1,11 +1,12 @@
+import styles from './video.module.scss';
+
 const Video = () => {
   return (
     <div>
       <figure role="group" className="fr-content-media">
         <iframe
           src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
-          width="996"
-          height="560"
+          className={styles.iframe}
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
         ></iframe>

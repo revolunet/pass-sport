@@ -1,13 +1,13 @@
 import Input from '@codegouvfr/react-dsfr/Input';
 import styles from './emailForm.module.scss';
-// import Button from '@codegouvfr/react-dsfr/Button';
-import { ButtonsGroup } from '@codegouvfr/react-dsfr/ButtonsGroup';
+import Button from '@codegouvfr/react-dsfr/Button';
 
 const EmailForm: React.FC = () => {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.form}>
         <Input
+          className={styles.input}
           hintText="Format attendu: nom@domaine.fr"
           label="Adresse éléctronique"
           state="default"
@@ -16,20 +16,19 @@ const EmailForm: React.FC = () => {
             placeholder: 'ex: dupont@domaine.fr',
           }}
         />
-        <ButtonsGroup
-          buttons={[
-            {
-              children: "Je n'ai pas d'adresse éléctronique",
-            },
-            {
-              children: 'Vérifier mon éligibilité',
-              priority: 'secondary',
-            },
-          ]}
-          inlineLayoutWhen="md and up"
-        />
-        {/* <Button>Je n'ai pas d'adresse éléctronique</Button> */}
-        {/* <Button>Vérifier mon éligibilité</Button> */}
+
+        <ul className={`fr-btns-group--inline fr-btns-group--right ${styles.buttonGroup}`}>
+          <li>
+            <Button className={styles.button1} priority="tertiary">
+              Je n'ai pas d'adresse éléctronique
+            </Button>
+          </li>
+          <li>
+            <Button className={styles.button2} priority="secondary">
+              Vérifier mon éligibilité
+            </Button>
+          </li>
+        </ul>
       </form>
     </div>
   );

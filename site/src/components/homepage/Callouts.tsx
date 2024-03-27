@@ -1,14 +1,17 @@
-import { CallOut } from '@codegouvfr/react-dsfr/CallOut';
 import { calloutContents } from './callouts.messages';
+import styles from './callout.module.scss';
 
 const Callouts = () => {
   return (
-    <div className="fr-container">
+    <div className="fr-container--fluid">
       <div className="fr-grid-row fr-grid-row--gutters">
         {calloutContents.map((content) => {
           return (
             <div className="fr-col-12 fr-col-lg-3">
-              <CallOut title={content.title}>{content.description} </CallOut>
+              <div className={`fr-callout ${styles.callout}`}>
+                <h3 className="fr-callout__title">{content.title}</h3>
+                <p className="fr-callout__text">{content.description}</p>
+              </div>
             </div>
           );
         })}
