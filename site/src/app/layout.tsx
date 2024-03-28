@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import './globals.scss';
 import { DsfrHead } from '@codegouvfr/react-dsfr/next-appdir/DsfrHead';
 import { DsfrProvider } from '@codegouvfr/react-dsfr/next-appdir/DsfrProvider';
 import { getHtmlAttributes } from '@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes';
