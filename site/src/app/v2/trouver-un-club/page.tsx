@@ -39,11 +39,14 @@ export default async function TrouverUnClub() {
               key={club.nom}
               className={style.item}
               background
-              badge={club.activites.slice(0, 1).map((a) => (
-                <Badge key={a} severity="new">
-                  {a}
-                </Badge>
-              ))}
+              badge={
+                !!club.activites &&
+                club.activites.slice(0, 1).map((a) => (
+                  <Badge key={a} severity="new">
+                    {a}
+                  </Badge>
+                ))
+              }
               imageAlt=""
               border
               detail={club.adresse + ', ' + club.com_arm_name}
@@ -54,9 +57,12 @@ export default async function TrouverUnClub() {
               size="medium"
               start={
                 <ul className="fr-tags-group">
-                  <li>
-                    <Tag>{club.activites.length} activités</Tag>
-                  </li>
+                  {!!club.activites && club.activites.length > 0 && (
+                    <li>
+                      <Tag>{club.activites.length} activités</Tag>
+                    </li>
+                  )}
+
                   {club.handicap === 'Oui' && (
                     <li>
                       <Tag> Handicap</Tag>
