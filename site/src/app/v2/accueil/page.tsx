@@ -7,6 +7,7 @@ import Video from '@/components/homepage/Video';
 import Callouts from '@/components/homepage/Callouts';
 import News from '@/components/homepage/News';
 import styles from './page.module.scss';
+import Button from '@codegouvfr/react-dsfr/Button';
 
 export default function Accueil() {
   return (
@@ -16,13 +17,28 @@ export default function Accueil() {
           <div className={styles.hero_background_blue}></div>
         </div>
         <div className={styles.hero_container}>
-          <Image src={passSportImage} alt="logo Pass'sport" />
+          <Image
+            src="/images/homepage/pass-sport.png"
+            width={229}
+            height={97}
+            alt="logo Pass'sport"
+          />
 
           <h1 className={styles.hero_color}>Testez votre éligibilité</h1>
           <p className={styles.hero_color}>
             50€ pour aider les jeunes à faire du sport entre 6 et 30ans
           </p>
-          <EmailForm />
+          {/* <EmailForm /> */}
+          <div className={styles.hero_container_panel}>
+            <Button
+              priority="primary"
+              size="large"
+              iconId="fr-icon-arrow-right-line"
+              iconPosition="right"
+            >
+              Obtenir mon code pass&apos;Sport
+            </Button>
+          </div>
         </div>
       </section>
 
