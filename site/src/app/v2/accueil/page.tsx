@@ -28,16 +28,16 @@ export default function Accueil() {
 
       <section className={`fr-container ${styles.tiles}`}>
         <div className="fr-grid-row fr-grid-row--gutters">
-          {presentationTiles.map((panel) => (
-            <div className="fr-col-12 fr-col-lg-3">
-              <PresentationTile {...panel} />
+          {presentationTiles.map((tile) => (
+            <div key={tile.id} className="fr-col-12 fr-col-lg-3">
+              <PresentationTile {...tile} />
             </div>
           ))}
         </div>
       </section>
 
       <section className="fr-container">
-        <h2>Mieux comprendre le Pass'Sport</h2>
+        <h2>Mieux comprendre le Pass&apos;Sport</h2>
         <div className={`${styles.sizer}`}>
           <Video />
         </div>
@@ -48,7 +48,7 @@ export default function Accueil() {
       </section>
 
       <section className={`fr-container ${styles.news}`}>
-        <h2>Les actualités du pass'Sport</h2>
+        <h2>Les actualités du pass&apos;Sport</h2>
         <div className={`${styles.sizer} ${styles.news_wrapper}`}>
           <News />
         </div>

@@ -7,7 +7,7 @@ const News = () => (
       <div className="fr-grid-row fr-grid-row--gutters">
         {newsContents.map((content) => {
           return (
-            <div className="fr-col-12 fr-col-lg-4">
+            <div key={content.id} className="fr-col-12 fr-col-lg-4">
               <div className={styles.container}>
                 <p>{content.headerText}</p>
                 <h5 className={styles.description}>{content.title}</h5>

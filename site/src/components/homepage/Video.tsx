@@ -11,7 +11,7 @@ const Video = () => {
           allowFullScreen
         ></iframe>
         <figcaption className="fr-content-media__caption">
-          Présentation du dispositif Pass'Sport du ministère des Sports
+          Présentation du dispositif Pass&apos;Sport du ministère des Sports
           <a className="fr-link" href="https://vimeo.com/727000609">
             Voir la vidéo sur Viméo
           </a>
@@ -70,7 +70,7 @@ const Video = () => {
                           id="fr-transcription-modal-transcription-2160-title"
                           className="fr-modal__title"
                         >
-                          Présentation du dispositif Pass'Sport du ministère des Sports
+                          Présentation du dispositif Pass&apos;Sport du ministère des Sports
                         </h1>
                         <div>
                           <p>

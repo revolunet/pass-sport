@@ -1,6 +1,7 @@
 import pictogramImage from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/city-hall.svg';
 
 export interface PresentationTileProps {
+  id: number;
   title: string;
   description: string;
   detail: string;
