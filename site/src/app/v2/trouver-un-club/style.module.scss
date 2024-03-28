@@ -1,0 +1,29 @@
+@import '../../sassVariables.module';
+
+.wrapper {
+  max-width: $max-width;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 2vw;
+}
+
+
+.item {
+  max-width: 11vw;
+  min-width: 280px;
+}
+
+
+@media screen and (max-width: 900px) {
+  .container {
+    gap:4vw;
+  }
+}

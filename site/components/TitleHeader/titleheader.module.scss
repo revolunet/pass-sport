@@ -1,3 +1,5 @@
+@import '../../src/app/sassVariables.module';
+
 .container {
     background-color: #ECECFE;
 }
@@ -6,7 +8,7 @@
     padding: 0px 1.5em 50px 1.5em;
     margin-left: auto;
     margin-right: auto;
-    max-width: 78em;
+    max-width: $max-width;
 }
 
 .title {

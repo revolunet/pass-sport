@@ -2,14 +2,10 @@
 import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
 
-export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
-  '/v2/une-question': 'Une question ? ',
-};
-
 export default function PSNavigation() {
-  const paths: string = usePathname();
+  const paths: string | null = usePathname();
   const isActive = (path: string) => {
-    return paths.includes(path);
+    return !!(paths && paths.includes(path));
   };
   return (
     <div>
