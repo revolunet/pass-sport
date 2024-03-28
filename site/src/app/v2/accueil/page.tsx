@@ -8,6 +8,7 @@ import Callouts from '@/components/homepage/Callouts';
 import News from '@/components/homepage/News';
 import styles from './page.module.scss';
 import Button from '@codegouvfr/react-dsfr/Button';
+import NewsletterAndSocialMedia from '@/components/homepage/NewsletterAndSocialMedia';
 
 export default function Accueil() {
   return (
@@ -75,6 +76,8 @@ export default function Accueil() {
           <div className={styles.rectangle_background_blue}></div>
         </div>
       </div>
+
+      <NewsletterAndSocialMedia />
     </main>
   );
 }
