@@ -33,7 +33,7 @@ export default function Questions() {
   ];
 
   return (
-    <div className={styles.page}>
+    <>
       <TitleHeader
         title="Une question?"
         subtitle="Consulté notre FAQ la réponse à votre question s'y trouve peut-être."
@@ -41,7 +41,11 @@ export default function Questions() {
 
       <section className={styles.faq}>
         <div className={styles.faq_category_side}>
-          <nav className={`fr-summary ${styles.summary}`} role="navigation" aria-labelledby="fr-summary-title">
+          <nav
+            className={`fr-summary ${styles.summary}`}
+            role="navigation"
+            aria-labelledby="fr-summary-title"
+          >
             <p className="fr-summary__title" id="fr-summary-title">
               CATEGORIES
             </p>
@@ -82,6 +86,6 @@ export default function Questions() {
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 }

@@ -1,19 +1,22 @@
-.page {
-  position: relative;
-}
+@import '../../sassVariables.module.scss';
 
 .faq {
   position: relative;
-  top: -60px;
+  top: -20px;
 
   background-color: var(--color-white);
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 24px;
   max-width: 1196px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (min-width: $desktop) {
+    top: -60px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   &_category_side {
   }

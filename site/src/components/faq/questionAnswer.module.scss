@@ -1,13 +1,20 @@
+@import '../../app/sassVariables.module.scss';
+
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (min-width: $desktop) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .popularity-container {
   display: flex;
   flex-direction: column;
-  gap:8px;
+  gap: 8px;
   p {
     font-weight: bold;
   }
