@@ -54,14 +54,6 @@ export default function PSNavigation() {
             text: 'Une questions ?',
           },
           {
-            isActive: isActive('/v2/actualites-ressources'),
-            linkProps: {
-              href: '/v2/actualites-ressources',
-              target: '_self',
-            },
-            text: 'Actualités et ressources',
-          },
-          {
             isActive: isActive('/v2/trouver-un-club'),
             linkProps: {
               href: '/v2/trouver-un-club',
