@@ -1,7 +1,8 @@
 @import '../../src/app/sassVariables.module';
 
 .container {
-    background-color: #ECECFE;
+  background-color: #ececfe;
+  height: 180px;
 }
 
 .titlewrapper {
@@ -12,14 +13,14 @@
 }
 
 .title {
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
-    margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 15px;
 }
 
 .subtitle {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 32px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
 }
