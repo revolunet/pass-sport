@@ -8,22 +8,20 @@
 }
 
 .container {
-    margin-top: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 2vw;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 2vw;
 }
-
 
 .item {
   max-width: 11vw;
   min-width: 280px;
 }
 
-
 @media screen and (max-width: 900px) {
   .container {
-    gap:4vw;
+    gap: 4vw;
   }
 }

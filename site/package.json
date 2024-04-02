@@ -13,7 +13,7 @@
     "lint": "next lint",
     "predev": "only-include-used-icons",
     "prebuild": "only-include-used-icons",
-    "format:check": "prettier --check --ignore-path .gitignore \"**/*.+(ts|tsx|json|mjs)\"",
+    "format:check": "prettier --check --ignore-path .gitignore \"**/*.+(ts|tsx|json|mjs|scss)\"",
     "format:write": "npm run format:check -- --write"
   },
   "dependencies": {

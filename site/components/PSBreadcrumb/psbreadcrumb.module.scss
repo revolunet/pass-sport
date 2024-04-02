@@ -1,19 +1,17 @@
 @import '../../src/app/sassVariables.module';
 
 .container {
-    background-color: #ECECFE;
-    padding-left: 3em;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-    div {
-        margin: auto;
-        max-width: $max-width;
-        background-color: #ECECFE;
-        nav {
-            margin: auto;
-            background-color: #ECECFE;
-        }
+  background-color: #ececfe;
+  padding-left: 3em;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  div {
+    margin: auto;
+    max-width: $max-width;
+    background-color: #ececfe;
+    nav {
+      margin: auto;
+      background-color: #ececfe;
     }
- 
-    
+  }
 }
