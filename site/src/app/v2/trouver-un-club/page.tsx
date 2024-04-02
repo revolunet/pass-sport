@@ -13,6 +13,8 @@ const getClubs = async (): Promise<SportGouvJSONResponse> => {
   );
 
   if (!response.ok) {
+    console.error('Status from sports-sgsocialgouv.opendatasoft.com' + response.status);
+    console.error(response.body);
     return {
       results: [],
       total_count: 0,
