@@ -3,10 +3,10 @@ import Image from 'next/image';
 import PresentationTile from './components/PresentationTile';
 import { presentationTiles } from './page.messages';
 import styles from './styles.module.scss';
-import NewsletterAndSocialMedia from './components/NewsletterAndSocialMedia/NewsletterAndSocialMedia';
-import Callouts from './components/Callout/Callout';
-import News from './components/News/News';
-import Video from './components/Video/Video';
+import Callouts from './components/callout/Callout';
+import News from './components/news/News';
+import NewsletterAndSocialMedia from './components/newsletter-and-social-media/NewsletterAndSocialMedia';
+import Video from './components/video/Video';
 
 export default function Accueil() {
   return (
