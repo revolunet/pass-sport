@@ -31,3 +31,12 @@
 .summary {
   background-color: var(--color-white);
 }
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  max-width: 1200px;
+  margin: auto;
+}
