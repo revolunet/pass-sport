@@ -2,7 +2,7 @@ import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import style from './style.module.scss';
-import PageHeader from '../../../components/PageHeader/PageHeader';
+import PageHeader from '../../../../components/PageHeader/PageHeader';
 
 const getClubs = async (): Promise<SportGouvJSONResponse> => {
   const queryString = new URLSearchParams('nom%20is%20not%20null&limit=20');

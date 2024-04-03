@@ -6,9 +6,9 @@ import { getHtmlAttributes } from '@codegouvfr/react-dsfr/next-appdir/getHtmlAtt
 import { StartDsfr } from './StartDsfr';
 import { defaultColorScheme } from './defaultColorScheme';
 import Link from 'next/link';
-import PassSportFooter from '../components/PassSportFooter/PassSportFooter';
-import PassSportNavigation from '../components/PassSportNavigation/PassSportNavigation';
-import PassSportBreadcrumb from '../components/PassSportBreadcrumb/PassSportBreadcrumb';
+import PassSportFooter from './components/PassSportFooter/PassSportFooter';
+import PassSportNavigation from './components/PassSportNavigation/PassSportNavigation';
+import PassSportBreadcrumb from './components/PassSportBreadcrumb/PassSportBreadcrumb';
 import React from 'react';
 
 export const metadata: Metadata = {
