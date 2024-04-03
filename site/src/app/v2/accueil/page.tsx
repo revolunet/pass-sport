@@ -1,14 +1,12 @@
-import EmailForm from '@/components/homepage/EmailForm';
-import passSportImage from '@/images/homepage/pass-sport.png';
-import Image from 'next/image';
-import { presentationTiles } from './page.messages';
-import PresentationTile from '@/components/homepage/PresentationTile';
-import Video from '@/components/homepage/Video';
-import Callouts from '@/components/homepage/Callouts';
-import News from '@/components/homepage/News';
-import styles from './page.module.scss';
 import Button from '@codegouvfr/react-dsfr/Button';
-import NewsletterAndSocialMedia from '@/components/homepage/NewsletterAndSocialMedia';
+import Image from 'next/image';
+import PresentationTile from './components/PresentationTile';
+import { presentationTiles } from './page.messages';
+import styles from './styles.module.scss';
+import Callouts from './components/callout/Callout';
+import News from './components/news/News';
+import NewsletterAndSocialMedia from './components/newsletter-and-social-media/NewsletterAndSocialMedia';
+import Video from './components/video/Video';
 
 export default function Accueil() {
   return (

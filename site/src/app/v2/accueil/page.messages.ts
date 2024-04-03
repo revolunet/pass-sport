@@ -1,4 +1,4 @@
-import { PresentationTileProps } from '@/components/homepage/PresentationTile';
+import { PresentationTileProps } from './components/PresentationTile';
 
 export const presentationTiles: PresentationTileProps[] = [
   { id: 1, title: "Découvrir le pass'Sport", description: 'Description', detail: 'Détail' },

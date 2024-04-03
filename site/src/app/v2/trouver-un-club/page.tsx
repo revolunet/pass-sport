@@ -2,13 +2,13 @@ import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import style from './style.module.scss';
-import TitleHeader from '../../../../components/TitleHeader/TitleHeader';
+import PageHeader from '../../../../components/PageHeader/PageHeader';
 
 const getClubs = async (): Promise<SportGouvJSONResponse> => {
   const queryString = new URLSearchParams('nom%20is%20not%20null&limit=20');
 
   const response = await fetch(
-    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records?+aa' +
+    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records?' +
       queryString,
   );
 
@@ -28,10 +28,10 @@ export default async function TrouverUnClub() {
   const clubs_response: SportGouvJSONResponse = await getClubs();
   return (
     <div>
-      <TitleHeader
+      <PageHeader
         title="Trouver un club adhérent"
         subtitle={'Plus de ' + clubs_response.total_count + '  clubs labelisés trouvés'}
-      ></TitleHeader>
+      ></PageHeader>
       <div className={style.wrapper}>
         <div className={style.container}>
           {/* <ClubFilterBar></ClubFilterBar> */}

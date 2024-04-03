@@ -2,7 +2,7 @@
 import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
 
-export default function PSNavigation() {
+export default function PassSportNavigation() {
   const paths: string | null = usePathname();
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));

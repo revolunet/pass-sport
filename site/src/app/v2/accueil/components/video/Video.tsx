@@ -1,4 +1,4 @@
-import styles from './video.module.scss';
+import styles from './styles.module.scss';
 
 const Video = () => {
   return (

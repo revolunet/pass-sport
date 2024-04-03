@@ -1,6 +1,6 @@
 import Button from '@codegouvfr/react-dsfr/Button';
 import { newsContents } from './news.messages';
-import styles from './news.module.scss';
+import styles from './styles.module.scss';
 const News = () => (
   <div>
     <div className="fr-container--fluid">

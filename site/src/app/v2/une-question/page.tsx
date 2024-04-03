@@ -1,6 +1,6 @@
-import QuestionAnswer from '@/components/faq/QuestionAnswer';
-import TitleHeader from '../../../../components/TitleHeader/TitleHeader';
-import styles from './page.module.scss';
+import PageHeader from '../../../../components/PageHeader/PageHeader';
+import QuestionAnswer from './components/QuestionAnswer/QuestionAnswer';
+import styles from './styles.module.scss';
 
 export default function Questions() {
   const questionAnswers: QuestionAnswer[] = [
@@ -34,10 +34,10 @@ export default function Questions() {
 
   return (
     <>
-      <TitleHeader
+      <PageHeader
         title="Une question?"
         subtitle="Consulté notre FAQ la réponse à votre question s'y trouve peut-être."
-      ></TitleHeader>
+      ></PageHeader>
 
       <section className={styles.faq}>
         <div className={styles.faq_category_side}>

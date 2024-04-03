@@ -1,5 +1,5 @@
 import Input from '@codegouvfr/react-dsfr/Input';
-import styles from './emailForm.module.scss';
+import styles from './styles.module.scss';
 import Button from '@codegouvfr/react-dsfr/Button';
 
 const EmailForm: React.FC = () => {
