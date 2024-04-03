@@ -10,31 +10,41 @@ const ContactForm = () => {
   return (
     <form>
       <div className={styles['container']}>
-        <Image
-          className={styles.image}
-          src="/images/faq/form-image.png"
-          alt=""
-          width={334}
-          height={520}
-        />
+        <div className={styles['image-wrapper']}>
+          <Image
+            className={styles.image}
+            src="/images/faq/form-image.png"
+            alt=""
+            width={334}
+            height={501}
+          />
+        </div>
 
         <div className={styles.form}>
           <div className={styles['names-input-container']}>
-            <Input label="Prénom" />
-            <Input label="Nom de famille" />
+            <div>
+              <Input label="Prénom" />
+            </div>
+            <div>
+              <Input label="Nom de famille" />
+            </div>
           </div>
-          <Input label="Adresse e-mail" />
-          <Select label="Objet de la demande" nativeSelectProps={{}}>
-            <React.Fragment key=".0">
-              <option disabled hidden selected value="">
-                Selectionnez une option
-              </option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-              <option value="4">Option 4</option>
-            </React.Fragment>
-          </Select>
+          <div>
+            <Input label="Adresse e-mail" />
+          </div>
+          <div>
+            <Select label="Objet de la demande" nativeSelectProps={{}}>
+              <React.Fragment key=".0">
+                <option disabled hidden selected value="">
+                  Selectionnez une option
+                </option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                <option value="4">Option 4</option>
+              </React.Fragment>
+            </Select>
+          </div>
           <Input textArea label="Message" className={styles['textarea-wrapper']} />
         </div>
       </div>
