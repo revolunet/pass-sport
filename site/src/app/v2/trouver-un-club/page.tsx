@@ -4,11 +4,11 @@ import { Card } from '@codegouvfr/react-dsfr/Card';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import style from './style.module.scss';
 import PageHeader from '../../../../components/PageHeader/PageHeader';
-import { SearchBar } from '@codegouvfr/react-dsfr/SearchBar';
 import { useEffect, useState } from 'react';
+import Search from './components/search/Search';
 
 interface SearchParam {
-  nom: string;
+  nom?: string;
 }
 
 const getClubs = async (param?: SearchParam): Promise<SportGouvJSONResponse> => {
@@ -37,11 +37,11 @@ const getClubs = async (param?: SearchParam): Promise<SportGouvJSONResponse> => 
 
 export default function TrouverUnClub() {
   const [clubs, setClubs] = useState<SportGouvJSONResponse | undefined>();
-  const [clubParams, setClubParams] = useState<SearchParam | undefined>(undefined);
+  const [clubParams, setClubParams] = useState<SearchParam | undefined>({});
 
   useEffect(() => {
     getClubs(clubParams).then((res) => setClubs(res));
-  });
+  }, [clubParams]);
 
   return (
     <div>
@@ -49,7 +49,7 @@ export default function TrouverUnClub() {
         title="Trouver un club adhérent"
         subtitle={`Plus de ${clubs ? clubs.total_count : 0} clubs labelisés trouvés`}
       ></PageHeader>
-      <SearchBar onButtonClick={(text) => setClubParams({ nom: text.toUpperCase() })} />
+      <Search onTextSearch={(text: string) => setClubParams({ nom: text.toUpperCase() })}></Search>
       <div className={style.wrapper}>
         <div className={style.container}>
           {clubs &&
