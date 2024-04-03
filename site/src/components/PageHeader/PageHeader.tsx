@@ -1,11 +1,11 @@
-import styles from './titleheader.module.scss';
+import styles from './styles.module.scss';
 
 interface IProps {
   title: string;
   subtitle: string;
 }
 
-export default function TitleHeader({ title, subtitle }: IProps) {
+export default function PageHeader({ title, subtitle }: IProps) {
   return (
     <div className={styles.container}>
       <div className={styles.titlewrapper}>

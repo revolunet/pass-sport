@@ -6,9 +6,9 @@ import { getHtmlAttributes } from '@codegouvfr/react-dsfr/next-appdir/getHtmlAtt
 import { StartDsfr } from './StartDsfr';
 import { defaultColorScheme } from './defaultColorScheme';
 import Link from 'next/link';
-import PSFooter from '../../components/PSFooter';
-import PSNavigation from '../../components/PSNavigation';
-import PSBreadcrumb from '../../components/PSBreadcrumb/PSBreadcrumb';
+import PassSportFooter from '../components/PassSportFooter/PassSportFooter';
+import PassSportNavigation from '../components/PassSportNavigation/PassSportNavigation';
+import PassSportBreadcrumb from '../components/PassSportBreadcrumb/PassSportBreadcrumb';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -30,11 +30,11 @@ export default function RootLayout({
         <DsfrHead Link={Link} />
       </head>
       <body>
-        <PSNavigation></PSNavigation>
-        <PSBreadcrumb></PSBreadcrumb>
+        <PassSportNavigation></PassSportNavigation>
+        <PassSportBreadcrumb></PassSportBreadcrumb>
 
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
-        <PSFooter></PSFooter>
+        <PassSportFooter></PassSportFooter>
       </body>
     </html>
   );

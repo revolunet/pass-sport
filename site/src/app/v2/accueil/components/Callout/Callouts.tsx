@@ -1,5 +1,5 @@
 import { calloutContents } from './callouts.messages';
-import styles from './callout.module.scss';
+import styles from './styles.module.scss';
 
 const Callouts = () => {
   return (

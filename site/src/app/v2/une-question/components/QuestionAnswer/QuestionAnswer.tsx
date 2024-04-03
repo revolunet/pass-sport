@@ -1,5 +1,5 @@
-import PopularityLevel from './PopularityLevel';
-import styles from './questionAnswer.module.scss';
+import PopularityLevel from '../PopularityLevel/PopularityLevel';
+import styles from './styles.module.scss';
 
 interface QuestionAnswer {
   question: string;

@@ -1,5 +1,5 @@
 import Footer from '@codegouvfr/react-dsfr/Footer';
-import defaultLogo from '../public/default-logo.svg';
+import defaultLogo from '../../../public/default-logo.svg';
 
 const defaultImgConf = {
   linkProps: { title: '', href: '#' },
@@ -7,7 +7,7 @@ const defaultImgConf = {
   alt: 'string',
 };
 
-export default function PSFooter() {
+export default function PassSportFooter() {
   return (
     <Footer
       homeLinkProps={{ title: 'Home', href: '/v2/accueil' }}

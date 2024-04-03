@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './psbreadcrumb.module.scss';
+import styles from './styles.module.scss';
 
 import { Breadcrumb } from '@codegouvfr/react-dsfr/Breadcrumb';
 import { usePathname } from 'next/navigation';
@@ -10,7 +10,7 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/trouver-un-club': 'Trouver un club adhérent',
 };
 
-export default function PSBreadcrumb() {
+export default function PassSportBreadcrumb() {
   const paths: string | null = usePathname();
   if (paths === '/v2/accueil' || paths === '/') {
     return null;
