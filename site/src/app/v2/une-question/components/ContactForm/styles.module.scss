@@ -51,6 +51,7 @@
   gap: 48px;
 
   margin-top: 48px;
+  margin-bottom: 48px;
 
   @media (min-width: $desktop) {
     flex-direction: row;
@@ -65,18 +66,9 @@
 
   &_button {
     text-align: center;
-    margin-bottom: 48px;
-
-    @media (min-width: $desktop) {
-      margin-bottom: unset;
-    }
 
     button {
-      // min-width: 237px;
       padding: 10px 24px;
     }
-  }
-
-  .button-wrapper {
   }
 }
