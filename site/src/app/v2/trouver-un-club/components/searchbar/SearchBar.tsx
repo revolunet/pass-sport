@@ -1,4 +1,4 @@
-import styles from './styles.module.scss';
+import { SearchBar } from '@codegouvfr/react-dsfr/SearchBar';
 
 interface IProps {
   title: string;
@@ -6,5 +6,5 @@ interface IProps {
 }
 
 export default function SearchBar({}) {
-  return <div></div>;
+  return <SearchBar onButtonClick={() => {}} />;
 }
