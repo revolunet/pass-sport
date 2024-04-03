@@ -8,7 +8,7 @@ const getClubs = async (): Promise<SportGouvJSONResponse> => {
   const queryString = new URLSearchParams('nom%20is%20not%20null&limit=20');
 
   const response = await fetch(
-    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records?+aa' +
+    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records?' +
       queryString,
   );
 
