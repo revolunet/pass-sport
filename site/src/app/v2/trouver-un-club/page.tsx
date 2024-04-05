@@ -14,7 +14,7 @@ interface SearchParam {
 const getClubs = async (param?: SearchParam): Promise<SportGouvJSONResponse> => {
   const queryString: URLSearchParams = new URLSearchParams('nom%20is%20not%20null&limit=20');
 
-  if (!!param?.nom) {
+  if (param?.nom) {
     queryString.append('where', `nom like '%${param.nom}%'`);
   }
 
