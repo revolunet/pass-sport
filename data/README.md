@@ -1,6 +1,6 @@
 # Data manipulation for Pass'Sport
 
-## Python (3.10.6)
+## Python (3.10.12)
 
 ## Create virtualenv
 
