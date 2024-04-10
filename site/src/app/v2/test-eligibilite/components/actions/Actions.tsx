@@ -21,16 +21,14 @@ const Actions: React.FC<Props> = ({ hasSearchClubAction }) => {
             {
               children: 'Trouver un Club adhérent',
               onClick: () => router.push('trouver-un-club'),
-              size: 'large',
             },
             {
               children: 'Retour à l’accueil',
               onClick: () => router.push('accueil'),
-              size: 'large',
               priority: 'secondary',
             },
           ]}
-          inlineLayoutWhen="always"
+          inlineLayoutWhen="sm and up"
           buttonsSize="large"
         />
       ) : (

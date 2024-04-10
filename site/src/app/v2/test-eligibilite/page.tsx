@@ -4,9 +4,11 @@ import styles from './styles.module.scss';
 const EligibilityTest = () => {
   return (
     <div>
-      <h1 className={`fr-mt-8w fr-mb-4w ${styles.title}`}>Puis-je bénéficier du Pass Sport?</h1>
+      <h1 className={`fr-mt-8w fr-mb-4w fr-px-2w ${styles.title}`}>
+        Puis-je bénéficier du Pass Sport?
+      </h1>
 
-      <div className={`fr-mb-8w fr-mx-auto ${styles.background}`}>
+      <div className={`fr-mb-8w fr-mx-auto fr-px-2w ${styles.background}`}>
         <div className={`fr-py-7w fr-mx-auto ${styles.wrapper}`}>
           <ForWhoStep />
         </div>
