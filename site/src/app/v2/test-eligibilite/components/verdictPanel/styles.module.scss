@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.success-text {
+  font-weight: 700;
+  color: var(--text-default-success);
+}
+
+.failure-text {
+  font-weight: 700;
+  color: var(--text-default-error);
+}
+
+.text {
+  font-weight: 500;
+
+  a {
+    color: var(--artwork-major-blue-france);
+  }
+}
+
+.ul {
+  list-style-position: inside;
+}

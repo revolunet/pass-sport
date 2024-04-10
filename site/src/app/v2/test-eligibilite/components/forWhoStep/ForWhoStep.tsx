@@ -5,6 +5,7 @@ import { useState } from 'react';
 import AgeStep from '../ageStep/AgeStep';
 import Question from '../Question/Question';
 import EligibilityContext from '../../../../../store/eligibilityTestContext';
+import ChildAgeStep from '../childAgeStep/ChildAgeStep';
 
 const ForWhoStep = () => {
   const [isForMyself, setIsForMyself] = useState<boolean | null>(null);
@@ -38,7 +39,8 @@ const ForWhoStep = () => {
           />
         </Question>
 
-        {isForMyself !== null && <AgeStep />}
+        {isForMyself === true && <AgeStep />}
+        {isForMyself === false && <ChildAgeStep />}
       </div>
     </EligibilityContext.Provider>
   );

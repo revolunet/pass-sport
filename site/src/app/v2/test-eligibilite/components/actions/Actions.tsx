@@ -1,33 +1,43 @@
 import Button from '@codegouvfr/react-dsfr/Button';
 import ButtonsGroup from '@codegouvfr/react-dsfr/ButtonsGroup';
+
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import EligibilityTestContext from '@/store/eligibilityTestContext';
 
-const Actions = () => {
+interface Props {
+  hasSearchClubAction: boolean;
+}
+const Actions: React.FC<Props> = ({ hasSearchClubAction }) => {
   const router = useRouter();
   const context = useContext(EligibilityTestContext);
 
   return (
     <div className={styles.spacer}>
-      <ButtonsGroup
-        buttons={[
-          {
-            children: 'Trouver un Club adhérent',
-            onClick: () => router.push('trouver-un-club'),
-            size: 'large',
-          },
-          {
-            children: 'Retour à l’accueil',
-            onClick: () => router.push('accueil'),
-            size: 'large',
-            priority: 'secondary',
-          },
-        ]}
-        inlineLayoutWhen="always"
-        buttonsSize="large"
-      />
+      {hasSearchClubAction ? (
+        <ButtonsGroup
+          buttons={[
+            {
+              children: 'Trouver un Club adhérent',
+              onClick: () => router.push('trouver-un-club'),
+              size: 'large',
+            },
+            {
+              children: 'Retour à l’accueil',
+              onClick: () => router.push('accueil'),
+              size: 'large',
+              priority: 'secondary',
+            },
+          ]}
+          inlineLayoutWhen="always"
+          buttonsSize="large"
+        />
+      ) : (
+        <Button priority="secondary" size="large" onClick={() => router.push('accueil')}>
+          Retour à l’accueil
+        </Button>
+      )}
 
       <div className={styles['last-button-positioner']}>
         <Button

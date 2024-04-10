@@ -2,6 +2,7 @@ import ButtonsGroup from '@codegouvfr/react-dsfr/ButtonsGroup';
 import Question from '../Question/Question';
 import { useState } from 'react';
 import ArsStep from '../arsStep/ArsStep';
+import AllowancesStep from '../allowancesStep/AllowancesStep';
 
 const AgeStep2 = () => {
   const [isLessThan19, setIsLessThan19] = useState<boolean | null>(null);
@@ -30,6 +31,7 @@ const AgeStep2 = () => {
       </Question>
 
       {isLessThan19 && <ArsStep />}
+      {isLessThan19 === false && <AllowancesStep />}
     </div>
   );
 };
