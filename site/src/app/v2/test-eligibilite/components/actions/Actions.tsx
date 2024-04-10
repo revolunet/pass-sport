@@ -14,7 +14,7 @@ const Actions: React.FC<Props> = ({ hasSearchClubAction }) => {
   const context = useContext(EligibilityTestContext);
 
   return (
-    <div className={styles.spacer}>
+    <div className="fr-pb-3w">
       {hasSearchClubAction ? (
         <ButtonsGroup
           buttons={[

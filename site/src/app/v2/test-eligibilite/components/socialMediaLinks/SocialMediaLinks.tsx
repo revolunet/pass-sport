@@ -9,7 +9,7 @@ const SocialMediaLinks = () => {
           Pour plus d’informations, suivez-nous sur les réseaux sociaux :
         </p>
       </div>
-      <div className={styles['link-container']}>
+      <div className={`fr-pt-1w fr-pb-4w ${styles['link-container']}`}>
         <a className="fr-link fr-icon-instagram-line fr-link--icon-left" href="#">
           Instagram
         </a>
