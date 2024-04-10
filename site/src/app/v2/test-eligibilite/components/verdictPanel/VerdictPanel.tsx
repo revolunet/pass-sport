@@ -10,7 +10,7 @@ interface Props {
 const VerdictPanel: React.FC<Props> = ({ isEligible }) => {
   return (
     <div className={styles.container}>
-      <div className={questionStyle.panel}>
+      <div className={`fr-p-2w ${questionStyle.panel}`}>
         {isEligible ? (
           <p className={`fr-text--lead ${styles['success-text']}`}>
             😁 Bonne nouvelle ! Vous êtes éligible au Pass Sport.

@@ -4,8 +4,8 @@ import styles from './styles.module.scss';
 const SocialMediaLinks = () => {
   return (
     <div>
-      <div className={questionStyles.panel}>
-        <p className={`fr-text--lg ${questionStyles.paragraph}  ${questionStyles.question}`}>
+      <div className={`fr-p-2w ${questionStyles.panel}`}>
+        <p className={`fr-text--lg fr-mb-0 ${questionStyles.paragraph}`}>
           Pour plus d’informations, suivez-nous sur les réseaux sociaux :
         </p>
       </div>

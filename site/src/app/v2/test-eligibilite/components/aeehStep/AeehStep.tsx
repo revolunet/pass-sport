@@ -1,9 +1,9 @@
-import ButtonsGroup from '@codegouvfr/react-dsfr/ButtonsGroup';
 import Question from '../Question/Question';
 import questionStyle from '../Question/styles.module.scss';
 
 import { useState } from 'react';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
+import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
 
 const AeehStep = () => {
   const [hasAeehAllocation, setHasAeehAllocation] = useState<boolean | null>(null);
@@ -21,7 +21,7 @@ const AeehStep = () => {
           </>
         }
       >
-        <ButtonsGroup
+        <CustomButtonsGroups
           buttons={[
             {
               children: 'Oui',
@@ -34,8 +34,6 @@ const AeehStep = () => {
               onClick: () => setHasAeehAllocation(false),
             },
           ]}
-          inlineLayoutWhen="always"
-          buttonsSize="large"
         />
       </Question>
       {hasAeehAllocation && <VerdictPanel isEligible={true} />}

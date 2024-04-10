@@ -1,9 +1,9 @@
-import ButtonsGroup from '@codegouvfr/react-dsfr/ButtonsGroup';
 import Question from '../Question/Question';
 import { useState } from 'react';
 import questionStyle from '../Question/styles.module.scss';
 import verdictStyle from '../verdictPanel/styles.module.scss';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
+import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
 
 interface Props {
   isForChild: boolean;
@@ -36,19 +36,19 @@ const AllowancesStep: React.FC<Props> = ({ isForChild }) => {
               <li className={`fr-text--lg fr-mb-0 ${questionStyle.paragraph}`}>
                 d’une bourse de l’état de l’enseignement supérieur sous conditions de ressources,
                 d’une aide annuelle du CROUS ou d’une bourse régionale pour les formations
-                sanitaires et sociales pour l’année universitaire 2023-2024 ou 2024-2025 ?
+                sanitaires et sociales pour l’année universitaire 2023-2024 ou 2024-2025?
               </li>
               <li className={`fr-text--lg fr-mb-0 ${questionStyle.paragraph}`}>
-                de l’allocation aux adultes handicapées (AAH) ?
+                de l’allocation aux adultes handicapées (AAH)?
               </li>
               <li className={`fr-text--lg fr-mb-0 ${questionStyle.paragraph}`}>
-                ou de l’allocation d’éducation de l’enfant handicapé (AEEH) ?
+                ou de l’allocation d’éducation de l’enfant handicapé (AEEH)?
               </li>
             </ul>
           </>
         }
       >
-        <ButtonsGroup
+        <CustomButtonsGroups
           buttons={[
             {
               children: 'Oui',
@@ -61,8 +61,6 @@ const AllowancesStep: React.FC<Props> = ({ isForChild }) => {
               onClick: () => setHasAllowances(false),
             },
           ]}
-          inlineLayoutWhen="always"
-          buttonsSize="large"
         />
       </Question>
 

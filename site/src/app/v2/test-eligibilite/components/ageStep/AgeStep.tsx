@@ -1,9 +1,8 @@
-import ButtonsGroup from '@codegouvfr/react-dsfr/ButtonsGroup';
 import { useState } from 'react';
 import Question from '../Question/Question';
-import styles from '../Question/styles.module.scss';
-import Response from '../Response/Response';
 import AgeStep2 from '../ageStep2/AgeStep2';
+import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import questionStyles from '../Question/styles.module.scss';
 
 const AgeStep = () => {
   const [isMoreThan30, setIsMoreThan30] = useState<boolean | null>(null);
@@ -11,38 +10,32 @@ const AgeStep = () => {
   return (
     <div>
       <Question question="Quel âge avez-vous ?">
-        <ButtonsGroup
+        <CustomButtonsGroups
           buttons={[
             {
               children: 'Entre 6 et 30 ans',
               disabled: isMoreThan30 === true,
               onClick: () => setIsMoreThan30(false),
-              size: 'large',
             },
             {
               children: 'Plus de 30 ans',
               disabled: isMoreThan30 === false,
               onClick: () => setIsMoreThan30(true),
-              size: 'large',
             },
           ]}
-          inlineLayoutWhen="always"
-          buttonsSize="large"
         />
       </Question>
 
       {isMoreThan30 && (
-        <Response>
-          <>
-            <p className="fr-text--lg">
-              Nous sommes désolés, mais vous n’êtes pas éligible au Pass’Sport.
-            </p>
-            <p className="fr-text--lg">
-              En effet, ce dispositif est ouvert aux personnes nées entre le 16 septembre 1993 et le
-              31 décembre 2018.
-            </p>
-          </>
-        </Response>
+        <div className={`fr-p-2w ${questionStyles.panel}`}>
+          <p className={`fr-text--lg ${questionStyles.paragraph}`}>
+            Nous sommes désolés, mais vous n’êtes pas éligible au Pass’Sport.
+          </p>
+          <p className={`fr-text--lg fr-mb-0 ${questionStyles.paragraph}`}>
+            En effet, ce dispositif est ouvert aux personnes nées entre le 16 septembre 1993 et le
+            31 décembre 2018.
+          </p>
+        </div>
       )}
 
       {isMoreThan30 === false && <AgeStep2 />}
