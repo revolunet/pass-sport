@@ -28,8 +28,6 @@
     flex-direction: row;
     gap: 8px;
 
-    margin: 16px 0px;
-
     .disability {
       background-color: var(--green-tilleul-verveine-925-125);
     }
@@ -53,36 +51,3 @@
   }
 }
 
-.medical-certificate {
-  padding: 32px 36px;
-  background-color: var(--artwork-minor-blue-france);
-  max-width: 1200px;
-  margin: auto;
-
-  margin-bottom: 24px;
-  &_container {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    &_text-container {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      flex-basis: 100px;
-      flex-grow: 1;
-    }
-
-    &_button-wrapper {
-      margin: auto;
-      button {
-        background-color: var(--color-white);
-      }
-    }
-  }
-  .text-color {
-    color: var(--color-white);
-  }
-  .paragraph {
-    margin-bottom: 0px;
-  }
-}

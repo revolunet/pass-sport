@@ -1,6 +1,9 @@
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './style.module.scss';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
+import { formatPhoneNumber } from './helpers';
+import Link from 'next/link';
+import MedicalCertificatePanel from './components/medicalCertificatPanel/MedicalCertificatePanel';
 
 const ClubPage = () => {
   // const club = {
@@ -51,8 +54,10 @@ const ClubPage = () => {
     cedex: null,
     cp: '33400',
     commune: 'TALENCE',
+    // commune: null,
     telephone: '0603168266',
-    courriel: null,
+    // courriel: null,
+    courriel: 'maxime.chaillet@pathtech.fr',
     site_web: null,
     est_volontaire: 'Oui',
     activites: [
@@ -63,11 +68,12 @@ const ClubPage = () => {
       'Ski alpin',
       'Escalade',
     ],
-    a_accueil_handicap_mental: null,
+    a_accueil_handicap_mental: true,
     a_accueil_handicap_moteur: true,
     a_reseau: 'Oui',
     a_agrement: 'Oui',
     adresse: '11 rue de la renaissance',
+    // adresse: null,
     handicap: 'Non',
     insee_com: '33522',
     com_code: '33522',
@@ -90,7 +96,7 @@ const ClubPage = () => {
         <section className={styles.info}>
           <h2>{club.nom}</h2>
 
-          <div className={styles.tags}>
+          <div className={`fr-my-2w ${styles.tags}`}>
             <Tag small>
               <p className="fr-text--xs">{club.activites.length} activités</p>
             </Tag>
@@ -99,16 +105,23 @@ const ClubPage = () => {
                 <p className="fr-text--xs">Accueil personnes aux Handicaps moteurs</p>
               </Tag>
             )}
+            {club.a_accueil_handicap_mental && (
+              <Tag className={styles.disability} small>
+                <p className="fr-text--xs">Accueil personnes aux Handicaps mentaux</p>
+              </Tag>
+            )}
           </div>
 
           <div className={styles.contact}>
-            {club.adresse && club.commune && (
+            {(club.adresse || club.commune) && (
               <p className="fr-text--xs">
                 <span
                   className={`fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
                   aria-hidden="true"
                 ></span>
-                {club.adresse}, {club.commune}
+                {club.adresse && club.adresse}
+                {club.adresse && club.commune && ', '}
+                {club.commune && club.commune}
               </p>
             )}
 
@@ -118,7 +131,7 @@ const ClubPage = () => {
                   className={`fr-icon-phone-line ${styles['icon-color']} fr-icon--sm`}
                   aria-hidden="true"
                 ></span>
-                {club.telephone}
+                {formatPhoneNumber(club.telephone)}
               </p>
             )}
 
@@ -146,25 +159,10 @@ const ClubPage = () => {
           <hr className={styles.separator} />
         </section>
 
-        <h4>Où nous trouver</h4>
+        {/* <h4>Où nous trouver</h4> */}
       </div>
 
-      <div className={styles['medical-certificate']}>
-        <div className={styles['medical-certificate_container']}>
-          <div className={styles['medical-certificate_container_text-container']}>
-            <h3 className={styles['text-color']}>Besoin d &apos;un certificat médical ?</h3>
-            <p className={`fr-text--lg ${styles['text-color']} ${styles['paragraph']}`}>
-              Ce simulateur vous indique si vous devez obtenir un certificat médical pour pratiquer
-              une activité sportive (loisir ou compétition).
-            </p>
-          </div>
-          <div className={styles['medical-certificate_container_button-wrapper']}>
-            <Button priority="tertiary" size="large">
-              Faire le simulateur de certificat médical
-            </Button>
-          </div>
-        </div>
-      </div>
+      <MedicalCertificatePanel />
     </div>
   );
 };
