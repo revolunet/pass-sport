@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@codegouvfr/react-dsfr/Button';
 import Image from 'next/image';
 import PresentationTile from './components/PresentationTile';
@@ -7,8 +9,10 @@ import Callouts from './components/callout/Callout';
 import News from './components/news/News';
 import NewsletterAndSocialMedia from './components/newsletter-and-social-media/NewsletterAndSocialMedia';
 import Video from './components/video/Video';
+import { useRouter } from 'next/navigation';
 
 export default function Accueil() {
+  const router = useRouter();
   return (
     <main>
       <section className={styles.hero}>
@@ -34,8 +38,9 @@ export default function Accueil() {
               size="large"
               iconId="fr-icon-arrow-right-line"
               iconPosition="right"
+              onClick={() => router.push('test-eligibilite')}
             >
-              Obtenir mon code pass&apos;Sport
+              Je fais le test
             </Button>
           </div>
         </div>
