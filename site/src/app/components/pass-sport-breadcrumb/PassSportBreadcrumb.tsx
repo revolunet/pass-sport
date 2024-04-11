@@ -15,16 +15,34 @@ export default function PassSportBreadcrumb() {
   if (paths === '/v2/accueil' || paths === '/' || paths === '/v2/test-eligibilite') {
     return null;
   }
-  return (
-    <div className={styles.container}>
-      <div>
-        {!!paths && !!NAVIGATION_ITEM_MAP[paths] && (
+
+  if (!!paths && !!NAVIGATION_ITEM_MAP[paths]) {
+    return (
+      <div className={styles.container}>
+        <div>
           <Breadcrumb
             homeLinkProps={{ href: '/v2/accueil' }}
             currentPageLabel={NAVIGATION_ITEM_MAP[paths]}
             segments={[]}
           ></Breadcrumb>
-        )}
+        </div>
+      </div>
+    );
+  }
+
+  const pathNames = paths.split('/');
+  const clubName = decodeURI(pathNames[pathNames.length - 1]);
+
+  return (
+    <div className={styles.container}>
+      <div>
+        <Breadcrumb
+          homeLinkProps={{ href: '/v2/accueil' }}
+          currentPageLabel={clubName}
+          segments={[
+            { label: 'Trouver un club adhérent', linkProps: { href: '/v2/trouver-un-club' } },
+          ]}
+        ></Breadcrumb>
       </div>
     </div>
   );

@@ -6,38 +6,13 @@ import style from './style.module.scss';
 import PageHeader from '../../../../components/PageHeader/PageHeader';
 import { useEffect, useState } from 'react';
 import Search from './components/search/Search';
-
-interface SearchParam {
-  nom?: string;
-}
-
-const getClubs = async (param?: SearchParam): Promise<SportGouvJSONResponse> => {
-  const queryString: URLSearchParams = new URLSearchParams('nom%20is%20not%20null&limit=20');
-
-  if (param?.nom) {
-    queryString.append('where', `nom like '%${param.nom}%'`);
-  }
-
-  const response = await fetch(
-    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records?' +
-      queryString,
-  );
-
-  if (!response.ok) {
-    console.error('Status from sports-sgsocialgouv.opendatasoft.com' + response.status);
-    console.error(response.body);
-    return {
-      results: [],
-      total_count: 0,
-    };
-  }
-
-  return response.json();
-};
+import { SqlSearchParams, getClubs } from './agent';
+import { usePathname } from 'next/navigation';
 
 export default function TrouverUnClub() {
+  const pathName = usePathname();
   const [clubs, setClubs] = useState<SportGouvJSONResponse | undefined>();
-  const [clubParams, setClubParams] = useState<SearchParam | undefined>({});
+  const [clubParams, setClubParams] = useState<SqlSearchParams | undefined>({});
 
   useEffect(() => {
     getClubs(clubParams).then((res) => setClubs(res));
@@ -49,7 +24,11 @@ export default function TrouverUnClub() {
         title="Trouver un club adhérent"
         subtitle={`Plus de ${clubs ? clubs.total_count : 0} clubs labelisés trouvés`}
       ></PageHeader>
-      <Search onTextSearch={(text: string) => setClubParams({ nom: text.toUpperCase() })}></Search>
+      <Search
+        onTextSearch={(text: string) =>
+          setClubParams({ nom: `nom like '%${text.toUpperCase()}%'` })
+        }
+      ></Search>
       <div className={style.wrapper}>
         <div className={style.container}>
           {clubs &&
@@ -72,7 +51,7 @@ export default function TrouverUnClub() {
                 detail={club.adresse + ', ' + club.com_arm_name}
                 enlargeLink
                 linkProps={{
-                  href: '#',
+                  href: `${pathName}/${club.nom}`,
                 }}
                 size="medium"
                 start={

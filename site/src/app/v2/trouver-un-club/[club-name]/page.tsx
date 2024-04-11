@@ -4,95 +4,33 @@ import styles from './style.module.scss';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import { formatPhoneNumber } from './helpers';
 import MedicalCertificatePanel from './components/medicalCertificatPanel/MedicalCertificatePanel';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getClubs } from '../agent';
+import { useParams } from 'next/navigation';
 
 const ClubPage = () => {
-  // const club = {
-  //   nom: 'BOXE PIEDS POINGS CORBEHEM 62',
-  //   cplt_1: 'mairie',
-  //   num_voie: null,
-  //   type_voie: null,
-  //   voie: null,
-  //   bp: null,
-  //   cedex: null,
-  //   cp: '62112',
-  //   commune: 'CORBEHEM',
-  //   telephone: null,
-  //   courriel: null,
-  //   site_web: null,
-  //   est_volontaire: 'Oui',
-  //   activites: ['Kickboxing'],
-  //   a_accueil_handicap_mental: null,
-  //   // a_accueil_handicap_moteur: null,
-  //   a_accueil_handicap_moteur: true,
+  const pathParameters = useParams<{ 'club-name': string }>();
+  const clubName = decodeURI(pathParameters['club-name']);
 
-  //   a_reseau: 'Oui',
-  //   a_agrement: 'Non',
-  //   adresse: 'mairie',
-  //   handicap: 'Non',
-  //   insee_com: '62383/62240',
-  //   com_code: '62240',
-  //   dep_code: '62',
-  //   com_arm_name: 'Corbehem',
-  //   epci_code: 200044048,
-  //   epci_name: 'CC Osartis Marquion',
-  //   dep_name: 'Pas-de-Calais',
-  //   reg_code: 32,
-  //   reg_name: 'Hauts-de-France',
-  //   geoloc_finale: {
-  //     lon: 3.051925,
-  //     lat: 50.335714,
-  //   },
-  // };
+  const [club, setClub] = useState<Club | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    getClubs({ nom: `nom='${clubName.toUpperCase()}'` }).then((res) => {
+      if (res.results.length === 0) {
+        setError("Le club n'a pas été trouvé");
+      } else {
+        setClub(res.results[0]);
+      }
+    });
+  }, [clubName]);
 
-  const club = {
-    nom: 'VERTIGE',
-    cplt_1: 'Espace sportif Boris DIAW',
-    num_voie: '11',
-    type_voie: 'RUE',
-    voie: 'de la Renaissance',
-    bp: null,
-    cedex: null,
-    cp: '33400',
-    commune: 'TALENCE',
-    // commune: null,
-    telephone: '0603168266',
-    // courriel: null,
-    courriel: 'maxime.chaillet@pathtech.fr',
-    site_web: null,
-    est_volontaire: 'Oui',
-    activites: [
-      'Autres Arts mariaux et sport de combat (ex: Kendo)',
-      "Course d'orientation",
-      'Randonnée pédestre',
-      'Ski alpinisme',
-      'Ski alpin',
-      'Escalade',
-    ],
-    a_accueil_handicap_mental: true,
-    a_accueil_handicap_moteur: true,
-    a_reseau: 'Oui',
-    a_agrement: 'Oui',
-    adresse: '11 rue de la renaissance',
-    // adresse: null,
-    handicap: 'Non',
-    insee_com: '33522',
-    com_code: '33522',
-    dep_code: '33',
-    com_arm_name: 'Talence',
-    epci_code: 243300316,
-    epci_name: 'Bordeaux Métropole',
-    dep_name: 'Gironde',
-    reg_code: 75,
-    reg_name: 'Nouvelle-Aquitaine',
-    geoloc_finale: {
-      lon: -0.594225,
-      lat: 44.818061,
-    },
-  };
+  if (error) {
+    return <p className={styles.error}>{error}</p>;
+  }
 
-  const router = useRouter();
+  if (!club) {
+    return null;
+  }
 
   return (
     <div className="fr-mx-2w">
@@ -103,12 +41,12 @@ const ClubPage = () => {
             <Tag small>
               <p className="fr-text--xs">{club.activites.length} activités</p>
             </Tag>
-            {club.a_accueil_handicap_moteur && (
+            {club.a_accueil_handicap_moteur === 'Oui' && (
               <Tag className={styles.disability} small>
                 <p className="fr-text--xs">Accueil personnes aux Handicaps moteurs</p>
               </Tag>
             )}
-            {club.a_accueil_handicap_mental && (
+            {club.a_accueil_handicap_mental === 'Oui' && (
               <Tag className={styles.disability} small>
                 <p className="fr-text--xs">Accueil personnes aux Handicaps mentaux</p>
               </Tag>
@@ -160,8 +98,6 @@ const ClubPage = () => {
           </ul>
           <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
         </section>
-
-        {/* <h4>Où nous trouver</h4> */}
       </div>
 
       <MedicalCertificatePanel />
