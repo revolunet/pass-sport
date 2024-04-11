@@ -1,3 +1,5 @@
+@import '../../../../../sassVariables.module.scss';
+
 .background {
   background-color: var(--artwork-minor-blue-france);
   max-width: 1200px;
@@ -5,8 +7,12 @@
 
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 16px;
+
+  @media (min-width: $desktop) {
+    flex-direction: row;
+  }
 
   .text-container {
     display: flex;

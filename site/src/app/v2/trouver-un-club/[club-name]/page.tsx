@@ -1,9 +1,11 @@
-import Button from '@codegouvfr/react-dsfr/Button';
+'use client';
+
 import styles from './style.module.scss';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import { formatPhoneNumber } from './helpers';
-import Link from 'next/link';
 import MedicalCertificatePanel from './components/medicalCertificatPanel/MedicalCertificatePanel';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const ClubPage = () => {
   // const club = {
@@ -90,12 +92,13 @@ const ClubPage = () => {
     },
   };
 
+  const router = useRouter();
+
   return (
-    <div>
-      <div className={styles.frame}>
+    <div className="fr-mx-2w">
+      <div className={`fr-p-3w fr-mt-3w fr-mx-auto fr-mb-12w ${styles.panel}`}>
         <section className={styles.info}>
           <h2>{club.nom}</h2>
-
           <div className={`fr-my-2w ${styles.tags}`}>
             <Tag small>
               <p className="fr-text--xs">{club.activites.length} activités</p>
@@ -111,12 +114,11 @@ const ClubPage = () => {
               </Tag>
             )}
           </div>
-
           <div className={styles.contact}>
             {(club.adresse || club.commune) && (
-              <p className="fr-text--xs">
+              <p className="fr-text--xs fr-m-0">
                 <span
-                  className={`fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
+                  className={`fr-pr-1w fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
                   aria-hidden="true"
                 ></span>
                 {club.adresse && club.adresse}
@@ -126,9 +128,9 @@ const ClubPage = () => {
             )}
 
             {club.telephone && (
-              <p className="fr-text--xs">
+              <p className="fr-text--xs fr-m-0">
                 <span
-                  className={`fr-icon-phone-line ${styles['icon-color']} fr-icon--sm`}
+                  className={`fr-pr-1w fr-icon-phone-line ${styles['icon-color']} fr-icon--sm`}
                   aria-hidden="true"
                 ></span>
                 {formatPhoneNumber(club.telephone)}
@@ -136,27 +138,27 @@ const ClubPage = () => {
             )}
 
             {club.courriel && (
-              <p className="fr-text--xs">
+              <p className="fr-text--xs fr-m-0">
                 <span
-                  className={`fr-icon-mail-line ${styles['icon-color']} fr-icon--sm`}
+                  className={`fr-pr-1w fr-icon-mail-line ${styles['icon-color']} fr-icon--sm`}
                   aria-hidden="true"
                 ></span>
                 {club.courriel}
               </p>
             )}
           </div>
-          <hr className={styles.separator} />
-
+          <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
           <h3>Les activités</h3>
           <ul className={styles.activities}>
             <div className={styles.grid}>
               {club.activites.map((activity) => (
-                <li key={activity}>{activity}</li>
+                <li key={activity} className="fr-mr-3w fr-p-0">
+                  {activity}
+                </li>
               ))}
             </div>
           </ul>
-
-          <hr className={styles.separator} />
+          <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
         </section>
 
         {/* <h4>Où nous trouver</h4> */}
