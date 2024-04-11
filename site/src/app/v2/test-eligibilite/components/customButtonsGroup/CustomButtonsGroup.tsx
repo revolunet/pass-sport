@@ -1,7 +1,6 @@
 import { ButtonProps } from '@codegouvfr/react-dsfr/Button';
 import ButtonsGroup from '@codegouvfr/react-dsfr/ButtonsGroup';
 import React, { useState } from 'react';
-import cn from 'classnames';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -25,11 +24,9 @@ const CustomButtonsGroups: React.FC<Props> = ({ buttons }) => {
 
   return (
     <div
-      className={cn({
-        [`${styles['button-clicked-index-0']}`]: buttonClickedIndex === 0,
-        [`${styles['button-clicked-index-1']}`]: buttonClickedIndex === 1,
-        [`${styles['button-clicked-index-2']}`]: buttonClickedIndex === 2,
-      })}
+      className={`${
+        buttonClickedIndex === null ? null : styles['button-clicked-index-' + buttonClickedIndex]
+      }`}
     >
       <ButtonsGroup buttons={rewireOnClick()} inlineLayoutWhen="sm and up" buttonsSize="large" />
     </div>
