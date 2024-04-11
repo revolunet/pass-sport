@@ -28,7 +28,7 @@ It is loaded in scripts by `load_dotenv()` from `dotenv`.
 deactivate
 ```
 
-## Install requierements (with venv activated)
+## Install requirements (with venv activated)
 ```bash
 pip install -r requirements.txt
 ```
