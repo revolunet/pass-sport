@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import Search from './components/search/Search';
 import { SqlSearchParams, getClubs } from './agent';
 import { usePathname } from 'next/navigation';
+import EligibilityTestBanner from './components/eligibilityTestBanner/EligibilityTestBanner';
 
 export default function TrouverUnClub() {
   const pathName = usePathname();
@@ -75,6 +76,7 @@ export default function TrouverUnClub() {
             ))}
         </div>
       </div>
+      <EligibilityTestBanner />
     </div>
   );
 }
