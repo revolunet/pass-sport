@@ -52,12 +52,10 @@ const AllowancesStep: React.FC<Props> = ({ isForChild }) => {
           buttons={[
             {
               children: 'Oui',
-              disabled: hasAllowances === false,
               onClick: () => setHasAllowances(true),
             },
             {
               children: 'Non',
-              disabled: hasAllowances === true,
               onClick: () => setHasAllowances(false),
             },
           ]}

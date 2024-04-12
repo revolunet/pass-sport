@@ -30,12 +30,10 @@ const ForWhoStep = () => {
             buttons={[
               {
                 children: 'Pour moi même',
-                disabled: isForMyself === false,
                 onClick: () => setIsForMyself(true),
               },
               {
                 children: 'Pour mon enfant ou petit enfant',
-                disabled: isForMyself === true,
                 onClick: () => setIsForMyself(false),
               },
             ]}

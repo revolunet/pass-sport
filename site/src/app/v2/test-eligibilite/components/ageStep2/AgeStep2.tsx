@@ -14,12 +14,10 @@ const AgeStep2 = () => {
           buttons={[
             {
               children: 'Oui',
-              disabled: isLessThan19 === false,
               onClick: () => setIsLessThan19(true),
             },
             {
               children: 'Non',
-              disabled: isLessThan19 === true,
               onClick: () => setIsLessThan19(false),
             },
           ]}

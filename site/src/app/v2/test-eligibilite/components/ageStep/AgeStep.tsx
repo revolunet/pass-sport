@@ -14,12 +14,10 @@ const AgeStep = () => {
           buttons={[
             {
               children: 'Entre 6 et 30 ans',
-              disabled: isMoreThan30 === true,
               onClick: () => setIsMoreThan30(false),
             },
             {
               children: 'Plus de 30 ans',
-              disabled: isMoreThan30 === false,
               onClick: () => setIsMoreThan30(true),
             },
           ]}
