@@ -26,13 +26,9 @@ const ClubPage = () => {
     });
   }, [clubName]);
 
-  const Map = useMemo(
-    () =>
-      dynamic(() => import('./components/map/Map'), {
-        ssr: false,
-      }),
-    [],
-  );
+  const Map = dynamic(() => import('./components/map/Map'), {
+    ssr: false,
+  });
 
   if (error) {
     return <p className={styles.error}>{error}</p>;
