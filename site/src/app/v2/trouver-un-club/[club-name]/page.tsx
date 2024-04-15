@@ -4,9 +4,10 @@ import styles from './style.module.scss';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import { formatPhoneNumber } from './helpers';
 import MedicalCertificatePanel from './components/medicalCertificatPanel/MedicalCertificatePanel';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getClubs } from '../agent';
 import EligibilityTestBanner from '../components/eligibilityTestBanner/EligibilityTestBanner';
+import dynamic from 'next/dynamic';
 
 const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
   const clubName = decodeURIComponent(params['club-name']);
@@ -22,6 +23,8 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
       }
     });
   }, [clubName]);
+
+  const Map = useMemo(() => dynamic(() => import('./components/map/Map')), []);
 
   if (error) {
     return <p className={styles.error}>{error}</p>;
@@ -97,6 +100,11 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
               </div>
             </ul>
             <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
+          </section>
+
+          <section>
+            <h4 className="fr-mb-2w">Où nous trouver</h4>
+            <Map club={club} />
           </section>
         </div>
 
