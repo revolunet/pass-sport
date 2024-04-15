@@ -26,7 +26,7 @@ const ClubPage = () => {
     });
   }, [clubName]);
 
-  const Map = dynamic(() => import('./components/map/Map'));
+  const Map = useMemo(() => dynamic(() => import('./components/map/Map')), []);
 
   if (error) {
     return <p className={styles.error}>{error}</p>;
