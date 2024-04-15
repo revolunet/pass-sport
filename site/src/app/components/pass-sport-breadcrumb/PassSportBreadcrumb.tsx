@@ -31,7 +31,7 @@ export default function PassSportBreadcrumb() {
   }
 
   const pathNames = paths.split('/');
-  const clubName = decodeURI(pathNames[pathNames.length - 1]);
+  const clubName = decodeURIComponent(pathNames[pathNames.length - 1]);
 
   return (
     <div className={styles.container}>

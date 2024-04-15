@@ -52,7 +52,7 @@ export default function TrouverUnClub() {
                 detail={club.adresse + ', ' + club.com_arm_name}
                 enlargeLink
                 linkProps={{
-                  href: `${pathName}/${club.nom}`,
+                  href: `${pathName}/${encodeURIComponent(club.nom)}`,
                 }}
                 size="medium"
                 start={

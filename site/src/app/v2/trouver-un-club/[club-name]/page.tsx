@@ -9,12 +9,12 @@ import { getClubs } from '../agent';
 import EligibilityTestBanner from '../components/eligibilityTestBanner/EligibilityTestBanner';
 
 const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
-  const clubName = decodeURI(params['club-name']);
+  const clubName = decodeURIComponent(params['club-name']);
 
   const [club, setClub] = useState<Club | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    getClubs({ nom: `nom='${clubName.toUpperCase()}'` }).then((res) => {
+    getClubs({ nom: `nom="${clubName.toUpperCase()}"` }).then((res) => {
       if (res.results.length === 0) {
         setError("Le club n'a pas été trouvé");
       } else {
