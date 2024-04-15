@@ -39,12 +39,10 @@ const ArsStep = () => {
           buttons={[
             {
               children: 'Oui',
-              disabled: isArsFunded === false,
               onClick: () => setIsArsFunded(true),
             },
             {
               children: 'Non',
-              disabled: isArsFunded === true,
               onClick: () => setIsArsFunded(false),
             },
           ]}

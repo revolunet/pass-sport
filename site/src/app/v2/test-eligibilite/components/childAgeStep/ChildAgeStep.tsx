@@ -20,17 +20,14 @@ const ChildAgeStep = () => {
             buttons={[
               {
                 children: 'Moins de 6 ans',
-                disabled: childAge !== null && childAge !== ChildAge.LESS_THAN_SIX,
                 onClick: () => setChildAge(ChildAge.LESS_THAN_SIX),
               },
               {
                 children: 'Entre 6 et 30 ans',
-                disabled: childAge !== null && childAge !== ChildAge.BTW_SIX_AND_THIRTY,
                 onClick: () => setChildAge(ChildAge.BTW_SIX_AND_THIRTY),
               },
               {
                 children: 'Plus de 30 ans',
-                disabled: childAge !== null && childAge !== ChildAge.MORE_THAN_THIRTY,
                 onClick: () => setChildAge(ChildAge.MORE_THAN_THIRTY),
               },
             ]}

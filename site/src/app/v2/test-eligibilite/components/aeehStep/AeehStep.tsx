@@ -25,12 +25,10 @@ const AeehStep = () => {
           buttons={[
             {
               children: 'Oui',
-              disabled: hasAeehAllocation === false,
               onClick: () => setHasAeehAllocation(true),
             },
             {
               children: 'Non',
-              disabled: hasAeehAllocation === true,
               onClick: () => setHasAeehAllocation(false),
             },
           ]}
