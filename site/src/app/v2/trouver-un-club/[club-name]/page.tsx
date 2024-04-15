@@ -6,12 +6,10 @@ import { formatPhoneNumber } from './helpers';
 import MedicalCertificatePanel from './components/medicalCertificatPanel/MedicalCertificatePanel';
 import { useEffect, useState } from 'react';
 import { getClubs } from '../agent';
-import { useParams } from 'next/navigation';
 import EligibilityTestBanner from '../components/eligibilityTestBanner/EligibilityTestBanner';
 
-const ClubPage = () => {
-  const pathParameters = useParams<{ 'club-name': string }>();
-  const clubName = decodeURI(pathParameters['club-name']);
+const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
+  const clubName = decodeURI(params['club-name']);
 
   const [club, setClub] = useState<Club | null>(null);
   const [error, setError] = useState<string | null>(null);
