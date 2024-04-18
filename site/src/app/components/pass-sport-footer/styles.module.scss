@@ -1,0 +1,9 @@
+// to target the footer partner logos, the selector is repeated to up the specificity to override partner logos
+.partners-logo.partners-logo {
+    box-shadow: none;
+}
+
+// To target the footer
+.root {
+    padding-bottom: 16px;
+}

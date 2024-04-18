@@ -1,4 +1,5 @@
 'use client';
+import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
 
@@ -11,9 +12,7 @@ export default function PassSportNavigation() {
     <div>
       <Header
         brandTop={
-          <>
-            Ministère <br /> des sports <br /> et des jeux Olympiques <br /> et Paralympiques
-          </>
+          FOOTER_BRAND_TOP
         }
         homeLinkProps={{
           href: '/v2/accueil',
