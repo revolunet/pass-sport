@@ -20,6 +20,25 @@ const initialInputsState: InputsState = {
   consent: 'default',
 };
 
+const reasons: string[] = [
+  'Bénéficiaires et familles : comment obtenir le Pass’Sport ?',
+  'Bénéficiaires et familles : qui reçoit le code ?',
+  'Bénéficiaires et familles : comment utiliser mon pass ?',
+  'Bénéficiaires et familles : où utiliser mon pass ?',
+  'Bénéficiaires et familles : comment trouver un club éligible ?',
+  'Bénéficiaires et familles : mon club refuse de prendre le Pass’Sport que faire ?',
+  "Bénéficiaires et familles : mon club refuse de me faire la réduction de 50€ à l’inscription et attend d'être remboursé pour m'appliquer la ristourne que faire ?",
+  'Bénéficiaires et familles : les inscriptions dans mon club sont avant l’envoi des codes que faire ?',
+  'Code : Je n’ai pas reçu mon code Pass’Sport',
+  'Code  : Je n’arrive à obtenir mon code sur le portail via «&nbsp;obtenir mon code&nbsp;»',
+  'Clubs et structures : le code ne fonctionne pas !',
+  'Clubs et structures : quel est le principe du dipositif ?',
+  'Clubs et structures : Comment rentrer dans le dispositif ?',
+  'Clubs et structures : Comment demander le remboursement Pass’Sport&nbsp;?',
+  'Clubs et structures : quand mon club sera-t-il remboursé ?',
+  'Clubs et structures : j’ai un problème avec mon compte asso',
+];
+
 const ContactForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<InputsState>(initialInputsState);
@@ -76,13 +95,13 @@ const ContactForm = () => {
       const response = await postContact(formData);
       console.error(response);
       if (!response.ok) {
-        setIsError(true);
         setApiError(true);
+        setIsError(true);
         setIsOk(false);
       } else {
-        setIsOk(true);
-        setIsError(false);
         setApiError(false);
+        setIsError(false);
+        setIsOk(true);
         formRef.current?.reset();
       }
     } catch (e) {
@@ -142,13 +161,14 @@ const ContactForm = () => {
                 stateRelatedMessage="L'objet de l'email est requis"
               >
                 <React.Fragment key=".0">
-                  <option disabled hidden value="">
+                  <option disabled hidden selected value="">
                     Selectionnez une option
                   </option>
-                  <option value="1">Lorem 1</option>
-                  <option value="2">Lorem 2</option>
-                  <option value="3">Lorem 3</option>
-                  <option value="4">Lorem 4</option>
+                  {reasons.map((r) => (
+                    <option value={r} key={r}>
+                      {r}
+                    </option>
+                  ))}
                 </React.Fragment>
               </Select>
             </div>
