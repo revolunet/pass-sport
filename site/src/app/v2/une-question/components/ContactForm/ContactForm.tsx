@@ -1,17 +1,15 @@
 'use client';
 
-import Input from '@codegouvfr/react-dsfr/Input';
-import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
-import Button from '@codegouvfr/react-dsfr/Button';
-import Select from '@codegouvfr/react-dsfr/Select';
-import styles from './styles.module.scss';
-import React, { FormEvent, useRef, useState } from 'react';
-import Image from 'next/image';
-import { InputsState } from '../../../../../../types/Contact';
-import { postContact, postTest } from '../../agent';
 import { Alert } from '@codegouvfr/react-dsfr/Alert';
-import { BlobOptions } from 'buffer';
-import { getClubs } from '../../../trouver-un-club/agent';
+import Button from '@codegouvfr/react-dsfr/Button';
+import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
+import Input from '@codegouvfr/react-dsfr/Input';
+import Select from '@codegouvfr/react-dsfr/Select';
+import Image from 'next/image';
+import React, { FormEvent, useRef, useState } from 'react';
+import { InputsState } from '../../../../../../types/Contact';
+import { postContact } from '../../agent';
+import styles from './styles.module.scss';
 
 const initialInputsState: InputsState = {
   firstname: 'default',
@@ -76,10 +74,6 @@ const ContactForm = () => {
     }
     try {
       const response = await postContact(formData);
-      // const response = {
-      //   ok: false,
-      // };
-      // const response = await postTest(formData);
       console.error(response);
       if (!response.ok) {
         setIsError(true);
