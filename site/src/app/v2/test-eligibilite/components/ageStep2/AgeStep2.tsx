@@ -2,7 +2,7 @@ import Question from '../Question/Question';
 import { useState } from 'react';
 import ArsStep from '../arsStep/ArsStep';
 import AllowancesStep from '../allowancesStep/AllowancesStep';
-import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 
 const AgeStep2 = () => {
   const [isLessThan19, setIsLessThan19] = useState<boolean | null>(null);
@@ -10,15 +10,16 @@ const AgeStep2 = () => {
   return (
     <div>
       <Question question="Avez-vous entre 6 et 19 ans ?">
-        <CustomButtonsGroups
-          buttons={[
+        <RadioButtonsGroup
+          fieldsetId="ageStep2"
+          options={[
             {
-              children: 'Oui',
-              onClick: () => setIsLessThan19(true),
+              label: 'Oui',
+              onChange: () => setIsLessThan19(true),
             },
             {
-              children: 'Non',
-              onClick: () => setIsLessThan19(false),
+              label: 'Non',
+              onChange: () => setIsLessThan19(false),
             },
           ]}
         />

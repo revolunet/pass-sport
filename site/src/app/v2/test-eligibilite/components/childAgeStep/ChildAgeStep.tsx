@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Question from '../Question/Question';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
 import AllowancesStep from '../allowancesStep/AllowancesStep';
-import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 
 enum ChildAge {
   LESS_THAN_SIX = 'lessThanSix',
@@ -16,19 +16,20 @@ const ChildAgeStep = () => {
     <>
       <Question question="Quel âge a votre enfant ?">
         <div>
-          <CustomButtonsGroups
-            buttons={[
+          <RadioButtonsGroup
+            fieldsetId="childAgeStep"
+            options={[
               {
-                children: 'Moins de 6 ans',
-                onClick: () => setChildAge(ChildAge.LESS_THAN_SIX),
+                label: 'Moins de 6 ans',
+                onChange: () => setChildAge(ChildAge.LESS_THAN_SIX),
               },
               {
-                children: 'Entre 6 et 30 ans',
-                onClick: () => setChildAge(ChildAge.BTW_SIX_AND_THIRTY),
+                label: 'Entre 6 et 30 ans',
+                onChange: () => setChildAge(ChildAge.BTW_SIX_AND_THIRTY),
               },
               {
-                children: 'Plus de 30 ans',
-                onClick: () => setChildAge(ChildAge.MORE_THAN_THIRTY),
+                label: 'Plus de 30 ans',
+                onChange: () => setChildAge(ChildAge.MORE_THAN_THIRTY),
               },
             ]}
           />

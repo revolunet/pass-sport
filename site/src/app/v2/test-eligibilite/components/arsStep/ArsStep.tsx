@@ -3,7 +3,7 @@ import { useState } from 'react';
 import questionStyle from '../Question/styles.module.scss';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
 import AeehStep from '../aeehStep/AeehStep';
-import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 
 const ArsStep = () => {
   const [isArsFunded, setIsArsFunded] = useState<boolean | null>(null);
@@ -35,15 +35,16 @@ const ArsStep = () => {
           </>
         }
       >
-        <CustomButtonsGroups
-          buttons={[
+        <RadioButtonsGroup
+          fieldsetId="arsStep"
+          options={[
             {
-              children: 'Oui',
-              onClick: () => setIsArsFunded(true),
+              label: 'Oui',
+              onChange: () => setIsArsFunded(true),
             },
             {
-              children: 'Non',
-              onClick: () => setIsArsFunded(false),
+              label: 'Non',
+              onChange: () => setIsArsFunded(false),
             },
           ]}
         />
