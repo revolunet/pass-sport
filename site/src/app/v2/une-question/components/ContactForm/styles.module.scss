@@ -1,8 +1,11 @@
 @import '../../../../sassVariables.module.scss';
 
+.error {
+  margin-bottom: 60px;
+}
+
 .container {
   display: flex;
-
   flex-direction: row;
   gap: 48px;
 }
