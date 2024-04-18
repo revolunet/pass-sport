@@ -13,6 +13,7 @@ const SocialMediaLinks = () => {
         <a
           className="fr-link fr-icon-instagram-line fr-link--icon-left"
           href="https://www.instagram.com/passsportofficiel/"
+          target="_blank"
         >
           Instagram
         </a>
@@ -20,6 +21,7 @@ const SocialMediaLinks = () => {
         <a
           className="fr-link fr-icon-tiktok-line fr-link--icon-left"
           href="https://www.tiktok.com/@passsportofficiel"
+          target="_blank"
         >
           TikTok
         </a>
