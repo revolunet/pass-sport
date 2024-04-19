@@ -99,14 +99,14 @@ export default function TrouverUnClub() {
             ))}
         </div>
         {!isLastPage && (
-          <div className={`fr-py-9w ${styles['more-clubs-wrapper']}`}>
+          <div className={`fr-mt-9w ${styles['more-clubs-wrapper']}`}>
             <Button priority="primary" size="large" onClick={seeMoreClubsHandler}>
               Voir plus de clubs
             </Button>
           </div>
         )}
 
-        <div className={`fr-alert fr-alert--info fr-mx-auto ${styles['alert-sizer']}`}>
+        <div className={`fr-alert fr-alert--info fr-mt-9w fr-mx-auto ${styles['alert-sizer']}`}>
           <h6 className="fr-alert__title">Information</h6>
           <p>
             Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le Pass Sport.
