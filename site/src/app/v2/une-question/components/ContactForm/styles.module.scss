@@ -1,0 +1,77 @@
+@import '../../../../sassVariables.module.scss';
+
+.error {
+  margin-bottom: 60px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.image-wrapper {
+  display: none;
+  @media (min-width: $desktop) {
+    display: block;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  flex-grow: 1;
+
+  @media (min-width: $desktop) {
+    gap: 16px;
+  }
+}
+
+.names-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: $desktop) {
+    flex-direction: row;
+  }
+
+  div {
+    flex-grow: 1;
+  }
+}
+
+.textarea-wrapper {
+  textarea {
+    height: 202px;
+  }
+}
+
+.action-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  margin-top: 48px;
+  margin-bottom: 48px;
+
+  @media (min-width: $desktop) {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  &_checkbox {
+    flex-basis: 100px;
+    flex-grow: 1;
+    max-width: 710px;
+  }
+
+  &_button {
+    text-align: center;
+
+    button {
+      padding: 10px 24px;
+    }
+  }
+}
