@@ -3,13 +3,13 @@
 .container {
   background-color: #ececfe;
   height: 180px;
+  padding: 0 1rem;
 }
 
 .titlewrapper {
-  padding: 0px 1.5em 50px 1.5em;
   margin-left: auto;
   margin-right: auto;
-  max-width: $max-width;
+  max-width: $layout-max-width;
 }
 
 .title {
@@ -17,6 +17,10 @@
   font-size: 32px;
   line-height: 40px;
   margin-bottom: 15px;
+
+  @media screen and (max-width: $xs) {
+    text-align: center;
+  }
 }
 
 .subtitle {

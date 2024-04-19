@@ -2,13 +2,18 @@
 
 .container {
   background-color: #ececfe;
-  padding-left: 3em;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding: 2rem 1.5rem;
+
+  @media screen and (max-width: $lg) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   div {
     margin: auto;
-    max-width: $max-width;
+    max-width: $layout-max-width;
     background-color: #ececfe;
+
     nav {
       margin: auto;
       background-color: #ececfe;
