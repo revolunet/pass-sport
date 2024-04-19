@@ -1,13 +1,15 @@
 export interface SqlSearchParams {
   nom?: string;
+  limit?: number;
+  offset?: number;
 }
 
-export const getClubs = async (param?: SqlSearchParams): Promise<SportGouvJSONResponse> => {
-  const queryString: URLSearchParams = new URLSearchParams('nom%20is%20not%20null&limit=20');
+export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONResponse> => {
+  const queryString: URLSearchParams = new URLSearchParams();
 
-  if (param?.nom) {
-    queryString.append('where', param.nom);
-  }
+  queryString.append('limit', param.limit ? param.limit.toString() : '20');
+  queryString.append('offset', param.offset ? param.offset.toString() : '0');
+  queryString.append('where', `nom is not null ${param?.nom ? `AND ${param.nom}` : ''} `);
 
   const response = await fetch(
     'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records?' +
