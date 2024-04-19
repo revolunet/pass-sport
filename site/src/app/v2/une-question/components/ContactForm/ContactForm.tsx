@@ -223,9 +223,9 @@ const ContactForm = () => {
         <Alert
           className={styles.error}
           severity="success"
-          closable={true}
           title="Votre demande a bien été transmise"
-        ></Alert>
+          closable
+        />
       )}
     </div>
   );
