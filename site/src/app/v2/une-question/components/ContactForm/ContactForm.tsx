@@ -212,12 +212,12 @@ const ContactForm = () => {
         <Alert
           className={styles.error}
           severity="error"
-          closable={true}
           isClosed={!isError}
           onClose={() => setIsError(false)}
           title="Un problème est survenu"
           description="Veuillez réessayer plus tard"
-        ></Alert>
+          closable
+        />
       )}
       {isOk && (
         <Alert
