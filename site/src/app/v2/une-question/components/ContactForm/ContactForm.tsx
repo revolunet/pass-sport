@@ -10,6 +10,7 @@ import React, { FormEvent, useRef, useState } from 'react';
 import { InputsState } from '../../../../../../types/Contact';
 import { postContact } from '../../agent';
 import styles from './styles.module.scss';
+import { EMAIL_REGEX } from '../../../../../../utils/email';
 
 const initialInputsState: InputsState = {
   firstname: 'default',
@@ -68,11 +69,8 @@ const ContactForm = () => {
     });
 
     const emailInput = formData.get('email') as string;
-    const emailRegExp = new RegExp(
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    );
 
-    if (!emailRegExp.test(emailInput)) {
+    if (!EMAIL_REGEX.test(emailInput)) {
       isValid = false;
       states.email = 'error';
     }
