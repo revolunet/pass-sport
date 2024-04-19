@@ -6,7 +6,6 @@ import PresentationTile from './components/PresentationTile';
 import { presentationTiles } from './page.messages';
 import styles from './styles.module.scss';
 import Callouts from './components/callout/Callout';
-import News from './components/news/News';
 import NewsletterAndSocialMedia from './components/newsletter-and-social-media/NewsletterAndSocialMedia';
 import Video from './components/video/Video';
 import { useRouter } from 'next/navigation';
@@ -66,19 +65,6 @@ export default function Accueil() {
           <Callouts />
         </div>
       </section>
-
-      <section className={`fr-container ${styles.news}`}>
-        <h2>Les actualités du pass&apos;Sport</h2>
-        <div className={`${styles.sizer} ${styles.news_wrapper}`}>
-          <News />
-        </div>
-      </section>
-
-      <div className={styles.rectangle}>
-        <div className={styles.rectangle_background}>
-          <div className={styles.rectangle_background_blue}></div>
-        </div>
-      </div>
 
       <NewsletterAndSocialMedia />
     </main>

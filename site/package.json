@@ -17,8 +17,8 @@
     "format:write": "npm run format:check -- --write"
   },
   "dependencies": {
-    "@codegouvfr/react-dsfr": "^1.7.2",
     "crisp-api": "^8.3.2",
+    "@codegouvfr/react-dsfr": "^1.9.8",
     "leaflet": "^1.9.4",
     "next": "14.1.0",
     "react": "^18",
