@@ -93,7 +93,6 @@ const ContactForm = () => {
     }
     try {
       const response = await postContact(formData);
-      console.error(response);
       if (!response.ok) {
         setApiError(true);
         setIsError(true);
