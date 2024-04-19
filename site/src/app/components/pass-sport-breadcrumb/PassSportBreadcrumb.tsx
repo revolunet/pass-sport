@@ -12,7 +12,7 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
 
 export default function PassSportBreadcrumb() {
   const paths: string | null = usePathname();
-  if (paths === '/v2/accueil' || paths === '/' || paths === '/v2/test-eligibilite') {
+  if (!!!paths || paths === '/v2/accueil' || paths === '/' || paths === '/v2/test-eligibilite') {
     return null;
   }
 
