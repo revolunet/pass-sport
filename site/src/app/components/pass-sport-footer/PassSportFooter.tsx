@@ -56,33 +56,41 @@ export default function PassSportFooter() {
 
   const linkList: FooterProps.LinkList.List = [
     {
-      categoryName: 'À propos',
+      categoryName: 'Liens utiles',
       links: [
         {
           text: 'Accueil',
-          linkProps: { href: '#' },
+          linkProps: { href: '#', target: '_blank' },
         },
         {
-          text: 'Tout savoir sur le Pass Sport',
-          linkProps: { href: '#' }
+          text: `Qu'est-ce que le Pass'Sport`,
+          linkProps: { href: '#', target: '_blank' }
+        },
+        {
+          text: 'Trouver un club',
+          linkProps: { href: '/v2/trouver-un-club', target: '_blank' }
+        },
+        {
+          text: 'Une question ?',
+          linkProps: { href: '/v2/une-question', target: '_blank' }
+        },
+        {
+          text: 'Espace presse',
+          linkProps: { href: '#', target: '_blank' }
         },
       ]
     },
     {
-      categoryName: 'Ressources',
+      categoryName: 'Liens externes',
       links: [
         {
-          text: 'Trouver un club sportif',
-          linkProps: { href: '#' }
+          text: 'Espace club',
+          linkProps: { href: '#', target: '_blank' }
         },
         {
-          text: 'Une question ?',
-          linkProps: { href: '#' }
+          text: 'Tableau de bord',
+          linkProps: { href: '#', target: '_blank' }
         },
-        {
-          text: 'Espace presse et ressources',
-          linkProps: { href: '#' }
-        }
       ]
     },
   ];

@@ -50,7 +50,7 @@ export default function PassSportNavigation() {
               href: '/v2/une-question',
               target: '_self',
             },
-            text: 'Une questions ?',
+            text: 'Une question ?',
           },
           {
             isActive: isActive('/v2/trouver-un-club'),
