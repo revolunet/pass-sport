@@ -2,7 +2,7 @@
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
-import style from './style.module.scss';
+import styles from './style.module.scss';
 import PageHeader from '../../../../components/PageHeader/PageHeader';
 import { useEffect, useState } from 'react';
 import Search from './components/search/Search';
@@ -30,14 +30,14 @@ export default function TrouverUnClub() {
           setClubParams({ nom: `nom like '%${text.toUpperCase()}%'` })
         }
       ></Search>
-      <div className={style.wrapper}>
-        <div className={style.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
           {clubs &&
             clubs.results.map((club) => (
               /** @ts-ignore */
               <Card
                 key={club.nom}
-                className={style.item}
+                className={styles.item}
                 background
                 badge={
                   !!club.activites &&
@@ -75,7 +75,15 @@ export default function TrouverUnClub() {
               />
             ))}
         </div>
+        <div className={`fr-alert fr-alert--info fr-mt-2w fr-mx-auto ${styles['alert-sizer']}`}>
+          <h6 className="fr-alert__title">Information</h6>
+          <p>
+            Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le Pass Sport.
+            N’hésitez pas à vous rapprocher de votre club en lui proposant d’accepter le dispositif.
+          </p>
+        </div>
       </div>
+
       <EligibilityTestBanner />
     </div>
   );
