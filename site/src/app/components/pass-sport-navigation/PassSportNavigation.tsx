@@ -11,12 +11,10 @@ export default function PassSportNavigation() {
   return (
     <div>
       <Header
-        brandTop={
-          FOOTER_BRAND_TOP
-        }
+        brandTop={FOOTER_BRAND_TOP}
         homeLinkProps={{
           href: '/v2/accueil',
-          title: "Accueil - Nom de l’entité (ministère, secrétariat d'état, gouvernement)",
+          title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",
         }}
         navigation={[
           {

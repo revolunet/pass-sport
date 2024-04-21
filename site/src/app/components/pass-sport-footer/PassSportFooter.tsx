@@ -10,14 +10,20 @@ import passSportLogo from '../../../../public/images/footer/pass-sport-logo.svg'
 export default function PassSportFooter() {
   const partnersLogos: FooterProps.PartnersLogos = {
     main: {
-      linkProps: { title: `Ministere de l'education nationale et de la jeune, liberté, égalité, fraternité`, href: 'https://www.education.gouv.fr/' },
+      linkProps: {
+        title: `Ministere de l'education nationale et de la jeune, liberté, égalité, fraternité`,
+        href: 'https://www.education.gouv.fr/',
+      },
       // non-transparent logo
       imgUrl: menjLogo.src,
       alt: `Ministere de l'education nationale et de la jeunesse, liberté, égalité, fraternité`,
     },
     sub: [
       {
-        linkProps: { title: 'Comité National Olympique et Sportif Français', href: 'https://cnosf.franceolympique.com/' },
+        linkProps: {
+          title: 'Comité National Olympique et Sportif Français',
+          href: 'https://cnosf.franceolympique.com/',
+        },
         imgUrl: cnosfLogo.src,
         alt: 'Comité National Olympique et Sportif Français',
       },
@@ -27,15 +33,21 @@ export default function PassSportFooter() {
         alt: 'France paralympique',
       },
       {
-        linkProps: { title: 'Ministères sociaux - Secrétariat général Direction du numérique', href: 'https://www.numerique.gouv.fr/dinum/' },
+        linkProps: {
+          title: 'Ministères sociaux - Secrétariat général Direction du numérique',
+          href: 'https://www.numerique.gouv.fr/dinum/',
+        },
         // non-transparent logo
         imgUrl: ministereSociauxDinumLogo.src,
         alt: 'Ministères sociaux - Secrétariat général Direction du numérique',
       },
-    ]
+    ],
   };
 
-  const homeLinkProps: NonNullable<FooterProps['homeLinkProps']> = { title: `Pass'Sport accueil`, href: '/v2/accueil' }
+  const homeLinkProps: NonNullable<FooterProps['homeLinkProps']> = {
+    title: `Pass'Sport accueil`,
+    href: '/v2/accueil',
+  };
   const operatorLogo: NonNullable<FooterProps['operatorLogo']> = {
     orientation: 'horizontal',
     imgUrl: passSportLogo.src,
@@ -46,26 +58,26 @@ export default function PassSportFooter() {
     {
       text: 'Mentions légales',
       linkProps: {
-        href: '#'
-      }
+        href: '#',
+      },
     },
     {
       text: 'Données personnelles',
       linkProps: {
-        href: '#'
-      }
+        href: '#',
+      },
     },
     {
       text: 'Gestion des cookies',
       linkProps: {
-        href: '#'
-      }
+        href: '#',
+      },
     },
     {
       text: 'Plan du site',
       linkProps: {
-        href: '#'
-      }
+        href: '#',
+      },
     },
   ];
 
@@ -79,34 +91,34 @@ export default function PassSportFooter() {
         },
         {
           text: `Qu'est-ce que le Pass'Sport`,
-          linkProps: { href: '#', target: '_blank' }
+          linkProps: { href: '#', target: '_blank' },
         },
         {
           text: 'Trouver un club',
-          linkProps: { href: '/v2/trouver-un-club', target: '_blank' }
+          linkProps: { href: '/v2/trouver-un-club', target: '_blank' },
         },
         {
           text: 'Une question ?',
-          linkProps: { href: '/v2/une-question', target: '_blank' }
+          linkProps: { href: '/v2/une-question', target: '_blank' },
         },
         {
           text: 'Espace presse',
-          linkProps: { href: '#', target: '_blank' }
+          linkProps: { href: '#', target: '_blank' },
         },
-      ]
+      ],
     },
     {
       categoryName: 'Liens externes',
       links: [
         {
           text: 'Espace club',
-          linkProps: { href: '#', target: '_blank' }
+          linkProps: { href: '#', target: '_blank' },
         },
         {
           text: 'Tableau de bord',
-          linkProps: { href: '#', target: '_blank' }
+          linkProps: { href: '#', target: '_blank' },
         },
-      ]
+      ],
     },
   ];
 
@@ -114,7 +126,7 @@ export default function PassSportFooter() {
     <Footer
       classes={{
         logo: styles['partners-logo'],
-        root: styles.root
+        root: styles.root,
       }}
       homeLinkProps={homeLinkProps}
       operatorLogo={operatorLogo}
@@ -123,7 +135,6 @@ export default function PassSportFooter() {
       linkList={linkList}
       brandTop={FOOTER_BRAND_TOP}
       accessibility={'fully compliant'}
-    >
-    </Footer>
+    />
   );
 }
