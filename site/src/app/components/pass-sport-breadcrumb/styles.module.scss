@@ -9,14 +9,10 @@
     padding-right: 1rem;
   }
 
-  div {
-    margin: auto;
+  div,
+  nav {
     max-width: $layout-max-width;
+    margin: auto;
     background-color: #ececfe;
-
-    nav {
-      margin: auto;
-      background-color: #ececfe;
-    }
   }
 }
