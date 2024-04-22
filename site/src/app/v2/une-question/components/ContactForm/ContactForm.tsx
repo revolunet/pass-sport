@@ -60,8 +60,10 @@ const ContactForm = () => {
     ];
 
     const states = { ...initialInputsState };
+
     fieldNames.forEach((fieldName) => {
       const value = formData.get(fieldName);
+
       if (!value) {
         states[fieldName] = 'error';
         isValid = false;
@@ -86,11 +88,14 @@ const ContactForm = () => {
     const { isValid, states } = isFormValid(formData);
 
     setInputStates({ ...states });
+
     if (!isValid) {
       return;
     }
+
     try {
-      const response = await postContact(formData);
+      const response = await postContact(states);
+
       if (!response.ok) {
         setApiError(true);
         setIsError(true);
