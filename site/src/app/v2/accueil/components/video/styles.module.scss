@@ -4,7 +4,7 @@
   width: 100%;
   height: calc(100vh / 1.77);
 
-  @media (min-width: $desktop) {
+  @media (min-width: $xl) {
     width: 996px;
     height: 560px;
   }

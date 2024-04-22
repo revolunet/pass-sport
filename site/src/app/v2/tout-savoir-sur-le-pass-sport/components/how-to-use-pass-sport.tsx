@@ -31,7 +31,7 @@ export default function HowToUsePassSport() {
             <span>
               Né le 10/01/2015
               <br />
-              Code: AAA - AAA - AAA
+              Code: 24 - AAAA - AAAA
             </span>
           }
           imageUrl={qrCodeImage.src}
