@@ -1,4 +1,5 @@
 'use client';
+import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
 
@@ -10,14 +11,10 @@ export default function PassSportNavigation() {
   return (
     <div>
       <Header
-        brandTop={
-          <>
-            Ministère <br /> des sports <br /> et des jeux Olympiques <br /> et Paralympiques
-          </>
-        }
+        brandTop={FOOTER_BRAND_TOP}
         homeLinkProps={{
           href: '/v2/accueil',
-          title: "Accueil - Nom de l’entité (ministère, secrétariat d'état, gouvernement)",
+          title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",
         }}
         navigation={[
           {
@@ -51,7 +48,7 @@ export default function PassSportNavigation() {
               href: '/v2/une-question',
               target: '_self',
             },
-            text: 'Une questions ?',
+            text: 'Une question ?',
           },
           {
             isActive: isActive('/v2/trouver-un-club'),

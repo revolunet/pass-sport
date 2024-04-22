@@ -22,8 +22,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  //NOTE: The lang parameter is optional and defaults to "fr"
+  // NOTE: The lang parameter is optional and defaults to "fr"
   const lang = 'fr';
+
   return (
     <html {...getHtmlAttributes({ defaultColorScheme, lang })}>
       <head>
@@ -37,11 +38,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <PassSportNavigation></PassSportNavigation>
-        <PassSportBreadcrumb></PassSportBreadcrumb>
+        <PassSportNavigation />
+        <PassSportBreadcrumb />
 
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
-        <PassSportFooter></PassSportFooter>
+        <PassSportFooter />
       </body>
     </html>
   );
