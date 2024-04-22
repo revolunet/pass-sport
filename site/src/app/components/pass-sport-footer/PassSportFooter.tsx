@@ -87,23 +87,23 @@ export default function PassSportFooter() {
       links: [
         {
           text: 'Accueil',
-          linkProps: { href: '#', target: '_blank' },
+          linkProps: { href: '#' },
         },
         {
           text: `Qu'est-ce que le Pass'Sport`,
-          linkProps: { href: '#', target: '_blank' },
+          linkProps: { href: '#' },
         },
         {
           text: 'Trouver un club',
-          linkProps: { href: '/v2/trouver-un-club', target: '_blank' },
+          linkProps: { href: '/v2/trouver-un-club' },
         },
         {
           text: 'Une question ?',
-          linkProps: { href: '/v2/une-question', target: '_blank' },
+          linkProps: { href: '/v2/une-question' },
         },
         {
           text: 'Espace presse',
-          linkProps: { href: '#', target: '_blank' },
+          linkProps: { href: '#' },
         },
       ],
     },
