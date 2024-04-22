@@ -48,10 +48,10 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className={`fr-container ${styles.tiles}`}>
+      <section className={`fr-container fr-px-0 ${styles.tiles}`}>
         <div className="fr-grid-row fr-grid-row--gutters">
           {presentationTiles.map((tile) => (
-            <div key={tile.id} className="fr-col-12 fr-col-lg-3">
+            <div key={tile.id} className="fr-col-12 fr-col-lg-4">
               <PresentationTile {...tile} />
             </div>
           ))}
