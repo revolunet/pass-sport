@@ -9,6 +9,7 @@ import Callouts from './components/callout/Callout';
 import NewsletterAndSocialMedia from './components/newsletter-and-social-media/NewsletterAndSocialMedia';
 import Video from './components/video/Video';
 import { usePathname, useRouter } from 'next/navigation';
+import FindClubCard from './components/find-club-card/FindClubCard';
 
 export default function Accueil() {
   const router = useRouter();
@@ -47,7 +48,6 @@ export default function Accueil() {
           </div>
         </div>
       </section>
-
       <section className={`fr-container fr-px-0 ${styles.tiles}`}>
         <div className="fr-grid-row fr-grid-row--gutters">
           {presentationTiles.map((tile) => (
@@ -57,6 +57,8 @@ export default function Accueil() {
           ))}
         </div>
       </section>
+
+      <FindClubCard />
 
       <section className="fr-container">
         <h2>Mieux comprendre le Pass&apos;Sport</h2>
@@ -68,7 +70,6 @@ export default function Accueil() {
           <Callouts />
         </div>
       </section>
-
       <NewsletterAndSocialMedia />
     </main>
   );
