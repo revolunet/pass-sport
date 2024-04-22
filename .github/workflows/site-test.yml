@@ -2,8 +2,8 @@ name: Site tests
 
 on:
   pull_request:
-    branches: [ main ]
-    
+    branches: [main]
+
 defaults:
   run:
     working-directory: ./site
@@ -41,11 +41,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      # - name: Accessibility test
-      #   run: |
-      #     npm run dev & npx -y wait-on http://localhost:3000
-      #     npm install -g pa11y
-      #     pa11y http://localhost:3000
-      
-
-
+      - name: Accessibility test
+        run: |
+          npm run dev & npx -y wait-on http://localhost:3000
+          npm install -g pa11y
+          pa11y http://localhost:3000
