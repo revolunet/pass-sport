@@ -4,16 +4,15 @@ import { ContactRequestBody } from '../../types/Contact';
 import { initCrispClient } from 'utils/crisp';
 
 const { crispClient, envVars } = initCrispClient();
+const contactFormSchema = z.object({
+  email: z.string(),
+  firstname: z.string(),
+  lastname: z.string(),
+  message: z.string(),
+  reason: z.string(),
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const contactFormSchema = z.object({
-    email: z.string(),
-    firstname: z.string(),
-    lastname: z.string(),
-    message: z.string(),
-    reason: z.string(),
-  });
-
   const jsonBody = JSON.parse(req.body);
   const objectBody: ContactRequestBody = contactFormSchema.parse(jsonBody);
   const conversation = await crispClient.website.createNewConversation(envVars.CRISP_WEBSITE);
