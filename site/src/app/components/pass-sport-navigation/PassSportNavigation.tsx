@@ -8,6 +8,7 @@ export default function PassSportNavigation() {
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));
   };
+
   return (
     <div>
       <Header
@@ -26,22 +27,11 @@ export default function PassSportNavigation() {
             text: 'Accueil',
           },
           {
-            isActive: isActive('/v2/questions'),
-            text: "Tout savoir sur le Pass'Sport",
-            menuLinks: [
-              {
-                linkProps: {
-                  href: '#',
-                },
-                text: 'Lien de navigation',
-              },
-              {
-                linkProps: {
-                  href: '#',
-                },
-                text: 'Lien de navigation',
-              },
-            ],
+            isActive: isActive('/v2/tout-savoir-sur-le-pass-sport'),
+            text: 'Tout savoir sur le Pass Sport',
+            linkProps: {
+              href: '/v2/tout-savoir-sur-le-pass-sport',
+            },
           },
           {
             linkProps: {

@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 
 export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/une-question': 'Une question ? ',
+  '/v2/tout-savoir-sur-le-pass-sport': 'Tout savoir sur le Pass Sport',
   '/v2/trouver-un-club': 'Trouver un club adhérent',
 };
 
@@ -19,12 +20,12 @@ export default function PassSportBreadcrumb() {
   if (!!paths && !!NAVIGATION_ITEM_MAP[paths]) {
     return (
       <div className={styles.container}>
-        <div>
+        <div className={styles['container__breadcrumb']}>
           <Breadcrumb
             homeLinkProps={{ href: '/v2/accueil' }}
             currentPageLabel={NAVIGATION_ITEM_MAP[paths]}
             segments={[]}
-          ></Breadcrumb>
+          />
         </div>
       </div>
     );
@@ -35,15 +36,13 @@ export default function PassSportBreadcrumb() {
 
   return (
     <div className={styles.container}>
-      <div>
-        <Breadcrumb
-          homeLinkProps={{ href: '/v2/accueil' }}
-          currentPageLabel={clubName}
-          segments={[
-            { label: 'Trouver un club adhérent', linkProps: { href: '/v2/trouver-un-club' } },
-          ]}
-        ></Breadcrumb>
-      </div>
+      <Breadcrumb
+        homeLinkProps={{ href: '/v2/accueil' }}
+        currentPageLabel={clubName}
+        segments={[
+          { label: 'Trouver un club adhérent', linkProps: { href: '/v2/trouver-un-club' } },
+        ]}
+      ></Breadcrumb>
     </div>
   );
 }

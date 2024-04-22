@@ -85,13 +85,13 @@
     top: -1056px;
     z-index: -1;
     width: 100%;
-    @media (min-width: $desktop) {
+    @media (min-width: $xl) {
       top: -570px;
     }
     &_blue {
       background-color: var(--background-action-high-blue-france);
       height: 1056px;
-      @media (min-width: $desktop) {
+      @media (min-width: $xl) {
         height: 570px;
       }
     }
