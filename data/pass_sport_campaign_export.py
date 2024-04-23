@@ -12,7 +12,7 @@
 # 5. Sérialisation en .csv
 # 
 
-# In[ ]:
+# In[17]:
 
 
 import pandas as pd
@@ -28,39 +28,22 @@ qr_code_base_url = os.environ['BENEF_2024_QR_CODE_BASE_URL']
 pathfile_campaign_csv_output = os.environ['CAMPAIGN_CSV_OUTPUT']
 
 
-# In[ ]:
+# In[18]:
 
 
-df_main = pd.read_csv(pathfile_benef_2024, index_col=0, encoding='iso-8859-1', on_bad_lines='skip', sep=',')
+df_main = pd.read_csv(pathfile_benef_2024, nrows=5000, index_col=0, encoding='iso-8859-1', on_bad_lines='skip', sep=',')
 
 
-# In[ ]:
-
-
-df_json_normalized = pd.json_normalize(df_main['allocataire'].apply(json.loads))
-df_json_normalized = df_json_normalized.add_prefix('allocataire_')
-
-
-# In[ ]:
+# In[20]:
 
 
 df_main.index = pd.RangeIndex(start=0, stop=len(df_main), step=1)
 
 
-# In[ ]:
-
-
-df_unwrapped_alloc = pd.merge(df_main, df_json_normalized, left_index=True, right_index=True)
-
-
-# In[ ]:
+# In[22]:
 
 
 column_mapping = {
-    'allocataire_courriel': 'email',
-    'allocataire_qualite': 'allocataire_qualite',
-    'allocataire_nom': 'allocataire_nom',
-    'allocataire_prenom': 'allocataire_prenom',
     'prenom': 'beneficiaire_prenom',
     'nom': 'beneficiaire_nom',
     'genre': 'beneficiaire_genre',
@@ -69,17 +52,23 @@ column_mapping = {
 }
 
 # df_formatted = df_unwrapped_alloc.rename(columns=column_mapping) 
-df_unwrapped_alloc.columns = df_unwrapped_alloc.columns.to_series().replace(column_mapping)
+df_main.columns = df_main.columns.to_series().replace(column_mapping)
 
 
-# In[ ]:
+# In[23]:
 
 
-df_unwrapped_alloc = df_unwrapped_alloc[['allocataire_email', 'allocataire_qualite', 'allocataire_nom', 'allocataire_prenom',
-'beneficiaire_prenom', 'beneficiaire_nom', 'beneficiaire_genre', 'beneficiaire_date_naissance', 'code']]
+df_campaign = df_main[['beneficiaire_prenom', 'beneficiaire_nom', 'beneficiaire_genre', 'beneficiaire_date_naissance', 'code']]
 
 
-# In[ ]:
+# In[24]:
+
+
+df_campaign['beneficiaire_date_naissance'] = pd.to_datetime(df_campaign['beneficiaire_date_naissance'].apply(lambda v: v[:10]), format='%Y-%m-%d')
+df_campaign['beneficiaire_date_naissance'] = df_campaign['beneficiaire_date_naissance'].dt.strftime('%d/%m/%Y')
+
+
+# In[30]:
 
 
 # Génération des URLs pour le QR code
@@ -88,6 +77,7 @@ import hmac
 import hashlib
 import urllib.parse
 
+key_mapping = { 'beneficiaire_prenom': 'bp', 'beneficiaire_nom': 'bn', 'beneficiaire_genre' : 'bg', 'beneficiaire_date_naissance': 'bdn', 'code': 'c'}
 
 def generate_signature(secret_key, data):
     secret_key_bytes = secret_key.encode('utf-8')
@@ -98,7 +88,7 @@ def generate_signature(secret_key, data):
     return signature
 
 def generate_url_column(row):
-    params = {column: row[column] for column in df_unwrapped_alloc.columns}
+    params = {key_mapping.get(column): row[column] for column in df_campaign.columns}
     encoded_params = urllib.parse.urlencode(params)
     unencoded_string = f"{qr_code_base_url}?{encoded_params}"
     signature_hash = generate_signature(qr_code_signature_secret, unencoded_string)
@@ -107,11 +97,35 @@ def generate_url_column(row):
     
 # del df_unwrapped_alloc['url_qr_code']
 
-df_unwrapped_alloc['url_qr_code'] = df_unwrapped_alloc.apply(generate_url_column, axis=1)
+df_campaign['url_qr_code'] = df_campaign.apply(generate_url_column, axis=1)
 
 
-# In[ ]:
+# In[31]:
 
 
-df_unwrapped_alloc.to_csv(pathfile_campaign_csv_output, index=False)
+# (Opt) Ajout de la taille de l'URL
+# df_campaign['url_qr_code_len'] = df_campaign['url_qr_code'].apply(lambda x: len(x))
+
+
+# In[32]:
+
+
+# (Opt) Check sur la longueur des URLs
+# mask_max_len_filter = df_campaign['url_qr_code'].apply(lambda x: len(x)) > 255
+# df_excedeed = df_campaign[mask_max_len_filter]
+
+
+# In[36]:
+
+
+# Ajout d'une colonne pour le sexe 
+df_campaign['neele'] = 'Né le'
+mask_girl = df_campaign['beneficiaire_genre'] == 'F'
+df_campaign.loc[mask_girl, 'neele'] =  'Née le'
+
+
+# In[37]:
+
+
+df_campaign.to_csv(pathfile_campaign_csv_output, index=False)
 
