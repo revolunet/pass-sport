@@ -15,7 +15,7 @@ export default function Search({ onTextSearch }: IProps) {
         big
         onButtonClick={onTextSearch}
         label="Rechercher un nom de club"
-        allowEmptySearch={true}
+        allowEmptySearch
         renderInput={({ className, id, placeholder, type }) => (
           <input
             className={className}
