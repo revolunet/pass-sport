@@ -2,10 +2,11 @@ import { useState } from 'react';
 import Question from '../Question/Question';
 import AgeStep2 from '../ageStep2/AgeStep2';
 import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
-import questionStyles from '../Question/styles.module.scss';
+import { AGE_RANGE } from '../types/types';
+import VerdictPanel from '../verdictPanel/VerdictPanel';
 
 const AgeStep = () => {
-  const [isMoreThan30, setIsMoreThan30] = useState<boolean | null>(null);
+  const [ageRange, setAgeRange] = useState<AGE_RANGE | null>(null);
 
   return (
     <div>
@@ -14,30 +15,39 @@ const AgeStep = () => {
           fieldsetId="ageStep"
           options={[
             {
-              label: 'Entre 6 et 30 ans',
-              onChange: () => setIsMoreThan30(false),
+              label: 'Entre 6 et 19 ans',
+              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_6_19),
+            },
+            {
+              label: 'Entre 19 et 30 ans',
+              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_19_30),
             },
             {
               label: 'Plus de 30 ans',
-              onChange: () => setIsMoreThan30(true),
+              onChange: () => setAgeRange(AGE_RANGE.GREATER_THAN_30),
             },
           ]}
         />
       </Question>
 
-      {isMoreThan30 && (
-        <div className={`fr-p-2w ${questionStyles.panel}`}>
-          <p className={`fr-text--lg ${questionStyles.paragraph}`}>
-            Nous sommes désolés, mais vous n’êtes pas éligible au Pass’Sport.
-          </p>
-          <p className={`fr-text--lg fr-mb-0 ${questionStyles.paragraph}`}>
-            En effet, ce dispositif est ouvert aux personnes nées entre le 16 septembre 1993 et le
-            31 décembre 2018.
-          </p>
-        </div>
+      {ageRange === AGE_RANGE.GREATER_THAN_30 && (
+        <VerdictPanel
+          title="Nous sommes désolés, d'après les informations que vous nous avez transmises, vous n'êtes
+        pas éligible au pass Sport"
+          isSuccess={false}
+        >
+          En effet, ce dispositif est ouvert aux:
+          <ul>
+            <li>Personnes nées entre le 16 septembre 1993 et le 31 décembre 2018.</li>
+          </ul>
+          <span className="fr-text--bold">
+            Pour autant, vous avez peut-être droit à d&apos;autres aides. N&apos;hésitez pas à vous
+            rapprocher de votre région, département ou commune de résidence.
+          </span>
+        </VerdictPanel>
       )}
 
-      {isMoreThan30 === false && <AgeStep2 />}
+      {ageRange !== null && <AgeStep2 ageRange={ageRange} />}
     </div>
   );
 };

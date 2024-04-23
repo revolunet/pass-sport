@@ -8,10 +8,17 @@ import styles from './styles.module.scss';
 import Callouts from './components/callout/Callout';
 import NewsletterAndSocialMedia from './components/newsletter-and-social-media/NewsletterAndSocialMedia';
 import Video from './components/video/Video';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function Accueil() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const eligibilityTestOnClick = () =>
+    pathname?.includes('/v2')
+      ? router.push('test-eligibilite')
+      : router.push('/v2/test-eligibilite');
+
   return (
     <main>
       <section className={styles.hero}>
@@ -37,7 +44,7 @@ export default function Accueil() {
               size="large"
               iconId="fr-icon-arrow-right-line"
               iconPosition="right"
-              onClick={() => router.push('test-eligibilite')}
+              onClick={eligibilityTestOnClick}
             >
               Je fais le test
             </Button>
