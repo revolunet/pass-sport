@@ -5,7 +5,7 @@ export enum AGE_RANGE {
 }
 
 export enum CHILD_AGE {
-  LESS_THAN_SIX = 'lessThanSix',
-  BTW_SIX_AND_THIRTY = 'betweenSixAndThrity',
-  MORE_THAN_THIRTY = 'moreThanThirty',
+  LESS_THAN_SIX = 'LESS_THAN_SIX',
+  BTW_SIX_AND_THIRTY = 'BTW_SIX_AND_THIRTY',
+  MORE_THAN_THIRTY = 'MORE_THAN_THIRTY',
 }
