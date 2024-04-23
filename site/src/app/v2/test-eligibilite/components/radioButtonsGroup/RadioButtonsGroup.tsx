@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
+import cn from 'classnames';
 
 type Options = {
   label: string;
@@ -18,17 +19,6 @@ const RadioButtonsGroup: React.FC<Props> = ({ options, fieldsetId }) => {
     setButtonClickedIndex(index);
   };
 
-  const rewireOnClick = () => {
-    return options.map((option, index) => ({
-      ...option,
-
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-        buttonHandler(index);
-        option.onChange(e);
-      },
-    })) as Options;
-  };
-
   return (
     <fieldset className="fr-fieldset" id={fieldsetId} aria-labelledby={`${fieldsetId}-legend `}>
       <legend
@@ -38,20 +28,26 @@ const RadioButtonsGroup: React.FC<Props> = ({ options, fieldsetId }) => {
         Choisissez une option
       </legend>
 
-      {rewireOnClick().map((option, index) => {
+      {options.map((option, index) => {
         return (
           <div key={option.label} className={`fr-fieldset__element ${styles['fieldset__element']}`}>
             <div
               className={buttonClickedIndex !== index ? styles['transparent-border'] : undefined}
             >
               <div
-                className={`fr-radio-group ${styles['radio-group']} ${buttonClickedIndex === index ? styles['selected-radio'] : styles['deselected-radio']}`}
+                className={cn('fr-radio-group', styles['radio-group'], {
+                  [`${styles['selected-radio']}`]: buttonClickedIndex === index,
+                  [`${styles['deselected-radio']}`]: buttonClickedIndex !== index,
+                })}
               >
                 <input
                   type="radio"
                   id={`${fieldsetId}-${index}`}
                   name={fieldsetId}
-                  onChange={option.onChange}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    buttonHandler(index);
+                    option.onChange(e);
+                  }}
                 />
                 <label className="fr-label" htmlFor={`${fieldsetId}-${index}`}>
                   {option.label}
