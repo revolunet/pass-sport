@@ -20,7 +20,7 @@
 # - Nés entre le 16 septembre 1993 et le 31 décembre 2008 et bénéficient de l’allocation aux adultes handicapés ;
 # - Étudiants, âgés de 28 ans révolus au plus, et bénéficient au plus tard le 15 octobre 2024, d’une bourse de l’état de l’enseignement supérieur sous conditions de ressources, d’une aide annuelle du CROUS ou d’une bourse régionale pour les formations sanitaires et sociales pour l’année universitaire 2024 – 2025.
 
-# In[2]:
+# In[ ]:
 
 
 import pandas as pd
@@ -33,13 +33,13 @@ pathfile_benef_2023_without_crous = os.environ['BENEF_2023_WITHOUT_CROUS_PATHFIL
 pathfile_benef_2024 = os.environ['BENEF_2024_PATHFILE']
 
 
-# In[3]:
+# In[ ]:
 
 
-df_main = pd.read_csv(pathfile_benef_2023, nrows=5000, index_col=0, encoding='iso-8859-1', on_bad_lines='skip', sep=',')
+df_main = pd.read_csv(pathfile_benef_2023, index_col=0, encoding='iso-8859-1', on_bad_lines='skip', sep=',')
 
 
-# In[4]:
+# In[ ]:
 
 
 # suppression des bénéficiaires CNOUS
@@ -50,7 +50,7 @@ df_main_without_cnous = df_main[mask_without_cnous]
 del df_main_without_cnous["id_psp"]
 
 
-# In[5]:
+# In[ ]:
 
 
 # suppression des précédents exercices
@@ -58,21 +58,21 @@ mask_2023 = df_main['exercice_id'] == 2
 df_main_without_cnous = df_main_without_cnous[mask_2023]
 
 
-# In[6]:
+# In[ ]:
 
 
 # serialisation d'un fichier intermédiaire sans les bénéficiaires CNOUS
 df_main_without_cnous.to_csv(pathfile_benef_2023_without_crous)
 
 
-# In[7]:
+# In[ ]:
 
 
 # start from here if without_cnous file is already generated
 df_main_without_cnous = pd.read_csv(pathfile_benef_2023_without_crous, index_col=0, encoding='iso-8859-1', on_bad_lines='skip', sep=',')
 
 
-# In[8]:
+# In[ ]:
 
 
 # Casting to a datetime to apply crterias 
@@ -81,7 +81,7 @@ mask_wrong_datetime_format = pd.isnull(df_main_without_cnous.date_naissance)
 print('Number of wrong birthdate time rows that while not be processed', len(df_main_without_cnous[mask_wrong_datetime_format]))
 
 
-# In[9]:
+# In[ ]:
 
 
 from datetime import datetime
@@ -94,7 +94,7 @@ end_date = datetime(2018, 12, 31).date()
 ars_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_without_cnous['organisme'] == 'MSA')) & (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date) & (df_main_without_cnous['situation'] == 'Jeune')
 
 
-# In[10]:
+# In[ ]:
 
 
 # AEEH
@@ -105,7 +105,7 @@ end_date = datetime(2018, 12, 31).date()
 aeeh_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_without_cnous['organisme'] == 'MSA')) & (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date) & (df_main_without_cnous['situation'] == 'Jeune')
 
 
-# In[11]:
+# In[ ]:
 
 
 # AAH
@@ -116,14 +116,14 @@ end_date = datetime(2008, 12, 31).date()
 aah_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_without_cnous['organisme'] == 'MSA')) & (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date) & (df_main_without_cnous['situation'] == 'AAH')
 
 
-# In[12]:
+# In[ ]:
 
 
 # filtering on criterias
 df_main_without_cnous_filtered = df_main_without_cnous[aah_situation_mask | ars_situation_mask | aeeh_situation_mask]
 
 
-# In[13]:
+# In[ ]:
 
 
 # rebuild date as initial string formated object 
@@ -131,7 +131,7 @@ pd.options.mode.chained_assignment = None
 df_main_without_cnous_filtered['date_naissance'] = df_main_without_cnous_filtered['date_naissance'].dt.strftime('%Y-%m-%d %H:%M:%S')
 
 
-# In[14]:
+# In[ ]:
 
 
 # création d'un nouvel exercice
@@ -141,20 +141,20 @@ timestamp_with_custom_tz = pd.Timestamp.now(tz='Europe/Paris')
 df_main_without_cnous_filtered["created_at"] = timestamp_with_custom_tz
 
 
-# In[15]:
+# In[ ]:
 
 
 # création d'un fichier csv intérmédiaire sans les codes
 df_main_without_cnous_filtered.to_csv(pathfile_benef_2024)
 
 
-# In[16]:
+# In[ ]:
 
 
 # df_main_without_cnous_filtered = pd.read_csv(pathfile_benef_2024, index_col=0, on_bad_lines='skip', sep=',')
 
 
-# In[21]:
+# In[ ]:
 
 
 import random
@@ -185,14 +185,14 @@ def generate_unique_codes(n):
 codes = generate_unique_codes(len(df_main_without_cnous_filtered.index))
 
 
-# In[22]:
+# In[ ]:
 
 
 # Ensure uniquenes of codes
 assert (len(codes) == len(set(codes)))
 
 
-# In[23]:
+# In[ ]:
 
 
 df_main_without_cnous_filtered.insert(0, 'id_psp', codes)
