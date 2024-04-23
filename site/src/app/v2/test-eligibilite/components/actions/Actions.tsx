@@ -23,7 +23,10 @@ const Actions = ({ isSuccess = true }: ActionsProps) => {
           },
           {
             children: 'Refaire le test',
-            onClick: () => context.performNewTest(),
+            onClick: () => {
+              context.performNewTest();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
             priority: !isSuccess ? 'secondary' : 'tertiary no outline',
             iconId: 'fr-icon-arrow-left-line',
           },
