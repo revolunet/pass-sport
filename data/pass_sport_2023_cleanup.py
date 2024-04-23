@@ -166,7 +166,6 @@ current_date = datetime.datetime.now()
 
 current_month_string = current_date.strftime('%m')
 
-# TOTO remove I and O from 
 def generate_code():
     code = ''.join('24')
     code += '-'
