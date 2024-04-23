@@ -4,7 +4,7 @@ import { Card } from '@codegouvfr/react-dsfr/Card';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import styles from './style.module.scss';
 import PageHeader from '../../../../components/PageHeader/PageHeader';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Search from './components/search/Search';
 import { SqlSearchParams, getClubs } from './agent';
 import { usePathname } from 'next/navigation';
@@ -15,88 +15,90 @@ export default function TrouverUnClub() {
   const limit = 20;
   const pathName = usePathname();
 
-  const [clubs, setClubs] = useState<SportGouvJSONResponse | undefined>();
+  const [clubs, setClubs] = useState<SportGouvJSONResponse>({
+    results: [],
+    total_count: 0,
+  });
   const [clubParams, setClubParams] = useState<SqlSearchParams>({ limit, offset: 0 });
 
   const { nom, offset } = clubParams;
 
   useEffect(() => {
     if (offset === 0) {
-      getClubs({ nom, offset, limit }).then((res) => setClubs(res));
+      getClubs({ nom, offset, limit }).then(setClubs);
     } else {
       getClubs({ nom, offset, limit }).then((res) =>
         setClubs((clubs) => {
-          if (clubs?.results) {
-            return { results: [...clubs.results, ...res.results], total_count: res.total_count };
-          } else {
-            return res;
-          }
+          return { results: [...clubs.results, ...res.results], total_count: res.total_count };
         }),
       );
     }
   }, [nom, offset]);
 
   const seeMoreClubsHandler = () => {
-    setClubParams((clubParams) => ({ ...clubParams, offset: clubParams.offset! + limit }));
+    setClubParams((clubParams) => ({ ...clubParams, offset: clubParams.offset + limit }));
   };
 
   const searchClubByTextHandler = (text: string) => {
-    setClubParams({ nom: `nom like '%${text.toUpperCase()}%'`, offset: 0 });
+    const clubParams: SqlSearchParams = { offset: 0 };
+    if (text.length !== 0) {
+      clubParams.nom = `nom like '%${text.toUpperCase()}%'`;
+    }
+    setClubParams(clubParams);
   };
 
-  const isLastPage = clubs?.total_count === clubs?.results.length;
+  const isLastPage = clubs.total_count === clubs.results.length;
 
   return (
     <div>
       <PageHeader
         title="Trouver un club adhérent"
-        subtitle={`Plus de ${clubs ? clubs.total_count : 0} clubs labelisés trouvés`}
+        subtitle={`Plus de ${clubs.total_count} clubs labelisés trouvés`}
       ></PageHeader>
       <Search onTextSearch={searchClubByTextHandler}></Search>
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          {clubs &&
-            clubs.results.map((club) => (
-              /** @ts-ignore */
-              <Card
-                key={club.nom}
-                className={styles.item}
-                background
-                badge={
-                  !!club.activites &&
-                  club.activites.slice(0, 1).map((a) => (
-                    <Badge key={a} severity="new">
-                      {a}
-                    </Badge>
-                  ))
-                }
-                imageAlt=""
-                border
-                detail={club.adresse + ', ' + club.com_arm_name}
-                enlargeLink
-                linkProps={{
-                  href: `${pathName}/${encodeURIComponent(club.nom)}`,
-                }}
-                size="medium"
-                start={
-                  <ul className="fr-tags-group">
-                    {!!club.activites && club.activites.length > 0 && (
-                      <li>
-                        <Tag>{club.activites.length} activités</Tag>
-                      </li>
-                    )}
+          {clubs.results.map((club) => (
+            /** @ts-ignore */
+            <Card
+              key={club.nom + club.adresse + club.commune}
+              className={styles.item}
+              background
+              badge={
+                !!club.activites &&
+                club.activites.slice(0, 1).map((a) => (
+                  <Badge key={a} severity="new">
+                    {a}
+                  </Badge>
+                ))
+              }
+              imageAlt=""
+              border
+              detail={club.adresse + ', ' + club.com_arm_name}
+              enlargeLink
+              linkProps={{
+                href: `${pathName}/${encodeURIComponent(club.nom)}`,
+              }}
+              size="medium"
+              start={
+                <ul className="fr-tags-group">
+                  {!!club.activites && club.activites.length > 0 && (
+                    <li>
+                      <Tag>{club.activites.length} activités</Tag>
+                    </li>
+                  )}
 
-                    {club.handicap === 'Oui' && (
-                      <li>
-                        <Tag> Handicap</Tag>
-                      </li>
-                    )}
-                  </ul>
-                }
-                title={club.nom}
-                titleAs="h3"
-              />
-            ))}
+                  {club.handicap === 'Oui' && (
+                    <li>
+                      <Tag> Handicap</Tag>
+                    </li>
+                  )}
+                </ul>
+              }
+              title={club.nom}
+              titleAs="h3"
+            />
+          ))}
         </div>
         {!isLastPage && (
           <div className={`fr-mt-9w ${styles['more-clubs-wrapper']}`}>
