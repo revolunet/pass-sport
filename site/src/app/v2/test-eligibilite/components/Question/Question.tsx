@@ -27,8 +27,7 @@ const Question: React.FC<Props> = ({ question, description, children }) => {
         </div>
       )}
 
-      <p className={`fr-text fr-px-0 fr-py-1w ${styles.option}`}>Choisissez une option</p>
-      <div className="fr-pb-3w">{children}</div>
+      <div className="fr-pb-1w">{children}</div>
     </div>
   );
 };

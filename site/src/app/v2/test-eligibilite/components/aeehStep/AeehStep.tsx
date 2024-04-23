@@ -3,7 +3,7 @@ import questionStyle from '../Question/styles.module.scss';
 
 import { useState } from 'react';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
-import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 
 const AeehStep = () => {
   const [hasAeehAllocation, setHasAeehAllocation] = useState<boolean | null>(null);
@@ -21,15 +21,16 @@ const AeehStep = () => {
           </>
         }
       >
-        <CustomButtonsGroups
-          buttons={[
+        <RadioButtonsGroup
+          fieldsetId="aeehStep"
+          options={[
             {
-              children: 'Oui',
-              onClick: () => setHasAeehAllocation(true),
+              label: 'Oui',
+              onChange: () => setHasAeehAllocation(true),
             },
             {
-              children: 'Non',
-              onClick: () => setHasAeehAllocation(false),
+              label: 'Non',
+              onChange: () => setHasAeehAllocation(false),
             },
           ]}
         />

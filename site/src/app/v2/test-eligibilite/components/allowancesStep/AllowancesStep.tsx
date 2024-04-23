@@ -3,7 +3,7 @@ import { useState } from 'react';
 import questionStyle from '../Question/styles.module.scss';
 import verdictStyle from '../verdictPanel/styles.module.scss';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
-import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 
 interface Props {
   isForChild: boolean;
@@ -48,15 +48,16 @@ const AllowancesStep: React.FC<Props> = ({ isForChild }) => {
           </>
         }
       >
-        <CustomButtonsGroups
-          buttons={[
+        <RadioButtonsGroup
+          fieldsetId="allowanceStep"
+          options={[
             {
-              children: 'Oui',
-              onClick: () => setHasAllowances(true),
+              label: 'Oui',
+              onChange: () => setHasAllowances(true),
             },
             {
-              children: 'Non',
-              onClick: () => setHasAllowances(false),
+              label: 'Non',
+              onChange: () => setHasAllowances(false),
             },
           ]}
         />

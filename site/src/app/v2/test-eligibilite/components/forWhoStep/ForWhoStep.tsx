@@ -5,9 +5,9 @@ import AgeStep from '../ageStep/AgeStep';
 import Question from '../Question/Question';
 import EligibilityContext from '../../../../../store/eligibilityTestContext';
 import ChildAgeStep from '../childAgeStep/ChildAgeStep';
-import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 
-/* This is a trick to force the CustomButtonGroup to reload */
+/* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
 
 const ForWhoStep = () => {
@@ -25,16 +25,17 @@ const ForWhoStep = () => {
           question="Bonjour, vous souhaitez vérifier si vous pouvez bénéficier du Pass Sport. Vous faites le
         test :"
         >
-          <CustomButtonsGroups
+          <RadioButtonsGroup
             key={CustomButtonsGroupKey}
-            buttons={[
+            fieldsetId="forWhoStep"
+            options={[
               {
-                children: 'Pour moi même',
-                onClick: () => setIsForMyself(true),
+                label: 'Pour moi même',
+                onChange: () => setIsForMyself(true),
               },
               {
-                children: 'Pour mon enfant ou petit enfant',
-                onClick: () => setIsForMyself(false),
+                label: 'Pour mon enfant ou petit enfant',
+                onChange: () => setIsForMyself(false),
               },
             ]}
           />

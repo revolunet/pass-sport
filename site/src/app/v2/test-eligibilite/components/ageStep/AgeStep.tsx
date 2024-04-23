@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Question from '../Question/Question';
 import AgeStep2 from '../ageStep2/AgeStep2';
-import CustomButtonsGroups from '../customButtonsGroup/CustomButtonsGroup';
+import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 import questionStyles from '../Question/styles.module.scss';
 
 const AgeStep = () => {
@@ -10,15 +10,16 @@ const AgeStep = () => {
   return (
     <div>
       <Question question="Quel âge avez-vous ?">
-        <CustomButtonsGroups
-          buttons={[
+        <RadioButtonsGroup
+          fieldsetId="ageStep"
+          options={[
             {
-              children: 'Entre 6 et 30 ans',
-              onClick: () => setIsMoreThan30(false),
+              label: 'Entre 6 et 30 ans',
+              onChange: () => setIsMoreThan30(false),
             },
             {
-              children: 'Plus de 30 ans',
-              onClick: () => setIsMoreThan30(true),
+              label: 'Plus de 30 ans',
+              onChange: () => setIsMoreThan30(true),
             },
           ]}
         />
