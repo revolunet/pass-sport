@@ -15,7 +15,7 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
   const [club, setClub] = useState<Club | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    getClubs({ nom: `nom="${clubName.toUpperCase()}"` }).then((res) => {
+    getClubs({ nom: `nom="${clubName.toUpperCase()}"`, offset: 0 }).then((res) => {
       if (res.results.length === 0) {
         setError("Le club n'a pas été trouvé");
       } else {

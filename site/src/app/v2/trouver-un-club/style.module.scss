@@ -29,3 +29,15 @@
 .alert-sizer {
   max-width: 1128px;
 }
+
+.more-clubs-wrapper {
+  text-align: center;
+  button {
+    justify-content: center;
+    width: 100%;
+
+    @media screen and (min-width: $xl) {
+      width: 337px;
+    }
+  }
+}
