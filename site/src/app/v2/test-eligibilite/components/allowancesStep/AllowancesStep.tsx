@@ -4,6 +4,7 @@ import VerdictPanel from '../verdictPanel/VerdictPanel';
 import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import styles from '../../styles.module.scss';
 
 type AllowancesStepProps = {
   isForChild: boolean;
@@ -57,19 +58,19 @@ const AllowancesStep = ({ isForChild }: AllowancesStepProps) => {
     >
       En effet, ce dispositif n&apos;est pas accessbile à tous, il est ouvert aux:
       <ul className="fr-mt-2w">
-        <li className={`fr-text--lg fr-mb-3w fr-ml-2w fr-text--bold`}>
+        <li className={`fr-text--lg fr-mb-3w fr-ml-2w ${styles['text--medium']}`}>
           personnes nées entre le 16 septembre 2006 et le 31 décembre 2018 bénéficiant de
           l&apos;allocation de rentrée scolaire (ARS) (6 à 17 ans révolus)
         </li>
-        <li className={`fr-text--lg fr-mb-3w fr-ml-2w fr-text--bold`}>
+        <li className={`fr-text--lg fr-mb-3w fr-ml-2w ${styles['text--medium']}`}>
           personnes nées entre le 1er juin 2004 et le 31 décembre 2018 bénéficiant de
           l&apos;allocation d&apos;éducation de l&apos;enfant handicapé (AEEH) (6 à 19 ans révolus)
         </li>
-        <li className={`fr-text--lg fr-mb-3w fr-ml-2w fr-text--bold`}>
+        <li className={`fr-text--lg fr-mb-3w fr-ml-2w ${styles['text--medium']}`}>
           personnes nées entre le 16 septembre 1993 et le 31 décembre 2008 bénéficiant de
           l&apos;allocation aux adultes handicapés (AAH) (16 à 30 ans)
         </li>
-        <li className={`fr-text--lg fr-mb-3w fr-ml-2w fr-text--bold`}>
+        <li className={`fr-text--lg fr-mb-3w fr-ml-2w ${styles['text--medium']}`}>
           étudiants, âgés de 28 ans révolus au plus, et bénéficient au plus tard le 15 octobre 2024,
           d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
           ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour les
@@ -85,17 +86,19 @@ const AllowancesStep = ({ isForChild }: AllowancesStepProps) => {
         question={
           <>
             {isForChild ? (
-              <p className={`fr-text--lg fr-mb-0 fr-text--bold`}>
+              <p className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
                 Votre enfant (ou petit enfant) bénéficie-t-il :
               </p>
             ) : (
               <>
-                <p className={`fr-text--lg fr-mb-0 fr-text--bold`}>Vous avez entre 16 et 30 ans.</p>
-                <p className={`fr-text--lg fr-mb-0 fr-text--bold`}>Bénéficiez-vous :</p>
+                <p className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
+                  Vous avez entre 16 et 30 ans.
+                </p>
+                <p className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>Bénéficiez-vous :</p>
               </>
             )}
             <ul className="fr-ml-2w fr-mt-4w">
-              <li className={`fr-text--lg fr-mb-0 fr-text--bold`}>
+              <li className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
                 d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
                 ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour
                 les formations sanitaires et sociales pour l&apos;année universitaire 2023-2024 ou
@@ -104,13 +107,13 @@ const AllowancesStep = ({ isForChild }: AllowancesStepProps) => {
             </ul>
             ou
             <ul className="fr-ml-2w">
-              <li className={`fr-text--lg fr-mb-0 fr-text--bold`}>
+              <li className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
                 de l&apos;allocation aux adultes handicapées (AAH)?
               </li>
             </ul>
             ou
             <ul className="fr-ml-2w">
-              <li className={`fr-text--lg fr-mb-0 fr-text--bold`}>
+              <li className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
                 ou de l&apos;allocation d&apos;éducation de l&apos;enfant handicapé (AEEH)?
               </li>
             </ul>

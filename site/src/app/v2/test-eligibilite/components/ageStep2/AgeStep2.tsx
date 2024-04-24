@@ -6,6 +6,7 @@ import Link from 'next/link';
 import AeehStep from '../aeehStep/AeehStep';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
 import { useRouter } from 'next/navigation';
+import styles from '../../styles.module.scss';
 
 type AgeStep2Props = {
   ageRange: AGE_RANGE;
@@ -19,7 +20,7 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
 
   const question =
     ageRange === AGE_RANGE.BETWEEN_6_19 ? (
-      <p className="fr-text--bold">
+      <p className={styles['text--medium']}>
         Vos parents touchent-ils l&apos;allocation de rentrée scolaire ? Si vous ne le savez pas,
         rapprochez de vos parents, ils sauront vous répondre.
       </p>

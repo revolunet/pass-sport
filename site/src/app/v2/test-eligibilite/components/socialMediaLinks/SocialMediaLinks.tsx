@@ -1,9 +1,10 @@
 import styles from './styles.module.scss';
+import rootStyles from '../../styles.module.scss';
 
 const SocialMediaLinks = () => {
   return (
     <div>
-      <p className="fr-text--lg fr-mb-0 fr-text--bold">
+      <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
         Pour plus d&apos;informations, suivez-nous sur les réseaux sociaux :
       </p>
       <div className={`fr-pt-3v ${styles['link-container']}`}>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { AGE_RANGE } from '../types/types';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
 import { useRouter } from 'next/navigation';
+import styles from '../../styles.module.scss';
 
 type AeehStepProps = {
   ageRange: AGE_RANGE;
@@ -26,11 +27,11 @@ const AeehStep = ({ ageRange }: AeehStepProps) => {
         <Question
           question={
             <>
-              <p className={`fr-text--lg fr-mb-0 fr-text--bold`}>
+              <p className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
                 Vos parent bénéficient-ils de l&apos;allocation d&apos;éducation de l&apos;enfant
                 handicapé (AEEH) ?
               </p>
-              <p className={`fr-text--lg fr-mb-0 fr-text--bold`}>
+              <p className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
                 Si vous ne le savez pas, rapprochez de vos parents, ils sauront vous répondre.
               </p>
             </>
@@ -114,7 +115,7 @@ const AeehStep = ({ ageRange }: AeehStepProps) => {
             </li>
             <br />
           </ul>
-          <span className="fr-text--bold">
+          <span className={styles['text--medium']}>
             Pour autant, vous avez peut-être droit à d&apos;autres aides. N&apos;hésitez pas à vous
             rapprocher de votre région, département ou commune de résidence.
           </span>

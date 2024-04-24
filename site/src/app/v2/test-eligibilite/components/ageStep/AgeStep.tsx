@@ -4,6 +4,7 @@ import AgeStep2 from '../ageStep2/AgeStep2';
 import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 import { AGE_RANGE } from '../types/types';
 import VerdictPanel from '../verdictPanel/VerdictPanel';
+import styles from '../../styles.module.scss';
 
 const AgeStep = () => {
   const [ageRange, setAgeRange] = useState<AGE_RANGE | null>(null);
@@ -40,7 +41,7 @@ const AgeStep = () => {
           <ul className="fr-ml-2w">
             <li>Personnes nées entre le 16 septembre 1993 et le 31 décembre 2018.</li>
           </ul>
-          <span className="fr-text--bold">
+          <span className={styles['text--medium']}>
             Pour autant, vous avez peut-être droit à d&apos;autres aides. N&apos;hésitez pas à vous
             rapprocher de votre région, département ou commune de résidence.
           </span>

@@ -1,4 +1,5 @@
 import styles from './styles.module.scss';
+import rootStyles from '../../styles.module.scss';
 import SocialMediaLinks from '../socialMediaLinks/SocialMediaLinks';
 import Actions from '../actions/Actions';
 import { CallOut } from '@codegouvfr/react-dsfr/CallOut';
@@ -28,6 +29,7 @@ const VerdictPanel = ({
           colorVariant={isSuccess ? 'green-emeraude' : 'pink-tuile'}
           classes={{
             title: styles['callout-title'],
+            text: rootStyles['text--medium'],
           }}
           iconId="fr-icon-info-line"
           {...(buttonProps && { buttonProps })}
