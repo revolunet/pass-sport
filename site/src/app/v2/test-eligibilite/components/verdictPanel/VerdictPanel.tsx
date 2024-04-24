@@ -29,6 +29,7 @@ const VerdictPanel = ({
           classes={{
             title: styles['callout-title'],
           }}
+          iconId="fr-icon-info-line"
           {...(buttonProps && { buttonProps })}
         >
           {children}

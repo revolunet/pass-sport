@@ -92,7 +92,7 @@ const AeehStep = ({ ageRange }: AeehStepProps) => {
           isSuccess={false}
         >
           <div className="fr-mb-2w">En effet, ce dispositif est ouvert aux:</div>
-          <ul>
+          <ul className="fr-ml-2w">
             <li className="fr-mb-3w">
               personnes nées entre le 16 septembre 2006 et le 31 décembre 2018 bénéficiant de
               l&apos;allocation de rentrée scolaire (ARS) (6 à 17 ans révolus)
@@ -114,11 +114,11 @@ const AeehStep = ({ ageRange }: AeehStepProps) => {
               2024 - 2025.
             </li>
             <br />
-            <span className="fr-text--bold">
-              Pour autant, vous avez peut-être droit à d&apos;autres aides. N&apos;hésitez pas à
-              vous rapprocher de votre région, département ou commune de résidence.
-            </span>
           </ul>
+          <span className="fr-text--bold">
+            Pour autant, vous avez peut-êtreewqewq droit à d&apos;autres aides. N&apos;hésitez pas à
+            vous rapprocher de votre région, département ou commune de résidence.
+          </span>
         </VerdictPanel>
       )}
     </>

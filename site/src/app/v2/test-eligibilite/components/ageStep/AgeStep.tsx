@@ -37,7 +37,7 @@ const AgeStep = () => {
           isSuccess={false}
         >
           En effet, ce dispositif est ouvert aux:
-          <ul>
+          <ul className="fr-ml-2w">
             <li>Personnes nées entre le 16 septembre 1993 et le 31 décembre 2018.</li>
           </ul>
           <span className="fr-text--bold">
