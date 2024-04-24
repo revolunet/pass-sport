@@ -10,6 +10,7 @@ import NewsletterAndSocialMedia from './components/newsletter-and-social-media/N
 import Video from './components/video/Video';
 import { usePathname, useRouter } from 'next/navigation';
 import FindClubCard from './components/find-club-card/FindClubCard';
+import Hero from './components/hero/Hero';
 
 export default function Accueil() {
   const router = useRouter();
@@ -17,38 +18,12 @@ export default function Accueil() {
 
   const eligibilityTestOnClick = () => router.push('/v2/test-eligibilite');
   return (
-    <main>
+    <main className={styles.main}>
       <section className={styles.hero}>
-        <div className={styles.hero_background}>
-          <div className={styles.hero_background_blue}></div>
-        </div>
-        <div className={styles.hero_container}>
-          <Image
-            src="/images/homepage/pass-sport.png"
-            width={229}
-            height={97}
-            alt="logo Pass'sport"
-          />
-
-          <h1 className={styles.hero_color}>Testez votre éligibilité</h1>
-          <p className={styles.hero_color}>
-            50€ pour aider les jeunes à faire du sport entre 6 et 30ans
-          </p>
-          {/* <EmailForm /> */}
-          <div className={styles.hero_container_panel}>
-            <Button
-              priority="primary"
-              size="large"
-              iconId="fr-icon-arrow-right-line"
-              iconPosition="right"
-              onClick={eligibilityTestOnClick}
-            >
-              Je fais le test
-            </Button>
-          </div>
-        </div>
+        <Hero />
       </section>
-      <section className={`fr-container fr-px-0 ${styles.tiles}`}>
+
+      {/* <section className={`fr-container fr-px-0 ${styles.tiles}`}>
         <div className="fr-grid-row fr-grid-row--gutters">
           {presentationTiles.map((tile) => (
             <div key={tile.id} className="fr-col-12 fr-col-lg-4">
@@ -56,11 +31,11 @@ export default function Accueil() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <FindClubCard />
+      {/* <FindClubCard /> */}
 
-      <section className="fr-container">
+      {/* <section className="fr-container">
         <h2>Mieux comprendre le Pass&apos;Sport</h2>
         <div className={`${styles.sizer}`}>
           <Video />
@@ -69,8 +44,8 @@ export default function Accueil() {
         <div className={` ${styles.sizer}`}>
           <Callouts />
         </div>
-      </section>
-      <NewsletterAndSocialMedia />
+      </section> */}
+      {/* <NewsletterAndSocialMedia /> */}
     </main>
   );
 }
