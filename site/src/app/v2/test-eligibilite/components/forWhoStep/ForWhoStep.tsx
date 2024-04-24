@@ -22,7 +22,7 @@ const ForWhoStep = () => {
     <EligibilityContext.Provider value={{ performNewTest: restartTest }}>
       <div>
         <Question
-          question="Bonjour, vous souhaitez vérifier si vous pouvez bénéficier du Pass Sport. Vous faites le
+          question="Bonjour, vous souhaitez vérifier si vous pouvez bénéficier du pass Sport. Vous faites le
         test :"
         >
           <RadioButtonsGroup

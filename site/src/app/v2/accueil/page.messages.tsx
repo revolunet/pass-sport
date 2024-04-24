@@ -7,7 +7,7 @@ export const presentationTiles: PresentationTileProps[] = [
       <>
         Découvrir
         <br />
-        le Pass Sport
+        le pass Sport
       </>
     ),
     badgeLabel: 'le pass sport',

@@ -15,12 +15,12 @@ export default function About() {
 
         <div>
           <h3 className={styles['about-container__highlight-title']}>
-            Qu&apos;est-ce que le Pass Sport
+            Qu&apos;est-ce que le pass Sport
           </h3>
 
           <Highlight size="sm">
             <span>
-              Le Pass sport est une aide de 50 euros qui permet de financer une partie de la licence
+              Le pass Sport est une aide de 50 euros qui permet de financer une partie de la licence
               ou de l&apos;abonnement sportif à plus de 6,5 millions de jeunes. Il est valable dans
               plus de 55 000 clubs et salles de sport partenaires (lien carte).
             </span>

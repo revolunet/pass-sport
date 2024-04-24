@@ -11,7 +11,7 @@ import LegalTextReference from './components/legal-text-reference';
 export default function ToutSavoirSurLePassSport() {
   return (
     <div className={styles.container}>
-      <PageHeader title="Tout savoir sur le Pass Sport" subtitle="" />
+      <PageHeader title="Tout savoir sur le pass Sport" subtitle="" />
 
       <About />
 

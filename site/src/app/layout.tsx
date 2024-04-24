@@ -42,7 +42,7 @@ export default function RootLayout({
         <PassSportBreadcrumb />
 
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
-        {/* <PassSportFooter /> */}
+        <PassSportFooter />
       </body>
     </html>
   );

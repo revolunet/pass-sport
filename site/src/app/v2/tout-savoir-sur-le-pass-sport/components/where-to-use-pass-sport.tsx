@@ -9,7 +9,7 @@ export default function WhereToUsePassSport() {
       <h4>Où l&apos;utiliser ?</h4>
 
       <p>
-        Vous pouvez utiliser le Pass Sport dans plus de 55 000 clubs et salles de sport, partout en
+        Vous pouvez utiliser le pass Sport dans plus de 55 000 clubs et salles de sport, partout en
         France.
         <br />
         La liste des établissements partenaires est disponible ici :

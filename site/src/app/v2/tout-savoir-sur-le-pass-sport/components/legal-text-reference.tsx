@@ -13,7 +13,7 @@ export default function LegalTextReference() {
         href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047952490?init=true&page=1&query=Pass%E2%80%99Sport&searchField=ALL&tab_selection=all"
         target="_blank"
       >
-        Texte de référence Décret n° 2023-741 du 8 août 2023 relatif au « Pass Sport » 2023
+        Texte de référence Décret n° 2023-741 du 8 août 2023 relatif au « pass Sport » 2023
       </Link>
     </section>
   );

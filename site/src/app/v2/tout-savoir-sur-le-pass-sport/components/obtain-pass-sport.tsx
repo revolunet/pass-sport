@@ -6,9 +6,9 @@ export default function ObtainPassPort() {
 
   return (
     <section>
-      <h4>Qui peut obtenir le Pass Sport ?</h4>
+      <h4>Qui peut obtenir le pass Sport ?</h4>
 
-      <span>Le Pass Sport 2024 s&apos;adressera aux jeunes qui sont :</span>
+      <span>Le pass Sport 2024 s&apos;adressera aux jeunes qui sont :</span>
       <ul>
         <li>
           nés entre le 16 septembre 2006 et le 31 décembre 2018 et bénéficient de l&apos;allocation

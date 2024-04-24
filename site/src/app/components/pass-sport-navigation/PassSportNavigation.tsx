@@ -28,7 +28,7 @@ export default function PassSportNavigation() {
           },
           {
             isActive: isActive('/v2/tout-savoir-sur-le-pass-sport'),
-            text: 'Tout savoir sur le Pass Sport',
+            text: 'Tout savoir sur le pass Sport',
             linkProps: {
               href: '/v2/tout-savoir-sur-le-pass-sport',
             },

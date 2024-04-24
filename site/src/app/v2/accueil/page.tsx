@@ -10,13 +10,13 @@ import cn from 'classnames';
 
 export default function Accueil() {
   return (
-    <main className={styles.main}>
-      <section className={styles.hero}>
+    <main>
+      <section>
         <Hero />
       </section>
 
       <div className={cn('fr-px-2w', styles['blue-background'])}>
-        <section className={cn('fr-container', 'fr-px-0', styles.tiles)}>
+        <section className={cn('fr-container', 'fr-px-0', styles['tiles-section'])}>
           <div className="fr-grid-row fr-grid-row--gutters">
             {presentationTiles.map((tile) => (
               <div key={tile.id} className="fr-col-12 fr-col-lg-4">
@@ -29,7 +29,7 @@ export default function Accueil() {
           <FindClubCard />
         </section>
         <section className={cn('fr-mx-auto', 'fr-pb-2w', styles['video-section'])}>
-          <h4 className={cn('fr-pt-10w', styles.title)}>Mieux comprendre le Pass&apos;Sport</h4>
+          <h4 className={cn(styles.title)}>Mieux comprendre le Pass&apos;Sport</h4>
           <Video />
         </section>
       </div>
