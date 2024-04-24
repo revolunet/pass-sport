@@ -1,6 +1,4 @@
-import pictogramImage from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/city-hall.svg';
 import Link from 'next/link';
-import { ReactNode } from 'react';
 
 export interface PresentationTileProps {
   id: number;

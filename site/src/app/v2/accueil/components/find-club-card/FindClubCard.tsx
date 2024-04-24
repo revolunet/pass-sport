@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';

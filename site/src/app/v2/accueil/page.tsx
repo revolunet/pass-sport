@@ -1,22 +1,13 @@
-'use client';
-
-import Button from '@codegouvfr/react-dsfr/Button';
-import Image from 'next/image';
 import PresentationTile from './components/PresentationTile';
 import { presentationTiles } from './page.messages';
 import styles from './styles.module.scss';
 import Callouts from './components/callout/Callout';
 import SocialMediaPanel from './components/social-media-panel/SocialMediaPanel';
 import Video from './components/video/Video';
-import { usePathname, useRouter } from 'next/navigation';
 import FindClubCard from './components/find-club-card/FindClubCard';
 import Hero from './components/hero/Hero';
 
 export default function Accueil() {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const eligibilityTestOnClick = () => router.push('/v2/test-eligibilite');
   return (
     <main className={styles.main}>
       <section className={styles.hero}>
@@ -38,9 +29,7 @@ export default function Accueil() {
         </section>
         <section className={`fr-mx-auto fr-pb-2w ${styles['video-section']}`}>
           <h4 className={`fr-pt-10w ${styles.title}`}>Mieux comprendre le Pass&apos;Sport</h4>
-          {/* <div className="fr-mx-auto"> */}
           <Video />
-          {/* </div> */}
         </section>
       </div>
       <div className={`fr-hidden fr-unhidden-md fr-pt-5w fr-pb-4w ${styles.lines}`}>

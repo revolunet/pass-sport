@@ -1,8 +1,12 @@
+'use client';
+
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 
 const HeroPanel = () => {
+  const eligibilityTestOnClick = () => router.push('/v2/test-eligibilite');
+
   const router = useRouter();
 
   return (
@@ -31,7 +35,7 @@ const HeroPanel = () => {
           size="large"
           iconId="fr-icon-arrow-right-line"
           iconPosition="right"
-          onClick={() => router.push('test-eligibilite')}
+          onClick={eligibilityTestOnClick}
         >
           Je fais le test
         </Button>
