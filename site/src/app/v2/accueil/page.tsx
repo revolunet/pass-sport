@@ -6,7 +6,7 @@ import PresentationTile from './components/PresentationTile';
 import { presentationTiles } from './page.messages';
 import styles from './styles.module.scss';
 import Callouts from './components/callout/Callout';
-import NewsletterAndSocialMedia from './components/newsletter-and-social-media/NewsletterAndSocialMedia';
+import SocialMediaPanel from './components/social-media-panel/SocialMediaPanel';
 import Video from './components/video/Video';
 import { usePathname, useRouter } from 'next/navigation';
 import FindClubCard from './components/find-club-card/FindClubCard';
@@ -43,17 +43,18 @@ export default function Accueil() {
           {/* </div> */}
         </section>
       </div>
-      <div className={`fr-hidden fr-unhidden-md fr-pt-5w fr-pb-9w ${styles.lines}`}>
+      <div className={`fr-hidden fr-unhidden-md fr-pt-5w fr-pb-4w ${styles.lines}`}>
         <div className={styles.image} />
       </div>
 
-      {/* <section className="fr-container"> */}
-
-      {/* <div className={` ${styles.sizer}`}>
-        <Callouts />
-      </div> */}
-      {/* </section> */}
-      {/* <NewsletterAndSocialMedia /> */}
+      <section className={`fr-px-5w ${styles['callout-section']}`}>
+        <div className={`fr-mx-auto ${styles.sizer}`}>
+          <Callouts />
+        </div>
+      </section>
+      <section>
+        <SocialMediaPanel />
+      </section>
     </main>
   );
 }
