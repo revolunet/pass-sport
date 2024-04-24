@@ -3,6 +3,7 @@
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
+import cn from 'classnames';
 
 const HeroPanel = () => {
   const eligibilityTestOnClick = () => router.push('/v2/test-eligibilite');
@@ -10,12 +11,12 @@ const HeroPanel = () => {
   const router = useRouter();
 
   return (
-    <div className={`fr-pt-8w fr-pb-7w fr-px-3w ${styles.background} ${styles.sizer}`}>
+    <div className={cn('fr-pt-8w', 'fr-pb-7w', 'fr-px-3w', styles.background, styles.sizer)}>
       <div className={styles.container}>
-        <h2 className={`fr-hidden-sm ${styles.title}`}>
+        <h2 className={cn('fr-hidden-sm', styles.title)}>
           50 euros pour aider les 6-30 ans à faire du sport
         </h2>
-        <h2 className={`fr-hidden fr-unhidden-sm ${styles.title}`}>
+        <h2 className={cn('fr-hidden', 'fr-unhidden-sm', styles.title)}>
           50 euros
           <br />
           pour aider
@@ -24,7 +25,7 @@ const HeroPanel = () => {
           <br />
           du sport
         </h2>
-        <p className={`fr-text--lead fr-mb-0 ${styles.paragraph}`}>
+        <p className={cn('fr-text--lead', 'fr-mb-0', styles.paragraph)}>
           Vais-je recevoir le pass Sport ?
         </p>
       </div>
