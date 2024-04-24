@@ -2,10 +2,26 @@
 
 .iframe {
   width: 100%;
-  height: calc(100vh / 1.77);
+  height: calc(100vh / 4);
 
-  @media (min-width: $xl) {
-    width: 996px;
-    height: 560px;
+  @media (min-width: $sm) {
+    height: calc(100vh / 2);
   }
+
+  @media (min-width: $md) {
+    height: calc(100vh / 1.5);
+  }
+
+  @media (min-width: $lg) {
+    width: 996px;
+    height: 506px;
+  }
+}
+
+.text {
+  color: var(--color-white) !important;
+}
+
+.transcription {
+  background-color: var(--color-white) !important;
 }

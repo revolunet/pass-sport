@@ -36,18 +36,23 @@ export default function Accueil() {
         <section className="fr-pt-8w">
           <FindClubCard />
         </section>
+        <section className={`fr-mx-auto fr-pb-2w ${styles['video-section']}`}>
+          <h4 className={`fr-pt-10w ${styles.title}`}>Mieux comprendre le Pass&apos;Sport</h4>
+          {/* <div className="fr-mx-auto"> */}
+          <Video />
+          {/* </div> */}
+        </section>
+      </div>
+      <div className={`fr-hidden fr-unhidden-md fr-pt-5w fr-pb-9w ${styles.lines}`}>
+        <div className={styles.image} />
       </div>
 
-      {/* <section className="fr-container">
-        <h2>Mieux comprendre le Pass&apos;Sport</h2>
-        <div className={`${styles.sizer}`}>
-          <Video />
-        </div>
+      {/* <section className="fr-container"> */}
 
-        <div className={` ${styles.sizer}`}>
-          <Callouts />
-        </div>
-      </section> */}
+      {/* <div className={` ${styles.sizer}`}>
+        <Callouts />
+      </div> */}
+      {/* </section> */}
       {/* <NewsletterAndSocialMedia /> */}
     </main>
   );

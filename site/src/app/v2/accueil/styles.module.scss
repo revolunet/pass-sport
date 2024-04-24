@@ -28,13 +28,28 @@
   max-width: 894px;
 }
 
+.video-section {
+  max-width: 894px;
 
+  .title {
+    color: var(--color-white);
+  }
 
-.sizer {
-  max-width: 996px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 64px;
+  // .sizer {
+  //   // max-width: 996px;
+  //   margin-right: auto;
+  //   margin-left: auto;
+  //   // margin-bottom: 64px;
+  // }
+}
+
+.lines {
+  background-color: var(--artwork-major-blue-france);
+  .image {
+    background-image: url('/images/homepage/lines.png');
+    background-repeat: repeat-x;
+    height: 44px;
+  }
 }
 
 .news {
