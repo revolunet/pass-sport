@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from '../../styles.module.scss';
 
-type AllowancesStepProps = {
+interface Props {
   isForChild: boolean;
-};
+}
 
-const AllowancesStep = ({ isForChild }: AllowancesStepProps) => {
+const AllowancesStep = ({ isForChild }: Props) => {
   const [hasAllowances, setHasAllowances] = useState<boolean | null>(null);
   const router = useRouter();
 

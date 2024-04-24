@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import EligibilityTestContext from '@/store/eligibilityTestContext';
 
-type ActionsProps = {
+interface Props {
   isSuccess: boolean;
-};
+}
 
-const Actions = ({ isSuccess = true }: ActionsProps) => {
+const Actions = ({ isSuccess = true }: Props) => {
   const router = useRouter();
   const context = useContext(EligibilityTestContext);
 

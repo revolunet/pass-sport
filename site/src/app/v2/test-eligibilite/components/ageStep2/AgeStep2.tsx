@@ -8,9 +8,9 @@ import VerdictPanel from '../verdictPanel/VerdictPanel';
 import { useRouter } from 'next/navigation';
 import styles from '../../styles.module.scss';
 
-type AgeStep2Props = {
+interface AgeStep2Props {
   ageRange: AGE_RANGE;
-};
+}
 
 const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
   const [confirmed, setConfirmed] = useState<boolean | null>(null);

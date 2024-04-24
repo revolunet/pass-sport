@@ -6,13 +6,13 @@ import { CallOut } from '@codegouvfr/react-dsfr/CallOut';
 import { ButtonProps } from '@codegouvfr/react-dsfr/Button';
 import { ReactNode } from 'react';
 
-type VerdictPanelProps = {
+interface Props {
   title: string;
   buttonProps?: ButtonProps;
   isSuccess: boolean;
   hasSocialLinks?: boolean;
   children: ReactNode;
-};
+}
 
 const VerdictPanel = ({
   title,
@@ -20,7 +20,7 @@ const VerdictPanel = ({
   children,
   isSuccess,
   hasSocialLinks = true,
-}: VerdictPanelProps) => {
+}: Props) => {
   return (
     <div>
       <div className={styles.container}>

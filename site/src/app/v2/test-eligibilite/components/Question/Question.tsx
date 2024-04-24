@@ -1,12 +1,12 @@
 import styles from './styles.module.scss';
 
-type QuestionProps = {
+interface Props {
   question: string | JSX.Element;
   description?: string | JSX.Element;
   children: JSX.Element;
-};
+}
 
-const Question = ({ question, description, children }: QuestionProps) => {
+const Question = ({ question, description, children }: Props) => {
   return (
     <div className={` ${styles.container} ${styles.fit}`}>
       <div className={`fr-p-2w ${styles.panel} ${styles.fit}`}>

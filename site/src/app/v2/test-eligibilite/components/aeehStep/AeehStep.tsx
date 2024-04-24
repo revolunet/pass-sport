@@ -8,11 +8,11 @@ import VerdictPanel from '../verdictPanel/VerdictPanel';
 import { useRouter } from 'next/navigation';
 import styles from '../../styles.module.scss';
 
-type AeehStepProps = {
+interface Props {
   ageRange: AGE_RANGE;
-};
+}
 
-const AeehStep = ({ ageRange }: AeehStepProps) => {
+const AeehStep = ({ ageRange }: Props) => {
   const [hasAeehAllocation, setHasAeehAllocation] = useState<boolean | null>(null);
   const router = useRouter();
 

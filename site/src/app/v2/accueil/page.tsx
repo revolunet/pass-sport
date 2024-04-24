@@ -14,11 +14,7 @@ export default function Accueil() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const eligibilityTestOnClick = () =>
-    pathname?.includes('/v2')
-      ? router.push('test-eligibilite')
-      : router.push('/v2/test-eligibilite');
-
+  const eligibilityTestOnClick = () => router.push('/v2/test-eligibilite');
   return (
     <main>
       <section className={styles.hero}>
