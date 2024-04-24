@@ -33,9 +33,10 @@ export default function Accueil() {
             ))}
           </div>
         </section>
+        <section className="fr-pt-8w">
+          <FindClubCard />
+        </section>
       </div>
-
-      <FindClubCard />
 
       {/* <section className="fr-container">
         <h2>Mieux comprendre le Pass&apos;Sport</h2>

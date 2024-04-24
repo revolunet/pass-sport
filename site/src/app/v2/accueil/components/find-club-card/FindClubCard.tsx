@@ -1,5 +1,4 @@
 import Button from '@codegouvfr/react-dsfr/Button';
-import Link from 'next/link';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -23,6 +22,7 @@ const FindClubCard = () => {
           </div>
           <div className="fr-card__footer">
             <Button
+              className={styles.button}
               priority="secondary"
               iconId="fr-icon-arrow-right-line"
               size="large"
