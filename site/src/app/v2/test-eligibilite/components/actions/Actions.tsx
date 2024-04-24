@@ -27,7 +27,7 @@ const Actions = ({ isSuccess = true }: Props) => {
               context.performNewTest();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             },
-            priority: !isSuccess ? 'secondary' : 'tertiary no outline',
+            priority: 'tertiary no outline',
             iconId: 'fr-icon-arrow-left-line',
           },
         ]}
