@@ -74,11 +74,11 @@
   z-index: -1;
   width: 100%;
   height: 300px;
-  background: linear-gradient(178.8deg, #5bb5a7 28.02%, #3367ac 68.52%, #000091 99.87%);
+  background: linear-gradient(180deg, #5bb5a7 28.02%, #3367ac 68.52%, #000091 99.87%);
   @media (min-width: $md) {
     height: 580px;
   }
   @media (min-width: $lg) {
-    height: 664px;
+    height: 652px;
   }
 }

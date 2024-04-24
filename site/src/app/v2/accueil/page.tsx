@@ -23,17 +23,19 @@ export default function Accueil() {
         <Hero />
       </section>
 
-      {/* <section className={`fr-container fr-px-0 ${styles.tiles}`}>
-        <div className="fr-grid-row fr-grid-row--gutters">
-          {presentationTiles.map((tile) => (
-            <div key={tile.id} className="fr-col-12 fr-col-lg-4">
-              <PresentationTile {...tile} />
-            </div>
-          ))}
-        </div>
-      </section> */}
+      <div className={`fr-px-2w ${styles['blue-background']}`}>
+        <section className={`fr-container fr-px-0 ${styles.tiles}`}>
+          <div className="fr-grid-row fr-grid-row--gutters">
+            {presentationTiles.map((tile) => (
+              <div key={tile.id} className="fr-col-12 fr-col-lg-4">
+                <PresentationTile {...tile} />
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
 
-      {/* <FindClubCard /> */}
+      <FindClubCard />
 
       {/* <section className="fr-container">
         <h2>Mieux comprendre le Pass&apos;Sport</h2>
