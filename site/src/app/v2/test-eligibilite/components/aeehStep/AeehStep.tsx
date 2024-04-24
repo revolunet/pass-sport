@@ -64,7 +64,6 @@ const AeehStep = ({ ageRange }: AeehStepProps) => {
             },
           }}
         >
-          <br />
           Vous devriez le recevoir soit entre le 30 mai et le 1er juin, soit le 29 et le 31 août
           2024 sur l&apos;adresse e-mail que vous avez communiquée à votre CAF, Mutualité sociale
           agricole ou votre CROUS.
@@ -116,8 +115,8 @@ const AeehStep = ({ ageRange }: AeehStepProps) => {
             <br />
           </ul>
           <span className="fr-text--bold">
-            Pour autant, vous avez peut-êtreewqewq droit à d&apos;autres aides. N&apos;hésitez pas à
-            vous rapprocher de votre région, département ou commune de résidence.
+            Pour autant, vous avez peut-être droit à d&apos;autres aides. N&apos;hésitez pas à vous
+            rapprocher de votre région, département ou commune de résidence.
           </span>
         </VerdictPanel>
       )}

@@ -47,7 +47,9 @@ const AgeStep = () => {
         </VerdictPanel>
       )}
 
-      {ageRange !== null && <AgeStep2 ageRange={ageRange} />}
+      {/* "key" property here is crucial, it allows to "reset" the subsequent components */}
+      {/* more info at https://react.dev/learn/preserving-and-resetting-state */}
+      {ageRange !== null && <AgeStep2 ageRange={ageRange} key={ageRange} />}
     </div>
   );
 };

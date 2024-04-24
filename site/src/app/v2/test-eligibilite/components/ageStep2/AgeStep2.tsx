@@ -24,11 +24,11 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
         rapprochez de vos parents, ils sauront vous répondre.
       </p>
     ) : (
-      <p>
+      <div>
         Vous avez entre 19 et 30 ans.
         <br />
         Bénéficiez-vous :
-        <ul>
+        <ul className="fr-ml-2w">
           <li>
             d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
             ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour les
@@ -38,7 +38,7 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
           <li>de l&apos;allocation aux adultes handicapées (AAH) ? </li>
           <li>ou de l&apos;allocation d&apos;éducation de l&apos;enfant handicapé (AEEH) ?</li>
         </ul>
-      </p>
+      </div>
     );
 
   const questionDescription =
