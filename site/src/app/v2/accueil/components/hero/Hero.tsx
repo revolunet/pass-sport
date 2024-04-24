@@ -10,7 +10,7 @@ const Hero = () => {
       <div className={styles.background} />
       <div className={cn('fr-mx-auto', styles.container)}>
         <div className={styles['image-sizer']}>
-          <Image src={runningGirlImage} alt="" className={cn('fr-pr-2w', styles.image)} />
+          <Image src={runningGirlImage} alt="" className={cn('fr-pr-2w', styles.image)} priority />
         </div>
         <div className={cn('fr-mx-auto', styles['panel-sizer'])}>
           <HeroPanel />

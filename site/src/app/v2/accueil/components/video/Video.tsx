@@ -8,7 +8,6 @@ const Video = () => {
           src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
           className={styles.iframe}
           allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
         ></iframe>
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
           Présentation du dispositif Pass&apos;Sport du ministère des Sports
