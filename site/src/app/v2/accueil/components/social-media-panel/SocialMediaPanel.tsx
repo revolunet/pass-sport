@@ -13,7 +13,7 @@ const SocialMediaPanel = () => {
       href={link.href}
       target="_blank"
     >
-      <span className="fr-icon-instagram-line fr-pr-1w" aria-hidden="true" />
+      <span className={cn('fr-pr-1w', link.iconClassName)} aria-hidden="true" />
       {link.label}
     </Link>
   );
