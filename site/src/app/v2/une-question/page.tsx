@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 export default function Questions() {
   const questionAnswers: QuestionAnswer[] = [
     {
-      question: "Le dispositif Pass'Sport de quoi s'agit t'il ?",
+      question: "Le dispositif pass Sport de quoi s'agit t'il ?",
       answer:
         'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con laboris nisi ut aliquip ex ea commodo con ',
       popularityLevel: 1,

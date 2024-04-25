@@ -13,7 +13,7 @@ import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
 import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
 
 export const metadata: Metadata = {
-  title: "Pass'Sport - Accueil",
+  title: 'pass Sport - Accueil',
   description: "Page d'accueil du site pass-sports.gouv.fr",
 };
 
