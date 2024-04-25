@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 const Hero = () => {
   return (
-    <div>
+    <div className={styles.hero}>
       <div className={styles.background} />
       <div className={cn('fr-mx-auto', styles.container)}>
         <div className={styles['image-sizer']}>
@@ -15,7 +15,7 @@ const Hero = () => {
         <div className={cn('fr-mx-auto', styles['panel-sizer'])}>
           <HeroPanel />
         </div>
-        <div className={styles['panel-background']}></div>
+        <div className={cn('fr-hidden-lg', styles['panel-background'])}></div>
       </div>
     </div>
   );
