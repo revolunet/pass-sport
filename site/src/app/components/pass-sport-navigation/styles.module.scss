@@ -15,3 +15,12 @@
     }
   }
 }
+
+.header > div > div > div > div > div > div > img {
+  display: none;
+
+  @media (min-width: $sm) {
+    display: block;
+    width: 128px !important;
+  }
+}

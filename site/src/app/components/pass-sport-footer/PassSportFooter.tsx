@@ -5,7 +5,7 @@ import cnosfLogo from '../../../../public/images/footer/cnosf-logo.svg';
 import franceParalympiqueLogo from '../../../../public/images/footer/france-paralympique.svg';
 import menjLogo from '../../../../public/images/footer/menj-logo.svg';
 import ministereSociauxDinumLogo from '../../../../public/images/footer/ministere-sociaux-dinum-logo.svg';
-import passSportLogo from '../../../../public/images/footer/pass-sport-logo.svg';
+import passSportLogo from '../../../../public/images/pass-sport-logo.svg';
 
 export default function PassSportFooter() {
   const partnersLogos: FooterProps.PartnersLogos = {
