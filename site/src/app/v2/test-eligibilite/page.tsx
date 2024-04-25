@@ -5,7 +5,7 @@ const EligibilityTest = () => {
   return (
     <div>
       <h1 className={`fr-mt-8w fr-mb-4w fr-px-2w ${styles.title}`}>
-        Puis-je bénéficier du Pass Sport?
+        Puis-je bénéficier du pass Sport?
       </h1>
 
       <div className={`fr-mb-8w fr-mx-auto fr-px-2w ${styles.background}`}>

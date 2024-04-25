@@ -1,4 +1,4 @@
-# Data manipulation for Pass'Sport
+# Data manipulation for pass Sport
 
 ## Python (3.10.12)
 

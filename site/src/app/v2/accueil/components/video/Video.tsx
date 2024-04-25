@@ -3,20 +3,19 @@ import styles from './styles.module.scss';
 const Video = () => {
   return (
     <div>
-      <figure role="group" className="fr-content-media">
+      <figure role="group" className="fr-my-2w fr-content-media">
         <iframe
           src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
           className={styles.iframe}
           allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
         ></iframe>
-        <figcaption className="fr-content-media__caption">
+        <figcaption className={`fr-content-media__caption ${styles.text}`}>
           Présentation du dispositif Pass&apos;Sport du ministère des Sports
-          <a className="fr-link" href="https://vimeo.com/727000609">
+          <a className={`fr-link ${styles.text}`} href="https://vimeo.com/727000609">
             Voir la vidéo sur Viméo
           </a>
         </figcaption>
-        <div className="fr-transcription" id="transcription-2160">
+        <div className={`fr-transcription ${styles.transcription}`} id="transcription-2160">
           <button
             className="fr-transcription__btn"
             aria-expanded="false"

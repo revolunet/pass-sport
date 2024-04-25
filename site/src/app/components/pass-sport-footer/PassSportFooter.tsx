@@ -45,13 +45,13 @@ export default function PassSportFooter() {
   };
 
   const homeLinkProps: NonNullable<FooterProps['homeLinkProps']> = {
-    title: `Pass'Sport accueil`,
+    title: `pass Sport accueil`,
     href: '/v2/accueil',
   };
   const operatorLogo: NonNullable<FooterProps['operatorLogo']> = {
     orientation: 'horizontal',
     imgUrl: passSportLogo.src,
-    alt: `Pass'Sport`,
+    alt: `pass Sport`,
   };
 
   const bottomItems: FooterProps.BottomItem[] = [
@@ -90,8 +90,8 @@ export default function PassSportFooter() {
           linkProps: { href: '#' },
         },
         {
-          text: `Qu'est-ce que le Pass'Sport`,
-          linkProps: { href: '#' },
+          text: `Qu'est-ce que le pass Sport`,
+          linkProps: { href: '/v2/tout-savoir-sur-le-pass-sport' },
         },
         {
           text: 'Trouver un club',

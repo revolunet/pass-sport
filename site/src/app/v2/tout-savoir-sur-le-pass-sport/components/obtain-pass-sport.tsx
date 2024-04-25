@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@codegouvfr/react-dsfr/Button';
 import { useRouter } from 'next/navigation';
 
@@ -5,10 +7,10 @@ export default function ObtainPassPort() {
   const router = useRouter();
 
   return (
-    <section>
-      <h4>Qui peut obtenir le Pass Sport ?</h4>
+    <section id="pour-qui">
+      <h4>Qui peut obtenir le pass Sport ?</h4>
 
-      <span>Le Pass Sport 2024 s&apos;adressera aux jeunes qui sont :</span>
+      <span>Le pass Sport 2024 s&apos;adressera aux jeunes qui sont :</span>
       <ul>
         <li>
           nés entre le 16 septembre 2006 et le 31 décembre 2018 et bénéficient de l&apos;allocation

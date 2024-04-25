@@ -111,7 +111,7 @@ export default function TrouverUnClub() {
         <div className={`fr-alert fr-alert--info fr-mt-9w fr-mx-auto ${styles['alert-sizer']}`}>
           <h6 className="fr-alert__title">Information</h6>
           <p>
-            Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le Pass Sport.
+            Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le pass Sport.
             N’hésitez pas à vous rapprocher de votre club en lui proposant d’accepter le dispositif.
           </p>
         </div>
