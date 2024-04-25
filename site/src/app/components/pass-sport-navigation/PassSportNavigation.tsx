@@ -1,7 +1,9 @@
 'use client';
+
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
+import styles from './styles.module.scss';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
@@ -24,21 +26,25 @@ export default function PassSportNavigation() {
               href: '/v2/accueil',
               target: '_self',
             },
-            text: 'Accueil',
+            text: (
+              <>
+                <span className="fr-pr-1w ri-home-line" aria-hidden="true"></span>
+                Accueil
+              </>
+            ),
           },
           {
             isActive: isActive('/v2/tout-savoir-sur-le-pass-sport'),
-            text: 'Tout savoir sur le pass Sport',
+            text: (
+              <div className={styles['menu-item-spacer']}>
+                <span aria-hidden="true"></span>
+                Tout savoir sur le pass Sport
+              </div>
+            ),
+
             linkProps: {
               href: '/v2/tout-savoir-sur-le-pass-sport',
             },
-          },
-          {
-            linkProps: {
-              href: '/v2/une-question',
-              target: '_self',
-            },
-            text: 'Une question ?',
           },
           {
             isActive: isActive('/v2/trouver-un-club'),
@@ -47,6 +53,13 @@ export default function PassSportNavigation() {
               target: '_self',
             },
             text: 'Trouver un club',
+          },
+          {
+            linkProps: {
+              href: '/v2/une-question',
+              target: '_self',
+            },
+            text: 'Une question ?',
           },
         ]}
       />
