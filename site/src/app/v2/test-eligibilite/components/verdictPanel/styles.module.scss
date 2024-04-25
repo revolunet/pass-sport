@@ -1,19 +1,9 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  border-radius: 16px 16px 16px 0px;
+  background-color: var(--color-white);
+  padding: 1rem;
 }
 
-.success-text {
-  font-weight: 700;
-  color: var(--text-default-success);
-}
-
-.failure-text {
-  font-weight: 700;
-  color: var(--text-default-error);
-}
-
-.ul {
-  list-style-position: inside;
+.callout-title {
+  margin-bottom: 1rem;
 }

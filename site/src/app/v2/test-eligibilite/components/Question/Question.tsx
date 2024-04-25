@@ -6,7 +6,7 @@ interface Props {
   children: JSX.Element;
 }
 
-const Question: React.FC<Props> = ({ question, description, children }) => {
+const Question = ({ question, description, children }: Props) => {
   return (
     <div className={` ${styles.container} ${styles.fit}`}>
       <div className={`fr-p-2w ${styles.panel} ${styles.fit}`}>
