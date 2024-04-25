@@ -36,7 +36,8 @@ pathfile_benef_2024 = os.environ['BENEF_2024_PATHFILE']
 # In[ ]:
 
 
-df_main = pd.read_csv(pathfile_benef_2023, index_col=0, encoding='iso-8859-1', on_bad_lines='skip', sep=',')
+# c parser is faster and correctly decode special char in json csv column
+df_main = pd.read_csv(pathfile_benef_2023, index_col=0, engine='c', on_bad_lines='skip', sep=',')
 
 
 # In[ ]:
@@ -69,14 +70,14 @@ df_main_without_cnous.to_csv(pathfile_benef_2023_without_crous)
 
 
 # start from here if without_cnous file is already generated
-df_main_without_cnous = pd.read_csv(pathfile_benef_2023_without_crous, index_col=0, encoding='iso-8859-1', on_bad_lines='skip', sep=',')
+df_main_without_cnous = pd.read_csv(pathfile_benef_2023_without_crous, index_col=0, on_bad_lines='skip', sep=',')
 
 
 # In[ ]:
 
 
 # Casting to a datetime to apply crterias 
-df_main_without_cnous['date_naissance'] = pd.to_datetime(df_main_without_cnous['date_naissance'].apply(lambda v: v[:10]), format='%Y-%m-%d', errors='coerce')
+df_main_without_cnous['date_naissance'] = pd.to_datetime(df_main_without_cnous['date_naissance'].astype(str).apply(lambda v: v[:10]), format='%Y-%m-%d', errors='coerce')
 mask_wrong_datetime_format = pd.isnull(df_main_without_cnous.date_naissance)
 print('Number of wrong birthdate time rows that while not be processed', len(df_main_without_cnous[mask_wrong_datetime_format]))
 
@@ -91,7 +92,11 @@ from datetime import datetime
 start_date = datetime(2006, 9, 16).date()
 end_date = datetime(2018, 12, 31).date()
 
-ars_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_without_cnous['organisme'] == 'MSA')) & (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date) & (df_main_without_cnous['situation'] == 'Jeune')
+caf_or_msa_filter = (df_main_without_cnous['organisme'] == 'CAF') | (df_main_without_cnous['organisme'] == 'MSA')
+date_naissace_within = (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date)
+situation_jeune = ((df_main_without_cnous['situation'].str.lower() == 'jeune'))
+
+ars_situation_mask = (caf_or_msa_filter & date_naissace_within & situation_jeune)
 
 
 # In[ ]:
@@ -102,7 +107,9 @@ ars_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_w
 start_date = datetime(2004, 6, 1).date()
 end_date = datetime(2018, 12, 31).date()
 
-aeeh_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_without_cnous['organisme'] == 'MSA')) & (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date) & (df_main_without_cnous['situation'] == 'Jeune')
+date_naissace_within = (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date)
+
+aeeh_situation_mask = (caf_or_msa_filter & date_naissace_within & situation_jeune)
 
 
 # In[ ]:
@@ -113,7 +120,10 @@ aeeh_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_
 start_date = datetime(1993, 9, 16).date()
 end_date = datetime(2008, 12, 31).date()
 
-aah_situation_mask = ((df_main_without_cnous['organisme'] == 'CAF') | (df_main_without_cnous['organisme'] == 'MSA')) & (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date) & (df_main_without_cnous['situation'] == 'AAH')
+date_naissace_within = (df_main_without_cnous['date_naissance'].dt.date >= start_date) & (df_main_without_cnous['date_naissance'].dt.date <= end_date)
+sitation_aah =(df_main_without_cnous['situation'].str.lower()  == 'aah')
+
+aah_situation_mask = (caf_or_msa_filter & date_naissace_within & sitation_aah)
 
 
 # In[ ]:
@@ -145,7 +155,7 @@ df_main_without_cnous_filtered["created_at"] = timestamp_with_custom_tz
 
 
 # création d'un fichier csv intérmédiaire sans les codes
-df_main_without_cnous_filtered.to_csv(pathfile_benef_2024)
+# df_main_without_cnous_filtered.to_csv(pathfile_benef_2024)
 
 
 # In[ ]:
@@ -163,16 +173,13 @@ import datetime
 
 
 current_date = datetime.datetime.now()
+current_year = str(current_date.year)[-2:]
 
-current_month_string = current_date.strftime('%m')
-
+def get_characters_set(size = 4):
+    return ''.join(random.choices([c for c in string.ascii_uppercase if c not in 'OI'], k=size))
+    
 def generate_code():
-    code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
-    code += '-'
-    code += ''.join(random.choices(string.ascii_uppercase + string.digits, k=3))
-    code += '-'
-    code += ''.join(random.choices(string.ascii_uppercase + string.digits, k=3))
-    return current_month_string + '-' + code
+    return f"{current_year}-{get_characters_set(4)}-{get_characters_set(4)}"
 
 def generate_unique_codes(n):
     unique_codes = set()
