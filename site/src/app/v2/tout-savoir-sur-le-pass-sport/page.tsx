@@ -1,5 +1,3 @@
-'use client';
-
 import PageHeader from '@/components/PageHeader/PageHeader';
 import styles from './styles.module.scss';
 import About from './components/about';

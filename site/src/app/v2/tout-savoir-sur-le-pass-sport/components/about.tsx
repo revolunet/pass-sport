@@ -1,19 +1,17 @@
 import Highlight from '@codegouvfr/react-dsfr/Highlight';
 import styles from '../styles.module.scss';
+import Image from 'next/image';
+import aboutImage from '@/images/tout-savoir-sur-le-pass-sport/about.png';
 
 export default function About() {
   return (
     <section className={styles['about-container']}>
       <div className={styles['about-container__highlight']}>
         <div>
-          <img
-            src="/images/tout-savoir-sur-le-pass-sport/about.png"
-            alt="Pass'sport"
-            className={styles['about-container__highlight-image']}
-          />
+          <Image src={aboutImage} alt="" className={styles['about-container__highlight-image']} />
         </div>
 
-        <div>
+        <div id="découvrir">
           <h3 className={styles['about-container__highlight-title']}>
             Qu&apos;est-ce que le pass Sport
           </h3>

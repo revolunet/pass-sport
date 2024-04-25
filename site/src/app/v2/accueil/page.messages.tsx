@@ -11,7 +11,7 @@ export const presentationTiles: PresentationTileProps[] = [
       </>
     ),
     badgeLabel: 'le pass sport',
-    link: '#',
+    link: 'http://localhost:3000/v2/tout-savoir-sur-le-pass-sport#découvrir',
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const presentationTiles: PresentationTileProps[] = [
       </>
     ),
     badgeLabel: 'le pass sport',
-    link: '#',
+    link: 'http://localhost:3000/v2/tout-savoir-sur-le-pass-sport#pour-qui',
   },
   {
     id: 3,

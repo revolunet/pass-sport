@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@codegouvfr/react-dsfr/Button';
 import Card from '@codegouvfr/react-dsfr/Card';
 import { useRouter } from 'next/navigation';

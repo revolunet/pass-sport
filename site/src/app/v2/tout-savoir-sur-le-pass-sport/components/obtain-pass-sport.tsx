@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@codegouvfr/react-dsfr/Button';
 import { useRouter } from 'next/navigation';
 
@@ -5,7 +7,7 @@ export default function ObtainPassPort() {
   const router = useRouter();
 
   return (
-    <section>
+    <section id="pour-qui">
       <h4>Qui peut obtenir le pass Sport ?</h4>
 
       <span>Le pass Sport 2024 s&apos;adressera aux jeunes qui sont :</span>
