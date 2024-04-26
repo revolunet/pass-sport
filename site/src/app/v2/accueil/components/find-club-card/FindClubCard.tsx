@@ -13,7 +13,9 @@ const FindClubCard = () => {
   };
   return (
     <div className={`fr-mx-auto ${styles.sizer} `}>
-      <div className={`fr-card fr-card--no-border fr-card--lg fr-card--horizontal`}>
+      <div
+        className={`fr-card fr-card--no-border fr-card--lg fr-card--horizontal fr-card--horizontal-half`}
+      >
         <div className="fr-card__body">
           <div className="fr-card__content">
             <h4 className={`fr-card__title ${styles.title}`}>Trouver un club adhérent</h4>
