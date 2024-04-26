@@ -52,7 +52,7 @@ export default function TrouverUnClub() {
   return (
     <div>
       <PageHeader
-        title="Trouver un club adhérent"
+        title="Trouver un club"
         subtitle={`Plus de ${clubs.total_count} clubs labelisés trouvés`}
       ></PageHeader>
       <Search onTextSearch={searchClubByTextHandler}></Search>

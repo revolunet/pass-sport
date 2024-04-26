@@ -59,7 +59,7 @@ export default function PassSportNavigation() {
               href: '/v2/trouver-un-club',
               target: '_self',
             },
-            text: 'Trouver un club',
+            text: 'Trouver un club sportif',
           },
           {
             linkProps: {
