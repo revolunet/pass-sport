@@ -5,6 +5,7 @@ import ObtainPassPort from './components/obtain-pass-sport';
 import HowToUsePassSport from './components/how-to-use-pass-sport';
 import WhereToUsePassSport from './components/where-to-use-pass-sport';
 import LegalTextReference from './components/legal-text-reference';
+import EligibilityTestBanner from '../../../../components/eligibility-test-banner/EligibilityTestBanner';
 
 export default function ToutSavoirSurLePassSport() {
   return (
@@ -19,6 +20,7 @@ export default function ToutSavoirSurLePassSport() {
         <WhereToUsePassSport />
         <LegalTextReference />
       </div>
+      <EligibilityTestBanner />
     </div>
   );
 }

@@ -1,9 +1,8 @@
-@import '../../../../sassVariables.module.scss';
+@import '../../src/app/sassVariables.module.scss';
 
 .banner {
   background-color: var(--artwork-major-blue-france);
   text-align: center;
-  max-width: $xl;
 
   button {
     background-color: var(--color-white);
