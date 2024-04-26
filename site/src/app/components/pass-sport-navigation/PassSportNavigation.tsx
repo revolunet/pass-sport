@@ -28,13 +28,13 @@ export default function PassSportNavigation() {
           href: '/v2/accueil',
           title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",
         }}
-        navigation={navigationItem.map((i) => ({
-          isActive: isActive(i.link),
+        navigation={navigationItem.map((item) => ({
+          isActive: isActive(item.link),
           linkProps: {
-            href: i.link,
+            href: item.link,
             target: '_self',
           },
-          text: i.text,
+          text: item.text,
         }))}
       />
     </div>
