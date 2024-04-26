@@ -94,7 +94,7 @@ const ContactForm = () => {
     }
 
     try {
-      const response = await postContact(states);
+      const response = await postContact(formData);
 
       if (!response.ok) {
         setApiError(true);
