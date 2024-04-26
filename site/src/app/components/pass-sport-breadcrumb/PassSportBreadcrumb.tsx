@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/une-question': 'Une question ?',
-  '/v2/tout-savoir-sur-le-pass-sport': 'Tout savoir sur le Pass Sport',
+  '/v2/tout-savoir-sur-le-pass-sport': 'Tout savoir sur le pass Sport',
   '/v2/trouver-un-club': 'Trouver un club adhérent',
 };
 

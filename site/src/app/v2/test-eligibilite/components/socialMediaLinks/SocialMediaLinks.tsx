@@ -1,28 +1,24 @@
 import styles from './styles.module.scss';
 import rootStyles from '../../styles.module.scss';
+import { socialMedia } from '@/app/constants/social-media';
+import cn from 'classnames';
 
 const SocialMediaLinks = () => {
   return (
     <div>
-      <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
+      <p className={cn('fr-text--lg', 'fr-mb-0', rootStyles['text--medium'])}>
         Pour plus d&apos;informations, suivez-nous sur les réseaux sociaux :
       </p>
-      <div className={`fr-pt-3v ${styles['link-container']}`}>
-        <a
-          className="fr-link fr-icon-instagram-line fr-link--icon-left"
-          href="https://www.instagram.com/passsportofficiel/"
-          target="_blank"
-        >
-          Instagram
-        </a>
-
-        <a
-          className="fr-link fr-icon-tiktok-line fr-link--icon-left"
-          href="https://www.tiktok.com/@passsportofficiel"
-          target="_blank"
-        >
-          TikTok
-        </a>
+      <div className={cn('fr-pt-3v', styles['link-container'])}>
+        {socialMedia.map((media) => (
+          <a
+            key={media.id}
+            className={cn('fr-link', media.iconClassName, 'fr-link--icon-left')}
+            href={media.href}
+          >
+            {media.label}
+          </a>
+        ))}
       </div>
     </div>
   );

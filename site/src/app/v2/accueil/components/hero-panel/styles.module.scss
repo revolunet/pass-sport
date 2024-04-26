@@ -1,0 +1,31 @@
+.background {
+  background-color: var(--color-white);
+}
+
+.sizer {
+  max-width: 355px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  text-align: center;
+  color: var(--background-action-high-blue-france);
+}
+
+.paragraph {
+  color: var(--background-action-high-blue-france);
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-wrapper {
+  button {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,48 +1,25 @@
-import pictogramImage from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/buildings/city-hall.svg';
+import Link from 'next/link';
 
 export interface PresentationTileProps {
   id: number;
-  title: string;
-  description: string;
-  detail: string;
+  title: JSX.Element;
+  badgeLabel: string;
+  link: string;
 }
 
-const PresentationTile: React.FC<PresentationTileProps> = ({ title, description, detail }) => {
+const PresentationTile: React.FC<PresentationTileProps> = ({ title, badgeLabel, link }) => {
   return (
     <div>
-      <div className="fr-tile fr-enlarge-link" id="tile-6609">
+      <div className="fr-tile fr-enlarge-link ">
         <div className="fr-tile__body">
-          <div className="fr-tile__content">
+          <div className={`fr-tile__content fr-pb-3w`}>
             <h3 className="fr-tile__title">
-              <a href="#">{title}</a>
+              <Link href={link}>{title}</Link>
             </h3>
-            <p className="fr-tile__desc">{description}</p>
-            <p className="fr-tile__detail">{detail}</p>
           </div>
         </div>
         <div className="fr-tile__header">
-          <div className="fr-tile__pictogram">
-            <svg
-              className="fr-artwork"
-              aria-hidden="true"
-              viewBox="0 0 80 80"
-              width="80px"
-              height="80px"
-            >
-              <use
-                className="fr-artwork-decorative"
-                xlinkHref={`${pictogramImage.src}#artwork-decorative`}
-              ></use>
-              <use
-                className="fr-artwork-minor"
-                xlinkHref={`${pictogramImage.src}#artwork-minor`}
-              ></use>
-              <use
-                className="fr-artwork-major"
-                xlinkHref={`${pictogramImage.src}#artwork-major`}
-              ></use>
-            </svg>
-          </div>
+          <p className="fr-badge fr-badge--purple-glycine">{badgeLabel}</p>
         </div>
       </div>
     </div>

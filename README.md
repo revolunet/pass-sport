@@ -1,4 +1,4 @@
 # pass-sport
-Pass'Sport
+pass Sport
 
-Site du dispositif Pass'Sport
+Site du dispositif pass Sport

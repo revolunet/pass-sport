@@ -1,0 +1,27 @@
+@import '../../../../sassVariables.module.scss';
+
+.sizer {
+  max-width: 894px;
+}
+
+.background {
+  background: linear-gradient(180deg, #000091 0%, #fa7659 100%);
+}
+
+.image {
+  object-fit: contain !important;
+  height: 158px;
+  @media (min-width: $md) {
+    height: 308px;
+  }
+}
+
+.title {
+  color: var(--background-action-high-blue-france);
+}
+
+.button {
+  @media (max-width: $xs) {
+    padding: 10px 18px 10px 24px;
+  }
+}
