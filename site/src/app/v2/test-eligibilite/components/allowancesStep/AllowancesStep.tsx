@@ -27,18 +27,18 @@ const AllowancesStep = ({ isForChild }: Props) => {
         }}
       >
         <div className="fr-my-2w">
-          Vous devriez le recevoir soit entre le 30 mai et le 1er juin, soit le 29 et le 31 août
-          2024 sur l&apos;adresse e-mail que vous avez communiquée à votre CAF, Mutualité sociale
-          agricole ou votre CROUS.
+          Vous devriez recevoir votre pass Sport soit entre le 30 mai et le 1er juin, soit le 29 et
+          le 31 août 2024 sur l&apos;adresse e-mail que vous avez communiquée à votre CAF, Mutualité
+          sociale agricole ou votre CROUS.
         </div>
 
         <div className="fr-my-2w">
-          Il vous permettra de déduire 50 euros de votre adhésion sportif dans plus de 85 000 clubs
-          et associations sportives partenaires dans toute la France.
+          Il vous permettra de déduire 50 euros de votre inscription dans l&apos;une des 85 000
+          structures sportives et associations sportives partenaires dans toute la France.
         </div>
 
         <div className="fr-my-2t">
-          Si après le 1er septembre vous ne l&apos;avez pas reçu, vous aurez la possibilité
+          Si après le 1er septembre vous n&apos;avez pas reçu votre pass, vous aurez la possibilité
           d&apos;en faire la demande sur{' '}
           <Link
             href="https://www.service-public.fr/simulateur/calcul/certificatMedical"
@@ -109,6 +109,12 @@ const AllowancesStep = ({ isForChild }: Props) => {
             <ul className="fr-ml-2w">
               <li className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
                 de l&apos;allocation aux adultes handicapées (AAH)?
+              </li>
+            </ul>
+            ou
+            <ul className="fr-ml-2w">
+              <li className={`fr-text--lg fr-mb-0 ${styles['text--medium']}`}>
+                de l&apos;allocation de rentrée scolaire (ARS)?
               </li>
             </ul>
             ou
