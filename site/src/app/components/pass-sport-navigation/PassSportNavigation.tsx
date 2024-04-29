@@ -3,7 +3,9 @@
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
+import { navigationItem } from './navigation';
 import styles from './styles.module.scss';
+
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
   const isActive = (path: string) => {
@@ -26,49 +28,14 @@ export default function PassSportNavigation() {
           href: '/v2/accueil',
           title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",
         }}
-        navigation={[
-          {
-            isActive: isActive('/v2/accueil'),
-            linkProps: {
-              href: '/v2/accueil',
-              target: '_self',
-            },
-            text: (
-              <>
-                <span className="fr-pr-1w ri-home-line" aria-hidden="true"></span>
-                Accueil
-              </>
-            ),
+        navigation={navigationItem.map((item) => ({
+          isActive: isActive(item.link),
+          linkProps: {
+            href: item.link,
+            target: '_self',
           },
-          {
-            isActive: isActive('/v2/tout-savoir-sur-le-pass-sport'),
-            text: (
-              <div className={styles['menu-item-spacer']}>
-                <span aria-hidden="true"></span>
-                Tout savoir sur le pass Sport
-              </div>
-            ),
-
-            linkProps: {
-              href: '/v2/tout-savoir-sur-le-pass-sport',
-            },
-          },
-          {
-            isActive: isActive('/v2/trouver-un-club'),
-            linkProps: {
-              href: '/v2/trouver-un-club',
-              target: '_self',
-            },
-            text: 'Trouver un club',
-          },
-          {
-            linkProps: {
-              href: '/v2/une-question',
-              target: '_self',
-            },
-            text: 'Une question ?',
-          },
-        ]}
+          text: item.text,
+        }))}
       />
     </div>
   );
