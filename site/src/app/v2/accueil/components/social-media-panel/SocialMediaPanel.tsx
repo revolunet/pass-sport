@@ -19,7 +19,7 @@ const SocialMediaPanel = () => {
   );
 
   return (
-    <div className={cn('fr-pb-1w', styles.container)}>
+    <div className={cn('fr-pb-1w', 'fr-px-1w', styles.container)}>
       <h5 className={cn(styles.color, styles.title)}>Suivez-nous sur les réseaux sociaux</h5>
       <div className={styles['link-container']}>
         {socialMedia.map((link) => (
