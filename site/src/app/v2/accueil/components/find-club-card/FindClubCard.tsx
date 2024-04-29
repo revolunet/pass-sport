@@ -4,7 +4,7 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import dancingGirlImage from '@/images/homepage/boys-team.png';
+import boysTeamImage from '@/images/homepage/boys-team.png';
 
 const FindClubCard = () => {
   const router = useRouter();
@@ -39,7 +39,7 @@ const FindClubCard = () => {
         </div>
         <div className={`fr-card__header ${styles.background}`}>
           <div className="fr-card__img">
-            <Image src={dancingGirlImage} className={`fr-responsive-img`} alt="" />
+            <Image src={boysTeamImage} className={`fr-responsive-img`} alt="" />
           </div>
         </div>
       </div>
