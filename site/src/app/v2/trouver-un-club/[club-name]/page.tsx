@@ -6,7 +6,7 @@ import { formatPhoneNumber } from './helpers';
 import MedicalCertificatePanel from './components/medicalCertificatPanel/MedicalCertificatePanel';
 import { useEffect, useMemo, useState } from 'react';
 import { getClubs } from '../agent';
-import EligibilityTestBanner from '../components/eligibilityTestBanner/EligibilityTestBanner';
+import EligibilityTestBanner from '../../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import dynamic from 'next/dynamic';
 
 const ClubPage = ({ params }: { params: { 'club-name': string } }) => {

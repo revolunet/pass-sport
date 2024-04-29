@@ -1,4 +1,5 @@
 import PageHeader from '../../../../components/PageHeader/PageHeader';
+import EligibilityTestBanner from '../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import ContactForm from './components/ContactForm/ContactForm';
 import QuestionAnswer from './components/QuestionAnswer/QuestionAnswer';
 import styles from './styles.module.scss';
@@ -87,7 +88,6 @@ export default function Questions() {
           ))}
         </div>
       </section>
-
       <section className={styles.contact}>
         <div>
           <h3>Vous ne trouvez pas de réponse satisfaisante.</h3>
@@ -96,6 +96,8 @@ export default function Questions() {
 
         <ContactForm />
       </section>
+
+      <EligibilityTestBanner />
     </>
   );
 }
