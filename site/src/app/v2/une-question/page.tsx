@@ -3,6 +3,7 @@ import EligibilityTestBanner from '../../../../components/eligibility-test-banne
 import ContactForm from './components/ContactForm/ContactForm';
 import QuestionAnswer from './components/QuestionAnswer/QuestionAnswer';
 import styles from './styles.module.scss';
+import cn from 'classnames';
 
 export default function Questions() {
   const questionAnswers: QuestionAnswer[] = [
@@ -88,7 +89,7 @@ export default function Questions() {
           ))}
         </div>
       </section>
-      <section className={styles.contact}>
+      <section className={cn('fr-px-3w', styles.contact)}>
         <div>
           <h3>Vous ne trouvez pas de réponse satisfaisante.</h3>
           <p>Contactez-nous directement par e-mail pour que nous puissions trouver une solution</p>
