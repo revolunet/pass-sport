@@ -1,5 +1,6 @@
 import PageHeader from '../../../../components/PageHeader/PageHeader';
 import EligibilityTestBanner from '../../../../components/eligibility-test-banner/EligibilityTestBanner';
+import SocialMediaPanel from '../accueil/components/social-media-panel/SocialMediaPanel';
 import ContactForm from './components/ContactForm/ContactForm';
 import QuestionAnswer from './components/QuestionAnswer/QuestionAnswer';
 import styles from './styles.module.scss';
@@ -99,6 +100,7 @@ export default function Questions() {
       </section>
 
       <EligibilityTestBanner />
+      <SocialMediaPanel />
     </>
   );
 }

@@ -43,7 +43,7 @@ export default function Accueil() {
         </div>
       </section>
       <section>
-        <SocialMediaPanel />
+        <SocialMediaPanel isHomePage />
       </section>
     </main>
   );

@@ -3,14 +3,17 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #5bb5a7;
+  background-color: #e8edff;
   align-items: center;
   gap: 24px;
-
   padding-top: 24px;
+  color: #0063cb;
 
-  @media (min-width: $lg) {
-    padding-top: 80px;
+  &--home-page-variant {
+    background-color: #e7bfa0;
+    @media (min-width: $lg) {
+      padding-top: 80px;
+    }
   }
 }
 

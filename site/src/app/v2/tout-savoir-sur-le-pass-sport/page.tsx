@@ -6,6 +6,7 @@ import HowToUsePassSport from './components/how-to-use-pass-sport';
 import WhereToUsePassSport from './components/where-to-use-pass-sport';
 import LegalTextReference from './components/legal-text-reference';
 import EligibilityTestBanner from '../../../../components/eligibility-test-banner/EligibilityTestBanner';
+import SocialMediaPanel from '../accueil/components/social-media-panel/SocialMediaPanel';
 
 export default function ToutSavoirSurLePassSport() {
   return (
@@ -21,6 +22,7 @@ export default function ToutSavoirSurLePassSport() {
         <LegalTextReference />
       </div>
       <EligibilityTestBanner />
+      <SocialMediaPanel />
     </div>
   );
 }

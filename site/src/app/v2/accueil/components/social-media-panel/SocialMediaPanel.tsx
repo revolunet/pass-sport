@@ -3,10 +3,15 @@ import styles from './styles.module.scss';
 import { SocialMediaLinkData, socialMedia } from '@/app/constants/social-media';
 import cn from 'classnames';
 
+interface Props {
+  isHomePage?: boolean;
+}
+
 interface SocialMediaLinkProps {
   link: SocialMediaLinkData;
 }
-const SocialMediaPanel = () => {
+
+const SocialMediaPanel = ({ isHomePage = false }: Props) => {
   const SocialMediaLink: React.FC<SocialMediaLinkProps> = ({ link }) => (
     <Link
       className={cn('fr-text--lg', 'fr-text--bold', styles.color)}
@@ -19,7 +24,13 @@ const SocialMediaPanel = () => {
   );
 
   return (
-    <div className={cn('fr-pb-1w', 'fr-px-1w', styles.container)}>
+    <div
+      className={cn({
+        'fr-pb-1w': true,
+        [styles.container]: true,
+        [styles['container--home-page-variant']]: isHomePage,
+      })}
+    >
       <h5 className={cn(styles.color, styles.title)}>Suivez-nous sur les réseaux sociaux</h5>
       <div className={styles['link-container']}>
         {socialMedia.map((link) => (
