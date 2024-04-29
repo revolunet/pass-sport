@@ -1,16 +1,19 @@
-@import '../../../../sassVariables.module.scss';
+@import '../../sassVariables.module.scss';
 
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #5bb5a7;
+  background-color: #e8edff;
   align-items: center;
   gap: 24px;
-
   padding-top: 24px;
+  color: #0063cb;
 
-  @media (min-width: $lg) {
-    padding-top: 80px;
+  &--home-page-variant {
+    background-color: var(--background-action-low-brown-opera-hover);
+    @media (min-width: $lg) {
+      padding-top: 80px;
+    }
   }
 }
 
