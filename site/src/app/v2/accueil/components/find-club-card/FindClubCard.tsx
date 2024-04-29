@@ -4,7 +4,7 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import dancingGirlImage from '@/images/homepage/dancing-girl.png';
+import boysTeamImage from '@/images/homepage/boys-team.png';
 
 const FindClubCard = () => {
   const router = useRouter();
@@ -13,7 +13,9 @@ const FindClubCard = () => {
   };
   return (
     <div className={`fr-mx-auto ${styles.sizer} `}>
-      <div className="fr-card fr-card--no-border fr-card--lg fr-card--horizontal fr-card--horizontal-half">
+      <div
+        className={`fr-card fr-card--no-border fr-card--lg fr-card--horizontal fr-card--horizontal-half`}
+      >
         <div className="fr-card__body">
           <div className="fr-card__content">
             <h4 className={`fr-card__title ${styles.title}`}>Trouver un club adhérent</h4>
@@ -37,7 +39,7 @@ const FindClubCard = () => {
         </div>
         <div className={`fr-card__header ${styles.background}`}>
           <div className="fr-card__img">
-            <Image src={dancingGirlImage} className={`fr-responsive-img ${styles.image}`} alt="" />
+            <Image src={boysTeamImage} className={`fr-responsive-img`} alt="" />
           </div>
         </div>
       </div>
