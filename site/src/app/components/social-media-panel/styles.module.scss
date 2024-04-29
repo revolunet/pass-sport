@@ -1,4 +1,4 @@
-@import '../../../../sassVariables.module.scss';
+@import '../../sassVariables.module.scss';
 
 .container {
   display: flex;
@@ -10,7 +10,7 @@
   color: #0063cb;
 
   &--home-page-variant {
-    background-color: #e7bfa0;
+    background-color: var(--background-action-low-brown-opera-hover);
     @media (min-width: $lg) {
       padding-top: 80px;
     }

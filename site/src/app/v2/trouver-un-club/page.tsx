@@ -10,7 +10,7 @@ import { SqlSearchParams, getClubs } from './agent';
 import { usePathname } from 'next/navigation';
 import EligibilityTestBanner from '../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import Button from '@codegouvfr/react-dsfr/Button';
-import SocialMediaPanel from '../accueil/components/social-media-panel/SocialMediaPanel';
+import SocialMediaPanel from '../../components/social-media-panel/SocialMediaPanel';
 
 export default function TrouverUnClub() {
   const limit = 20;

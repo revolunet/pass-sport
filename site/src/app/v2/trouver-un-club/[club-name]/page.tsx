@@ -8,7 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getClubs } from '../agent';
 import EligibilityTestBanner from '../../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import dynamic from 'next/dynamic';
-import SocialMediaPanel from '../../accueil/components/social-media-panel/SocialMediaPanel';
+import SocialMediaPanel from '../../../components/social-media-panel/SocialMediaPanel';
 
 const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
   const clubName = decodeURIComponent(params['club-name']);

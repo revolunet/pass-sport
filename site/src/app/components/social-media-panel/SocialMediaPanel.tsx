@@ -25,9 +25,7 @@ const SocialMediaPanel = ({ isHomePage = false }: Props) => {
 
   return (
     <div
-      className={cn({
-        'fr-pb-1w': true,
-        [styles.container]: true,
+      className={cn('fr-pb-1w', 'fr-px-1w', styles.container, {
         [styles['container--home-page-variant']]: isHomePage,
       })}
     >
