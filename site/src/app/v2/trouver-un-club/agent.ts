@@ -101,7 +101,7 @@ const getClubsctivities = async (limit: number, offset: number): Promise<Activit
         response.status,
     );
     console.error(response.body);
-    return { results: [] };
+    throw new Error('Error fetching activities');
   }
 
   return response.json();
@@ -111,11 +111,16 @@ export const getAllClubActivities = async (): Promise<ActivityResponse> => {
   const limit = 100;
   let offset = 0;
   let activities: ActivityResponse = { results: [] };
+  let keepLooping = true;
 
-  while (activities.results.length % limit === 0) {
-    const activitiesBatch = (await getClubsctivities(limit, offset)).results;
-    activities.results = activities.results.concat(activitiesBatch);
-    offset += limit;
+  while (activities.results.length % limit === 0 && keepLooping) {
+    try {
+      const activitiesBatch = (await getClubsctivities(limit, offset)).results;
+      activities.results = activities.results.concat(activitiesBatch);
+      offset += limit;
+    } catch (e) {
+      keepLooping = false;
+    }
   }
 
   return activities;
