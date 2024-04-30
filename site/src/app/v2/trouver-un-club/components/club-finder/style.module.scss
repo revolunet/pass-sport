@@ -1,4 +1,4 @@
-@import '../../sassVariables.module';
+@import '../../../../sassVariables.module';
 
 .wrapper {
   max-width: $max-width;
@@ -13,21 +13,15 @@
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 2vw;
+
+  @media screen and (max-width: 900px) {
+    gap: 4vw;
+  }
 }
 
 .item {
   max-width: 11vw;
   min-width: 280px;
-}
-
-@media screen and (max-width: 900px) {
-  .container {
-    gap: 4vw;
-  }
-}
-
-.alert-sizer {
-  max-width: 1128px;
 }
 
 .more-clubs-wrapper {
@@ -40,4 +34,8 @@
       width: 337px;
     }
   }
+}
+
+.alert-sizer {
+  max-width: 1128px;
 }

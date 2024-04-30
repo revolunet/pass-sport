@@ -1,28 +1,28 @@
 'use client';
+
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import styles from './style.module.scss';
-import PageHeader from '../../../../components/PageHeader/PageHeader';
 import { useEffect, useState } from 'react';
-import Search from './components/search/Search';
-import { SqlSearchParams, getClubs } from './agent';
+import { SqlSearchParams, getClubs } from '../../agent';
 import { usePathname } from 'next/navigation';
 
 import Button from '@codegouvfr/react-dsfr/Button';
-import ClubFilters from './components/club-filters/ClubFilters';
+import ClubFilters from '../club-filters/ClubFilters';
 import { GeoGouvRegion } from 'types/Region';
 import { Activity, ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
 import cn from 'classnames';
-import ClubCount from './components/club-count/ClubCount';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
+import ClubCount from '../club-count/ClubCount';
 
 interface Props {
   regions: GeoGouvRegion[];
   activities: ActivityResponse;
 }
-const ClientRenderingTemporaire: React.FC<Props> = ({ regions, activities }) => {
+
+const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
   const limit = 20;
   const pathName = usePathname();
 
@@ -76,60 +76,67 @@ const ClientRenderingTemporaire: React.FC<Props> = ({ regions, activities }) => 
     setClubParams(clubParams);
   };
 
+  const onRegionChanged = (region?: string) => {
+    if (!region) {
+      setClubParams((clubParams) => ({ ...clubParams, regionCode: undefined }));
+    } else {
+      setClubParams((clubParams) => ({ ...clubParams, regionCode: `reg_code='${region}'` }));
+    }
+  };
+
+  const onCityChanged = ({ city, postalCode }: { city?: string; postalCode?: string }) => {
+    !city &&
+      !postalCode &&
+      setClubParams((clubParams) => ({
+        ...clubParams,
+        city: undefined,
+        postalCode: undefined,
+      }));
+    city &&
+      setClubParams((clubParams) => ({
+        ...clubParams,
+        city: `commune='${city.toUpperCase()}'`,
+        postalCode: undefined,
+      }));
+    postalCode &&
+      setClubParams((clubParams) => ({
+        ...clubParams,
+        postalCode: `cp='${postalCode}'`,
+        city: undefined,
+      }));
+  };
+
+  const onActivityChanged = (activity?: string) => {
+    if (!activity) {
+      setClubParams((clubParams) => ({ ...clubParams, activity: undefined }));
+    } else {
+      setClubParams((clubParams) => ({ ...clubParams, activity: `activites='${activity}'` }));
+    }
+  };
+
+  const onDisabilityChanged = (isDisabled: 'Non' | 'Oui') => {
+    setClubParams((clubParams) => ({
+      ...clubParams,
+      disability: `handicap='${isDisabled}'`,
+    }));
+  };
+
   const isLastPage = clubs.total_count === clubs.results.length;
 
   return (
-    <div>
-      <PageHeader title="Trouver un club"></PageHeader>
-
+    <>
       <ClubFilters
         regions={regions}
         activities={activities}
         onTextSearch={searchClubByTextHandler}
-        onRegionChanged={(region) => {
-          if (!region) {
-            setClubParams((clubParams) => ({ ...clubParams, regionCode: undefined }));
-          } else {
-            setClubParams((clubParams) => ({ ...clubParams, regionCode: `reg_code='${region}'` }));
-          }
-        }}
-        onCityChanged={({ city, postalCode }) => {
-          !city &&
-            !postalCode &&
-            setClubParams((clubParams) => ({
-              ...clubParams,
-              city: undefined,
-              postalCode: undefined,
-            }));
-          city &&
-            setClubParams((clubParams) => ({
-              ...clubParams,
-              city: `commune='${city.toUpperCase()}'`,
-              postalCode: undefined,
-            }));
-          postalCode &&
-            setClubParams((clubParams) => ({
-              ...clubParams,
-              postalCode: `cp='${postalCode}'`,
-              city: undefined,
-            }));
-        }}
-        onActivityChanged={(activity) => {
-          if (!activity) {
-            setClubParams((clubParams) => ({ ...clubParams, activity: undefined }));
-          } else {
-            setClubParams((clubParams) => ({ ...clubParams, activity: `activites='${activity}'` }));
-          }
-        }}
-        onDisabilityChanged={(isDisabled) => {
-          setClubParams((clubParams) => ({
-            ...clubParams,
-            disability: `handicap='${isDisabled}'`,
-          }));
-        }}
+        onRegionChanged={onRegionChanged}
+        onCityChanged={onCityChanged}
+        onActivityChanged={onActivityChanged}
+        onDisabilityChanged={onDisabilityChanged}
       />
 
       <ClubCount displayedClubCount={clubs.results.length} totalClubCount={clubs.total_count} />
+
       <div className={styles.wrapper}>
         <div className={styles.container}>
           {clubs.results.map((club) => (
@@ -193,8 +200,8 @@ const ClientRenderingTemporaire: React.FC<Props> = ({ regions, activities }) => 
 
       <EligibilityTestBanner />
       <SocialMediaPanel />
-    </div>
+    </>
   );
 };
 
-export default ClientRenderingTemporaire;
+export default ClubFinder;

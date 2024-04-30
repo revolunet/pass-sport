@@ -1,15 +1,18 @@
+import PageHeader from '@/components/PageHeader/PageHeader';
 import { getAllClubActivities, getFranceRegions } from './agent';
 
-import ClientRenderingTemporaire from './clientRenderingTemporaire';
-import ClubFilters from './components/club-filters/ClubFilters';
+import ClubFinder from './components/club-finder/ClubFinder';
 
 const TrouverUnClub = async () => {
   const regions = await getFranceRegions();
   const activities = await getAllClubActivities();
 
-  return <ClientRenderingTemporaire regions={regions} activities={activities} />;
-  // return <p>hello</p>;
-  // return <ClubFilters regions={regions} />;
+  return (
+    <>
+      <PageHeader title="Trouver un club"></PageHeader>
+      <ClubFinder regions={regions} activities={activities} />;
+    </>
+  );
 };
 
 export default TrouverUnClub;
