@@ -17,14 +17,15 @@
     "format:write": "npm run format:check -- --write"
   },
   "dependencies": {
-    "crisp-api": "^8.3.2",
     "@codegouvfr/react-dsfr": "^1.9.8",
     "classnames": "^2.5.1",
+    "crisp-api": "^8.3.2",
     "leaflet": "^1.9.4",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-leaflet": "^4.2.1",
+    "react-select": "^5.8.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
