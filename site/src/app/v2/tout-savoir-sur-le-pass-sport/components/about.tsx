@@ -19,8 +19,8 @@ export default function About() {
           <Highlight size="sm">
             <p>
               Le pass Sport est une aide de 50 euros qui permet de financer une partie de
-              l'&apos;inscription sportive à plus de 6,5 millions de jeunes. Il est valable dans
-              plus de 85 000 clubs et salles de sport partenaires.
+              l&apos;inscription sportive à plus de 6,5 millions de jeunes. Il est valable dans plus
+              de 85 000 clubs et salles de sport partenaires.
             </p>
             <br />
             <br />
