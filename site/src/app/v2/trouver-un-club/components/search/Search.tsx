@@ -12,7 +12,7 @@ export default function Search({ onTextSearch }: IProps) {
     <SearchBar
       big
       onButtonClick={onTextSearch}
-      label="Rechercher un nom de club"
+      label="Rechercher un club"
       allowEmptySearch
       renderInput={({ className, id, placeholder, type }) => (
         <input

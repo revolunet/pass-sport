@@ -7,16 +7,14 @@ import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 import { SqlSearchParams, getClubs } from '../../agent';
 import { usePathname } from 'next/navigation';
-
 import Button from '@codegouvfr/react-dsfr/Button';
 import ClubFilters from '../club-filters/ClubFilters';
 import { GeoGouvRegion } from 'types/Region';
-import { Activity, ActivityResponse, SportGouvJSONResponse } from 'types/Club';
+import { ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
 import cn from 'classnames';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import ClubCount from '../club-count/ClubCount';
-import cn from 'classnames';
 
 interface Props {
   regions: GeoGouvRegion[];
