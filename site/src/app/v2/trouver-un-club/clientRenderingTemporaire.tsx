@@ -8,12 +8,15 @@ import { useEffect, useState } from 'react';
 import Search from './components/search/Search';
 import { SqlSearchParams, getClubs } from './agent';
 import { usePathname } from 'next/navigation';
-import EligibilityTestBanner from './components/eligibilityTestBanner/EligibilityTestBanner';
+
 import Button from '@codegouvfr/react-dsfr/Button';
 import ClubFilters from './components/club-filters/ClubFilters';
 import { GeoGouvRegion } from 'types/Region';
 import { Activity, ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
+import cn from 'classnames';
+import ClubCount from './components/club-count/ClubCount';
+import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -77,10 +80,7 @@ const ClientRenderingTemporaire: React.FC<Props> = ({ regions, activities }) => 
 
   return (
     <div>
-      <PageHeader
-        title="Trouver un club adhérent"
-        subtitle={`Plus de ${clubs.total_count} clubs labelisés trouvés`}
-      ></PageHeader>
+      <PageHeader title="Trouver un club"></PageHeader>
 
       <ClubFilters
         regions={regions}
@@ -129,6 +129,7 @@ const ClientRenderingTemporaire: React.FC<Props> = ({ regions, activities }) => 
         }}
       />
 
+      <ClubCount displayedClubCount={clubs.results.length} totalClubCount={clubs.total_count} />
       <div className={styles.wrapper}>
         <div className={styles.container}>
           {clubs.results.map((club) => (

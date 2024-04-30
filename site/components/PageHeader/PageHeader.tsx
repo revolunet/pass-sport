@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 interface IProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 export default function PageHeader({ title, subtitle }: IProps) {
@@ -10,7 +10,7 @@ export default function PageHeader({ title, subtitle }: IProps) {
     <div className={styles.container}>
       <div className={styles.titlewrapper}>
         <h1 className={styles.title}>{title}</h1>
-        <p className={styles.subtitle}>{subtitle}</p>
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
       </div>
     </div>
   );

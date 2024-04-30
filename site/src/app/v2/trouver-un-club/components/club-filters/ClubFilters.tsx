@@ -116,7 +116,7 @@ const ClubFilters: React.FC<Props> = ({
   };
 
   return (
-    <div className={cn('fr-py-2w', styles.container)}>
+    <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
       <div className="fr-px-2w">
         <Search onTextSearch={onTextSearch} />
 
@@ -175,6 +175,7 @@ const ClubFilters: React.FC<Props> = ({
                 <span className={cn('ri-basketball-line', styles.icon)} />
 
                 <Select
+                  className={styles.select}
                   isClearable
                   isSearchable
                   name="activity"
