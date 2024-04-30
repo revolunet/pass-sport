@@ -16,6 +16,7 @@ import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPan
 import cn from 'classnames';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import ClubCount from '../club-count/ClubCount';
+import cn from 'classnames';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -125,76 +126,87 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
 
   return (
     <>
-      <ClubFilters
-        regions={regions}
-        activities={activities}
-        onTextSearch={searchClubByTextHandler}
-        onRegionChanged={onRegionChanged}
-        onCityChanged={onCityChanged}
-        onActivityChanged={onActivityChanged}
-        onDisabilityChanged={onDisabilityChanged}
-      />
+      <div className={styles.spacer}>
+        <ClubFilters
+          regions={regions}
+          activities={activities}
+          onTextSearch={searchClubByTextHandler}
+          onRegionChanged={onRegionChanged}
+          onCityChanged={onCityChanged}
+          onActivityChanged={onActivityChanged}
+          onDisabilityChanged={onDisabilityChanged}
+        />
 
-      <ClubCount displayedClubCount={clubs.results.length} totalClubCount={clubs.total_count} />
+        <ClubCount displayedClubCount={clubs.results.length} totalClubCount={clubs.total_count} />
 
-      <div className={styles.wrapper}>
-        <div className={styles.container}>
-          {clubs.results.map((club) => (
-            /** @ts-ignore */
-            <Card
-              key={club.nom + club.adresse + club.commune}
-              className={styles.item}
-              background
-              badge={
-                !!club.activites &&
-                club.activites.slice(0, 1).map((a) => (
-                  <Badge key={a} severity="new">
-                    {a}
-                  </Badge>
-                ))
-              }
-              imageAlt=""
-              border
-              detail={club.adresse + ', ' + club.com_arm_name}
-              enlargeLink
-              linkProps={{
-                href: `${pathName}/${encodeURIComponent(club.nom)}`,
-              }}
-              size="medium"
-              start={
-                <ul className="fr-tags-group">
-                  {!!club.activites && club.activites.length > 0 && (
-                    <li>
-                      <Tag>{club.activites.length} activités</Tag>
-                    </li>
-                  )}
+        <div className={cn('fr-mx-auto', 'fr-mt-6w', 'fr-mb-10w', styles.sizer)}>
+          <div className={cn('fr-mt-6w', styles.container)}>
+            {clubs.results.map((club) => (
+              /** @ts-ignore */
+              <Card
+                key={club.nom + club.adresse + club.commune}
+                className={styles.item}
+                background
+                badge={
+                  !!club.activites &&
+                  club.activites.slice(0, 1).map((a) => (
+                    <Badge key={a} severity="new">
+                      {a}
+                    </Badge>
+                  ))
+                }
+                imageAlt=""
+                border
+                detail={club.adresse + ', ' + club.com_arm_name}
+                enlargeLink
+                linkProps={{
+                  href: `${pathName}/${encodeURIComponent(club.nom)}`,
+                }}
+                size="medium"
+                start={
+                  <ul className="fr-tags-group">
+                    {!!club.activites && club.activites.length > 0 && (
+                      <li>
+                        <Tag>{club.activites.length} activités</Tag>
+                      </li>
+                    )}
 
-                  {club.handicap === 'Oui' && (
-                    <li>
-                      <Tag> Handicap</Tag>
-                    </li>
-                  )}
-                </ul>
-              }
-              title={club.nom}
-              titleAs="h3"
-            />
-          ))}
-        </div>
-        {!isLastPage && (
-          <div className={`fr-mt-9w ${styles['more-clubs-wrapper']}`}>
-            <Button priority="primary" size="large" onClick={seeMoreClubsHandler}>
-              Voir plus de clubs
-            </Button>
+                    {club.handicap === 'Oui' && (
+                      <li>
+                        <Tag> Handicap</Tag>
+                      </li>
+                    )}
+                  </ul>
+                }
+                title={club.nom}
+                titleAs="h3"
+              />
+            ))}
           </div>
-        )}
+          {!isLastPage && (
+            <div className={cn('fr-mt-9w', styles['more-clubs-wrapper'])}>
+              <Button priority="primary" size="large" onClick={seeMoreClubsHandler}>
+                Voir plus de clubs
+              </Button>
+            </div>
+          )}
 
-        <div className={`fr-alert fr-alert--info fr-mt-9w fr-mx-auto ${styles['alert-sizer']}`}>
-          <h6 className="fr-alert__title">Information</h6>
-          <p>
-            Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le pass Sport.
-            N’hésitez pas à vous rapprocher de votre club en lui proposant d’accepter le dispositif.
-          </p>
+          <div
+            className={cn(
+              'fr-alert',
+              'fr-alert--info',
+              'fr-mt-9w',
+              'fr-mx-auto',
+              styles['alert-sizer'],
+            )}
+          >
+            <h6 className="fr-alert__title">Information</h6>
+            <p>
+              Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le pass
+              Sport. N’hésitez pas à vous rapprocher de votre club en lui proposant d’accepter le
+              dispositif.
+            </p>
+          </div>
         </div>
       </div>
 

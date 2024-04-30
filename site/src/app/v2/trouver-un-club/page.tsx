@@ -10,7 +10,7 @@ const TrouverUnClub = async () => {
   return (
     <>
       <PageHeader title="Trouver un club"></PageHeader>
-      <ClubFinder regions={regions} activities={activities} />;
+      <ClubFinder regions={regions} activities={activities} />
     </>
   );
 };
