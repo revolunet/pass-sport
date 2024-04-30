@@ -1,11 +1,11 @@
 import Footer, { type FooterProps } from '@codegouvfr/react-dsfr/Footer';
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import styles from './styles.module.scss';
-import cnosfLogo from '../../../../public/images/footer/cnosf-logo.svg';
 import franceParalympiqueLogo from '../../../../public/images/footer/france-paralympique.svg';
 import menjLogo from '../../../../public/images/footer/menj-logo.svg';
-import ministereSociauxDinumLogo from '../../../../public/images/footer/ministere-sociaux-dinum-logo.svg';
 import passSportLogo from '../../../../public/images/pass-sport-logo.svg';
+import decathlonLogo from '../../../../public/images/footer/decathlon.svg';
+import helloAssoLogo from '../../../../public/images/footer/helloasso.svg';
 
 export default function PassSportFooter() {
   const partnersLogos: FooterProps.PartnersLogos = {
@@ -20,12 +20,9 @@ export default function PassSportFooter() {
     },
     sub: [
       {
-        linkProps: {
-          title: 'Comité National Olympique et Sportif Français',
-          href: 'https://cnosf.franceolympique.com/',
-        },
-        imgUrl: cnosfLogo.src,
-        alt: 'Comité National Olympique et Sportif Français',
+        linkProps: { title: 'Decathlon', href: 'https://www.decathlon.fr/' },
+        imgUrl: decathlonLogo.src,
+        alt: 'Decathlon',
       },
       {
         linkProps: { title: 'France paralympique', href: 'https://france-paralympique.fr/' },
@@ -33,13 +30,9 @@ export default function PassSportFooter() {
         alt: 'France paralympique',
       },
       {
-        linkProps: {
-          title: 'Ministères sociaux - Secrétariat général Direction du numérique',
-          href: 'https://www.numerique.gouv.fr/dinum/',
-        },
-        // non-transparent logo
-        imgUrl: ministereSociauxDinumLogo.src,
-        alt: 'Ministères sociaux - Secrétariat général Direction du numérique',
+        linkProps: { title: 'Helloasso', href: 'https://www.helloasso.com/' },
+        imgUrl: helloAssoLogo.src,
+        alt: 'Helloasso',
       },
     ],
   };

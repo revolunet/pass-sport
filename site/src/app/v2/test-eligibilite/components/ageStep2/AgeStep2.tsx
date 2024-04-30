@@ -35,8 +35,7 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
           <li>
             d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
             ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour les
-            formations sanitaires et sociales pour l&apos;année universitaire 2023-2024 ou
-            2024-2025&nbsp;?
+            formations sanitaires et sociales pour l&apos;année universitaire 2024-2025&nbsp;?
           </li>
           <li>de l&apos;allocation aux adultes handicapées (AAH) ? </li>
           <li>ou de l&apos;allocation d&apos;éducation de l&apos;enfant handicapé (AEEH)&nbsp;?</li>

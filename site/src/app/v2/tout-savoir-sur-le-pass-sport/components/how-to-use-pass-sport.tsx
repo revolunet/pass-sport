@@ -14,10 +14,11 @@ export default function HowToUsePassSport() {
       <h4>Comment utiliser son pass Sport ?</h4>
 
       <p>
-        Pour utiliser son pass Sport, il suffit de présenter son QR code ou code Alphanumérique à
+        Pour utiliser son pass Sport, il suffit de présenter son QR code ou code alphanumérique à
         son club ou sa salle de sport au moment de votre inscription.
         <br />
-        Celui-ci déduira automatiquement 50 euros du prix de la licence ou de l&apos;abonnement.
+        Celui-ci déduira automatiquement 50 euros du prix de la licence ou de l&apos;abonnement au
+        moment de l&apos;inscription.
         <br />
         <br />
         Voici à quoi ressemble votre pass Sport que vous avez reçu par e-mail et / ou sms :
