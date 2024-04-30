@@ -20,7 +20,7 @@ export default function WhereToUsePassSport() {
       </p>
 
       <Button priority="secondary" onClick={() => router.push('trouver-un-club', { scroll: true })}>
-        Trouver mon Club partenaire
+        Trouver mon club partenaire
       </Button>
     </section>
   );
