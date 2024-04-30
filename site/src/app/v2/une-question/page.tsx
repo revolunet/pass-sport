@@ -40,7 +40,7 @@ export default function Questions() {
     <>
       <PageHeader
         title="Une question?"
-        subtitle="Consulté notre FAQ la réponse à votre question s'y trouve peut-être."
+        subtitle="Consultez notre FAQ la réponse à votre question s'y trouve peut-être."
       ></PageHeader>
 
       <section className={styles.faq}>

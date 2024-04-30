@@ -87,7 +87,7 @@ export default function PassSportFooter() {
           linkProps: { href: '/v2/tout-savoir-sur-le-pass-sport' },
         },
         {
-          text: 'Trouver un club',
+          text: 'Trouver un club partenaire',
           linkProps: { href: '/v2/trouver-un-club' },
         },
         {

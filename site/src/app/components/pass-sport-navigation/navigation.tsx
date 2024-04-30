@@ -25,6 +25,6 @@ export const navigationItem: NavigationItem[] = [
       </div>
     ),
   },
-  { link: '/v2/trouver-un-club', text: 'Trouver un club' },
+  { link: '/v2/trouver-un-club', text: 'Trouver un club partenaire' },
   { link: '/v2/une-question', text: 'Une question ?' },
 ];
