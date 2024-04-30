@@ -16,19 +16,18 @@ export default function About() {
             Qu&apos;est-ce que le pass Sport
           </h3>
 
-          <Highlight size="sm">
-            <span>
-              Le pass Sport est une aide de 50 euros qui permet de financer une partie de la licence
-              ou de l&apos;abonnement sportif à plus de 6,5 millions de jeunes. Il est valable dans
-              plus de 55 000 clubs et salles de sport partenaires (lien carte).
-            </span>
+          <Highlight className={styles['about-container__highlight-text']}>
+            Le pass Sport est une aide de 50 euros qui permet de financer une partie de
+            l&apos;inscription sportive à plus de 6,5 millions de jeunes. Il est valable dans plus
+            de 85 000 clubs et salles de sport partenaires.
             <br />
             <br />
-            <span>
-              Le dispositif est porté par l&apos;État et déployé par le ministère des Sports et des
-              Jeux Olympiques et Paralympiques et permet de soutenir la pratique sportive de jeunes
-              pendant l&apos;année sportive.
-            </span>
+            Le dispositif est porté par l&apos;État et déployé par le ministère des Sports et des
+            Jeux Olympiques et Paralympiques et permet de soutenir la pratique sportive de jeunes
+            pendant l&apos;année sportive.
+            <br />
+            <br />
+            Il est ouvert du 1er juin au 31 décembre 2024.
           </Highlight>
         </div>
       </div>

@@ -13,6 +13,10 @@
     margin: -100px auto 0;
     background-color: var(--color-white);
 
+    &-text {
+      padding-right: 24px;
+    }
+
     &-image {
       width: 100%;
       height: auto;

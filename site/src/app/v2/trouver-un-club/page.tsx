@@ -53,7 +53,7 @@ export default function TrouverUnClub() {
   return (
     <div>
       <PageHeader
-        title="Trouver un club adhérent"
+        title="Trouver un club partenaire"
         subtitle={`Plus de ${clubs.total_count} clubs labelisés trouvés`}
       ></PageHeader>
       <Search onTextSearch={searchClubByTextHandler}></Search>
@@ -112,8 +112,8 @@ export default function TrouverUnClub() {
         <div className={`fr-alert fr-alert--info fr-mt-9w fr-mx-auto ${styles['alert-sizer']}`}>
           <h6 className="fr-alert__title">Information</h6>
           <p>
-            Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le pass Sport.
-            N’hésitez pas à vous rapprocher de votre club en lui proposant d’accepter le dispositif.
+            Si votre club n&apos;apparait pas, c&apos;est qu&apos;il n&apos;est pas encore
+            référencé. Dans ce cas là, n&apos;hésitez pas à vous rapprocher de celui-ci.
           </p>
         </div>
       </div>

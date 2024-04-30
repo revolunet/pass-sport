@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/une-question': 'Une question ?',
   '/v2/tout-savoir-sur-le-pass-sport': 'Tout savoir sur le pass Sport',
-  '/v2/trouver-un-club': 'Trouver un club adhérent',
+  '/v2/trouver-un-club': 'Trouver un club partenaire',
 };
 
 export default function PassSportBreadcrumb() {
@@ -43,7 +43,7 @@ export default function PassSportBreadcrumb() {
         homeLinkProps={{ href: '/v2/accueil' }}
         currentPageLabel={clubName}
         segments={[
-          { label: 'Trouver un club adhérent', linkProps: { href: '/v2/trouver-un-club' } },
+          { label: 'Trouver un club partenaire', linkProps: { href: '/v2/trouver-un-club' } },
         ]}
       ></Breadcrumb>
     </div>
