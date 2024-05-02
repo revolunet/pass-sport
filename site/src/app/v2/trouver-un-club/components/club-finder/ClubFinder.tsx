@@ -11,7 +11,6 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import ClubFilters from '../club-filters/ClubFilters';
 import { GeoGouvRegion } from 'types/Region';
 import { ActivityResponse, SportGouvJSONResponse } from 'types/Club';
-import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
 import cn from 'classnames';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import ClubCount from '../club-count/ClubCount';
@@ -209,7 +208,6 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
       </div>
 
       <EligibilityTestBanner />
-      <SocialMediaPanel />
     </>
   );
 };
