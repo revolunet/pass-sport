@@ -67,10 +67,11 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
   };
 
   const searchClubByTextHandler = (text: string) => {
-    const params: SqlSearchParams = { ...clubParams, offset: 0 };
+    const params: SqlSearchParams = { ...clubParams, offset: 0, clubName: undefined };
     if (text.length !== 0) {
       params.clubName = `nom like '%${text.toUpperCase()}%'`;
     }
+
     setClubParams(params);
   };
 
