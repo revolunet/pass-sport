@@ -154,7 +154,7 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
                 }
                 imageAlt=""
                 border
-                detail={club.adresse + ', ' + club.com_arm_name}
+                detail={club.adresse ? `${club.adresse}, ${club.com_arm_name}` : club.com_arm_name}
                 enlargeLink
                 linkProps={{
                   href: `${pathName}/${encodeURIComponent(club.nom)}`,
@@ -164,7 +164,10 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
                   <ul className="fr-tags-group">
                     {!!club.activites && club.activites.length > 0 && (
                       <li>
-                        <Tag>{club.activites.length} activités</Tag>
+                        <Tag>
+                          {club.activites.length}{' '}
+                          {club.activites.length > 1 ? 'activités' : 'activité'}
+                        </Tag>
                       </li>
                     )}
 
