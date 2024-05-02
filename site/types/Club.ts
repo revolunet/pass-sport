@@ -1,11 +1,11 @@
-interface SportGouvJSONResponse {
+export interface SportGouvJSONResponse {
   results: Club[];
   total_count: number;
 }
 
 type YesNo = 'Oui' | 'Non';
 
-interface Club {
+export interface Club {
   nom: string;
   cp: string;
   activites: string[];
@@ -22,4 +22,12 @@ interface Club {
     lon: number;
     lat: number;
   } | null;
+}
+
+export interface Activity {
+  activites: string;
+}
+
+export interface ActivityResponse {
+  results: Activity[];
 }

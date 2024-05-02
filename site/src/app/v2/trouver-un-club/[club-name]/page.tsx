@@ -9,6 +9,7 @@ import { getClubs } from '../agent';
 import EligibilityTestBanner from '../../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import dynamic from 'next/dynamic';
 import SocialMediaPanel from '../../../components/social-media-panel/SocialMediaPanel';
+import { Club } from 'types/Club';
 
 const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
   const clubName = decodeURIComponent(params['club-name']);
@@ -16,7 +17,7 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
   const [club, setClub] = useState<Club | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    getClubs({ nom: `nom="${clubName.toUpperCase()}"`, offset: 0 }).then((res) => {
+    getClubs({ clubName: `nom="${clubName.toUpperCase()}"`, offset: 0 }).then((res) => {
       if (res.results.length === 0) {
         setError("Le club n'a pas été trouvé");
       } else {

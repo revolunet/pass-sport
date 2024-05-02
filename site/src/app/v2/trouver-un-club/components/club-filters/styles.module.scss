@@ -1,0 +1,81 @@
+@import '../../../../sassVariables.module.scss';
+
+.container {
+  position: relative;
+  top: -90px;
+
+  box-shadow: 0px 6px 18px 0px #00001229;
+  background-color: white;
+  border-radius: 16px;
+
+  max-width: 1200px;
+  margin: auto;
+  min-height: 154px;
+}
+
+.filtersContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+
+  @media (min-width: $md) {
+    flex-direction: row;
+  }
+
+  .flex {
+    @media (min-width: $md) {
+      flex: 1 1 100px;
+    }
+  }
+
+  .separator {
+    background-color: var(--border-default-grey);
+    height: 1px;
+    margin-bottom: 0px;
+
+    @media (min-width: $md) {
+      width: 1px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+  }
+
+  .label-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    .select {
+      flex-grow: 1;
+      z-index: 2;
+    }
+  }
+
+  .radio {
+    legend {
+      padding-bottom: 4px;
+      color: var(--text-title-grey);
+    }
+  }
+}
+
+.title {
+  text-align: center;
+  color: var(--text-black-white-grey);
+}
+
+.label {
+  color: var(--text-title-grey);
+}
+
+.icon {
+  color: var(--text-mention-grey);
+  padding-top: 6px;
+}
