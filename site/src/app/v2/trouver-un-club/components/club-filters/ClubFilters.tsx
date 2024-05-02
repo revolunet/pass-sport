@@ -134,6 +134,7 @@ const ClubFilters: React.FC<Props> = ({
                 ></span>
 
                 <Select
+                  instanceId="region-select-id"
                   className={styles.select}
                   isClearable
                   placeholder="Toutes les régions"
@@ -153,6 +154,7 @@ const ClubFilters: React.FC<Props> = ({
                 Ville - Code postal
               </label>
               <AsyncSelect
+                instanceId="city-select-id"
                 name="city"
                 loadingMessage={() => <p>Chargement des villes</p>}
                 noOptionsMessage={() => <p>Aucune ville trouvée</p>}
@@ -175,6 +177,7 @@ const ClubFilters: React.FC<Props> = ({
                 <span className={cn('ri-basketball-line', styles.icon)} />
 
                 <Select
+                  instanceId="activities-select-id"
                   className={styles.select}
                   isClearable
                   isSearchable
