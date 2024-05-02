@@ -35,7 +35,7 @@ export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRes
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.error('Status from sports-sgsocialgouv.opendatasoft.com' + response.status);
+    console.error('Status from sports-sgsocialgouv.opendatasoft.com: ' + response.status);
     console.error(response.body);
     return {
       results: [],
@@ -52,7 +52,7 @@ export const getFranceRegions = async (): Promise<GeoGouvRegion[]> => {
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.error('Error fetching regions. Status from geo.api.gouv.fr' + response.status);
+    console.error('Error fetching regions. Status from geo.api.gouv.fr: ' + response.status);
     console.error(response.body);
     return [];
   }
@@ -73,7 +73,7 @@ export const getFranceCitiesByName = async (cityName: string): Promise<City[]> =
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.error('Error fetching cties. Status from geo.api.gouv.fr' + response.status);
+    console.error('Error fetching cties. Status from geo.api.gouv.fr: ' + response.status);
     console.error(response.body);
     return [];
   }
@@ -85,6 +85,15 @@ const getClubsActivitiesBatch = async (
   limit: number,
   offset: number,
 ): Promise<ActivityResponse> => {
+  const API_KEY = process.env.OPENDATASOFT_API_KEY;
+
+  if (!API_KEY) {
+    console.error(
+      'OpenDatasoft api key is missing. Please provide it in OPENDATASOFT_API_KEY environment variable',
+    );
+    throw new Error('api key not provided');
+  }
+
   const baseUrl =
     'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records';
   const params = new URLSearchParams();
@@ -96,11 +105,14 @@ const getClubsActivitiesBatch = async (
   const url = new URL(baseUrl);
   url.search = params.toString();
 
-  const response = await fetch(url, { next: { revalidate: 300 } });
+  const headers = new Headers();
+  headers.append('Authorization', `Apikey ${API_KEY}`);
+
+  const response = await fetch(url, { next: { revalidate: 300 }, headers });
 
   if (!response.ok) {
     console.error(
-      'Error fetching activities. Status from /sports-sgsocialgouv.opendatasoft.com' +
+      'Error fetching activities. Status from /sports-sgsocialgouv.opendatasoft.com: ' +
         response.status,
     );
     console.error(response.body);
