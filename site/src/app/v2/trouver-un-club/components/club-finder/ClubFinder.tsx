@@ -67,18 +67,22 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
   };
 
   const searchClubByTextHandler = (text: string) => {
-    const clubParams: SqlSearchParams = { offset: 0 };
+    const params: SqlSearchParams = { ...clubParams, offset: 0 };
     if (text.length !== 0) {
-      clubParams.clubName = `nom like '%${text.toUpperCase()}%'`;
+      params.clubName = `nom like '%${text.toUpperCase()}%'`;
     }
-    setClubParams(clubParams);
+    setClubParams(params);
   };
 
   const onRegionChanged = (region?: string) => {
     if (!region) {
-      setClubParams((clubParams) => ({ ...clubParams, regionCode: undefined }));
+      setClubParams((clubParams) => ({ ...clubParams, offset: 0, regionCode: undefined }));
     } else {
-      setClubParams((clubParams) => ({ ...clubParams, regionCode: `reg_code='${region}'` }));
+      setClubParams((clubParams) => ({
+        ...clubParams,
+        offset: 0,
+        regionCode: `reg_code='${region}'`,
+      }));
     }
   };
 
@@ -87,18 +91,21 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
       !postalCode &&
       setClubParams((clubParams) => ({
         ...clubParams,
+        offset: 0,
         city: undefined,
         postalCode: undefined,
       }));
     city &&
       setClubParams((clubParams) => ({
         ...clubParams,
+        offset: 0,
         city: `commune='${city.toUpperCase()}'`,
         postalCode: undefined,
       }));
     postalCode &&
       setClubParams((clubParams) => ({
         ...clubParams,
+        offset: 0,
         postalCode: `cp='${postalCode}'`,
         city: undefined,
       }));
@@ -106,15 +113,20 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
 
   const onActivityChanged = (activity?: string) => {
     if (!activity) {
-      setClubParams((clubParams) => ({ ...clubParams, activity: undefined }));
+      setClubParams((clubParams) => ({ ...clubParams, offset: 0, activity: undefined }));
     } else {
-      setClubParams((clubParams) => ({ ...clubParams, activity: `activites='${activity}'` }));
+      setClubParams((clubParams) => ({
+        ...clubParams,
+        offset: 0,
+        activity: `activites='${activity}'`,
+      }));
     }
   };
 
   const onDisabilityChanged = (isDisabled: 'Non' | 'Oui') => {
     setClubParams((clubParams) => ({
       ...clubParams,
+      offset: 0,
       disability: `handicap='${isDisabled}'`,
     }));
   };
