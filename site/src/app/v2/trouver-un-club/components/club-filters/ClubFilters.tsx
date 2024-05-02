@@ -120,7 +120,7 @@ const ClubFilters: React.FC<Props> = ({
       <div className="fr-px-2w">
         <Search onTextSearch={onTextSearch} />
 
-        <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Ou filtrer par :</p>
+        <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
         <div className={styles.filtersContainer}>
           <div className={cn(styles.flex)}>
             <div className={styles['label-container']}>
