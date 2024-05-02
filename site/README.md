@@ -19,6 +19,6 @@ This nextjs application runs the pass sport [website](https://pass.sports.gouv.f
 
 In case, you want to run the app locally:
 
-- rename `.env.local.example` file to `.env.local`
+- rename `.env.example.local` file to `.env.local`
 - set environment variables in `.env.local`
 - run the app in development mode: `npm run dev`
