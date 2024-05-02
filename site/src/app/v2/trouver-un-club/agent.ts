@@ -1,5 +1,5 @@
 import { City } from 'types/City';
-import { Activity, ActivityResponse, SportGouvJSONResponse } from 'types/Club';
+import { ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import { GeoGouvRegion } from 'types/Region';
 
 export interface SqlSearchParams {
@@ -81,7 +81,10 @@ export const getFranceCitiesByName = async (cityName: string): Promise<City[]> =
   return response.json();
 };
 
-const getClubsctivities = async (limit: number, offset: number): Promise<ActivityResponse> => {
+const getClubsActivitiesBatch = async (
+  limit: number,
+  offset: number,
+): Promise<ActivityResponse> => {
   const baseUrl =
     'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records';
   const params = new URLSearchParams();
@@ -115,7 +118,7 @@ export const getAllClubActivities = async (): Promise<ActivityResponse> => {
 
   while (activities.results.length % limit === 0 && keepLooping) {
     try {
-      const activitiesBatch = (await getClubsctivities(limit, offset)).results;
+      const activitiesBatch = (await getClubsActivitiesBatch(limit, offset)).results;
       activities.results = activities.results.concat(activitiesBatch);
       offset += limit;
     } catch (e) {
