@@ -60,7 +60,7 @@ export default function PassSportFooter() {
     {
       text: 'Données personnelles',
       linkProps: {
-        href: '#',
+        href: '/v2/politique-de-confidentialite',
       },
     },
     {
