@@ -96,7 +96,7 @@ const getClubsActivitiesBatch = async (
   const url = new URL(baseUrl);
   url.search = params.toString();
 
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 300 } });
 
   if (!response.ok) {
     console.error(

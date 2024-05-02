@@ -5,7 +5,7 @@ export interface SportGouvJSONResponse {
 
 type YesNo = 'Oui' | 'Non';
 
-interface Club {
+export interface Club {
   nom: string;
   cp: string;
   activites: string[];
