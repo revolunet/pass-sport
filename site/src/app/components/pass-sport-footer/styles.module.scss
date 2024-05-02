@@ -1,9 +1,24 @@
 // to target the footer partner logos, the selector is repeated to up the specificity to override partner logos
 .partners-logo.partners-logo {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 // To target the footer
 .root {
-    padding-bottom: 16px;
+  padding-bottom: 16px;
+}
+
+// It is for the "Le Compte Asso" logo specifically
+// Remove this code if we no longer have a png as a second logo with weird aspect ratios
+.partners-sub.partners-sub {
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li:nth-child(2) img {
+    height: 40px !important;
+    width: auto;
+  }
 }

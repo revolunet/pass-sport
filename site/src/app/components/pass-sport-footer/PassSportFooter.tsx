@@ -1,11 +1,11 @@
 import Footer, { type FooterProps } from '@codegouvfr/react-dsfr/Footer';
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import styles from './styles.module.scss';
-import franceParalympiqueLogo from '../../../../public/images/footer/france-paralympique.svg';
+import lcaLogo from '../../../../public/images/footer/logo-lca.png';
 import menjLogo from '../../../../public/images/footer/menj-logo.svg';
 import passSportLogo from '../../../../public/images/pass-sport-logo.svg';
 import decathlonLogo from '../../../../public/images/footer/decathlon.svg';
-import helloAssoLogo from '../../../../public/images/footer/helloasso.svg';
+import logoCosmos from '../../../../public/images/footer/logo-cosmos.svg';
 
 export default function PassSportFooter() {
   const partnersLogos: FooterProps.PartnersLogos = {
@@ -25,14 +25,17 @@ export default function PassSportFooter() {
         alt: 'Decathlon',
       },
       {
-        linkProps: { title: 'France paralympique', href: 'https://france-paralympique.fr/' },
-        imgUrl: franceParalympiqueLogo.src,
-        alt: 'France paralympique',
+        linkProps: {
+          title: 'Le Compte Asso',
+          href: 'https://lecompteasso.associations.gouv.fr/',
+        },
+        imgUrl: lcaLogo.src,
+        alt: 'Le Compte Asso',
       },
       {
-        linkProps: { title: 'Helloasso', href: 'https://www.helloasso.com/' },
-        imgUrl: helloAssoLogo.src,
-        alt: 'Helloasso',
+        linkProps: { title: 'Cosmos Sports', href: 'https://www.cosmos-sports.fr/' },
+        imgUrl: logoCosmos.src,
+        alt: 'Cosmos sports',
       },
     ],
   };
@@ -94,10 +97,6 @@ export default function PassSportFooter() {
           text: 'Une question ?',
           linkProps: { href: '/v2/une-question' },
         },
-        {
-          text: 'Espace presse',
-          linkProps: { href: '#' },
-        },
       ],
     },
     {
@@ -109,7 +108,10 @@ export default function PassSportFooter() {
         },
         {
           text: 'Tableau de bord',
-          linkProps: { href: '#', target: '_blank' },
+          linkProps: {
+            href: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
+            target: '_blank',
+          },
         },
       ],
     },
@@ -120,6 +122,7 @@ export default function PassSportFooter() {
       classes={{
         logo: styles['partners-logo'],
         root: styles.root,
+        partnersSub: styles['partners-sub'],
       }}
       homeLinkProps={homeLinkProps}
       operatorLogo={operatorLogo}
