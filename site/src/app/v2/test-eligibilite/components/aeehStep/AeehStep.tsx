@@ -55,7 +55,7 @@ const AeehStep = ({ ageRange }: Props) => {
 
       {displaySuccess && (
         <VerdictPanel
-          title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous êtes vous
+          title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous
           êtes éligible au pass Sport."
           isSuccess
           buttonProps={{
