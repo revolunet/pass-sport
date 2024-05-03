@@ -17,7 +17,7 @@ const AllowancesStep = ({ isForChild }: Props) => {
   const successCallout = (
     <div>
       <VerdictPanel
-        title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous êtes vous êtes éligible au pass Sport."
+        title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous êtes éligible au pass Sport."
         isSuccess
         buttonProps={{
           children: 'Trouver un club partenaire',
