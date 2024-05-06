@@ -15,6 +15,7 @@ const SocialMediaLinks = () => {
             key={media.id}
             className={cn('fr-link', media.iconClassName, 'fr-link--icon-left')}
             href={media.href}
+            target="_blank"
           >
             {media.label}
           </a>
