@@ -10,6 +10,10 @@
   @media screen and (max-width: $lg) {
     padding: 0 1rem;
   }
+
+  &__text--center {
+    text-align: center;
+  }
 }
 
 // Raise the specificity by adding twice the classname
