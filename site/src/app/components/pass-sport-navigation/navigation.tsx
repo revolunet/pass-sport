@@ -18,12 +18,7 @@ export const navigationItem: NavigationItem[] = [
   },
   {
     link: '/v2/tout-savoir-sur-le-pass-sport',
-    text: (
-      <div className={styles['menu-item-spacer']}>
-        <span aria-hidden="true"></span>
-        Tout savoir sur le pass Sport
-      </div>
-    ),
+    text: 'Tout savoir sur le pass Sport',
   },
   { link: '/v2/trouver-un-club', text: 'Trouver un club partenaire' },
   { link: '/v2/une-question', text: 'Une question ?' },
