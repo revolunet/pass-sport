@@ -32,14 +32,14 @@ export default function PolitiqueDeConfidentialite() {
           </p>
           <p className="fr-mb-2w">
             <span className="fr-text--bold">« Traitement »</span> : toute opération ou tout ensemble
-            d'opérations effectués ou non à l'aide de procédés automatisés et appliqués à des
-            données ou des ensembles de données à caractère personnel (ex : collecte,
+            d&apos;opérations effectués ou non à l&apos;aide de procédés automatisés et appliqués à
+            des données ou des ensembles de données à caractère personnel (ex : collecte,
             enregistrement, conservation, extraction, utilisation, etc.).
           </p>
           <p className="fr-mb-2w">
             <span className="fr-text--bold">« Responsable de traitement »</span> : personne physique
             ou morale, autorité publique, service ou autre organisme qui, seul ou conjointement avec
-            d'autres, détermine les finalités et les moyens du traitement.
+            d&apos;autres, détermine les finalités et les moyens du traitement.
           </p>
         </section>
 
@@ -108,7 +108,7 @@ export default function PolitiqueDeConfidentialite() {
             (règlement général sur la protection des données - RGPD) relatif à l&apos;exécution
             d&apos;une mission d&apos;intérêt public dont est investie la Direction des sports au
             sens des articles L. 100-1 et L. 100-2 du code du sport et du décret n° 2023-741 du 8
-            août 2023 relatif au « Pass'Sport » 2023.
+            août 2023 relatif au « Pass&apos;Sport » 2023.
           </p>
         </section>
 
@@ -119,19 +119,19 @@ export default function PolitiqueDeConfidentialite() {
           <p>Pour les bénéficiaires éligibles au dispositif pass Sport</p>
           <ul className="fr-pl-4w">
             <li>
-              Données relatives à l'identité de l'allocataire (responsable légal du bénéficiaire) :
-              civilité, nom, prénom, lieu de naissance ;
+              Données relatives à l&apos;identité de l&apos;allocataire (responsable légal du
+              bénéficiaire) : civilité, nom, prénom, lieu de naissance ;
             </li>
             <li>
-              Données relatives à l'identité de bénéficiaire : nom, prénom, sexe, date de naissance
-              ;
+              Données relatives à l&apos;identité de bénéficiaire : nom, prénom, sexe, date de
+              naissance ;
             </li>
             <li>Coordonnées : adresse postale, courriel, téléphone.</li>
           </ul>
 
           <p>Pour les exploitants de structures éligibles au dispositif pass Sport</p>
           <ul className="fr-pl-4w">
-            <li>Données relatives à l'identité : civilité, nom, prénom ;</li>
+            <li>Données relatives à l&apos;identité : civilité, nom, prénom ;</li>
             <li>Coordonnées : courriel, téléphone ;</li>
             <li>Données relatives à la vie professionnelle : fonction dans la structure.</li>
           </ul>
@@ -219,7 +219,7 @@ export default function PolitiqueDeConfidentialite() {
           <p className="fr-mb-2w">Par voie postale à l&apos;adresse suivante :</p>
 
           <p className={cn(styles['wrapper__text--center'], 'fr-mb-2w')}>
-            Ministère de l'éducation nationale et de la jeunesse <br />
+            Ministère de l&apos;éducation nationale et de la jeunesse <br />
             Délégué à la protection des données(DPD) <br />
             110, rue de Grenelle <br />
             75357 Paris Cedex 07
@@ -262,34 +262,34 @@ export default function PolitiqueDeConfidentialite() {
             La Direction des sports s&apos;engage à mettre en œuvre toutes les mesures techniques et
             organisationnelles appropriées grâce à des moyens de sécurisation physiques et
             logistiques permettant de garantir un niveau de sécurité adapté au regard des risques
-            d'accès accidentels, non autorisés ou illégaux, de divulgation, d'altération, de perte
-            ou encore de destruction des données personnelles vous concernant, au sens de
+            d&apos;accès accidentels, non autorisés ou illégaux, de divulgation, d&apos;altération,
+            de perte ou encore de destruction des données personnelles vous concernant, au sens de
             l&apos;article 121 de la Loi informatiques et Libertés de 1978 modifiée.
           </p>
 
           <p>
-            Dans l'éventualité où la Direction des sports prendrait connaissance d'un accès illégal
-            aux données personnelles vous concernant, stockées sur nos serveurs ou ceux de nos
-            prestataires, ou d'un accès non autorisé ayant pour conséquence la réalisation des
-            risques identifiés ci-dessus, elle s&apos;engage à :
+            Dans l&apos;éventualité où la Direction des sports prendrait connaissance d&apos;un
+            accès illégal aux données personnelles vous concernant, stockées sur nos serveurs ou
+            ceux de nos prestataires, ou d&apos;un accès non autorisé ayant pour conséquence la
+            réalisation des risques identifiés ci-dessus, elle s&apos;engage à :
           </p>
 
           <ul className="fr-pl-4w">
             <li>
-              Vous notifier l'incident et en informer la CNIL dans les plus brefs délais, si cela
-              est susceptible d'engendrer un risque élevé pour vos droits et libertés ;
+              Vous notifier l&apos;incident et en informer la CNIL dans les plus brefs délais, si
+              cela est susceptible d&apos;engendrer un risque élevé pour vos droits et libertés ;
             </li>
-            <li>Examiner les causes de l'incident ;</li>
+            <li>Examiner les causes de l&apos;incident ;</li>
             <li>
-              Prendre les mesures nécessaires dans la limite du raisonnable afin d'amoindrir les
-              effets négatifs et préjudices pouvant résulter dudit incident.
+              Prendre les mesures nécessaires dans la limite du raisonnable afin d&apos;amoindrir
+              les effets négatifs et préjudices pouvant résulter dudit incident.
             </li>
           </ul>
 
           <p>
             En aucun cas les engagements définis au point ci-dessus ne peuvent être assimilés à une
             quelconque reconnaissance de faute ou de responsabilité quant à la survenance de
-            l'incident en question.
+            l&apos;incident en question.
           </p>
         </section>
       </div>
