@@ -54,7 +54,7 @@ export default function PassSportFooter() {
     {
       text: 'Mentions légales',
       linkProps: {
-        href: '#',
+        href: '/v2/mentions-legales',
       },
     },
     {
