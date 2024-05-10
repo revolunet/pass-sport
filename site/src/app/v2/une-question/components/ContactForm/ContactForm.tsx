@@ -5,12 +5,13 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
 import Input from '@codegouvfr/react-dsfr/Input';
 import Select from '@codegouvfr/react-dsfr/Select';
-import Image from 'next/image';
 import React, { FormEvent, useRef, useState } from 'react';
 import { InputsState } from '../../../../../../types/Contact';
-import { postContact } from '../../agent';
+import { postContact } from '../../client-agent';
 import styles from './styles.module.scss';
 import { EMAIL_REGEX } from '../../../../../../utils/email';
+import Link from 'next/link';
+import cn from 'classnames';
 
 const initialInputsState: InputsState = {
   firstname: 'default',
@@ -116,17 +117,21 @@ const ContactForm = () => {
   return (
     <div>
       <form ref={formRef} onSubmit={onSubmitHandler}>
-        <div className={styles['container']}>
-          <div className={styles['image-wrapper']}>
-            <Image
-              className={styles.image}
-              src="/images/faq/form-image.png"
-              alt=""
-              width={334}
-              height={501}
-            />
-          </div>
+        <div>
+          <h6 className="fr-text--bold fr-my-2w">Avez-vous d&apos;abord consulté notre FAQ ?</h6>
+          <p className="fr-mb-2w">
+            La réponse à votre question s&apos;y trouve peut-être. Si tel est le cas, vous gagnerez
+            certainement du temps grâce à elle.
+          </p>
 
+          <p className="fr-mb-2w">
+            <Link href="v2/une-question">
+              <span className="fr-icon-arrow-right-line " />
+              Accéder à la FAQ
+            </Link>
+          </p>
+        </div>
+        <div>
           <div className={styles.form}>
             <div className={styles['names-input-container']}>
               <div>
@@ -158,13 +163,13 @@ const ContactForm = () => {
             <div>
               <Select
                 label="Objet de la demande*"
-                nativeSelectProps={{ name: 'reason' }}
+                nativeSelectProps={{ name: 'reason', defaultValue: '' }}
                 state={inputStates.reason}
                 stateRelatedMessage="L'objet de l'email est requis"
               >
                 <React.Fragment key=".0">
-                  <option disabled hidden selected value="">
-                    Selectionnez une option
+                  <option disabled hidden value="">
+                    Veuillez sélectionnez un objet
                   </option>
                   {reasons.map((r) => (
                     <option value={r} key={r}>
@@ -185,30 +190,38 @@ const ContactForm = () => {
             />
           </div>
         </div>
-        <div className={styles['action-container']}>
-          <div className={styles['action-container_checkbox']}>
-            <Checkbox
-              options={[
-                {
-                  label:
-                    'En cochant cette case, vous comprenez que les données personnelles entrées, adress IP comprise, pourront être utilisées afin de vous contacter dans le cadre de votre interêt',
-                  nativeInputProps: {
-                    name: 'consent',
-                    value: 'yes',
-                  },
+        <div className="fr-mt-4w">
+          <Checkbox
+            options={[
+              {
+                label:
+                  'En cochant cette case, vous comprenez que les données personnelles entrées, adresse IP comprise, pourront être utilisées afin de vous contacter dans le cadre de votre intérêt légitime.*',
+                nativeInputProps: {
+                  name: 'consent',
+                  value: 'yes',
                 },
-              ]}
-              state={inputStates.consent}
-              stateRelatedMessage={
-                inputStates.consent === 'default' ? undefined : 'Veuiller cocher cette case'
-              }
-            />
-          </div>
-          <div className={styles['action-container_button']}>
-            <Button priority="primary" type="submit">
-              Envoyer ma demande
-            </Button>
-          </div>
+              },
+            ]}
+            state={inputStates.consent}
+            stateRelatedMessage={
+              inputStates.consent === 'default' ? undefined : 'Veuiller cocher cette case'
+            }
+          />
+        </div>
+        <div className="fr-grid-row ">
+          <p className="text--italic fr-col-md-8 fr-pr-1w">
+            Un seul clic suffit ! Votre message nous est bien transmis, une copie sera disponible
+            dans votre messagerie électronique.
+          </p>
+          <Button
+            className="fr-col-md-4 fr-col-12 fr-grid-row--center fr-mt-2w fr-mt-md-0"
+            priority="primary"
+            type="submit"
+            iconPosition="right"
+            iconId="fr-icon-send-plane-line"
+          >
+            Envoyer ma demande
+          </Button>
         </div>
       </form>
       {apiError && (

@@ -1,3 +1,5 @@
+'use client';
+
 import { ContactRequestBody } from '../../../../types/Contact';
 
 export const postContact = async (request: FormData): Promise<Response> => {
@@ -9,5 +11,6 @@ export const postContact = async (request: FormData): Promise<Response> => {
     message: request.get('message') as string,
     reason: request.get('reason') as string,
   };
+
   return fetch('/api/contact', { method: 'POST', body: JSON.stringify(body) });
 };

@@ -22,7 +22,7 @@ export default function PassSportNavigation() {
           imgUrl: '/images/pass-sport-logo.svg',
           orientation: 'vertical',
         }}
-        serviceTitle={'pass Sport'}
+        serviceTitle="pass Sport"
         serviceTagline="50 euros pour aider les 6-30 ans à faire du sport"
         homeLinkProps={{
           href: '/v2/accueil',
