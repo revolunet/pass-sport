@@ -9,6 +9,8 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/une-question': 'Une question ?',
   '/v2/tout-savoir-sur-le-pass-sport': 'Tout savoir sur le pass Sport',
   '/v2/trouver-un-club': 'Trouver un club partenaire',
+  '/v2/politique-de-confidentialite': 'Politique de confidentialité',
+  '/v2/mentions-legales': 'Mentions légales',
 };
 
 export default function PassSportBreadcrumb() {

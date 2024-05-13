@@ -54,13 +54,13 @@ export default function PassSportFooter() {
     {
       text: 'Mentions légales',
       linkProps: {
-        href: '#',
+        href: '/v2/mentions-legales',
       },
     },
     {
       text: 'Données personnelles',
       linkProps: {
-        href: '#',
+        href: '/v2/politique-de-confidentialite',
       },
     },
     {
