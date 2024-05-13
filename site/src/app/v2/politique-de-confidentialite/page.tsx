@@ -14,7 +14,7 @@ export default function PolitiqueDeConfidentialite() {
           container: styles['page-header'],
         }}
       />
-      <div className={styles.wrapper}>
+      <main className={styles.wrapper}>
         <section className="fr-mb-6w">
           <h4 className="fr-mb-2w">Article 1 - Définitions</h4>
           <p className="fr-mb-2w">
@@ -292,7 +292,7 @@ export default function PolitiqueDeConfidentialite() {
             l&apos;incident en question.
           </p>
         </section>
-      </div>
+      </main>
 
       <EligibilityTestBanner />
       <SocialMediaPanel />
