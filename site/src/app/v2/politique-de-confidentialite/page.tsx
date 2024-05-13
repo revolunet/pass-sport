@@ -152,7 +152,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 8 - Personnes concernées</h4>
+          <h4 className="fr-mb-2w">Article 7 - Personnes concernées</h4>
           <p className="fr-mb-2w">
             Sont concernées par le traitement mentionné à l&apos;article 3 les bénéficiaires
             éligibles au dispositif pass Sport et les exploitants de structures éligibles au
@@ -161,7 +161,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 9 - Source des données</h4>
+          <h4 className="fr-mb-2w">Article 8 - Source des données</h4>
           <p>
             Vos données traitées ont été collectées indirectement. Elles nous ont été communiquées
             par le Centre National des Œuvres Universitaires et Scolaires Établissement public
@@ -171,7 +171,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 10 - Nécessité de la collecte</h4>
+          <h4 className="fr-mb-2w">Article 9 - Nécessité de la collecte</h4>
           <p className="fr-mb-2w">
             Seules les données à caractère personnel nécessaires pour le traitement réalisé dans le
             cadre de la délivrance du pass Sport 2024 seront traitées.
@@ -184,7 +184,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 11 - Quels sont vos droits ? Comment les exercer ?</h4>
+          <h4 className="fr-mb-2w">Article 10 - Quels sont vos droits ? Comment les exercer ?</h4>
           <p className="fr-mb-2w">
             Conformément à la règlementation applicable, vous disposez d&apos;un droit d&apos;accès,
             de rectification, d&apos;effacement, de limitation et d&apos;opposition des données qui
@@ -257,7 +257,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 14 - Indications en cas de violation de données</h4>
+          <h4 className="fr-mb-2w">Article 11 - Indications en cas de violation de données</h4>
           <p className="fr-mb-2w">
             La Direction des sports s&apos;engage à mettre en œuvre toutes les mesures techniques et
             organisationnelles appropriées grâce à des moyens de sécurisation physiques et
