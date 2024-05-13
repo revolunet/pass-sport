@@ -13,7 +13,7 @@ export default function PolitiqueDeConfidentialite() {
           container: styles['page-header'],
         }}
       />
-      <div className={styles.wrapper}>
+      <main className={styles.wrapper}>
         <section className="fr-mb-6w">
           <p className="fr-mb-2w">
             Le Portail pass Sport est un service du ministère des Sports et des Jeux Olympiques et
@@ -120,7 +120,7 @@ export default function PolitiqueDeConfidentialite() {
             purement technique, nécessaire à la production de statistiques de consultations.
           </p>
         </section>
-      </div>
+      </main>
 
       <EligibilityTestBanner />
       <SocialMediaPanel />
