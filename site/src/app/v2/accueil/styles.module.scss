@@ -2,10 +2,6 @@
 
 .blue-background {
   background-color: var(--artwork-major-blue-france);
-  padding-top: 64px;
-  @media (min-width: $md) {
-    padding-top: 0px;
-  }
 }
 
 .tiles-section {
@@ -24,15 +20,6 @@
       padding-top: 80px;
       padding-left: 0px;
     }
-  }
-}
-
-.lines {
-  background-color: var(--artwork-major-blue-france);
-  .image {
-    background-image: url('/images/homepage/lines.png');
-    background-repeat: repeat-x;
-    height: 44px;
   }
 }
 

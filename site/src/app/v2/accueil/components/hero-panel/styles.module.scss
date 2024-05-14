@@ -1,9 +1,21 @@
+@import '../../../../sassVariables.module.scss';
+
 .background {
   background-color: var(--color-white);
 }
 
 .sizer {
   max-width: 355px;
+}
+
+.padder {
+  padding-top: 32px;
+  padding-bottom: 16px;
+
+  @media (min-width: $xl) {
+    padding-top: 64px;
+    padding-bottom: 56px;
+  }
 }
 
 .container {

@@ -11,12 +11,12 @@ const HeroPanel = () => {
   const router = useRouter();
 
   return (
-    <div className={cn('fr-pt-8w', 'fr-pb-7w', 'fr-px-3w', styles.background, styles.sizer)}>
+    <div className={cn('fr-px-3w', styles.background, styles.sizer, styles.padder)}>
       <div className={styles.container}>
-        <h2 className={cn('fr-hidden-sm', styles.title)}>
+        <h2 className={cn('fr-hidden-lg', styles.title)}>
           50 euros pour aider les 6-30 ans à faire du sport
         </h2>
-        <h2 className={cn('fr-hidden', 'fr-unhidden-sm', styles.title)}>
+        <h2 className={cn('fr-hidden', 'fr-unhidden-lg', styles.title)}>
           50 euros
           <br />
           pour aider
