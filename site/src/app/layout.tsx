@@ -8,9 +8,9 @@ import { defaultColorScheme } from './defaultColorScheme';
 import Link from 'next/link';
 
 import React from 'react';
-import PassSportBreadcrumb from './components/pass-sport-breadcrumb/PassSportBreadcrumb';
 import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
 import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
+import PassSportBreadcrumb from '@/app/components/pass-sport-breadcrumb/PassSportBreadCrumb';
 
 export const metadata: Metadata = {
   title: 'pass Sport - Accueil',

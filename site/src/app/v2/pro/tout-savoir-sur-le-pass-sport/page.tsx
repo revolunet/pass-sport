@@ -5,6 +5,11 @@ import SocialMediaPanel from '../../../components/social-media-panel/SocialMedia
 import Link from 'next/link';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Accordion from '@codegouvfr/react-dsfr/Accordion';
+import {
+  multisportsAndaffinitaires,
+  olympiquesAndparalympiques,
+  unisport,
+} from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/constants/federations';
 
 export default function ToutSavoirSurLePassSport() {
   return (
@@ -137,80 +142,14 @@ export default function ToutSavoirSurLePassSport() {
 
         <section>
           <Accordion label="1. Fédérations olympiques et paralympiques">
-            Fédération française d’athlétisme Fédération française d’aviron
-            <br />
-            Fédération française de badminton
-            <br />
-            Fédération française de basketball
-            <br />
-            Fédération française de boxe
-            <br />
-            Fédération française de canoë-kayak et sports de pagaie
-            <br />
-            Fédération française de cyclisme
-            <br />
-            Fédération française de danse
-            <br />
-            Fédération française de football
-            <br />
-            Fédération française de golf
-            <br />
-            Fédération française de gymnastique
-            <br />
-            Fédération française de handball
-            <br />
-            Fédération française de hockey
-            <br />
-            Fédération française de hockey sur glace
-            <br />
-            Fédération française de judo, jujitsu, kendo et disciplines associées
-            <br />
-            Fédération française de la montagne et de l’escalade
-            <br />
-            Fédération française de lutte
-            <br />
-            Fédération française de natation
-            <br />
-            Fédération française de pentathlon moderne
-            <br />
-            Fédération française de roller et skateboard
-            <br />
-            Fédération française de rugby
-            <br />
-            Fédération française de ski
-            <br />
-            Fédération française de surf
-            <br />
-            Fédération française de taekwondo et disciplines associées
-            <br />
-            Fédération française de tennis
-            <br />
-            Fédération française de tennis de table
-            <br />
-            Fédération française de tir
-            <br />
-            Fédération française de tir à l’arc
-            <br />
-            Fédération française de triathlon et disciplines enchainées
-            <br />
-            Fédération française de voile
-            <br />
-            Fédération française de volley
-            <br />
-            Fédération française d’équitation
-            <br />
-            Fédération française des sports de glace
-            <br />
-            Fédération française d’escrime
-            <br />
-            Fédération française d’haltérophilie, musculation
-            <br />
-            Fédération française du sport adapté
-            <br />
-            Fédération française handisport
+            <FederationList federations={olympiquesAndparalympiques} />
           </Accordion>
-          <Accordion label="2. Fédérations unisport">Content</Accordion>
-          <Accordion label="3. Fédérations multisports et affinitaires">Content</Accordion>
+          <Accordion label="2. Fédérations unisport">
+            <FederationList federations={unisport} />
+          </Accordion>
+          <Accordion label="3. Fédérations multisports et affinitaires">
+            <FederationList federations={multisportsAndaffinitaires} />
+          </Accordion>
         </section>
       </div>
 
@@ -223,4 +162,17 @@ export default function ToutSavoirSurLePassSport() {
       <SocialMediaPanel />
     </div>
   );
+}
+
+interface FederationListProps {
+  federations: string[];
+}
+
+function FederationList({ federations }: FederationListProps) {
+  return federations.map((fed) => (
+    <>
+      {fed}
+      <br />
+    </>
+  ));
 }
