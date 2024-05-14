@@ -7,8 +7,11 @@ import styles from './styles.module.scss';
 import ContentSection from '@/app/v2/une-question/components/ContentSection/ContentSection';
 import ContactSection from '@/app/v2/une-question/components/ContactSection/ContactSection';
 import { getCategoriesWithArticles } from '@/app/v2/une-question/server-agent';
+import { headers } from 'next/headers';
 
 export default async function Questions() {
+  headers();
+
   const categoriesWithArticles = await getCategoriesWithArticles();
 
   return (

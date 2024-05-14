@@ -26,8 +26,6 @@ const ContactSection = () => {
     },
   });
 
-  console.log({ modalIsClosed });
-
   return (
     <section className={cn('fr-px-3w', styles.contact)}>
       <contactModal.Component
