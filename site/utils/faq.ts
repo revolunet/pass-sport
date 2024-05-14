@@ -15,39 +15,54 @@ export async function getFormattedCategories({
   crispIdentifier: string;
 }): Promise<CategoryWithArticles[]> {
   const categories = new Map<string, CategoryWithArticles>();
+  const fullArticlePromises = articles
+    .filter((article) => article.category?.category_id)
+    .map((article, index) =>
+      getCrispFullArticle({
+        crispClient,
+        articleId: article.article_id,
+        crispIdentifier,
+        locale: LOCALE,
+      })
+        .then((fullArticle) => ({
+          article,
+          fullArticle,
+        }))
+        .catch((err) => {
+          console.error(`Error occured while fetching article id: ${article.article_id}`);
 
-  // Format the final output
-  // We want a list of categories that contain their own list of articles
-  for await (const article of articles) {
-    if (!article.category?.category_id) continue;
+          return {
+            article: null,
+            fullArticle: null,
+          };
+        }),
+    );
 
-    // We need to fetch the full article individually to get its content...
-    const fullArticle: CrispFullArticle = await getCrispFullArticle({
-      crispClient,
-      articleId: article.article_id,
-      crispIdentifier,
-      locale: LOCALE,
+  const results = await Promise.all(fullArticlePromises);
+
+  results
+    .filter(({ article, fullArticle }) => article !== null && fullArticle !== null)
+    .forEach(({ article, fullArticle }) => {
+      // Type narrowing despite filter above
+      if (!article || !fullArticle || !article.category) return;
+
+      // category cannot be null with the code above that does the filtering
+      const categoryId = article.category.category_id;
+      const formattedArticle = getFormattedArticleWithContent(article, fullArticle.content);
+
+      const category = categories.get(categoryId);
+
+      if (category) {
+        category.articles.push(formattedArticle);
+      } else {
+        categories.set(categoryId, {
+          id: categoryId,
+          // category cannot be null with the code above that does the filtering
+          name: article.category.name,
+          articles: [formattedArticle],
+        });
+      }
     });
-
-    // Ensure categories uniqueness
-    if (!categories.has(article.category.category_id)) {
-      categories.set(article.category?.category_id, {
-        id: article.category.category_id,
-        name: article.category.name,
-        articles: [getFormattedArticleWithContent(article, fullArticle.content)],
-      });
-    } else {
-      const category: CategoryWithArticles = categories.get(article.category.category_id)!;
-
-      categories.set(article.category.category_id, {
-        ...category,
-        articles: [
-          ...category.articles!,
-          getFormattedArticleWithContent(article, fullArticle.content),
-        ],
-      });
-    }
-  }
 
   return Array.from(categories.values());
 }

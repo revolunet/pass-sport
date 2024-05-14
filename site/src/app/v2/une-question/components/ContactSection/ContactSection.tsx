@@ -4,6 +4,8 @@ import ContactForm from '@/app/v2/une-question/components/ContactForm/ContactFor
 import { createModal } from '@codegouvfr/react-dsfr/Modal';
 import cn from 'classnames';
 import styles from '@/app/v2/une-question/styles.module.scss';
+import { useIsModalOpen } from '@codegouvfr/react-dsfr/Modal/useIsModalOpen';
+import { useState } from 'react';
 
 const contactModal = createModal({
   id: 'contact-modal',
@@ -11,10 +13,30 @@ const contactModal = createModal({
 });
 
 const ContactSection = () => {
+  const [modalIsClosed, setModalIsClosed] = useState(true);
+
+  useIsModalOpen(contactModal, {
+    onConceal: () => {
+      setModalIsClosed(true);
+      console.log('onConceeal');
+    },
+    onDisclose: () => {
+      setModalIsClosed(false);
+      console.log('onDisclose');
+    },
+  });
+
+  console.log({ modalIsClosed });
+
   return (
     <section className={cn('fr-px-3w', styles.contact)}>
-      <contactModal.Component title="Formulaire de contact" iconId="fr-icon-mail-line" size="large">
-        <ContactForm />
+      <contactModal.Component
+        title="Formulaire de contact"
+        className="fr-mb-0"
+        iconId="fr-icon-mail-line"
+        size="large"
+      >
+        {!modalIsClosed && <ContactForm />}
       </contactModal.Component>
 
       <div className="fr-mb-4w">

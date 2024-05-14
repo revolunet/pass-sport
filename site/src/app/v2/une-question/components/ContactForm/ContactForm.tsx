@@ -11,7 +11,6 @@ import { postContact } from '../../client-agent';
 import styles from './styles.module.scss';
 import { EMAIL_REGEX } from '../../../../../../utils/email';
 import Link from 'next/link';
-import cn from 'classnames';
 
 const initialInputsState: InputsState = {
   firstname: 'default',
@@ -23,20 +22,20 @@ const initialInputsState: InputsState = {
 };
 
 const reasons: string[] = [
-  'Bénéficiaires et familles : comment obtenir le Pass’Sport ?',
+  'Bénéficiaires et familles : comment obtenir le pass Sport ?',
   'Bénéficiaires et familles : qui reçoit le code ?',
   'Bénéficiaires et familles : comment utiliser mon pass ?',
   'Bénéficiaires et familles : où utiliser mon pass ?',
   'Bénéficiaires et familles : comment trouver un club partenaire ?',
-  'Bénéficiaires et familles : mon club refuse de prendre le Pass’Sport que faire ?',
+  'Bénéficiaires et familles : mon club refuse de prendre le pass Sport que faire ?',
   "Bénéficiaires et familles : mon club refuse de me faire la réduction de 50€ à l’inscription et attend d'être remboursé pour m'appliquer la ristourne que faire ?",
   'Bénéficiaires et familles : les inscriptions dans mon club sont avant l’envoi des codes que faire ?',
-  'Code : Je n’ai pas reçu mon code Pass’Sport',
-  'Code  : Je n’arrive à obtenir mon code sur le portail via «&nbsp;obtenir mon code&nbsp;»',
+  'Code : Je n’ai pas reçu mon code pass Sport',
+  'Code  : Je n’arrive à obtenir mon code sur le portail via « obtenir mon code »',
   'Clubs et structures : le code ne fonctionne pas !',
   'Clubs et structures : quel est le principe du dipositif ?',
   'Clubs et structures : Comment rentrer dans le dispositif ?',
-  'Clubs et structures : Comment demander le remboursement Pass’Sport&nbsp;?',
+  'Clubs et structures : Comment demander le remboursement pass Sport ?',
   'Clubs et structures : quand mon club sera-t-il remboursé ?',
   'Clubs et structures : j’ai un problème avec mon compte asso',
 ];
@@ -226,7 +225,7 @@ const ContactForm = () => {
       </form>
       {apiError && (
         <Alert
-          className={styles.error}
+          className="fr-mt-2w"
           severity="error"
           isClosed={!isError}
           onClose={() => setIsError(false)}
@@ -237,9 +236,10 @@ const ContactForm = () => {
       )}
       {isOk && (
         <Alert
-          className={styles.error}
+          className="fr-mt-2w"
           severity="success"
-          title="Votre demande a bien été transmise"
+          title="Votre demande à bien été envoyée"
+          description="Votre message nous est bien transmis, une copie sera disponible dans votre messagerie électronique."
           closable
         />
       )}
