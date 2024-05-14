@@ -15,7 +15,7 @@ export default function Accueil() {
         <Hero />
       </section>
 
-      <div className={cn('fr-px-2w', styles['blue-background'])}>
+      <div className={cn('fr-px-2w', 'fr-pt-8w', styles['blue-background'])}>
         <section className={cn('fr-container', 'fr-px-0', styles['tiles-section'])}>
           <div className="fr-grid-row fr-grid-row--gutters">
             {presentationTiles.map((tile) => (
@@ -32,9 +32,6 @@ export default function Accueil() {
           <h4 className={cn(styles.title)}>Mieux comprendre le Pass&apos;Sport</h4>
           <Video />
         </section>
-      </div>
-      <div className={cn('fr-hidden', 'fr-unhidden-md', 'fr-pt-5w', 'fr-pb-4w', styles.lines)}>
-        <div className={styles.image} />
       </div>
 
       <section className={cn('fr-px-5w', styles['callout-section'])}>
