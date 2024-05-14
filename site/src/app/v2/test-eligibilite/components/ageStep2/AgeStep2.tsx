@@ -71,7 +71,7 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
 
       {confirmed && (
         <VerdictPanel
-          title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous êtes vous
+          title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous
           êtes éligible au pass Sport."
           buttonProps={{
             children: 'Trouver un club partenaire',
