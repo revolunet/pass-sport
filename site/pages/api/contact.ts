@@ -12,11 +12,12 @@ const contactFormSchema = z.object({
   reason: z.string(),
 });
 
+const MAX_LENGTH_REASON = 80;
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const jsonBody = JSON.parse(req.body);
   const objectBody: ContactRequestBody = contactFormSchema.parse(jsonBody);
   const conversation = await crispClient.website.createNewConversation(envVars.CRISP_WEBSITE);
-
   await crispClient.website.updateConversationMetas(
     envVars.CRISP_WEBSITE,
     conversation.session_id,
@@ -24,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       nickname: `${objectBody.firstname} ${objectBody.lastname}`,
       email: objectBody.email,
       data: { email: objectBody.email },
-      segments: [objectBody.reason],
+      segments: [objectBody.reason.slice(0, MAX_LENGTH_REASON)],
     },
   );
 

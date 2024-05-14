@@ -1,4 +1,10 @@
-.container {
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.circles-container {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -9,11 +15,11 @@
   height: 12px;
   border-radius: 50%;
 
-  &_filled {
+  &--filled {
     background-color: var(--artwork-minor-blue-france);
   }
 
-  &_empty {
+  &--empty {
     background-color: #d9d9d9;
   }
 }

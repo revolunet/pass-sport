@@ -1,0 +1,87 @@
+@import '../../../../sassVariables.module.scss';
+
+.faq {
+  position: relative;
+  top: -100px;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  max-width: $layout-max-width;
+  margin: 24px 24px -80px;
+  padding-top: 24px;
+
+  @media (min-width: $md) {
+    top: -60px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 24px;
+    margin: 0 auto -64px;
+  }
+
+  &__summary {
+    background-color: var(--color-white);
+  }
+
+  &__questions {
+    width: 100%;
+
+    @media (min-width: $md) {
+      width: 792px;
+    }
+  }
+
+  &__category {
+    &--selected {
+      color: #000091;
+    }
+
+    &--pointer {
+      cursor: pointer;
+    }
+  }
+
+  &__markdown {
+    p {
+      margin-bottom: 1rem;
+
+      &:first-child {
+        margin-top: 1rem;
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &__callout {
+    &-text{
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
+
+  &__feedback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 24px;
+
+    & button {
+      margin: 0 !important;
+    }
+
+    &-date {
+      color: #666666;
+      padding: 16px 0;
+      text-align: center;
+      border-top: 1px solid var(--border-default-grey);
+      border-bottom: 1px solid var(--border-default-grey);
+      margin-top: 24px;
+    }
+  }
+}
