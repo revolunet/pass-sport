@@ -12,13 +12,13 @@ const Hero = () => {
       </div>
 
       <div className={styles.container}>
-        <div className={styles['cta-positioner-1']} />
+        <div className={styles['container_spacer-1']} />
         <div className={cn(styles['panel-wrapper'])}>
           <div className={cn(styles['panel-positioner'])}>
             <HeroPanel />
           </div>
         </div>
-        <div className={styles['cta-positioner-2']} />
+        <div className={styles['container_spacer-2']} />
       </div>
     </div>
   );

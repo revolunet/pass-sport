@@ -23,7 +23,7 @@
   }
 
   @media (min-width: $lg) {
-    object-position: -370px -100px;
+    object-position: -315px -100px;
     height: 778px;
   }
 
@@ -47,33 +47,31 @@
     height: 578px;
   }
 
+  &_spacer-1 {
+    flex: 0 0 310px;
 
-}
+    @media (min-width: $md) {
+      flex: 1 1 400px;
+    }
 
-.cta-positioner-1 {
-  flex: 0 0 310px;
+    @media (min-width: $lg) {
+      flex: 1 1 800px;
+    }
 
-  @media (min-width: $md) {
-    flex: 1 1 400px;
+    @media (min-width: $xl) {
+      flex: 1 1 900px;
+    }
   }
 
-  @media (min-width: $lg) {
-    flex: 1 1 800px;
-  }
+  &_spacer-2 {
+    flex: 0 0 0px;
+    @media (min-width: $md) {
+      flex: 1 1 50px;
+    }
 
-  @media (min-width: $xl) {
-    flex: 1 1 900px;
-  }
-}
-
-.cta-positioner-2 {
-  flex: 0 0 0px;
-  @media (min-width: $md) {
-    flex: 1 1 50px;
-  }
-
-  @media (min-width: $xl) {
-    flex: 1 1 100px;
+    @media (min-width: $xl) {
+      flex: 1 1 100px;
+    }
   }
 }
 
