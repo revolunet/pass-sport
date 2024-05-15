@@ -13,7 +13,7 @@ import {
 
 export default function ToutSavoirSurLePassSport() {
   return (
-    <head className={styles.container}>
+    <main className={styles.container}>
       <PageHeader title="Tout savoir sur le pass Sport" subtitle="" isProVersion />
 
       <About />
@@ -160,7 +160,7 @@ export default function ToutSavoirSurLePassSport() {
         </Link>
       </div>
       <SocialMediaPanel />
-    </head>
+    </main>
   );
 }
 
