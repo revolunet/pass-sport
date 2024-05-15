@@ -130,11 +130,13 @@ const ContactForm = ({ closeFn }: Props) => {
           <p className="fr-mb-2w">
             <Button
               type="button"
-              iconId="fr-icon-arrow-right-line"
-              iconPosition="left"
-              onClick={closeFn}
+              onClick={() => {
+                closeFn();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              priority="secondary"
             >
-              Lire FAQ
+              Lire la FAQ
             </Button>
           </p>
         </div>
