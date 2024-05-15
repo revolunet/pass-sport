@@ -128,10 +128,14 @@ const ContactForm = ({ closeFn }: Props) => {
           </p>
 
           <p className="fr-mb-2w">
-            <Link href="#" title="Lire la faq" onClick={closeFn}>
-              <span className="fr-icon-arrow-right-line " />
+            <Button
+              type="button"
+              iconId="fr-icon-arrow-right-line"
+              iconPosition="left"
+              onClick={closeFn}
+            >
               Lire FAQ
-            </Link>
+            </Button>
           </p>
         </div>
         <div>
