@@ -28,9 +28,12 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
           role="navigation"
           aria-labelledby="fr-summary-title"
         >
-          <p className="fr-summary__title fr-p-0 fr-pl-md-1w" id="fr-summary-title">
-            Categories
-          </p>
+          {categoriesWithArticles.length > 0 && (
+            <p className="fr-summary__title fr-p-0 fr-pl-md-1w" id="fr-summary-title">
+              Categories
+            </p>
+          )}
+
           <ol
             className={cn('fr-summary__list', 'fr-p-0', 'fr-pl-md-3w', styles['faq__summary-list'])}
           >
