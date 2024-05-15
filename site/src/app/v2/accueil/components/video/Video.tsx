@@ -10,7 +10,7 @@ const Video = () => {
           allow="autoplay; fullscreen; picture-in-picture"
         ></iframe>
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
-          Présentation du dispositif Pass Sport du ministère des Sports
+          Présentation du dispositif pass Sport du ministère des Sports
           <a className={`fr-link ${styles.text}`} href="https://vimeo.com/727000609">
             Voir la vidéo sur Viméo
           </a>
