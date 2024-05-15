@@ -18,11 +18,9 @@ const ContactSection = () => {
   useIsModalOpen(contactModal, {
     onConceal: () => {
       setModalIsClosed(true);
-      console.log('onConceeal');
     },
     onDisclose: () => {
       setModalIsClosed(false);
-      console.log('onDisclose');
     },
   });
 
@@ -34,7 +32,7 @@ const ContactSection = () => {
         iconId="fr-icon-mail-line"
         size="large"
       >
-        {!modalIsClosed && <ContactForm />}
+        {!modalIsClosed && <ContactForm closeFn={contactModal.close} />}
       </contactModal.Component>
 
       <div className="fr-mb-4w">

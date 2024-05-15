@@ -40,7 +40,11 @@ const reasons: string[] = [
   'Clubs et structures : j’ai un problème avec mon compte asso',
 ];
 
-const ContactForm = () => {
+interface Props {
+  closeFn: VoidFunction;
+}
+
+const ContactForm = ({ closeFn }: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<InputsState>(initialInputsState);
   const [apiError, setApiError] = useState<boolean>(false);
@@ -124,10 +128,16 @@ const ContactForm = () => {
           </p>
 
           <p className="fr-mb-2w">
-            <Link href="v2/une-question">
-              <span className="fr-icon-arrow-right-line " />
-              Accéder à la FAQ
-            </Link>
+            <Button
+              type="button"
+              onClick={() => {
+                closeFn();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              priority="secondary"
+            >
+              Lire la FAQ
+            </Button>
           </p>
         </div>
         <div>
