@@ -108,7 +108,7 @@ export default function PolitiqueDeConfidentialite() {
             (règlement général sur la protection des données - RGPD) relatif à l&apos;exécution
             d&apos;une mission d&apos;intérêt public dont est investie la Direction des sports au
             sens des articles L. 100-1 et L. 100-2 du code du sport et du décret n° 2023-741 du 8
-            août 2023 relatif au « Pass&apos;Sport » 2023.
+            août 2023 relatif au « pass Sport » 2023.
           </p>
         </section>
 
