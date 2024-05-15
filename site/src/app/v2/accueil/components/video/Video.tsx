@@ -69,7 +69,7 @@ const Video = () => {
                           id="fr-transcription-modal-transcription-2160-title"
                           className="fr-modal__title"
                         >
-                          Présentation du dispositif Pass Sport du ministère des Sports
+                          Présentation du dispositif pass Sport du ministère des Sports
                         </h1>
                         <div>
                           <p>
