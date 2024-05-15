@@ -10,14 +10,20 @@ const {
 } = initCrispClient();
 
 export const getCategoriesWithArticles = async (): Promise<CategoryWithArticles[]> => {
-  const articles = await getCrispArticles({
-    crispClient,
-    crispIdentifier: CRISP_WEBSITE,
-  });
+  try {
+    const articles = await getCrispArticles({
+      crispClient,
+      crispIdentifier: CRISP_WEBSITE,
+    });
 
-  return getFormattedCategories({
-    crispClient,
-    crispIdentifier: CRISP_WEBSITE,
-    articles,
-  });
+    return getFormattedCategories({
+      crispClient,
+      crispIdentifier: CRISP_WEBSITE,
+      articles,
+    });
+  } catch (err) {
+    console.error('Error occurred while trying to get articles from CRISP', err);
+
+    return [];
+  }
 };
