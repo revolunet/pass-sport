@@ -13,6 +13,15 @@ server {
     proxy_set_header        X-Forwarded-Protocol $scheme;
   }
 
+  location /api {
+    proxy_pass  https://pass-sport-prod.osc-secnum-fr1.scalingo.io;
+    proxy_intercept_errors  on;
+    proxy_set_header        Host                 app.pass-sport.beta.gouv.fr;
+    proxy_set_header        X-Real-IP            $remote_addr;
+    proxy_set_header        X-Forwarded-For      $proxy_add_x_forwarded_for;
+    proxy_set_header        X-Forwarded-Protocol $scheme;
+  }
+
   location /_next {
     proxy_pass  https://pass-sport-prod.osc-secnum-fr1.scalingo.io/_next;
     proxy_intercept_errors  on;
