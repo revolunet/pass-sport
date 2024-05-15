@@ -40,7 +40,11 @@ const reasons: string[] = [
   'Clubs et structures : j’ai un problème avec mon compte asso',
 ];
 
-const ContactForm = () => {
+interface Props {
+  closeFn: VoidFunction;
+}
+
+const ContactForm = ({ closeFn }: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<InputsState>(initialInputsState);
   const [apiError, setApiError] = useState<boolean>(false);
@@ -124,9 +128,9 @@ const ContactForm = () => {
           </p>
 
           <p className="fr-mb-2w">
-            <Link href="v2/une-question">
+            <Link href="#" title="Lire la faq" onClick={closeFn}>
               <span className="fr-icon-arrow-right-line " />
-              Accéder à la FAQ
+              Lire FAQ
             </Link>
           </p>
         </div>
