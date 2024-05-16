@@ -92,10 +92,7 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
           <br />
           Si après le 1er septembre vous ne l&apos;avez pas reçu, vous aurez la possibilité
           d&apos;en faire la demande sur{' '}
-          <Link
-            href="https://www.service-public.fr/simulateur/calcul/certificatMedical"
-            target="_blank"
-          >
+          <Link href="https://pass.sports.gouv.fr" target="_blank">
             pass.sports.gouv.fr
           </Link>
         </VerdictPanel>

@@ -40,10 +40,7 @@ const AllowancesStep = ({ isForChild }: Props) => {
         <div className="fr-my-2t">
           Si après le 1er septembre vous n&apos;avez pas reçu votre pass, vous aurez la possibilité
           d&apos;en faire la demande sur{' '}
-          <Link
-            href="https://www.service-public.fr/simulateur/calcul/certificatMedical"
-            target="_blank"
-          >
+          <Link href="https://pass.sports.gouv.fr" target="_blank">
             pass.sports.gouv.fr
           </Link>
         </div>
