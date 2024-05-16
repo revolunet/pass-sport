@@ -16,7 +16,6 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
 
 export default function PassSportBreadcrumbStandard() {
   const paths = usePathname();
-  const pathname = usePathname();
   const internalRoutes = ['/', '/v2/accueil', '/v2/test-eligibilite'];
 
   if (!paths || internalRoutes.includes(paths)) {
