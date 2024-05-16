@@ -41,7 +41,12 @@ export const navigationItemPro: NavigationItem[] = [
   },
   {
     link: '/v2/pro/tout-savoir-sur-le-pass-sport',
-    text: 'Tout savoir sur le pass Sport',
+    text: (
+      <div className={styles['menu-item-spacer']}>
+        <span aria-hidden="true"></span>
+        Tout savoir sur le pass Sport
+      </div>
+    ),
   },
   { link: '/v2/pro/trouver-un-club', text: 'Trouver un club partenaire' },
   { link: '/v2/pro/une-question', text: 'Une question ?' },
