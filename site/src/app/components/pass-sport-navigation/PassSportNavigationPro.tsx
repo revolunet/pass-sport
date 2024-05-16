@@ -24,6 +24,25 @@ export default function PassSportNavigationPro() {
         }}
         serviceTitle="pass Sport"
         serviceTagline="50 euros pour aider les 6-30 ans à faire du sport"
+        quickAccessItems={[
+          {
+            iconId: 'fr-icon-external-link-line',
+            text: 'Le Compte Asso',
+            linkProps: {
+              className: 'fr-btn--icon-right',
+              href: 'https://lecompteasso.associations.gouv.fr/',
+              title: 'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
+            },
+          },
+          {
+            text: 'Je suis un particulier',
+            iconId: 'fr-icon-arrow-right-line',
+            buttonProps: {
+              onClick: function noRefCheck() {},
+              className: 'fr-btn--tertiary fr-btn--icon-right',
+            },
+          },
+        ]}
         homeLinkProps={{
           href: '/v2/pro/accueil',
           title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",
