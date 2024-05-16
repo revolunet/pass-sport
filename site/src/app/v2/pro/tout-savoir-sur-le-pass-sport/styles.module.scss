@@ -1,51 +1,21 @@
 @import '../../../sassVariables.module.scss';
 
-.about-container {
-  margin: 0 auto 72px;
-  padding: 0 1rem;
+.page-header{
+  height: 100%;
+  padding-bottom: 196px;
+}
 
-  &__highlight {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    gap: 52px;
-    max-width: $layout-max-width;
-    margin: -100px auto 0;
-    background-color: var(--color-white);
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  max-width: 1200px;
+  margin: -166px auto 72px;
+  background-color: white;
+  padding: 56px 102px 56px;
 
-    &-text {
-      padding-right: 24px;
-    }
-
-    &-image {
-      width: 100%;
-      height: auto;
-      max-width: 332px;
-    }
-
-    &-title {
-      margin-bottom: 24px;
-      padding-top: 24px;
-    }
-
-    @media screen and (max-width: $md) {
-      margin-top: -80px;
-      flex-direction: column;
-      background-color: unset;
-      align-items: center;
-    }
-
-    @media screen and (max-width: $xs) {
-      margin-top: -60px;
-    }
-
-    & > div:first-child {
-      min-width: 332px;
-
-      @media screen and (max-width: $md) {
-        min-width: 168px;
-      }
-    }
+  @media screen and (max-width: $md) {
+    padding: 56px 0 56px;
   }
 }
 
@@ -53,7 +23,5 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin: 0 auto 72px;
   padding: 0 1rem;
-  max-width: 996px;
 }

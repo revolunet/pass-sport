@@ -2,12 +2,14 @@
 
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { navigationItemStandard } from './navigation';
 import styles from './styles.module.scss';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
+  const router = useRouter();
+
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));
   };
@@ -24,6 +26,18 @@ export default function PassSportNavigation() {
         }}
         serviceTitle="pass Sport"
         serviceTagline="50 euros pour aider les 6-30 ans à faire du sport"
+        quickAccessItems={[
+          {
+            text: 'Je suis une structure partenaire',
+            iconId: 'fr-icon-arrow-right-line',
+            buttonProps: {
+              onClick: () => {
+                router.push('/v2/pro/accueil');
+              },
+              className: 'fr-btn--tertiary fr-btn--icon-right',
+            },
+          },
+        ]}
         homeLinkProps={{
           href: '/v2/accueil',
           title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",

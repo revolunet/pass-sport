@@ -12,7 +12,7 @@ const EligibilityTestBanner = () => {
         </p>
       </div>
       <Link href="/v2/test-eligibilite">
-        <Button className="fr-mx-auto" priority="tertiary" size="large">
+        <Button className="fr-mx-auto" priority="primary" size="large">
           Je fais le test
         </Button>
       </Link>

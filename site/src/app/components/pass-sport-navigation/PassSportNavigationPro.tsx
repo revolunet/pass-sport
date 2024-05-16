@@ -2,12 +2,14 @@
 
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { navigationItemPro } from './navigation';
 import styles from './styles.module.scss';
 
 export default function PassSportNavigationPro() {
   const paths: string | null = usePathname();
+  const router = useRouter();
+
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));
   };
@@ -38,7 +40,9 @@ export default function PassSportNavigationPro() {
             text: 'Je suis un particulier',
             iconId: 'fr-icon-arrow-right-line',
             buttonProps: {
-              onClick: function noRefCheck() {},
+              onClick: () => {
+                router.push('/v2/accueil');
+              },
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },
