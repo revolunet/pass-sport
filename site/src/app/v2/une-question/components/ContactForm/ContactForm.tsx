@@ -217,11 +217,7 @@ const ContactForm = ({ closeFn }: Props) => {
             }
           />
         </div>
-        <div className="fr-grid-row ">
-          <p className="text--italic fr-col-md-8 fr-pr-1w">
-            Un seul clic suffit ! Votre message nous est bien transmis, une copie sera disponible
-            dans votre messagerie électronique.
-          </p>
+        <div className="fr-grid-row fr-grid-row--right">
           <Button
             className="fr-col-md-4 fr-col-12 fr-grid-row--center fr-mt-2w fr-mt-md-0"
             priority="primary"
