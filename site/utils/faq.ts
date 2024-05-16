@@ -1,9 +1,17 @@
 import Crisp from 'crisp-api';
 import { CrispArticle, CrispFullArticle } from '../types/Crisp';
 import { Article, CategoryWithArticles } from '../types/Faq';
+import NodeCache from 'node-cache';
 
 type Locale = 'fr' | 'en';
 const LOCALE = 'fr';
+
+const CACHE_DURATION = 28_800; // 8 hours in seconds
+const cache = new NodeCache({ checkperiod: CACHE_DURATION, deleteOnExpire: true });
+export enum CacheKey {
+  ARTICLES = 'ARTICLES',
+  FULL_ARTICLE = 'FULL-ARTICLE',
+}
 
 export async function getFormattedCategories({
   crispClient,
@@ -77,7 +85,24 @@ export async function getCrispArticles({
   crispIdentifier: string;
   locale?: Locale;
 }): Promise<CrispArticle[]> {
-  return crispClient.website.listHelpdeskLocaleArticles(crispIdentifier, locale);
+  try {
+    let articles: CrispArticle[] | undefined = cache.get(CacheKey.ARTICLES);
+
+    if (articles === undefined) {
+      articles = (await crispClient.website.listHelpdeskLocaleArticles(
+        crispIdentifier,
+        locale,
+      )) as CrispArticle[];
+
+      cache.set(CacheKey.ARTICLES, articles);
+    }
+
+    return articles;
+  } catch (err) {
+    console.error('Error occured while trying to get list of articles', err);
+
+    return [];
+  }
 }
 
 // Get a full article that contains the "content" attribute
@@ -92,11 +117,17 @@ export async function getCrispFullArticle({
   crispIdentifier: string;
   locale?: Locale;
 }) {
-  const fullArticle: CrispFullArticle = await crispClient.website.resolveHelpdeskLocaleArticle(
-    crispIdentifier,
-    locale,
-    articleId,
-  );
+  let fullArticle: CrispFullArticle | undefined = cache.get(CacheKey.FULL_ARTICLE);
+
+  if (fullArticle === undefined) {
+    fullArticle = await crispClient.website.resolveHelpdeskLocaleArticle(
+      crispIdentifier,
+      locale,
+      articleId,
+    );
+
+    cache.set(CacheKey.FULL_ARTICLE, fullArticle);
+  }
 
   return fullArticle;
 }
