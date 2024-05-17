@@ -10,19 +10,21 @@ import SocialMediaPanel from '../../components/social-media-panel/SocialMediaPan
 
 export default function ToutSavoirSurLePassSport() {
   return (
-    <div className={styles.container}>
+    <>
       <PageHeader title="Tout savoir sur le pass Sport" subtitle="" />
+      <main className={styles.container}>
+        <About />
 
-      <About />
+        <div className={styles['section-container']}>
+          <ObtainPassPort />
+          <HowToUsePassSport />
+          <WhereToUsePassSport />
+          <LegalTextReference />
+        </div>
 
-      <div className={styles['section-container']}>
-        <ObtainPassPort />
-        <HowToUsePassSport />
-        <WhereToUsePassSport />
-        <LegalTextReference />
-      </div>
-      <EligibilityTestBanner />
-      <SocialMediaPanel />
-    </div>
+        <EligibilityTestBanner />
+        <SocialMediaPanel />
+      </main>
+    </>
   );
 }

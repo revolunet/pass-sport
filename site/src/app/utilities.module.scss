@@ -3,3 +3,12 @@
     font-style: italic;
   }
 }
+
+.align {
+  &-self {
+    &--baseline {
+      align-self: baseline;
+    }
+  }
+}
+

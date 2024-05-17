@@ -4,6 +4,10 @@
   background-color: #ececfe;
   height: 180px;
   padding: 0 1rem;
+
+  &--pro {
+    background-color: var(--brown-caramel-950-100);
+  }
 }
 
 .titlewrapper {

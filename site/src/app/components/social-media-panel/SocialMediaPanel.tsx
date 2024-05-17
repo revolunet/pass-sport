@@ -5,13 +5,14 @@ import cn from 'classnames';
 
 interface Props {
   isHomePage?: boolean;
+  isProVersion?: boolean;
 }
 
 interface SocialMediaLinkProps {
   link: SocialMediaLinkData;
 }
 
-const SocialMediaPanel = ({ isHomePage = false }: Props) => {
+const SocialMediaPanel = ({ isHomePage = false, isProVersion = false }: Props) => {
   const SocialMediaLink: React.FC<SocialMediaLinkProps> = ({ link }) => (
     <Link
       className={cn('fr-text--lg', 'fr-text--bold', styles.color)}
@@ -27,9 +28,10 @@ const SocialMediaPanel = ({ isHomePage = false }: Props) => {
     <div
       className={cn('fr-pb-1w', 'fr-px-1w', styles.container, {
         [styles['container--home-page-variant']]: isHomePage,
+        [styles['container--pro']]: isProVersion,
       })}
     >
-      <h5 className={cn(styles.color, styles.title)}>Suivez-nous sur les réseaux sociaux</h5>
+      <h5 className={styles.title}>Suivez-nous sur les réseaux sociaux</h5>
       <div className={styles['link-container']}>
         {socialMedia.map((link) => (
           <SocialMediaLink key={link.id} link={link} />

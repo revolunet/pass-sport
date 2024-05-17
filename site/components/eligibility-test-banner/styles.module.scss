@@ -1,11 +1,9 @@
 @import '../../src/app/sassVariables.module.scss';
 
 .banner {
-  background-color: var(--artwork-major-blue-france);
+  background-color: var(--blue-cumulus-850-200);
   text-align: center;
-
   button {
-    background-color: var(--color-white);
     width: 100%;
     justify-content: center;
 
@@ -17,7 +15,7 @@
 }
 
 .text {
-  color: var(--color-white);
+  color: var(--text-black-white-grey);
   font-weight: 700;
 }
 
