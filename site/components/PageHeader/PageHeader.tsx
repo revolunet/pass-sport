@@ -1,8 +1,9 @@
 import styles from './styles.module.scss';
 import cn from 'classnames';
+import { ReactNode } from 'react';
 
 interface IProps {
-  title: string;
+  title: string | ReactNode;
   subtitle?: string;
   isProVersion?: boolean;
   classes?: {

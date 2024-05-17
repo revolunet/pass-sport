@@ -1,7 +1,7 @@
 @import '../../../app/sassVariables.module.scss';
 
 .container {
-  background-color: #ececfe;
+  background-color: var(--background-contrast-blue-france);
   padding: 2rem 1.5rem;
 
   &--pro {
@@ -17,6 +17,6 @@
   nav {
     max-width: $layout-max-width;
     margin: auto;
-    background-color: #ececfe;
+    background-color: var(--background-contrast-blue-france);
   }
 }
