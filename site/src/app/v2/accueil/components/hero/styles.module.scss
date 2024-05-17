@@ -8,6 +8,9 @@
   width: 100%;
   position: absolute;
   z-index: -1;
+  text-align: center;
+  background-color: var(--artwork-major-blue-france);
+  overflow-x: clip;
 }
 
 .image {
@@ -18,17 +21,21 @@
   height: 430px;
 
   @media (min-width: $md) {
+    object-fit: contain;
+    width: auto;
+
     object-position: -240px -60px;
     height: 500px;
   }
 
   @media (min-width: $lg) {
-    object-position: -315px -100px;
-    height: 778px;
+    height: 577px;
+    object-position: calc(-576px + 40vw) -5vw;
   }
 
   @media (min-width: $xl) {
     object-position: 0 -100px;
+    width: auto;
     height: 778px;
   }
 }
@@ -44,7 +51,11 @@
   }
 
   @media (min-width: $lg) {
-    height: 578px;
+    height: 445px;
+  }
+  @media (min-width: $xl) {
+    height: 40vw;
+    max-height: 578px;
   }
 
   &_spacer-1 {
