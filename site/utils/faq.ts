@@ -117,7 +117,8 @@ export async function getCrispFullArticle({
   crispIdentifier: string;
   locale?: Locale;
 }) {
-  let fullArticle: CrispFullArticle | undefined = cache.get(CacheKey.FULL_ARTICLE);
+  const cacheKey = `${CacheKey.FULL_ARTICLE}-${articleId}`;
+  let fullArticle: CrispFullArticle | undefined = cache.get(cacheKey);
 
   if (fullArticle === undefined) {
     fullArticle = await crispClient.website.resolveHelpdeskLocaleArticle(
@@ -126,7 +127,7 @@ export async function getCrispFullArticle({
       articleId,
     );
 
-    cache.set(CacheKey.FULL_ARTICLE, fullArticle);
+    cache.set(cacheKey, fullArticle);
   }
 
   return fullArticle;
