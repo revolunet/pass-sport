@@ -19,10 +19,12 @@ export const navigationItemStandard: NavigationItem[] = [
   {
     link: '/v2/tout-savoir-sur-le-pass-sport',
     text: (
-      <div className={styles['menu-item-spacer']}>
-        <span aria-hidden="true"></span>
+      <>
+        <div className={styles['menu-item-spacer']}>
+          <span aria-hidden="true"></span>
+        </div>
         Tout savoir sur le pass Sport
-      </div>
+      </>
     ),
   },
   { link: '/v2/trouver-un-club', text: 'Trouver un club partenaire' },
@@ -42,10 +44,12 @@ export const navigationItemPro: NavigationItem[] = [
   {
     link: '/v2/pro/tout-savoir-sur-le-pass-sport',
     text: (
-      <div className={styles['menu-item-spacer']}>
-        <span aria-hidden="true"></span>
+      <>
+        <div className={styles['menu-item-spacer']}>
+          <span aria-hidden="true"></span>
+        </div>
         Tout savoir sur le pass Sport
-      </div>
+      </>
     ),
   },
   { link: '/v2/pro/trouver-un-club', text: 'Trouver un club partenaire' },
