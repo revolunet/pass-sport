@@ -1,3 +1,5 @@
+'use client';
+
 import Footer, { type FooterProps } from '@codegouvfr/react-dsfr/Footer';
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import styles from './styles.module.scss';
@@ -6,8 +8,11 @@ import menjLogo from '../../../../public/images/footer/menj-logo.svg';
 import passSportLogo from '../../../../public/images/pass-sport-logo.svg';
 import decathlonLogo from '../../../../public/images/footer/decathlon.svg';
 import logoCosmos from '../../../../public/images/footer/logo-cosmos.svg';
+import { useIsProVersion } from '@/app/hooks/use-is-pro-version';
 
 export default function PassSportFooter() {
+  const isProVersion = useIsProVersion();
+
   const partnersLogos: FooterProps.PartnersLogos = {
     main: {
       linkProps: {
@@ -83,19 +88,25 @@ export default function PassSportFooter() {
       links: [
         {
           text: 'Accueil',
-          linkProps: { href: '#' },
+          linkProps: { href: isProVersion ? '/v2/pro/accueil' : '/v2/accueil' },
         },
         {
           text: 'Tout savoir sur le pass Sport',
-          linkProps: { href: '/v2/tout-savoir-sur-le-pass-sport' },
+          linkProps: {
+            href: isProVersion
+              ? '/v2/pro/tout-savoir-sur-le-pass-sport'
+              : '/v2/tout-savoir-sur-le-pass-sport',
+          },
         },
         {
           text: 'Trouver une structure partenaire',
-          linkProps: { href: '/v2/trouver-un-club' },
+          linkProps: {
+            href: isProVersion ? '/v2/pro/trouver-un-club' : '/v2/trouver-un-club',
+          },
         },
         {
           text: 'Une question ?',
-          linkProps: { href: '/v2/une-question' },
+          linkProps: { href: isProVersion ? '/v2/pro/une-question' : '/v2/une-question' },
         },
       ],
     },
