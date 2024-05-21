@@ -86,11 +86,11 @@ export default function PassSportFooter() {
           linkProps: { href: '#' },
         },
         {
-          text: `Qu'est-ce que le pass Sport`,
+          text: 'Tout savoir sur le pass Sport',
           linkProps: { href: '/v2/tout-savoir-sur-le-pass-sport' },
         },
         {
-          text: 'Trouver un club partenaire',
+          text: 'Trouver une structure partenaire',
           linkProps: { href: '/v2/trouver-un-club' },
         },
         {
