@@ -245,7 +245,7 @@ const ContactForm = ({ closeFn }: Props) => {
           className="fr-mt-2w"
           severity="success"
           title="Votre demande à bien été envoyée"
-          description="Votre message nous est bien transmis, une copie sera disponible dans votre messagerie électronique."
+          description="Votre message nous a bien été transmis."
           closable
         />
       )}
