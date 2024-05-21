@@ -13,7 +13,7 @@
 # 
 # 
 
-# In[ ]:
+# In[19]:
 
 
 import pandas as pd
@@ -30,32 +30,32 @@ pathfile_campaign_csv_output_b = os.environ['CAMPAIGN_CSV_OUTPUT_B']
 pathfile_campaign_csv_output_b_and_a = os.environ['CAMPAIGN_CSV_OUTPUT_B_AND_A']
 
 
-# In[ ]:
+# In[20]:
 
 
-df_main = pd.read_csv(pathfile_benef_2024, index_col=0, sep=',')
+df_main = pd.read_csv(pathfile_benef_2024, nrows=500, index_col=0, sep=',')
 
 
-# In[ ]:
+# In[21]:
 
 
 df_json_normalized = pd.json_normalize(df_main['allocataire'].apply(json.loads))
 df_json_normalized = df_json_normalized.add_prefix('allocataire_')
 
 
-# In[ ]:
+# In[22]:
 
 
 df_main.index = pd.RangeIndex(start=0, stop=len(df_main), step=1)
 
 
-# In[ ]:
+# In[23]:
 
 
 df_unwrapped_alloc = pd.merge(df_main, df_json_normalized, left_index=True, right_index=True)
 
 
-# In[ ]:
+# In[24]:
 
 
 column_mapping = {
@@ -75,7 +75,7 @@ column_mapping = {
 df_unwrapped_alloc.columns = df_unwrapped_alloc.columns.to_series().replace(column_mapping)
 
 
-# In[ ]:
+# In[25]:
 
 
 df_campaign = df_unwrapped_alloc[['email',
@@ -83,7 +83,7 @@ df_campaign = df_unwrapped_alloc[['email',
 'allocataire_prenom','beneficiaire_prenom', 'beneficiaire_nom', 'beneficiaire_genre', 'beneficiaire_date_naissance', 'code', 'telephone']]
 
 
-# In[ ]:
+# In[26]:
 
 
 # new format for birth date
@@ -91,7 +91,7 @@ df_campaign['beneficiaire_date_naissance'] = pd.to_datetime(df_campaign['benefic
 df_campaign['beneficiaire_date_naissance'] = df_campaign['beneficiaire_date_naissance'].dt.strftime('%d/%m/%Y')
 
 
-# In[ ]:
+# In[27]:
 
 
 # Ajout d'une colonne pour le sexe 
@@ -100,7 +100,7 @@ mask_girl = df_campaign['beneficiaire_genre'] == 'F'
 df_campaign.loc[mask_girl, 'neele'] =  'Née le'
 
 
-# In[ ]:
+# In[28]:
 
 
 df_campaign['allocataire_prenom'] = df_campaign['allocataire_prenom'].astype(str).apply(lambda x: x.capitalize())
@@ -109,13 +109,13 @@ df_campaign['beneficiaire_prenom'] = df_campaign['beneficiaire_prenom'].astype(s
 df_campaign['beneficiaire_nom'] = df_campaign['beneficiaire_nom'].astype(str).apply(lambda x: x.capitalize())
 
 
-# In[ ]:
+# In[29]:
 
 
 df_campaign['telephone'] = df_campaign['telephone'].replace('^0', '+33', regex=True)
 
 
-# In[ ]:
+# In[39]:
 
 
 # # Génération des URLs pour le QR code
@@ -144,7 +144,7 @@ def generate_encrypted_url_column(row):
     cleaned_params = {k: v for k, v in params.items() if k is not None}
     encoded_params = urllib.parse.urlencode(cleaned_params)
     encoded_encrypted_params = encrypt(encoded_params)
-    full_url_string = f"{qr_code_base_url}/{encoded_encrypted_params}"
+    full_url_string = urllib.parse.quote_plus(f"{qr_code_base_url}/{encoded_encrypted_params}")
     return full_url_string
     
 if 'url_qr_code' in df_campaign:
@@ -153,12 +153,12 @@ if 'url_qr_code' in df_campaign:
 df_campaign['url_qr_code'] = df_campaign.apply(generate_encrypted_url_column, axis=1)
 
 
-# In[ ]:
+# In[47]:
 
 
-# # AES decryption test
+# # # AES decryption test
 # def generate_decrypted_url_column(row):
-#     encrypted_part = row['url_qr_code'].replace(qr_code_base_url+'?', '')
+#     encrypted_part = urllib.parse.unquote_plus(row['url_qr_code']).replace(qr_code_base_url+'/', '')
 #     return decrypt(encrypted_part)
 
 # def decrypt(data):
@@ -174,7 +174,7 @@ df_campaign['url_qr_code'] = df_campaign.apply(generate_encrypted_url_column, ax
 # df_campaign['query_params_decrypted'] = df_campaign.apply(generate_decrypted_url_column, axis=1)
 
 
-# In[ ]:
+# In[48]:
 
 
 # Génération csv dans le cas allocataire = bénéficiaire
@@ -182,7 +182,7 @@ mask_alloc_diff_benef = df_campaign['beneficiaire_prenom'].str.lower() != df_cam
 df_alloc_diff_benef = df_campaign[mask_alloc_diff_benef]
 
 
-# In[ ]:
+# In[49]:
 
 
 # Génération csv dans le cas allocataire != bénéficiaire
@@ -190,14 +190,14 @@ mask_alloc_eq_benef = df_campaign['beneficiaire_prenom'].str.lower() == df_campa
 df_alloc_eq_benef = df_campaign[mask_alloc_eq_benef]
 
 
-# In[ ]:
+# In[50]:
 
 
 # (Opt) Ajout de la taille de l'URL
 # df_campaign['url_qr_code_len'] = df_campaign['url_qr_code'].apply(lambda x: len(x))
 
 
-# In[ ]:
+# In[51]:
 
 
 # (Opt) Check sur la longueur des URLs
@@ -205,7 +205,7 @@ df_alloc_eq_benef = df_campaign[mask_alloc_eq_benef]
 # df_excedeed = df_campaign[mask_max_len_filter]
 
 
-# In[ ]:
+# In[52]:
 
 
 df_alloc_eq_benef.to_csv(pathfile_campaign_csv_output_b, index=False)
