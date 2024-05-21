@@ -1,12 +1,11 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import PassSportNavigationPro from './PassSportNavigationPro';
 import PassSportNavigationStandard from './PassSportNavigationStandard';
+import { useIsProVersion } from '@/app/hooks/use-is-pro-version';
 
 export default function PassSportNavigation() {
-  const pathname = usePathname();
-  const isProVersion = pathname?.startsWith('/v2/pro/');
+  const isProVersion = useIsProVersion();
 
   return isProVersion ? <PassSportNavigationPro /> : <PassSportNavigationStandard />;
 }

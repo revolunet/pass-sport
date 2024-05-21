@@ -8,7 +8,7 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
 
   return (
     <Layout>
-      <ClubDetails clubName={clubName} />
+      <ClubDetails clubName={clubName} isProVersion />
     </Layout>
   );
 };

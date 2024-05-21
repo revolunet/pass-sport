@@ -10,7 +10,7 @@ const TrouverUnClub = async () => {
 
   return (
     <>
-      <PageHeader title="Trouver un club"></PageHeader>
+      <PageHeader title="Trouver un club" />
       <ClubFinder regions={regions} activities={activities} />
       <SocialMediaPanel />
     </>

@@ -8,8 +8,8 @@ import styles from './styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { City } from 'types/City';
 import { ActivityResponse } from 'types/Club';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import cn from 'classnames';
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 
 interface Option {
   label: string;
@@ -151,7 +151,7 @@ const ClubFilters: React.FC<Props> = ({
           <div className={cn(styles.flex)}>
             <div className={styles['label-container']}>
               <label htmlFor="city" className={styles.label}>
-                Ville - Code postal
+                Ville
               </label>
               <AsyncSelect
                 instanceId="city-select-id"

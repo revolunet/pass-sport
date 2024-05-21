@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 interface IProps {
   title: string | ReactNode;
-  subtitle?: string;
+  subtitle?: string | ReactNode;
   isProVersion?: boolean;
   classes?: {
     container?: string;
@@ -20,7 +20,8 @@ export default function PageHeader({ title, subtitle, classes, isProVersion = fa
     >
       <div className={styles.titlewrapper}>
         <h1 className={styles.title}>{title}</h1>
-        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+        {subtitle &&
+          (typeof subtitle === 'string' ? <p className={styles.subtitle}>{subtitle}</p> : subtitle)}
       </div>
     </header>
   );

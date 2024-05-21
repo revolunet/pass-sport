@@ -6,7 +6,6 @@
 
   box-shadow: 0px 6px 18px 0px #00001229;
   background-color: white;
-  border-radius: 16px;
 
   max-width: 1200px;
   margin: auto;
@@ -21,12 +20,6 @@
 
   @media (min-width: $md) {
     flex-direction: row;
-  }
-
-  .flex {
-    @media (min-width: $md) {
-      flex: 1 1 100px;
-    }
   }
 
   .separator {
@@ -55,13 +48,6 @@
     .select {
       flex-grow: 1;
       z-index: 2;
-    }
-  }
-
-  .radio {
-    legend {
-      padding-bottom: 4px;
-      color: var(--text-title-grey);
     }
   }
 }

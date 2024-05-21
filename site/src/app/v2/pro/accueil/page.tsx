@@ -8,7 +8,6 @@ import mainImage from '@/images/pro/homepage/main.png';
 import secondaryImage from '@/images/pro/homepage/secondary.png';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import Button from '@codegouvfr/react-dsfr/Button';
-import Link from 'next/link';
 
 export default function Accueil() {
   return (

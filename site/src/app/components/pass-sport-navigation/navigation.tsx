@@ -52,6 +52,6 @@ export const navigationItemPro: NavigationItem[] = [
       </>
     ),
   },
-  { link: '/v2/pro/trouver-un-club', text: 'Trouver un club partenaire' },
+  { link: '/v2/pro/trouver-un-club', text: 'Carte des structures partenaires' },
   { link: '/v2/pro/une-question', text: 'Une question ?' },
 ];
