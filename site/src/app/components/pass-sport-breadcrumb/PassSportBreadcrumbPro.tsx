@@ -27,7 +27,7 @@ export default function PassSportBreadcrumbPro() {
       <div className={cn(styles.container, styles['container--pro'])}>
         <div className={styles['container__breadcrumb']}>
           <Breadcrumb
-            homeLinkProps={{ href: '/v2/accueil' }}
+            homeLinkProps={{ href: '/v2/pro/accueil' }}
             currentPageLabel={NAVIGATION_ITEM_MAP[paths]}
             segments={[]}
             classes={{

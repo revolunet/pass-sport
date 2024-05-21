@@ -186,9 +186,8 @@ export default function ToutSavoirSurLePassSport() {
             Texte de référence Décret n° 2023-741 du 8 août 2023 relatif au « pass Sport » 2023
           </Link>
         </section>
-
-        <SocialMediaPanel isProVersion />
       </main>
+      <SocialMediaPanel isProVersion />
     </>
   );
 }
