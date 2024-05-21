@@ -1,9 +1,16 @@
 'use client';
 
-import ClubPage from '@/app/v2/trouver-un-club/[club-name]/page';
+import Layout from '@/app/v2/trouver-un-club/[club-name]/layout';
+import ClubDetails from '@/app/v2/trouver-un-club/[club-name]/components/clubDetails/ClubDetails';
 
-const Page = ({ params }: { params: { 'club-name': string } }) => {
-  return <ClubPage params={params} isProVersion />;
+const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
+  const clubName = decodeURIComponent(params['club-name']);
+
+  return (
+    <Layout>
+      <ClubDetails clubName={clubName} isProVersion />
+    </Layout>
+  );
 };
 
-export default Page;
+export default ClubPage;

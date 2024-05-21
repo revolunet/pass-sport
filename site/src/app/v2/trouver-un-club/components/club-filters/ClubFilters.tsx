@@ -9,8 +9,7 @@ import AsyncSelect from 'react-select/async';
 import { City } from 'types/City';
 import { ActivityResponse } from 'types/Club';
 import cn from 'classnames';
-import ToggleSwitch from '@codegouvfr/react-dsfr/ToggleSwitch';
-import { useState } from 'react';
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 
 interface Option {
   label: string;
@@ -35,7 +34,6 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
 }) => {
-  const [isHandicapped, setIsHandicapped] = useState<boolean>(false);
   const parsedRegions: Option[] = regions.map((region) => ({
     label: region.nom,
     value: region.code,
@@ -153,7 +151,7 @@ const ClubFilters: React.FC<Props> = ({
           <div className={cn(styles.flex)}>
             <div className={styles['label-container']}>
               <label htmlFor="city" className={styles.label}>
-                Ville - Code postal
+                Ville
               </label>
               <AsyncSelect
                 instanceId="city-select-id"
@@ -193,14 +191,28 @@ const ClubFilters: React.FC<Props> = ({
             </div>
           </div>
           <div className={styles.separator} />
-          <ToggleSwitch
-            label="Accueil de personnes en situation de handicaps"
-            checked={isHandicapped}
-            inputTitle="Bouton pour filtrer les clubs accueillant des personnes en situation de handicaps"
-            onChange={(checked) => {
-              setIsHandicapped(checked);
-              onDisabilityChanged(checked ? 'Oui' : 'Non');
-            }}
+          <RadioButtons
+            className={cn(styles.flex, 'fr-mx-0', styles.radio, 'fr-mb-0')}
+            legend="Accueil de personnes en situation de handicaps"
+            name="disability"
+            small
+            options={[
+              {
+                label: 'Oui',
+                nativeInputProps: {
+                  value: 'oui',
+                  onChange: () => onDisabilityChanged('Oui'),
+                },
+              },
+              {
+                label: 'Non',
+                nativeInputProps: {
+                  value: 'non',
+                  onChange: () => onDisabilityChanged('Non'),
+                },
+              },
+            ]}
+            orientation="horizontal"
           />
         </div>
       </div>
