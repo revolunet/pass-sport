@@ -8,8 +8,9 @@ import styles from './styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { City } from 'types/City';
 import { ActivityResponse } from 'types/Club';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import cn from 'classnames';
+import ToggleSwitch from '@codegouvfr/react-dsfr/ToggleSwitch';
+import { useState } from 'react';
 
 interface Option {
   label: string;
@@ -34,6 +35,7 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
 }) => {
+  const [isHandicapped, setIsHandicapped] = useState<boolean>(false);
   const parsedRegions: Option[] = regions.map((region) => ({
     label: region.nom,
     value: region.code,
@@ -191,28 +193,14 @@ const ClubFilters: React.FC<Props> = ({
             </div>
           </div>
           <div className={styles.separator} />
-          <RadioButtons
-            className={cn(styles.flex, 'fr-mx-0', styles.radio, 'fr-mb-0')}
-            legend="Accueil de personnes en situation de handicaps"
-            name="disability"
-            small
-            options={[
-              {
-                label: 'Oui',
-                nativeInputProps: {
-                  value: 'oui',
-                  onChange: () => onDisabilityChanged('Oui'),
-                },
-              },
-              {
-                label: 'Non',
-                nativeInputProps: {
-                  value: 'non',
-                  onChange: () => onDisabilityChanged('Non'),
-                },
-              },
-            ]}
-            orientation="horizontal"
+          <ToggleSwitch
+            label="Accueil de personnes en situation de handicaps"
+            checked={isHandicapped}
+            inputTitle="Bouton pour filtrer les clubs accueillant des personnes en situation de handicaps"
+            onChange={(checked) => {
+              setIsHandicapped(checked);
+              onDisabilityChanged(checked ? 'Oui' : 'Non');
+            }}
           />
         </div>
       </div>

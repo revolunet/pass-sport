@@ -11,7 +11,13 @@ import dynamic from 'next/dynamic';
 import SocialMediaPanel from '../../../components/social-media-panel/SocialMediaPanel';
 import { Club } from 'types/Club';
 
-const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
+const ClubPage = ({
+  params,
+  isProVersion = false,
+}: {
+  params: { 'club-name': string };
+  isProVersion?: boolean;
+}) => {
   const clubName = decodeURIComponent(params['club-name']);
 
   const [club, setClub] = useState<Club | null>(null);
@@ -110,10 +116,12 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
           </section>
         </div>
 
-        <MedicalCertificatePanel />
+        {!isProVersion && <MedicalCertificatePanel />}
       </div>
-      <EligibilityTestBanner />
-      <SocialMediaPanel />
+
+      {!isProVersion && <EligibilityTestBanner />}
+
+      <SocialMediaPanel isProVersion={isProVersion} />
     </>
   );
 };

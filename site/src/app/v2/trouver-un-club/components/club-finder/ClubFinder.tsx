@@ -18,9 +18,10 @@ import ClubCount from '../club-count/ClubCount';
 interface Props {
   regions: GeoGouvRegion[];
   activities: ActivityResponse;
+  isProVersion?: boolean;
 }
 
-const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
+const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
   const limit = 20;
   const pathName = usePathname();
 
@@ -215,15 +216,17 @@ const ClubFinder: React.FC<Props> = ({ regions, activities }) => {
           >
             <h6 className="fr-alert__title">Information</h6>
             <p>
-              Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le pass
+              {isProVersion
+                ? `Si votre club n'apparait pas, c'est qu'il n'est pas encore référencé. Dans ce cas là, n'hésitez pas à vous rapprocher de plusieurs interlocuteurs dans votre département en fonction de votre statut`
+                : `Si mon club n’apparait pas, c’est qu’il n’accepte probablement pas encore le pass
               Sport. N’hésitez pas à vous rapprocher de votre club en lui proposant d’accepter le
-              dispositif.
+              dispositif.`}
             </p>
           </div>
         </div>
       </div>
 
-      <EligibilityTestBanner />
+      {!isProVersion && <EligibilityTestBanner />}
     </>
   );
 };
