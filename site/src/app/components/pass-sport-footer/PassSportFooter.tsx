@@ -114,7 +114,7 @@ export default function PassSportFooter() {
       {
         linkProps: {
           title: 'Union Sport & Cycle',
-          href: 'https://www.active-fneapl.fr/',
+          href: 'https://www.unionsportcycle.com/accueil',
         },
         imgUrl: unionSportCycleLogo.src,
         alt: 'Union Sport & Cycle',
