@@ -48,9 +48,12 @@ export default function PassSportFooter() {
         alt: 'Le Compte Asso',
       },
       {
-        linkProps: { title: 'Cosmos Sports', href: 'https://www.cosmos-sports.fr/' },
-        imgUrl: logoCosmos.src,
-        alt: 'Cosmos sports',
+        linkProps: {
+          title: 'DINUM - La direction interministérielle du numérique',
+          href: 'https://www.numerique.gouv.fr/dinum/',
+        },
+        imgUrl: dinumLogo.src,
+        alt: 'DINUM - La direction interministérielle du numérique',
       },
       {
         linkProps: { title: 'France Paralympique', href: 'https://france-paralympique.fr/' },
@@ -80,12 +83,9 @@ export default function PassSportFooter() {
         alt: 'MSA - La sécurité sociale agricole',
       },
       {
-        linkProps: {
-          title: 'DINUM - La direction interministérielle du numérique',
-          href: 'https://www.numerique.gouv.fr/dinum/',
-        },
-        imgUrl: dinumLogo.src,
-        alt: 'DINUM - La direction interministérielle du numérique',
+        linkProps: { title: 'Cosmos Sports', href: 'https://www.cosmos-sports.fr/' },
+        imgUrl: logoCosmos.src,
+        alt: 'Cosmos sports',
       },
       {
         linkProps: {
