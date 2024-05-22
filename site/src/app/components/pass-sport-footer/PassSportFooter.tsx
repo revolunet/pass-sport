@@ -35,17 +35,20 @@ export default function PassSportFooter() {
     },
     sub: [
       {
-        linkProps: { title: 'Decathlon', href: 'https://www.decathlon.fr/' },
-        imgUrl: decathlonLogo.src,
-        alt: 'Decathlon',
+        linkProps: {
+          title: 'Comité National Olympique et Sportif Français',
+          href: 'https://cnosf.franceolympique.com/',
+        },
+        imgUrl: cnosfLogo.src,
+        alt: 'Comité National Olympique et Sportif Français',
       },
       {
         linkProps: {
-          title: 'Le Compte Asso',
-          href: 'https://lecompteasso.associations.gouv.fr/',
+          title: 'MSA - La sécurité sociale agricole',
+          href: 'https://www.msa.fr/lfp/accueil',
         },
-        imgUrl: lcaLogo.src,
-        alt: 'Le Compte Asso',
+        imgUrl: msaLogo.src,
+        alt: 'MSA - La sécurité sociale agricole',
       },
       {
         linkProps: {
@@ -66,26 +69,25 @@ export default function PassSportFooter() {
         alt: 'CROUS',
       },
       {
-        linkProps: {
-          title: 'Comité National Olympique et Sportif Français',
-          href: 'https://cnosf.franceolympique.com/',
-        },
-        imgUrl: cnosfLogo.src,
-        alt: 'Comité National Olympique et Sportif Français',
-      },
-
-      {
-        linkProps: {
-          title: 'MSA - La sécurité sociale agricole',
-          href: 'https://www.msa.fr/lfp/accueil',
-        },
-        imgUrl: msaLogo.src,
-        alt: 'MSA - La sécurité sociale agricole',
+        linkProps: { title: 'Decathlon', href: 'https://www.decathlon.fr/' },
+        imgUrl: decathlonLogo.src,
+        alt: 'Decathlon',
       },
       {
-        linkProps: { title: 'Cosmos Sports', href: 'https://www.cosmos-sports.fr/' },
-        imgUrl: logoCosmos.src,
-        alt: 'Cosmos sports',
+        linkProps: {
+          title: 'Le Compte Asso',
+          href: 'https://lecompteasso.associations.gouv.fr/',
+        },
+        imgUrl: lcaLogo.src,
+        alt: 'Le Compte Asso',
+      },
+      {
+        linkProps: {
+          title: 'Union Sport & Cycle',
+          href: 'https://www.unionsportcycle.com/accueil',
+        },
+        imgUrl: unionSportCycleLogo.src,
+        alt: 'Union Sport & Cycle',
       },
       {
         linkProps: {
@@ -112,12 +114,9 @@ export default function PassSportFooter() {
         alt: 'Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
       },
       {
-        linkProps: {
-          title: 'Union Sport & Cycle',
-          href: 'https://www.unionsportcycle.com/accueil',
-        },
-        imgUrl: unionSportCycleLogo.src,
-        alt: 'Union Sport & Cycle',
+        linkProps: { title: 'Cosmos Sports', href: 'https://www.cosmos-sports.fr/' },
+        imgUrl: logoCosmos.src,
+        alt: 'Cosmos sports',
       },
     ],
   };
