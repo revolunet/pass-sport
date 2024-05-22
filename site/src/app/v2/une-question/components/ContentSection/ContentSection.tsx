@@ -6,12 +6,15 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import Markdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   categoriesWithArticles: CategoryWithArticles[];
 }
 
 export default function ContentSection({ categoriesWithArticles }: Props) {
+  const router = useRouter();
+
   const [selectedCategory, setSelectedCategory] = useState<CategoryWithArticles>(
     categoriesWithArticles[0],
   );
@@ -59,13 +62,18 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
 
       <div className={styles['faq__questions']}>
         {selectedCategory?.articles.map((article) => {
+          if (selectedArticle !== null && article.id !== selectedArticle.id) return null;
+
           return (
             <div
               style={{ cursor: 'pointer' }}
-              onClick={() => setSelectedArticle(article)}
+              onClick={() => {
+                setSelectedArticle(article);
+                router.push(`#${article.id}`);
+              }}
               key={article.id}
             >
-              <div className="fr-callout">
+              <div className="fr-callout" id={article.id}>
                 <h3 className="fr-callout__title">{article.title}</h3>
                 <div className={cn('fr-callout__text', styles['faq__callout-text'])}>
                   <Markdown remarkPlugins={[remarkBreaks]} className={styles['faq__markdown']}>
