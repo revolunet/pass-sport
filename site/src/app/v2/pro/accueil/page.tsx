@@ -15,7 +15,7 @@ export default function Accueil() {
       <PageHeader
         title={
           <>
-            L&apos;Etat et le mouvement sportif se mobilisent
+            L&apos;État et le mouvement sportif se mobilisent
             <span className={styles['page-header__title-block']}>pour vous accompagner</span>
           </>
         }
