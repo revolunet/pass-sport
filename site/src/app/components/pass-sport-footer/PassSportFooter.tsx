@@ -3,12 +3,22 @@
 import Footer, { type FooterProps } from '@codegouvfr/react-dsfr/Footer';
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import styles from './styles.module.scss';
-import lcaLogo from '../../../../public/images/footer/logo-lca.png';
-import menjLogo from '../../../../public/images/footer/menj-logo.svg';
-import passSportLogo from '../../../../public/images/pass-sport-logo.svg';
-import decathlonLogo from '../../../../public/images/footer/decathlon.svg';
-import logoCosmos from '../../../../public/images/footer/logo-cosmos.svg';
+
 import { useIsProVersion } from '@/app/hooks/use-is-pro-version';
+import lcaLogo from '@/images/footer/logo-lca.png';
+import menjLogo from '@/images/footer/menj-logo.svg';
+import passSportLogo from '@/images/pass-sport-logo.svg';
+import decathlonLogo from '@/images/footer/decathlon.svg';
+import logoCosmos from '@/images/footer/logo-cosmos.svg';
+import paralympiqueLogo from '@/images/footer/france-paralympique.svg';
+import crousLogo from '@/images/footer/crous-logo.png';
+import cnosfLogo from '@/images/footer/cnosf-logo.svg';
+import msaLogo from '@/images/footer/msa-logo.svg';
+import dinumLogo from '@/images/footer/dinum-logo.png';
+import helloAssoLogo from '@/images/footer/hello-asso-logo.svg';
+import cnafLogo from '@/images/footer/cnaf-logo.png';
+import fneaplLogo from '@/images/footer/fneapl-logo.png';
+import unionSportCycleLogo from '@/images/footer/union-sport-cycle-logo.png';
 
 export default function PassSportFooter() {
   const isProVersion = useIsProVersion();
@@ -25,6 +35,40 @@ export default function PassSportFooter() {
     },
     sub: [
       {
+        linkProps: {
+          title: 'Comité National Olympique et Sportif Français',
+          href: 'https://cnosf.franceolympique.com/',
+        },
+        imgUrl: cnosfLogo.src,
+        alt: 'Comité National Olympique et Sportif Français',
+      },
+      {
+        linkProps: {
+          title: 'MSA - La sécurité sociale agricole',
+          href: 'https://www.msa.fr/lfp/accueil',
+        },
+        imgUrl: msaLogo.src,
+        alt: 'MSA - La sécurité sociale agricole',
+      },
+      {
+        linkProps: {
+          title: 'DINUM - La direction interministérielle du numérique',
+          href: 'https://www.numerique.gouv.fr/dinum/',
+        },
+        imgUrl: dinumLogo.src,
+        alt: 'DINUM - La direction interministérielle du numérique',
+      },
+      {
+        linkProps: { title: 'France Paralympique', href: 'https://france-paralympique.fr/' },
+        imgUrl: paralympiqueLogo.src,
+        alt: 'France Paralympique',
+      },
+      {
+        linkProps: { title: 'Crous', href: 'https://www.lescrous.fr/' },
+        imgUrl: crousLogo.src,
+        alt: 'CROUS',
+      },
+      {
         linkProps: { title: 'Decathlon', href: 'https://www.decathlon.fr/' },
         imgUrl: decathlonLogo.src,
         alt: 'Decathlon',
@@ -38,6 +82,38 @@ export default function PassSportFooter() {
         alt: 'Le Compte Asso',
       },
       {
+        linkProps: {
+          title: 'Union Sport & Cycle',
+          href: 'https://www.unionsportcycle.com/accueil',
+        },
+        imgUrl: unionSportCycleLogo.src,
+        alt: 'Union Sport & Cycle',
+      },
+      {
+        linkProps: {
+          title: 'Hello asso',
+          href: 'https://www.helloasso.com/',
+        },
+        imgUrl: helloAssoLogo.src,
+        alt: 'Hello asso',
+      },
+      {
+        linkProps: {
+          title: 'Caisse nationale allocations familiales',
+          href: 'https://www.caf.fr/',
+        },
+        imgUrl: cnafLogo.src,
+        alt: 'Caisse nationale allocations familiales',
+      },
+      {
+        linkProps: {
+          title: 'Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
+          href: 'https://www.active-fneapl.fr/',
+        },
+        imgUrl: fneaplLogo.src,
+        alt: 'Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
+      },
+      {
         linkProps: { title: 'Cosmos Sports', href: 'https://www.cosmos-sports.fr/' },
         imgUrl: logoCosmos.src,
         alt: 'Cosmos sports',
@@ -49,6 +125,7 @@ export default function PassSportFooter() {
     title: `pass Sport accueil`,
     href: '/v2/accueil',
   };
+
   const operatorLogo: NonNullable<FooterProps['operatorLogo']> = {
     orientation: 'horizontal',
     imgUrl: passSportLogo.src,
@@ -141,7 +218,7 @@ export default function PassSportFooter() {
       bottomItems={bottomItems}
       linkList={linkList}
       brandTop={FOOTER_BRAND_TOP}
-      accessibility="fully compliant"
+      accessibility="non compliant"
     />
   );
 }
