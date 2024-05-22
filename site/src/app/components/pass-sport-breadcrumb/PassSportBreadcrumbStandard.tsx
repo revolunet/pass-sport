@@ -14,6 +14,7 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/mentions-legales': 'Mentions légales',
   '/v2/code/scan': 'Mon pass Sport',
   '/v2/plan-du-site': 'Plan du site',
+  '/v2/test-eligibilite-juin': 'Obtenir mon pass Sport',
 };
 
 export default function PassSportBreadcrumbStandard() {
