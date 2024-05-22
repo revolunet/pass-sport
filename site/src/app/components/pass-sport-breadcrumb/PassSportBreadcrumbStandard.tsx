@@ -54,10 +54,22 @@ export default function PassSportBreadcrumbStandard() {
     >
       <Breadcrumb
         homeLinkProps={{ href: '/v2/accueil' }}
-        currentPageLabel={clubName}
-        segments={[
-          { label: 'Trouver une structure partenaire', linkProps: { href: '/v2/trouver-un-club' } },
-        ]}
+        currentPageLabel={isOnQRPage ? 'QR Code' : clubName}
+        segments={
+          isOnQRPage
+            ? [
+                {
+                  label: 'Code',
+                  linkProps: { href: '/v2/trouver-un-club' },
+                },
+              ]
+            : [
+                {
+                  label: 'Trouver une structure partenaire',
+                  linkProps: { href: '/v2/trouver-un-club' },
+                },
+              ]
+        }
       />
     </div>
   );

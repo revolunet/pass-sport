@@ -1,4 +1,4 @@
-@import '../../../sassVariables.module.scss';
+@import '../../../../sassVariables.module';
 
 .page {
   background-color: var(--artwork-major-blue-france);
@@ -8,15 +8,9 @@
   max-width: $layout-max-width;
   margin: 0 auto;
   color:  var(--text-inverted-grey);
-  gap: 48px;
 
   h2 {
     color:  var(--text-inverted-grey);
     margin-bottom: .75rem;
-  }
-
-  &__qr-block {
-    background-color: var(--color-white);
-    max-width: 640px;
   }
 }
