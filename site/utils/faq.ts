@@ -6,8 +6,12 @@ import NodeCache from 'node-cache';
 type Locale = 'fr' | 'en';
 const LOCALE = 'fr';
 
-const CACHE_DURATION = 28_800; // 8 hours in seconds
-const cache = new NodeCache({ checkperiod: CACHE_DURATION, deleteOnExpire: true });
+const CACHE_DURATION = 1; // 8 hours in seconds
+const cache = new NodeCache({
+  checkperiod: CACHE_DURATION,
+  deleteOnExpire: true,
+  stdTTL: CACHE_DURATION,
+});
 export enum CacheKey {
   ARTICLES = 'ARTICLES',
   FULL_ARTICLE = 'FULL-ARTICLE',
