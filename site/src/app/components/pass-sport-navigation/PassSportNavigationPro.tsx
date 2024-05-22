@@ -55,7 +55,7 @@ export default function PassSportNavigationPro() {
           isActive: isActive(item.link),
           linkProps: {
             href: item.link,
-            target: '_self',
+            target: !!item.isExternal ? '_blank' : '_self',
           },
           text: item.text,
         }))}
