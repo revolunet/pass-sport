@@ -30,7 +30,7 @@ load_dotenv()
 
 pathfile_benef_2023 = os.environ['BENEF_2023_PATHFILE']
 pathfile_benef_2023_without_crous = os.environ['BENEF_2023_WITHOUT_CROUS_PATHFILE']
-pathfile_benef_2024 = os.environ['BENEF_2024_PATHFILE']
+pathfile_benef_2024 = os.environ['BENEF_2024_PATHFILE_failed']
 
 
 # In[ ]:
