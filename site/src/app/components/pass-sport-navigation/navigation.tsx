@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 type NavigationItem = {
   link: string;
   text: string | JSX.Element;
+  isExternal?: boolean;
 };
 
 export const navigationItemStandard: NavigationItem[] = [
@@ -20,15 +21,27 @@ export const navigationItemStandard: NavigationItem[] = [
     link: '/v2/tout-savoir-sur-le-pass-sport',
     text: (
       <>
-        <div className={styles['menu-item-spacer']}>
+        <span className={styles['menu-item-spacer']}>
           <span aria-hidden="true"></span>
-        </div>
+        </span>
         Tout savoir sur le pass Sport
       </>
     ),
   },
   { link: '/v2/trouver-un-club', text: 'Trouver un club partenaire' },
   { link: '/v2/une-question', text: 'Une question ?' },
+  {
+    link: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
+    isExternal: true,
+    text: (
+      <>
+        <div className={styles['menu-item-spacer']}>
+          <span aria-hidden="true"></span>
+        </div>
+        Tableau de bord
+      </>
+    ),
+  },
 ];
 
 export const navigationItemPro: NavigationItem[] = [
@@ -54,4 +67,16 @@ export const navigationItemPro: NavigationItem[] = [
   },
   { link: '/v2/pro/trouver-un-club', text: 'Carte des structures partenaires' },
   { link: '/v2/pro/une-question', text: 'Une question ?' },
+  {
+    link: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
+    isExternal: true,
+    text: (
+      <>
+        <div className={styles['menu-item-spacer']}>
+          <span aria-hidden="true"></span>
+        </div>
+        Tableau de bord
+      </>
+    ),
+  },
 ];
