@@ -14,12 +14,13 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/mentions-legales': 'Mentions légales',
   '/v2/code/scan': 'Mon pass Sport',
   '/v2/plan-du-site': 'Plan du site',
-  '/v2/test-eligibilite-juin': 'Obtenir mon pass Sport',
+  '/v2/test-eligibilite': 'Obtenir mon pass Sport',
 };
 
 export default function PassSportBreadcrumbStandard() {
   const paths = usePathname();
-  const internalRoutes = ['/', '/v2/accueil', '/v2/test-eligibilite'];
+
+  const internalRoutes = ['/', '/v2/accueil', '/v2/test-eligibilite-mai'];
 
   // Quick & dirty for now, because /v2/code/scan contains a path parameter
   const isOnQRPage = paths && paths.startsWith('/v2/code/scan');

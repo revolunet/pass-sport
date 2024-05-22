@@ -9,7 +9,7 @@ export default function ObtainPassPort() {
 
   const eligibilityTestOnClick = () => {
     push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Know everything test button']);
-    router.push('test-eligibilite', { scroll: true });
+    router.push('/v2/test-eligibilite', { scroll: true });
   };
 
   return (

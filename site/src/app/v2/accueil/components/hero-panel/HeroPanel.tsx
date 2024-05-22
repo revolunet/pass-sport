@@ -14,8 +14,8 @@ const HeroPanel = () => {
   const eligibilityTestOnClick = () => {
     push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Home test button']);
     isUsingJuneEligibilityTest
-      ? router.push('/v2/test-eligibilite-juin')
-      : router.push('/v2/test-eligibilite');
+      ? router.push('/v2/test-eligibilite')
+      : router.push('/v2/test-eligibilite-mai');
   };
 
   const getButtonText = () => {
