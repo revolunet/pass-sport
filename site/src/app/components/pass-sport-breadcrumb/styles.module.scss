@@ -12,6 +12,10 @@
     background-color: var(--artwork-major-blue-france) !important;
     color: var(--text-inverted-grey);
 
+    @media print {
+      display: none;
+    }
+
     li:last-child a{
       color: var(--text-inverted-grey) !important;
     }
