@@ -4,9 +4,13 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import cn from 'classnames';
+import { push } from '@socialgouv/matomo-next';
 
 const HeroPanel = () => {
-  const eligibilityTestOnClick = () => router.push('/v2/test-eligibilite');
+  const eligibilityTestOnClick = () => {
+    push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Home test button']);
+    router.push('/v2/test-eligibilite');
+  };
 
   const router = useRouter();
 

@@ -1,10 +1,16 @@
 'use client';
 
 import Button from '@codegouvfr/react-dsfr/Button';
+import { push } from '@socialgouv/matomo-next';
 import { useRouter } from 'next/navigation';
 
 export default function ObtainPassPort() {
   const router = useRouter();
+
+  const eligibilityTestOnClick = () => {
+    push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Know everything test button']);
+    router.push('test-eligibilite', { scroll: true });
+  };
 
   return (
     <section id="pour-qui">
@@ -35,7 +41,7 @@ export default function ObtainPassPort() {
       <Button
         iconId="fr-icon-arrow-right-line"
         iconPosition="right"
-        onClick={() => router.push('test-eligibilite', { scroll: true })}
+        onClick={eligibilityTestOnClick}
       >
         Je fais le test
       </Button>
