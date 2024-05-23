@@ -11,6 +11,7 @@ import React from 'react';
 import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
 import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
 import PassSportBreadcrumb from '@/app/components/pass-sport-breadcrumb/PassSportBreadCrumb';
+import Matomo from './Matomo';
 
 export const metadata: Metadata = {
   title: 'pass Sport - Accueil',
@@ -36,7 +37,9 @@ export default function RootLayout({
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossOrigin=""
         />
+        <Matomo />
       </head>
+
       <body>
         <PassSportNavigation />
         <PassSportBreadcrumb />
