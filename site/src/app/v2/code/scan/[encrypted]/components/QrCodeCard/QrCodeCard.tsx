@@ -13,10 +13,10 @@ interface Props {
     code: string;
     birthDate: string;
   };
-  encryptedParams: string;
+  qrCodeValue: string;
 }
 
-const QrCodeCard = ({ data, encryptedParams }: Props) => {
+const QrCodeCard = ({ data, qrCodeValue }: Props) => {
   const { firstname, lastname, gender, code, birthDate } = data;
 
   const formatBirthDate = (rawDate: string | undefined, gender: string | undefined) => {
@@ -41,7 +41,7 @@ const QrCodeCard = ({ data, encryptedParams }: Props) => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div>
-          <QRCodeSVG value={encryptedParams} size={240} />
+          <QRCodeSVG value={qrCodeValue} size={240} />
         </div>
 
         <div>

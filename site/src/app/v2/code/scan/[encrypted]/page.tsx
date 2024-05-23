@@ -13,7 +13,15 @@ interface Props {
 }
 
 function Page({ params: { encrypted } }: Props) {
-  const base64Key = process.env.BASE_64_KEY as string;
+  if (!process.env.QR_CODE_BASE_URL) {
+    throw new Error('QR_CODE_BASE_URL missing');
+  }
+
+  if (!process.env.BASE_64_KEY) {
+    throw new Error('BASE_64_KEY missing');
+  }
+
+  const base64Key = process.env.BASE_64_KEY;
   const decryptedParams = decryptData(base64Key, encrypted);
 
   if (decryptedParams === null) return <InvalidContainer />;
@@ -31,6 +39,8 @@ function Page({ params: { encrypted } }: Props) {
   if (!firstname || !lastname || !gender || !birthDate || !code) {
     return <InvalidContainer />;
   }
+
+  const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encrypted}`;
 
   return (
     <div className={cn(styles['page'], 'fr-px-2w')}>
@@ -61,7 +71,7 @@ function Page({ params: { encrypted } }: Props) {
               birthDate,
               code,
             }}
-            encryptedParams={encrypted}
+            qrCodeValue={qrCodeValue}
           />
         </div>
       </div>
