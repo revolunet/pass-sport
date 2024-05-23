@@ -60,7 +60,7 @@ export default function PassSportBreadcrumbStandard() {
             ? [
                 {
                   label: 'Code',
-                  linkProps: { href: '/v2/trouver-un-club' },
+                  linkProps: { href: '#' },
                 },
               ]
             : [
