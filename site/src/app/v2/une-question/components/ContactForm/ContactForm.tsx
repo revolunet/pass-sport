@@ -26,7 +26,7 @@ const reasons: string[] = [
   'Bénéficiaires et familles : qui reçoit le code ?',
   'Bénéficiaires et familles : comment utiliser mon pass ?',
   'Bénéficiaires et familles : où utiliser mon pass ?',
-  'Bénéficiaires et familles : comment trouver un club partenaire ?',
+  'Bénéficiaires et familles : comment trouver une structure partenaire ?',
   'Bénéficiaires et familles : mon club refuse de prendre le pass Sport que faire ?',
   "Bénéficiaires et familles : mon club refuse de me faire la réduction de 50€ à l’inscription et attend d'être remboursé pour m'appliquer la ristourne que faire ?",
   'Bénéficiaires et familles : les inscriptions dans mon club sont avant l’envoi des codes que faire ?',
