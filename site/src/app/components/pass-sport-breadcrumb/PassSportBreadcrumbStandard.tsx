@@ -9,7 +9,7 @@ import cn from 'classnames';
 export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/une-question': 'Une question ?',
   '/v2/tout-savoir-sur-le-pass-sport': 'Tout savoir sur le pass Sport',
-  '/v2/trouver-un-club': 'Trouver un club partenaire',
+  '/v2/trouver-un-club': 'Trouver une structure partenaire',
   '/v2/politique-de-confidentialite': 'Politique de confidentialité',
   '/v2/mentions-legales': 'Mentions légales',
 };
@@ -45,7 +45,7 @@ export default function PassSportBreadcrumbStandard() {
         homeLinkProps={{ href: '/v2/accueil' }}
         currentPageLabel={clubName}
         segments={[
-          { label: 'Trouver un club partenaire', linkProps: { href: '/v2/trouver-un-club' } },
+          { label: 'Trouver une structure partenaire', linkProps: { href: '/v2/trouver-un-club' } },
         ]}
       ></Breadcrumb>
     </div>
