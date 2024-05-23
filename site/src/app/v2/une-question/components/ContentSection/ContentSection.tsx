@@ -23,14 +23,18 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
   // If there is an article id in the url
   // we need to set the selectedArticle and the selectedCategory associated to it
   if (articleId) {
-    categoriesWithArticles.forEach((category) => {
+    categoriesWithArticles.some((category) => {
       let articleFound = category.articles.find((article) => article.id === articleId);
 
       if (articleFound) {
         articleFromUrl = articleFound;
         defaultCategory = category;
-        return;
+
+        // break out of loop if found
+        return true;
       }
+
+      return false;
     });
   }
 
@@ -116,7 +120,10 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                       Retour
                     </button>
 
-                    <div className={cn(styles['faq__feedback-date'], 'fr-text--sm')}>
+                    <div
+                      className={cn(styles['faq__feedback-date'], 'fr-text--sm')}
+                      suppressHydrationWarning
+                    >
                       Mis à jour le : {new Date(selectedArticle.updatedAt).toLocaleDateString()}
                     </div>
                   </>
