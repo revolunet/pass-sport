@@ -6,6 +6,9 @@ import NodeCache from 'node-cache';
 type Locale = 'fr' | 'en';
 const LOCALE = 'fr';
 
+const PRO_CATEGORY_IDENTIFIER = 'pro -';
+const USER_CATEGORY_IDENTIFIER = 'particulier -';
+
 const CACHE_DURATION = 1; // 8 hours in seconds
 const cache = new NodeCache({
   checkperiod: CACHE_DURATION,
@@ -21,10 +24,12 @@ export async function getFormattedCategories({
   crispClient,
   articles,
   crispIdentifier,
+  isProVersion,
 }: {
   crispClient: Crisp;
   articles: CrispArticle[];
   crispIdentifier: string;
+  isProVersion: boolean;
 }): Promise<CategoryWithArticles[]> {
   const categories = new Map<string, CategoryWithArticles>();
   const fullArticlePromises = articles
@@ -50,18 +55,22 @@ export async function getFormattedCategories({
         }),
     );
 
-  const results = await Promise.all(fullArticlePromises);
+  const fullArticles = await Promise.all(fullArticlePromises);
 
-  results
+  fullArticles
     .filter(({ article, fullArticle }) => article !== null && fullArticle !== null)
     .forEach(({ article, fullArticle }) => {
       // Type narrowing despite filter above
       if (!article || !fullArticle || !article.category) return;
 
+      const isProCategory = article.category?.name.toLowerCase().includes(PRO_CATEGORY_IDENTIFIER);
+
+      if (isProVersion && !isProCategory) return;
+      if (!isProVersion && isProCategory) return;
+
       // category cannot be null with the code above that does the filtering
       const categoryId = article.category.category_id;
       const formattedArticle = getFormattedArticleWithContent(article, fullArticle.content);
-
       const category = categories.get(categoryId);
 
       if (category) {
@@ -70,7 +79,7 @@ export async function getFormattedCategories({
         categories.set(categoryId, {
           id: categoryId,
           // category cannot be null with the code above that does the filtering
-          name: article.category.name,
+          name: stripCategoryIdentifier(article.category.name),
           articles: [formattedArticle],
         });
       }
@@ -147,4 +156,20 @@ export function getFormattedArticleWithContent(article: CrispArticle, content: s
     updatedAt: article.updated_at,
     content,
   };
+}
+
+function stripCategoryIdentifier(title: string) {
+  if (title.toLowerCase().startsWith(USER_CATEGORY_IDENTIFIER)) {
+    const regex = new RegExp(USER_CATEGORY_IDENTIFIER, 'gi');
+
+    return title.replace(regex, '').trim();
+  }
+
+  if (title.toLowerCase().startsWith(PRO_CATEGORY_IDENTIFIER)) {
+    const regex = new RegExp(PRO_CATEGORY_IDENTIFIER, 'gi');
+
+    return title.replace(regex, '').trim();
+  }
+
+  return title;
 }

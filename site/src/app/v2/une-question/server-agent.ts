@@ -9,7 +9,11 @@ const {
   crispClient,
 } = initCrispClient();
 
-export const getCategoriesWithArticles = async (): Promise<CategoryWithArticles[]> => {
+export const getCategoriesWithArticles = async ({
+  isProVersion,
+}: {
+  isProVersion: boolean;
+}): Promise<CategoryWithArticles[]> => {
   try {
     const articles = await getCrispArticles({
       crispClient,
@@ -20,6 +24,7 @@ export const getCategoriesWithArticles = async (): Promise<CategoryWithArticles[
       crispClient,
       crispIdentifier: CRISP_WEBSITE,
       articles,
+      isProVersion,
     });
   } catch (err) {
     console.error('Error occurred while trying to get articles from CRISP', err);
