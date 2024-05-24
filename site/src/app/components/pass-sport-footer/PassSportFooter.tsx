@@ -193,8 +193,8 @@ export default function PassSportFooter() {
       categoryName: 'Liens externes',
       links: [
         {
-          text: 'Espace club',
-          linkProps: { href: '#', target: '_blank' },
+          text: isProVersion ? 'Je suis un particulier' : 'Je suis une structure partenaire',
+          linkProps: { href: isProVersion ? '/v2/accueil' : '/v2/pro/accueil' },
         },
         {
           text: 'Tableau de bord',
