@@ -18,6 +18,9 @@ export default function PassSportNavigation() {
     <div>
       <Header
         className={styles.header}
+        classes={{
+          service: styles.service,
+        }}
         brandTop={FOOTER_BRAND_TOP}
         operatorLogo={{
           alt: '',

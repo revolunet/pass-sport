@@ -24,3 +24,10 @@
     width: 128px !important;
   }
 }
+
+// For printing, the text is overlapping the logo, it needs a margin to fix that
+.service {
+  @media print {
+    margin-left: 4rem;
+  }
+}

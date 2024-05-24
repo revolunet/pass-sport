@@ -8,6 +8,19 @@
     background-color: var(--brown-caramel-950-100) !important;
   }
 
+  &--qr-page {
+    background-color: var(--artwork-major-blue-france) !important;
+    color: var(--text-inverted-grey);
+
+    @media print {
+      display: none;
+    }
+
+    li:last-child a{
+      color: var(--text-inverted-grey) !important;
+    }
+  }
+
   @media screen and (max-width: $lg) {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -17,6 +30,5 @@
   nav {
     max-width: $layout-max-width;
     margin: auto;
-    background-color: var(--background-contrast-blue-france);
   }
 }

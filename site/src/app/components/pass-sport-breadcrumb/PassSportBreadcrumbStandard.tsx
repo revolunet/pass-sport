@@ -12,6 +12,7 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/trouver-un-club': 'Trouver une structure partenaire',
   '/v2/politique-de-confidentialite': 'Politique de confidentialité',
   '/v2/mentions-legales': 'Mentions légales',
+  '/v2/code/scan': 'Mon pass Sport',
 };
 
 export default function PassSportBreadcrumbStandard() {
@@ -22,10 +23,16 @@ export default function PassSportBreadcrumbStandard() {
     return null;
   }
 
+  const isOnQRPage = paths.startsWith('/v2/code/scan');
+
   if (!!NAVIGATION_ITEM_MAP[paths]) {
     return (
-      <div className={styles.container}>
-        <div className={styles['container__breadcrumb']}>
+      <div
+        className={cn(styles.container, {
+          [styles['container--qr-page']]: isOnQRPage,
+        })}
+      >
+        <div>
           <Breadcrumb
             homeLinkProps={{ href: '/v2/accueil' }}
             currentPageLabel={NAVIGATION_ITEM_MAP[paths]}
@@ -40,14 +47,30 @@ export default function PassSportBreadcrumbStandard() {
   const clubName = decodeURIComponent(pathNames[pathNames.length - 1]);
 
   return (
-    <div className={cn(styles.container)}>
+    <div
+      className={cn(styles.container, {
+        [styles['container--qr-page']]: isOnQRPage,
+      })}
+    >
       <Breadcrumb
         homeLinkProps={{ href: '/v2/accueil' }}
-        currentPageLabel={clubName}
-        segments={[
-          { label: 'Trouver une structure partenaire', linkProps: { href: '/v2/trouver-un-club' } },
-        ]}
-      ></Breadcrumb>
+        currentPageLabel={isOnQRPage ? 'QR Code' : clubName}
+        segments={
+          isOnQRPage
+            ? [
+                {
+                  label: 'Code',
+                  linkProps: { href: '#' },
+                },
+              ]
+            : [
+                {
+                  label: 'Trouver une structure partenaire',
+                  linkProps: { href: '/v2/trouver-un-club' },
+                },
+              ]
+        }
+      />
     </div>
   );
 }
