@@ -196,6 +196,16 @@ export default function PassSportFooter() {
           text: isProVersion ? 'Je suis un particulier' : 'Je suis une structure partenaire',
           linkProps: { href: isProVersion ? '/v2/accueil' : '/v2/pro/accueil' },
         },
+        ...((isProVersion
+          ? [
+              {
+                text: 'Ressources',
+                linkProps: {
+                  href: '/v2/pro/ressources',
+                },
+              },
+            ]
+          : []) as [FooterProps.LinkList.Link] | []),
         {
           text: 'Tableau de bord',
           linkProps: {
