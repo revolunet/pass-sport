@@ -2,15 +2,11 @@
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { push } from '@socialgouv/matomo-next';
 
 const EligibilityTestBanner = () => {
-  const router = useRouter();
-
   const eligibilityTestOnClick = () => {
     push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Banner test button']);
-    router.push('/v2/test-eligibilite');
   };
 
   return (
