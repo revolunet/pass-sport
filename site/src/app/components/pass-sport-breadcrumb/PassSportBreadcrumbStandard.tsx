@@ -19,19 +19,16 @@ export default function PassSportBreadcrumbStandard() {
   const paths = usePathname();
   const internalRoutes = ['/', '/v2/accueil', '/v2/test-eligibilite'];
 
-  if (!paths || internalRoutes.includes(paths)) {
+  // Quick & dirty for now, because /v2/code/scan contains a path parameter
+  const isOnQRPage = paths && paths.startsWith('/v2/code/scan');
+
+  if (!paths || internalRoutes.includes(paths) || isOnQRPage) {
     return null;
   }
 
-  const isOnQRPage = paths.startsWith('/v2/code/scan');
-
   if (!!NAVIGATION_ITEM_MAP[paths]) {
     return (
-      <div
-        className={cn(styles.container, {
-          [styles['container--qr-page']]: isOnQRPage,
-        })}
-      >
+      <div className={cn(styles.container)}>
         <div>
           <Breadcrumb
             homeLinkProps={{ href: '/v2/accueil' }}
@@ -47,29 +44,16 @@ export default function PassSportBreadcrumbStandard() {
   const clubName = decodeURIComponent(pathNames[pathNames.length - 1]);
 
   return (
-    <div
-      className={cn(styles.container, {
-        [styles['container--qr-page']]: isOnQRPage,
-      })}
-    >
+    <div className={styles.container}>
       <Breadcrumb
         homeLinkProps={{ href: '/v2/accueil' }}
-        currentPageLabel={isOnQRPage ? 'QR Code' : clubName}
-        segments={
-          isOnQRPage
-            ? [
-                {
-                  label: 'Code',
-                  linkProps: { href: '#' },
-                },
-              ]
-            : [
-                {
-                  label: 'Trouver une structure partenaire',
-                  linkProps: { href: '/v2/trouver-un-club' },
-                },
-              ]
-        }
+        currentPageLabel={clubName}
+        segments={[
+          {
+            label: 'Trouver une structure partenaire',
+            linkProps: { href: '/v2/trouver-un-club' },
+          },
+        ]}
       />
     </div>
   );
