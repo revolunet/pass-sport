@@ -4,6 +4,7 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 import { push } from '@socialgouv/matomo-next';
+import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
 
 const EligibilityTestBanner = () => {
   const eligibilityTestOnClick = () => {
@@ -18,7 +19,8 @@ const EligibilityTestBanner = () => {
           50€ pour aider les jeunes à faire du sport entre 6 et 30 ans
         </p>
       </div>
-      <Link href="/v2/test-eligibilite">
+
+      <Link href={isUsingJuneEligibilityTest ? '/v2/test-eligibilite' : '/v2/test-eligibilite-mai'}>
         <Button
           className="fr-mx-auto"
           priority="primary"

@@ -5,10 +5,9 @@ import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import cn from 'classnames';
 import { push } from '@socialgouv/matomo-next';
+import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
 
 const HeroPanel = () => {
-  const isUsingJuneEligibilityTest = new Date().valueOf() > 1717027200000; //2024-05-30T00:00:00.000Z
-
   const router = useRouter();
 
   const eligibilityTestOnClick = () => {
