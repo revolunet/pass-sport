@@ -7,7 +7,7 @@ type Locale = 'fr' | 'en';
 const LOCALE = 'fr';
 
 const PRO_CATEGORY_IDENTIFIER = 'pro -';
-const USER_CATEGORY_IDENTIFIER = 'particulier -';
+const USER_CATEGORY_IDENTIFIER = 'bénéficiaire -';
 
 const CACHE_DURATION = 1; // 8 hours in seconds
 const cache = new NodeCache({
