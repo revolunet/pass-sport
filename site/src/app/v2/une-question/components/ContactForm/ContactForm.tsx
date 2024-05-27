@@ -10,7 +10,6 @@ import { InputsState } from '../../../../../../types/Contact';
 import { postContact } from '../../client-agent';
 import styles from './styles.module.scss';
 import { EMAIL_REGEX } from '../../../../../../utils/email';
-import Link from 'next/link';
 
 const initialInputsState: InputsState = {
   firstname: 'default',
