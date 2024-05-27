@@ -73,8 +73,8 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                     push([
                       'trackEvent',
                       'View FAQ',
-                      `Click on a category(${category.id})`,
-                      category.name,
+                      `Clicked`,
+                      `${category.name} (${category.id})`,
                     ]);
                   }}
                   className={cn(styles['faq__category--pointer'], 'fr-pl-2w', {
@@ -99,12 +99,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
               onClick={() => {
                 setSelectedArticle(article);
                 replace(`${pathname}?articleId=${article.id}`);
-                push([
-                  'trackEvent',
-                  'View FAQ',
-                  `Click on an article (${article.id})`,
-                  article.title,
-                ]);
+                push(['trackEvent', 'View FAQ', `Clicked`, `${article.title} (${article.id})`]);
               }}
               key={article.id}
             >
