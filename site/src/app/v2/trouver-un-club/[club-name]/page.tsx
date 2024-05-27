@@ -7,12 +7,12 @@ import { useIsProVersion } from '../../../hooks/use-is-pro-version';
 
 const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
   const clubName = decodeURIComponent(params['club-name']);
-  const isProVersion = useIsProVersion()
+  const isProVersion = useIsProVersion();
 
   return (
     <>
       <ClubDetails clubName={clubName} />
-      {!isProVersion &&  <EligibilityTestBanner /> }
+      {!isProVersion && <EligibilityTestBanner />}
       <SocialMediaPanel isProVersion={isProVersion} />
     </>
   );
