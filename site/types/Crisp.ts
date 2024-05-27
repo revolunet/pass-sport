@@ -21,6 +21,21 @@ export type CrispArticle = {
   } | null;
 };
 
+export type CrispCategory = {
+  category_id: string;
+  name: string;
+  description: string;
+  color: string;
+  image: string | null;
+  order: number;
+  url: string;
+  articles: number;
+  sections: number;
+  created_at: number;
+  updated_at: number;
+  visibility: 'visible' | 'hidden';
+};
+
 export type CrispFullArticle = CrispArticle & {
   content: string;
 };

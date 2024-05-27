@@ -107,9 +107,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                 <h3 className="fr-callout__title">{article.title}</h3>
                 <div className={cn('fr-callout__text', styles['faq__callout-text'])}>
                   <Markdown remarkPlugins={[remarkBreaks]} className={styles['faq__markdown']}>
-                    {selectedArticle !== null
-                      ? article.content
-                      : article.content.slice(0, 200).concat(' ...')}
+                    {selectedArticle !== null ? article.content : null}
                   </Markdown>
                 </div>
 

@@ -12,4 +12,5 @@ export type CategoryWithArticles = {
   id: string;
   name: string;
   articles: Article[];
+  order: number; // 1 being the most important
 };
