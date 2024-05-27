@@ -9,7 +9,7 @@ const LOCALE = 'fr';
 const PRO_CATEGORY_IDENTIFIER = 'pro -';
 const USER_CATEGORY_IDENTIFIER = 'bénéficiaire -';
 
-const CACHE_DURATION = 28_800; // 8 hours in seconds
+const CACHE_DURATION = 7_200; // 2 hours in seconds
 const CHECK_PERIOD = 3_600; // 1 hour in seconds
 const HIGHEST_ORDER = 999; // the articles/categories that have this order will be displayed last
 
