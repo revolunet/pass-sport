@@ -95,7 +95,7 @@ const Video = () => {
                           </p>
                           <p>
                             Présente-toi avec ton code personnel pass Sport dans le club sportif de
-                            ton choix{' '}
+                            ton choix
                           </p>
                           <p>50 euros seront déduits de ton inscription pour la saison 2023/2024</p>
                           <p>
