@@ -2,6 +2,7 @@ import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPan
 import PageHeader from '../../../../../components/PageHeader/PageHeader';
 import styles from './style.module.scss';
 import Link from 'next/link';
+import cn from 'classnames';
 
 export default function PlanDuSite() {
   return (
@@ -15,7 +16,9 @@ export default function PlanDuSite() {
         }}
       />
       <main className={styles.wrapper}>
-        <section className={styles.container}>
+        <section
+          className={cn('fr-py-4w', 'fr-px-2w', 'fr-px-md-13w', 'fr-m-auto', styles.container)}
+        >
           <ul>
             <li>
               <Link href="/v2/pro/accueil">Accueil</Link>

@@ -8,12 +8,6 @@
 .container {
   max-width: 992px;
   background-color: var(--color-white);
-  margin: 0 auto;
-  padding: 32px 102px;
-
-  @media screen and (max-width: $md) {
-    padding: 2rem 1rem;
-  }
 }
 
 .page-header {
