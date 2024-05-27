@@ -46,9 +46,6 @@ export default function PlanDuSite() {
             <li>
               <Link href="/v2/politique-de-confidentialite">Données personnelles</Link>
             </li>
-            <li>
-              <Link href="/v2/gestion-des-cookies">Gestion des cookies</Link>
-            </li>
           </ul>
 
           <Link target="_blank" href="/v2/pro/accueil">
