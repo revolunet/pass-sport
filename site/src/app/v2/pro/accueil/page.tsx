@@ -53,8 +53,8 @@ export default function Accueil() {
                 className="fr-mt-4w"
                 size="large"
                 linkProps={{
-                  href: 'https://lecompteasso.associations.gouv.fr/',
-                  title: "Lien pour s'inscrire au Compte Asso",
+                  href: 'https://vimeo.com/949861035?share=copy',
+                  title: "Lien vers une vidéo expliquant comment s'inscrire au Compte Asso",
                   target: '_blank',
                 }}
               >
