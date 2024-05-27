@@ -7,6 +7,7 @@ import cn from 'classnames';
 import Markdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { push } from '@socialgouv/matomo-next';
 
 interface Props {
   categoriesWithArticles: CategoryWithArticles[];
@@ -69,6 +70,12 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                     setSelectedCategory(category);
                     setSelectedArticle(null);
                     replace(`${pathname}`);
+                    push([
+                      'trackEvent',
+                      'View FAQ',
+                      `Click on a category(${category.id})`,
+                      category.name,
+                    ]);
                   }}
                   className={cn(styles['faq__category--pointer'], 'fr-pl-2w', {
                     [styles['faq__category--selected']]: selectedCategory?.id === category.id,
@@ -92,6 +99,12 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
               onClick={() => {
                 setSelectedArticle(article);
                 replace(`${pathname}?articleId=${article.id}`);
+                push([
+                  'trackEvent',
+                  'View FAQ',
+                  `Click on an article (${article.id})`,
+                  article.title,
+                ]);
               }}
               key={article.id}
             >
