@@ -27,7 +27,7 @@ export default async function Questions() {
       <ContentSection categoriesWithArticles={categoriesWithArticles} />
       <ContactSection />
 
-      <SocialMediaPanel />
+      <SocialMediaPanel isProVersion />
     </>
   );
 }
