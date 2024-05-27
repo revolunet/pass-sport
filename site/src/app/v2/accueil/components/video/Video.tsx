@@ -72,16 +72,37 @@ const Video = () => {
                           Présentation du dispositif pass Sport du ministère des Sports
                         </h1>
                         <div>
+                          <p>pass Sport C’est quoi ?</p>
                           <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing,{' '}
-                            <a href="https://www.systeme-de-design.gouv.fr/" target="_blank">
-                              link test
-                            </a>
-                            incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque
-                            habitant morbi tristique senectus et. Diam maecenas sed enim ut.
-                            Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet
-                            luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.{' '}
+                            Tu as entre 6 et 17 ans révolus ? Et tu bénéficies déjà de l’Allocation
+                            de rentrée scolaire (ARS)?
                           </p>
+                          <p>
+                            Tu as entre 6 et 19 ans révolus ? Et tu bénéficies déjà l’Allocation
+                            d’éducation de l’enfant handicapé (AEEH) ?
+                          </p>
+                          <p>
+                            Tu as entre 6 et 30 ans et tu bénéficies déjà de l’Allocation aux
+                            adultes handicapés (AAH) ?
+                          </p>
+                          <p>
+                            Tu as jusqu’à 28 ans révolus et tu bénéficies d’une bourse sur critères
+                            sociaux de l’enseignement supérieur ?
+                          </p>
+                          <p>
+                            Alors tu recevras fin août un mail avec un code personnel t’informant
+                            que tu peux bénéficier du pass Sport.
+                          </p>
+                          <p>
+                            Présente-toi avec ton code personnel pass Sport dans le club sportif de
+                            ton choix
+                          </p>
+                          <p>50 euros seront déduits de ton inscription pour la saison 2023/2024</p>
+                          <p>
+                            Ce coup de pouce du gouvernement va bénéficier à plus de 6 millions de
+                            jeunes comme toi
+                          </p>
+                          <p>pass Sport Faites entrer le sport dans votre vie</p>
                         </div>
                       </div>
                     </div>
