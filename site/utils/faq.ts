@@ -9,12 +9,15 @@ const LOCALE = 'fr';
 const PRO_CATEGORY_IDENTIFIER = 'pro -';
 const USER_CATEGORY_IDENTIFIER = 'bénéficiaire -';
 
-const CACHE_DURATION = 1; // 8 hours in seconds
+const CACHE_DURATION = 28_800; // 8 hours in seconds
+const CHECK_PERIOD = 3_600; // 1 hour in seconds
+
 const cache = new NodeCache({
-  checkperiod: CACHE_DURATION,
+  checkperiod: CHECK_PERIOD,
   deleteOnExpire: true,
   stdTTL: CACHE_DURATION,
 });
+
 export enum CacheKey {
   ARTICLES = 'ARTICLES',
   FULL_ARTICLE = 'FULL-ARTICLE',
