@@ -363,7 +363,7 @@ export default function ToutSavoirSurLePassSport() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Flyer Club - 1
+                        Flyer Club
                       </Link>
                     </p>
                   </div>
