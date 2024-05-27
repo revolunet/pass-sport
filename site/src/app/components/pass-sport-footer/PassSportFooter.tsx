@@ -154,7 +154,7 @@ export default function PassSportFooter() {
     {
       text: 'Plan du site',
       linkProps: {
-        href: '#',
+        href: isProVersion ? '/v2/pro/plan-du-site' : '/v2/plan-du-site',
       },
     },
   ];
