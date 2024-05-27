@@ -1,5 +1,5 @@
 import Crisp from 'crisp-api';
-import { CrispArticle, CrispFullArticle } from '../types/Crisp';
+import { CrispArticle, CrispCategory, CrispFullArticle } from '../types/Crisp';
 import { Article, CategoryWithArticles } from '../types/Faq';
 import NodeCache from 'node-cache';
 
@@ -11,6 +11,7 @@ const USER_CATEGORY_IDENTIFIER = 'bénéficiaire -';
 
 const CACHE_DURATION = 28_800; // 8 hours in seconds
 const CHECK_PERIOD = 3_600; // 1 hour in seconds
+const HIGHEST_ORDER = 999; // the articles/categories that have this order will be displayed last
 
 const cache = new NodeCache({
   checkperiod: CHECK_PERIOD,
@@ -59,9 +60,13 @@ export async function getFormattedCategories({
     );
 
   const fullArticles = await Promise.all(fullArticlePromises);
+  const fullListOfCategories = await getCrispCategories({ crispClient, crispIdentifier });
 
   fullArticles
-    .filter(({ article, fullArticle }) => article !== null && fullArticle !== null)
+    .filter(
+      ({ article, fullArticle }) =>
+        article !== null && fullArticle !== null && fullArticle?.visibility === 'visible',
+    )
     .forEach(({ article, fullArticle }) => {
       // Type narrowing despite filter above
       if (!article || !fullArticle || !article.category) return;
@@ -73,6 +78,7 @@ export async function getFormattedCategories({
 
       // category cannot be null with the code above that does the filtering
       const categoryId = article.category.category_id;
+
       const formattedArticle = getFormattedArticleWithContent(article, fullArticle.content);
       const category = categories.get(categoryId);
 
@@ -81,6 +87,9 @@ export async function getFormattedCategories({
       } else {
         categories.set(categoryId, {
           id: categoryId,
+          order:
+            fullListOfCategories.find((category) => category.category_id === categoryId)?.order ||
+            HIGHEST_ORDER,
           // category cannot be null with the code above that does the filtering
           name: stripCategoryIdentifier(article.category.name),
           articles: [formattedArticle],
@@ -88,7 +97,30 @@ export async function getFormattedCategories({
       }
     });
 
-  return Array.from(categories.values());
+  // Sort categories & articles by order
+  return Array.from(categories.values())
+    .sort((categoryA, categoryB) => categoryA.order - categoryB.order)
+    .map((category) => ({
+      ...category,
+      articles: category.articles.sort((a, b) => a.order - b.order),
+    }));
+}
+
+export async function getCrispCategories({
+  crispClient,
+  crispIdentifier,
+  locale = LOCALE,
+}: {
+  crispClient: Crisp;
+  crispIdentifier: string;
+  locale?: Locale;
+}): Promise<CrispCategory[]> {
+  try {
+    return crispClient.website.listHelpdeskLocaleCategories(crispIdentifier, locale);
+  } catch (err) {
+    console.error('Error while trying to get list of categories', err);
+    return [];
+  }
 }
 
 // Get list of articles, but these don't contain the "content" attribute
@@ -153,7 +185,7 @@ export function getFormattedArticleWithContent(article: CrispArticle, content: s
   return {
     id: article.article_id,
     title: article.title,
-    order: article.order,
+    order: article.order || HIGHEST_ORDER,
     url: article.url,
     createdAt: article.created_at,
     updatedAt: article.updated_at,
