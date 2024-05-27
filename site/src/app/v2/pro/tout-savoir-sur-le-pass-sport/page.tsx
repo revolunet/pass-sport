@@ -9,6 +9,11 @@ import {
   olympiquesAndparalympiques,
   unisport,
 } from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/constants/federations';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Tout savoir sur le pass Sport - pass Sport',
+};
 
 export default function ToutSavoirSurLePassSport() {
   return (

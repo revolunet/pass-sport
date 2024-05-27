@@ -7,6 +7,11 @@ import WhereToUsePassSport from './components/where-to-use-pass-sport';
 import LegalTextReference from './components/legal-text-reference';
 import EligibilityTestBanner from '../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import SocialMediaPanel from '../../components/social-media-panel/SocialMediaPanel';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Tout savoir sur le pass Sport - pass Sport',
+};
 
 export default function ToutSavoirSurLePassSport() {
   return (

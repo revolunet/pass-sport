@@ -3,6 +3,11 @@ import { getAllClubActivities, getFranceRegions } from './agent';
 
 import ClubFinder from './components/club-finder/ClubFinder';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Trouver un club partenaire - pass Sport',
+};
 
 const TrouverUnClub = async () => {
   const regions = await getFranceRegions();

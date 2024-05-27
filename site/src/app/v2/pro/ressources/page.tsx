@@ -4,6 +4,11 @@ import About from './components/about';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
 import Link from 'next/link';
 import Accordion from '@codegouvfr/react-dsfr/Accordion';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Ressources - pass Sport',
+};
 
 export default function ToutSavoirSurLePassSport() {
   return (

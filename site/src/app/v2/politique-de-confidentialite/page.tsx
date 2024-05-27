@@ -3,6 +3,11 @@ import PageHeader from '../../../../components/PageHeader/PageHeader';
 import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import cn from 'classnames';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Politique de confidentialité - pass Sport',
+};
 
 export default function PolitiqueDeConfidentialite() {
   return (

@@ -7,6 +7,12 @@ import Video from './components/video/Video';
 import FindClubCard from './components/find-club-card/FindClubCard';
 import Hero from './components/hero/Hero';
 import cn from 'classnames';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Accueil - pass Sport',
+  description: "Page d'accueil du site pass.sports.gouv.fr pour les particuliers",
+};
 
 export default function Accueil() {
   return (

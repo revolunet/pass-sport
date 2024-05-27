@@ -4,6 +4,11 @@ import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPan
 import ClubFinder from '@/app/v2/trouver-un-club/components/club-finder/ClubFinder';
 import { getAllClubActivities, getFranceRegions } from '@/app/v2/trouver-un-club/agent';
 import styles from './styles.module.scss';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Carte des structures partenaires - pass Sport',
+};
 
 const TrouverUnClub = async () => {
   const regions = await getFranceRegions();

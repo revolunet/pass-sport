@@ -1,5 +1,10 @@
+import { Metadata } from 'next';
 import ForWhoStep from './components/forWhoStep/ForWhoStep';
 import styles from './styles.module.scss';
+
+export const metadata: Metadata = {
+  title: "Test d'éligibilité - pass Sport",
+};
 
 const EligibilityTest = () => {
   return (

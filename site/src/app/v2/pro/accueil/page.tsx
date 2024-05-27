@@ -8,6 +8,12 @@ import mainImage from '@/images/pro/homepage/main.png';
 import secondaryImage from '@/images/pro/homepage/secondary.png';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import Button from '@codegouvfr/react-dsfr/Button';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Accueil - pass Sport',
+  description: "Page d'accueil du site pass.sports.gouv.fr pour les structures partenaires",
+};
 
 export default function Accueil() {
   return (

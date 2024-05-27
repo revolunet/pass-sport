@@ -2,6 +2,11 @@ import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPan
 import PageHeader from '../../../../components/PageHeader/PageHeader';
 import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Mentions légales - pass Sport',
+};
 
 export default function PolitiqueDeConfidentialite() {
   return (
