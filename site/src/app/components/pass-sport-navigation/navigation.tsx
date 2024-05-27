@@ -68,15 +68,19 @@ export const navigationItemPro: NavigationItem[] = [
   { link: '/v2/pro/trouver-un-club', text: 'Carte des structures partenaires' },
   { link: '/v2/pro/une-question', text: 'Une question ?' },
   {
-    link: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
-    isExternal: true,
+    link: '/v2/pro/ressources',
     text: (
       <>
         <div className={styles['menu-item-spacer']}>
           <span aria-hidden="true"></span>
         </div>
-        Tableau de bord
+        Ressources
       </>
     ),
+  },
+  {
+    link: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
+    isExternal: true,
+    text: 'Tableau de bord',
   },
 ];
