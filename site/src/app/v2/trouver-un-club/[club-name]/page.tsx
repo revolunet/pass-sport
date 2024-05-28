@@ -9,7 +9,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
-    title: `Trouver un club partenaire - ${decodeURIComponent(params['club-name'])} - Pass Sport`,
+    title: `Trouver un club partenaire - ${decodeURIComponent(params['club-name'])} - pass Sport`,
   };
 }
 
