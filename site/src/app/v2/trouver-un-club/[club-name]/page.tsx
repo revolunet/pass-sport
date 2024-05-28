@@ -20,7 +20,7 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
     <>
       <ClubDetails clubName={clubName} />
       <EligibilityTestBanner />
-      <SocialMediaPanel isProVersion={false} />
+      <SocialMediaPanel />
     </>
   );
 };
