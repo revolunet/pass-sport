@@ -1,6 +1,6 @@
-pass sport application
+pass Sport application
 
-This nextjs application runs the pass sport [website](https://pass.sports.gouv.fr/)
+This nextjs application runs the pass Sport [website](https://pass.sports.gouv.fr/)
 
 # Pre requisite
 

@@ -61,11 +61,11 @@ export default function ToutSavoirSurLePassSport() {
         </section>
 
         <section className={styles['section-container']}>
-          <h4>Comment me faire rembourser des déductions Pass Sport consenties ?</h4>
+          <h4>Comment me faire rembourser des déductions pass Sport consenties ?</h4>
 
           <p className="fr-text--bold">
             Les bénéficiaires du dispositif recevront dans la dernière semaine du mois d&apos;aout
-            leur code Pass Sport individuel qui prend la forme d&apos;un code composé de 9
+            leur code pass Sport individuel qui prend la forme d&apos;un code composé de 9
             caractères différents de ceux de 2022.
           </p>
           <p>
@@ -129,7 +129,7 @@ export default function ToutSavoirSurLePassSport() {
 
         <section className={styles['section-container']}>
           <h4>
-            Comment faire apparaître mon club sur la carte des structures éligibles au Pass Sport ?
+            Comment faire apparaître mon club sur la carte des structures éligibles au pass Sport ?
           </h4>
 
           <p className="fr-text--bold">
@@ -139,7 +139,7 @@ export default function ToutSavoirSurLePassSport() {
 
           <p>
             Retrouvez notre tutoriel d&apos;accompagnement à la création de votre espace sur le
-            Compte Aso qui sera ensuite le lieu de demande des remboursements Pass Sport :
+            Compte Aso qui sera ensuite le lieu de demande des remboursements pass Sport :
             <br />
             <br />
             <Link
