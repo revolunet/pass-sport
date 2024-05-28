@@ -28,7 +28,7 @@ export const navigationItemStandard: NavigationItem[] = [
       </>
     ),
   },
-  { link: '/v2/trouver-un-club', text: 'Trouver une structure partenaire' },
+  { link: '/v2/trouver-un-club', text: 'Trouver un club partenaire' },
   { link: '/v2/une-question', text: 'Une question ?' },
   {
     link: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',

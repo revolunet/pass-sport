@@ -33,7 +33,9 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
           <h2>{club.nom}</h2>
           <div className={`fr-my-2w ${styles.tags}`}>
             <Tag small>
-              <p className="fr-text--xs">{club.activites.length} activités</p>
+              <p className="fr-text--xs">
+                {club.activites.length} {club.activites.length > 1 ? 'activités' : 'activité'}
+              </p>
             </Tag>
             {club.a_accueil_handicap_moteur === 'Oui' && (
               <Tag className={styles.disability} small>

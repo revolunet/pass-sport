@@ -31,23 +31,18 @@ export default function HowToUsePassSport() {
           horizontal
           imageAlt="Image du QR code"
           desc={
-            <span>
+            <span className="fr-text--md">
               Né le 10/01/2015
               <br />
               Code: 24 - AAAA - AAAA
             </span>
           }
           imageUrl={qrCodeImage.src}
-          detail={
-            <span>
-              <span className="fr-icon-arrow-right-line fr-icon--sm fr-mr-1w" />
-              Chèque pass Sport
-            </span>
-          }
           classes={{
             root: styles['qr-root'],
             title: styles['qr-root__title'],
             header: styles['qr-root__header'],
+            imgTag: styles['qr-root__img'],
           }}
         />
       </div>

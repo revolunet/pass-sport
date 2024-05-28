@@ -170,9 +170,7 @@ export default function PassSportFooter() {
           },
         },
         {
-          text: isProVersion
-            ? 'Carte des structures partenaires'
-            : 'Trouver une structure partenaire',
+          text: isProVersion ? 'Carte des structures partenaires' : 'Trouver un club partenaire',
           linkProps: {
             href: isProVersion ? '/v2/pro/trouver-un-club' : '/v2/trouver-un-club',
           },
