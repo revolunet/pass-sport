@@ -13,7 +13,7 @@ export default function About() {
 
         <div id="découvrir">
           <h3 className={styles['about-container__highlight-title']}>
-            Qu&apos;est-ce que le pass Sport
+            Qu&apos;est-ce que le pass Sport ?
           </h3>
 
           <Highlight className={styles['about-container__highlight-text']}>

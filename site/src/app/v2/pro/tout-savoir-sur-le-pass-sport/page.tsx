@@ -96,12 +96,12 @@ export default function ToutSavoirSurLePassSport() {
               connectez vous au Compte Asso
             </Link>{' '}
             (si vous n’avez pas encore de compte, vous pouvez le créer en 10 minutes environ),
-            cliquez sur « demander les remboursements Pass’Sport » puis saisissez les codes
+            cliquez sur « demander les remboursements pass Sport » puis saisissez les codes
             individuels un à un au fil de l’eau.
           </p>
 
           <p>
-            La saisie du code individuel empêche le jeune d’utiliser son Pass’Sport dans une autre
+            La saisie du code individuel empêche le jeune d’utiliser son pass Sport dans une autre
             structure.
           </p>
 
@@ -114,7 +114,7 @@ export default function ToutSavoirSurLePassSport() {
               Si lors de la saisie du code, le nom du jeune qui apparait n’est pas celui de votre
               adhérent, ne poursuivez pas la saisie et prévenez le jeune que ce code ne lui
               correspond pas (vérifier si ce n’est pas une inversion avec un autre membre d’une
-              fratrie par exemple) qu’il doit vous présenter le Pass’Sport à son nom.{' '}
+              fratrie par exemple) qu’il doit vous présenter le pass Sport à son nom.{' '}
             </li>
           </ul>
 
@@ -164,8 +164,8 @@ export default function ToutSavoirSurLePassSport() {
 
           <p className="fr-text--bold">
             Si votre club est affilié à l&apos;une des fédérations suivantes pour la saison
-            2023/2024 ou l&apos;année 2023 alors vous pouvez accepter des Pass&apos;sport qui vous
-            seront intégralement remboursés par l&apos;Etat !
+            2023/2024 ou l&apos;année 2023 alors vous pouvez accepter des pass Sport qui vous seront
+            intégralement remboursés par l&apos;Etat !
           </p>
 
           <section>

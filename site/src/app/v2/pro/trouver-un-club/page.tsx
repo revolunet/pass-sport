@@ -33,7 +33,7 @@ const TrouverUnClub = async () => {
         </li>
 
         <li>
-          les structures du loisir sportif marchand ayant signé la Charte d’engagement Pass’Sport
+          les structures du loisir sportif marchand ayant signé la Charte d’engagement pass Sport
           2023.
         </li>
       </ul>
