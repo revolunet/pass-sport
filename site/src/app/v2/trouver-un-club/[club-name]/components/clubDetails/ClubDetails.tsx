@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/app/v2/trouver-un-club/[club-name]/style.module.scss';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import { formatPhoneNumber } from '@/app/v2/trouver-un-club/[club-name]/helpers';

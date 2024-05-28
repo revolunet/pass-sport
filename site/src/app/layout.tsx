@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import './globals.scss';
 import { DsfrHead } from '@codegouvfr/react-dsfr/next-appdir/DsfrHead';
 import { DsfrProvider } from '@codegouvfr/react-dsfr/next-appdir/DsfrProvider';
@@ -12,11 +11,6 @@ import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
 import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
 import PassSportBreadcrumb from '@/app/components/pass-sport-breadcrumb/PassSportBreadCrumb';
 import Matomo from './Matomo';
-
-export const metadata: Metadata = {
-  title: 'pass Sport - Accueil',
-  description: "Page d'accueil du site pass-sports.gouv.fr",
-};
 
 export default function RootLayout({
   children,

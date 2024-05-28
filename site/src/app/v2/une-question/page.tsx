@@ -8,6 +8,13 @@ import ContentSection from '@/app/v2/une-question/components/ContentSection/Cont
 import ContactSection from '@/app/v2/une-question/components/ContactSection/ContactSection';
 import { getCategoriesWithArticles } from '@/app/v2/une-question/server-agent';
 import { headers } from 'next/headers';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Une question ? - pass Sport',
+  };
+}
 
 export default async function Questions() {
   headers();

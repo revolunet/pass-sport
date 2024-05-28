@@ -1,19 +1,24 @@
-'use client';
-
 import ClubDetails from '@/app/v2/trouver-un-club/[club-name]/components/clubDetails/ClubDetails';
-import EligibilityTestBanner from '../../../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import SocialMediaPanel from '../../../../components/social-media-panel/SocialMediaPanel';
-import { useIsProVersion } from '../../../../hooks/use-is-pro-version';
+import { Metadata } from 'next';
 
-const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
+interface Props {
+  params: { 'club-name': string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    title: `Trouver une structure partenaire - ${decodeURIComponent(params['club-name'])} - Pass Sport`,
+  };
+}
+
+const ClubPage = ({ params }: Props) => {
   const clubName = decodeURIComponent(params['club-name']);
-  const isProVersion = useIsProVersion();
 
   return (
     <>
       <ClubDetails clubName={clubName} isProVersion />
-      {!isProVersion && <EligibilityTestBanner />}
-      <SocialMediaPanel isProVersion={isProVersion} />
+      <SocialMediaPanel isProVersion />
     </>
   );
 };
