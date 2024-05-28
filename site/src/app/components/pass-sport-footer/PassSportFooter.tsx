@@ -146,15 +146,9 @@ export default function PassSportFooter() {
       },
     },
     {
-      text: 'Gestion des cookies',
-      linkProps: {
-        href: '#',
-      },
-    },
-    {
       text: 'Plan du site',
       linkProps: {
-        href: '#',
+        href: isProVersion ? '/v2/pro/plan-du-site' : '/v2/plan-du-site',
       },
     },
   ];

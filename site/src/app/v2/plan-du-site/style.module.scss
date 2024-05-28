@@ -1,0 +1,16 @@
+@import '../../sassVariables.module';
+
+.wrapper {
+  background-color: var(--background-contrast-blue-france);
+  padding-bottom: 72px;
+}
+
+.container {
+  max-width: 992px;
+  background-color: var(--color-white);
+}
+
+.page-header {
+  height: 80px;
+  margin: 0;
+}
