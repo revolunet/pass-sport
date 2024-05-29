@@ -29,10 +29,10 @@ export default function Matomo() {
     const { pathname } = window.location;
 
     let updatedPathName = pathname;
-    let regex = /\/v2\/code\/scan\/.*/;
+    let regex = /\/code\/scan\/.*/;
 
     if (regex.test(pathname)) {
-      updatedPathName = pathname.replace(regex, `/v2/code/scan/24-xxxx-xxxx`);
+      updatedPathName = pathname.replace(regex, `/code/scan/24-xxxx-xxxx`);
     }
 
     push(['setCustomUrl', updatedPathName]);
