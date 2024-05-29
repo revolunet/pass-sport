@@ -20,6 +20,10 @@ server {
     return 301 https://pass.sports.gouv.fr/v2/trouver-un-club;
   }
 
+  location /decouvrir-le-passsport/ {
+    return 301 https://pass.sports.gouv.fr/v2/tout-savoir-sur-le-pass-sport;
+  }
+
   location /v2/ {
     proxy_pass  https://pass-sport-prod.osc-secnum-fr1.scalingo.io;
     proxy_intercept_errors  on;
