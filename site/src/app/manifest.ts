@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'pass Sport',
     short_name: 'pass Sport',
     description:
-      'Avec le pass Sport, bénéficiez d’une déduction de 50€ pour vous inscrire dans un club sportif éligible à la rentrée !',
+      '50 euros pour aider les 6-30 ans à faire du sport',
     start_url: '/',
     display: 'standalone',
     background_color: '#fff',
