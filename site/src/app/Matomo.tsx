@@ -26,7 +26,16 @@ export default function Matomo() {
       push(['setReferrerUrl', previousURL]);
     }
 
-    push(['setCustomUrl', window.location.pathname]);
+    const { pathname } = window.location;
+
+    let updatedPathName = pathname;
+    let regex = /\/v2\/code\/scan\/.*/;
+
+    if (regex.test(pathname)) {
+      updatedPathName = pathname.replace(regex, `/v2/code/scan/24-xxxx-xxxx`);
+    }
+
+    push(['setCustomUrl', updatedPathName]);
     push(['trackPageView']);
 
     setPreviousURL(window.location.pathname);
