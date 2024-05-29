@@ -66,7 +66,6 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
               return (
                 <li
                   key={category.id}
-                  id={category.id}
                   onClick={() => {
                     setSelectedCategory(category);
                     setSelectedArticle(null);
