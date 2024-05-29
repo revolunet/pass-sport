@@ -66,6 +66,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
               return (
                 <li
                   key={category.id}
+                  id={category.id}
                   onClick={() => {
                     setSelectedCategory(category);
                     setSelectedArticle(null);
@@ -95,11 +96,14 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
 
           return (
             <div
+              id={article.id}
               style={{ cursor: 'pointer' }}
               onClick={() => {
-                setSelectedArticle(article);
-                replace(`${pathname}?articleId=${article.id}`);
-                push(['trackEvent', 'View FAQ', `Clicked`, `${article.title} (${article.id})`]);
+                if (selectedArticle === null) {
+                  setSelectedArticle(article);
+                  replace(`${pathname}?articleId=${article.id}#${article.id}`);
+                  push(['trackEvent', 'View FAQ', `Clicked`, `${article.title} (${article.id})`]);
+                }
               }}
               key={article.id}
             >
@@ -120,7 +124,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                         // on the article itself thus setting the selectedArticle again instead of setting it to null
                         e.stopPropagation();
                         setSelectedArticle(null);
-                        replace(`${pathname}`);
+                        replace(`${pathname}#header`);
                       }}
                     >
                       Retour
