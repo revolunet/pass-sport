@@ -1,19 +1,17 @@
-.wrapper {
-  max-width: 588px;
-}
-
-.background {
-  background-color: var(--background-alt-blue-france);
-  max-width: 1200px;
-  min-height: 740px;
+.main {
+  background-color: #ececfe;
 }
 
 .title {
   text-align: center;
 }
 
-.text {
-  &--medium {
-    font-weight: 500;
-  }
+.background {
+  background-color: var(--color-white);
+  max-width: 1200px;
+  min-height: 740px;
+}
+
+.wrapper {
+  max-width: 588px;
 }

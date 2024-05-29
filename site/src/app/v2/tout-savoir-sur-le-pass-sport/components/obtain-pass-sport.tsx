@@ -3,13 +3,16 @@
 import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
 import { useRouter } from 'next/navigation';
+import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
 
 export default function ObtainPassPort() {
   const router = useRouter();
 
   const eligibilityTestOnClick = () => {
     push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Know everything test button']);
-    router.push('test-eligibilite', { scroll: true });
+    isUsingJuneEligibilityTest
+      ? router.push('/v2/test-eligibilite', { scroll: true })
+      : router.push('/v2/test-eligibilite-mai', { scroll: true });
   };
 
   return (

@@ -5,14 +5,21 @@ import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import cn from 'classnames';
 import { push } from '@socialgouv/matomo-next';
+import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
 
 const HeroPanel = () => {
+  const router = useRouter();
+
   const eligibilityTestOnClick = () => {
     push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Home test button']);
-    router.push('/v2/test-eligibilite');
+    isUsingJuneEligibilityTest
+      ? router.push('/v2/test-eligibilite')
+      : router.push('/v2/test-eligibilite-mai');
   };
 
-  const router = useRouter();
+  const getButtonText = () => {
+    return isUsingJuneEligibilityTest ? 'Obtenir mon pass Sport' : 'Je fais le test';
+  };
 
   return (
     <div className={cn('fr-px-3w', styles.background, styles.sizer, styles.padder)}>
@@ -42,7 +49,7 @@ const HeroPanel = () => {
           iconPosition="right"
           onClick={eligibilityTestOnClick}
         >
-          Je fais le test
+          {getButtonText()}
         </Button>
       </div>
     </div>
