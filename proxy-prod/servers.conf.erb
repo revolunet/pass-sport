@@ -11,6 +11,7 @@ server {
     proxy_set_header        X-Real-IP            $remote_addr;
     proxy_set_header        X-Forwarded-For      $proxy_add_x_forwarded_for;
     proxy_set_header        X-Forwarded-Protocol $scheme;
+    limit_req zone=next_v2_nav_req_limit burst=5;
   }
 
   location /api {
@@ -20,6 +21,7 @@ server {
     proxy_set_header        X-Real-IP            $remote_addr;
     proxy_set_header        X-Forwarded-For      $proxy_add_x_forwarded_for;
     proxy_set_header        X-Forwarded-Protocol $scheme;
+    limit_req zone=api_req_limit burst=5;
   }
 
   location /_next {
@@ -29,6 +31,7 @@ server {
     proxy_set_header        X-Real-IP            $remote_addr;
     proxy_set_header        X-Forwarded-For      $proxy_add_x_forwarded_for;
     proxy_set_header        X-Forwarded-Protocol $scheme;
+    limit_req zone=next_req_limit burst=5;
   }
 
   location /images {
@@ -61,5 +64,6 @@ server {
   
 }
 
-limit_conn_zone $binary_remote_addr zone=conn_limit_per_ip:10m;
-limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=200r/m;
+limit_req_zone $binary_remote_addr zone=api_req_limit:10m rate=20r/m;
+limit_req_zone $binary_remote_addr zone=next_req_limit:10m rate=150r/m;
+limit_req_zone $binary_remote_addr zone=next_v2_nav_req_limit:10m rate=150r/m;
