@@ -56,11 +56,18 @@ const QrCodePanel = ({ data }: Props) => {
       </div>
 
       <div className={cn('fr-mb-4w', styles['centered-text'])}>
-        <Link href={qrcodeUrl} target="_blank" className={styles.link}>
-          <Button priority="primary" size="large" className={styles.button}>
-            Télécharger mon QR Code pass Sport au format pdf
-          </Button>
-        </Link>
+        <Button
+          priority="primary"
+          size="large"
+          iconPosition="right"
+          iconId="fr-icon-external-link-line"
+          linkProps={{
+            href: qrcodeUrl,
+            target: '_blank',
+          }}
+        >
+          Télécharger mon QR Code pass Sport au format pdf
+        </Button>
       </div>
     </>
   );
