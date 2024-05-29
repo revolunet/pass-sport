@@ -30,7 +30,7 @@ export default function PlanDuSite() {
             </li>
 
             <li>
-              <Link href="/v2/pro/trouver-un-club">Trouver une structure partenaire</Link>
+              <Link href="/v2/pro/trouver-un-club">Carte des structures partenaires</Link>
             </li>
             <li>
               <Link href="/v2/pro/une-question">Une question ?</Link>
