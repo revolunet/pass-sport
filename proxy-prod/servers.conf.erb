@@ -3,7 +3,23 @@ server {
   server_name localhost;
   listen <%= ENV['PORT'] %>;
   charset utf-8;
+
+  location /nous-contacter/ {
+    return 301 https://pass.sports.gouv.fr/v2/une-question;
+  }
+
+  location /jeunes-et-familles/faq/ {
+    return 301 https://pass.sports.gouv.fr/v2/une-question;
+  }
+
+  location /jeunes-et-familles/obtenir-mon-code/ {
+    return 301 https://pass.sports.gouv.fr/v2/test-eligibilite;
+  }
   
+  location /ressources-et-relais-dinformations/le-club-de-ton-choix/ {
+    return 301 https://pass.sports.gouv.fr/v2/trouver-un-club;
+  }
+
   location /v2/ {
     proxy_pass  https://pass-sport-prod.osc-secnum-fr1.scalingo.io;
     proxy_intercept_errors  on;
