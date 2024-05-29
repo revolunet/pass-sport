@@ -35,3 +35,30 @@
     text-transform: uppercase;
   }
 }
+
+.link {
+  &::after {
+    width: 0px;
+    margin-left: 0px;
+  }
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.button::after {
+  flex: 0 0 auto;
+  display: inline-block;
+  vertical-align: calc((0.75em - var(--icon-size)) * 0.5);
+  background-color: currentColor;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  --icon-size: 1rem;
+  -webkit-mask-image: url(/_next/static/media/external-link-line.24fd6719.svg);
+  mask-image: url(/_next/static/media/external-link-line.24fd6719.svg);
+  content: var(--external-link-content);
+  margin-left: 0.25rem;
+}
