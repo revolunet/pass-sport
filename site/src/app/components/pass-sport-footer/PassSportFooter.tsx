@@ -209,6 +209,8 @@ export default function PassSportFooter() {
     },
   ];
 
+  const domains = ['legifrance.gouv.fr', 'info.gouv.fr', 'service-public.fr', 'data.gouv.fr'];
+
   return (
     <Footer
       classes={{
@@ -223,6 +225,7 @@ export default function PassSportFooter() {
       linkList={linkList}
       brandTop={FOOTER_BRAND_TOP}
       accessibility="non compliant"
+      domains={domains}
     />
   );
 }
