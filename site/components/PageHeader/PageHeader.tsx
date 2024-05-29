@@ -14,6 +14,8 @@ interface IProps {
 export default function PageHeader({ title, subtitle, classes, isProVersion = false }: IProps) {
   return (
     <header
+      // Mainly used as an anchor
+      id="header"
       className={cn(styles.container, classes?.container, {
         [styles['container--pro']]: isProVersion,
       })}
