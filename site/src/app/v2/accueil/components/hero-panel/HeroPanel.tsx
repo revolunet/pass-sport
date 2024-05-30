@@ -36,9 +36,6 @@ const HeroPanel = () => {
           <br />
           du sport
         </h2>
-        <p className={cn('fr-text--lead', 'fr-mb-0', styles.paragraph)}>
-          Vais-je recevoir le pass Sport ?
-        </p>
       </div>
       <div className={styles['button-wrapper']}>
         <Button
