@@ -27,7 +27,7 @@ export function decryptData(data: string, base64Key: string) {
 
     return decrypted;
   } catch (err) {
-    console.error('Code non valid', err);
+    console.error('Code non valide', err);
     return null;
   }
 }

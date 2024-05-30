@@ -34,7 +34,7 @@ export const buildQRCodeUrl = (data: ConfirmResponseBody) => {
 
     return `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encryptedQuery)}`;
   } catch (e) {
-    console.error((e as Error).message);
+    console.error('buildQRCodeUrl()', (e as Error).message);
     return '';
   }
 };
