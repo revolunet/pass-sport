@@ -4,13 +4,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: 'Googlebot',
+        userAgent: '*',
         allow: ['/'],
-        disallow: '/private/',
-      },
-      {
-        userAgent: ['Applebot', 'Bingbot'],
-        disallow: ['/'],
+        disallow: '/v2/code/scan/',
       },
     ],
     sitemap: 'https://pass.sports.gouv.fr/sitemap.xml',
