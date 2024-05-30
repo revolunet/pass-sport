@@ -1,6 +1,7 @@
 import { City } from 'types/City';
 import { ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import { GeoGouvRegion } from 'types/Region';
+import * as Sentry from '@sentry/nextjs';
 
 export interface SqlSearchParams {
   clubName?: string;
@@ -35,8 +36,12 @@ export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRes
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.error('Status from sports-sgsocialgouv.opendatasoft.com: ' + response.status);
-    console.error(response.body);
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', response.body);
+      scope.setExtra('responseStatus', response.status);
+      scope.captureMessage('Unexpected response from sports-sgsocialgouv.opendatasoft.com');
+    });
     return {
       results: [],
       total_count: 0,
@@ -52,8 +57,12 @@ export const getFranceRegions = async (): Promise<GeoGouvRegion[]> => {
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.error('Error fetching regions. Status from geo.api.gouv.fr: ' + response.status);
-    console.error(response.body);
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', response.body);
+      scope.setExtra('responseStatus', response.status);
+      scope.captureMessage('Unexpected response from geo.api.gouv.fr for regions');
+    });
     return [];
   }
 
@@ -80,8 +89,12 @@ export const getFranceCitiesByName = async (
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.error('Error fetching cties. Status from geo.api.gouv.fr: ' + response.status);
-    console.error(response.body);
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', response.body);
+      scope.setExtra('responseStatus', response.status);
+      scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+    });
     return [];
   }
 
@@ -118,11 +131,14 @@ const getClubsActivitiesBatch = async (
   const response = await fetch(url, { next: { revalidate: 300 }, headers });
 
   if (!response.ok) {
-    console.error(
-      'Error fetching activities. Status from /sports-sgsocialgouv.opendatasoft.com: ' +
-        response.status,
-    );
-    console.error(response.body);
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', response.body);
+      scope.setExtra('responseStatus', response.status);
+      scope.captureMessage(
+        'Unexpected response from sports-sgsocialgouv.opendatasoft.com for activities',
+      );
+    });
     throw new Error('Error fetching activities');
   }
 
