@@ -4,6 +4,8 @@ import rootStyles from '@/app/utilities.module.scss';
 import { QRCodeSVG } from 'qrcode.react';
 import styles from './styles.module.scss';
 import { EnhancedConfirmResponseBodyItem } from 'types/EligibilityTest';
+import Button from '@codegouvfr/react-dsfr/Button';
+import Link from 'next/link';
 
 interface Props {
   data: EnhancedConfirmResponseBodyItem;
@@ -34,23 +36,40 @@ const QrCodePanel = ({ data }: Props) => {
   };
 
   return (
-    <div className={cn('fr-mx-4w', 'fr-p-3w', 'fr-mb-3w', styles.container)}>
-      <div>
-        <QRCodeSVG value={qrcodeUrl} size={240} />
-      </div>
-      <div className={styles.center}>
-        <h6 className={cn('fr-mb-1w', styles.blue)}>
-          <span className={styles['text-casing']}>{prenom}</span>{' '}
-          <span className={styles['text-casing']}>{nom}</span>
-        </h6>
+    <>
+      <div className={cn('fr-mx-4w', 'fr-p-3w', 'fr-mb-3w', styles.container)}>
+        <div>
+          <QRCodeSVG value={qrcodeUrl} size={240} />
+        </div>
+        <div className={styles.center}>
+          <h6 className={cn('fr-mb-1w', styles.blue)}>
+            <span className={styles['text-casing']}>{prenom}</span>{' '}
+            <span className={styles['text-casing']}>{nom}</span>
+          </h6>
 
-        <p className={cn('fr-mb-3w', rootStyles['text--medium'])}>
-          {formatBirthDate(date_naissance, genre)}
-        </p>
+          <p className={cn('fr-mb-3w', rootStyles['text--medium'])}>
+            {formatBirthDate(date_naissance, genre)}
+          </p>
 
-        <p className={cn('fr-text--lg', 'fr-text--bold')}>{formatPspCode(id_psp)}</p>
+          <p className={cn('fr-text--lg', 'fr-text--bold')}>{formatPspCode(id_psp)}</p>
+        </div>
       </div>
-    </div>
+
+      <div className={cn('fr-mb-4w', styles['centered-text'])}>
+        <Button
+          priority="primary"
+          size="large"
+          iconPosition="right"
+          iconId="fr-icon-external-link-line"
+          linkProps={{
+            href: qrcodeUrl,
+            target: '_blank',
+          }}
+        >
+          Télécharger mon QR Code pass Sport au format pdf
+        </Button>
+      </div>
+    </>
   );
 };
 const QrCodeVerdict = (props: Props) => {
