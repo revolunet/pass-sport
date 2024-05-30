@@ -104,6 +104,13 @@ const ClubFilters: React.FC<Props> = ({
     control: (baseStyles: Record<string, unknown>) => ({
       ...baseStyles,
       borderColor: '#ffffff',
+      '@media screen and (max-width: 768px)': {
+        width: '100%',
+      },
+      '@media screen and (max-width: 992px)': {
+        width: '150px',
+      },
+      width: '210px',
     }),
     indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
       ...baseStyles,
@@ -112,6 +119,10 @@ const ClubFilters: React.FC<Props> = ({
     valueContainer: (baseStyles: Record<string, unknown>) => ({
       ...baseStyles,
       paddingLeft: '0px',
+    }),
+    menu: (baseStyles: Record<string, unknown>) => ({
+      ...baseStyles,
+      zIndex: 999,
     }),
   };
 
