@@ -5,6 +5,7 @@ import {
 } from 'types/EligibilityTest';
 import crypto from 'crypto';
 import { formatDate } from '../../../utils/date';
+import * as Sentry from '@sentry/nextjs';
 
 export const addQrCodeToConfirmResponse = (
   responseBody: ConfirmResponseBody,
@@ -34,7 +35,11 @@ export const buildQRCodeUrl = (data: ConfirmResponseBody) => {
 
     return `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encryptedQuery)}`;
   } catch (e) {
-    console.error('buildQRCodeUrl()', (e as Error).message);
+    Sentry.withScope((scope) => {
+      scope.captureException(e);
+      scope.setLevel('error');
+      scope.captureMessage("Erreur lors de la construction de l'URL du qr code");
+    });
     return '';
   }
 };

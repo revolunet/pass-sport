@@ -1,5 +1,6 @@
 // only to be used on a server component
 import crypto from 'crypto';
+import * as Sentry from '@sentry/nextjs';
 
 export function base64Decode(data: string) {
   return Buffer.from(data, 'base64');
@@ -27,7 +28,11 @@ export function decryptData(data: string, base64Key: string) {
 
     return decrypted;
   } catch (err) {
-    console.error('Code non valide', err);
+    Sentry.withScope((scope) => {
+      scope.captureException(err);
+      scope.setLevel('error');
+      scope.captureMessage('Erreur lors de la decryption du code');
+    });
     return null;
   }
 }

@@ -8,6 +8,7 @@ import {
 } from 'types/EligibilityTest';
 import { zfd } from 'zod-form-data';
 import z from 'zod';
+import * as Sentry from '@sentry/nextjs';
 
 const schema = zfd.formData({
   id: z.string(),
@@ -38,18 +39,22 @@ export async function POST(request: Request) {
     const responseBody = (await response.json()) as ConfirmResponseBody | ConfirmResponseErrorBody;
 
     if ('message' in responseBody) {
-      console.error(
-        'POST api/eligibility-test/confirm',
-        'request to LCA has a message field in the body. The body is: ',
-        responseBody,
-      );
+      Sentry.withScope((scope) => {
+        scope.setLevel('warning');
+        scope.setExtra('responseBody', responseBody);
+        scope.captureMessage('Unexpected response on LCA POST api/eligibility-test/confirm');
+      });
       return NextResponse.json(responseBody);
     }
 
     const enhancedResponse = addQrCodeToConfirmResponse(responseBody);
     return NextResponse.json(enhancedResponse);
   } catch (e) {
-    console.error('POST api/eligibility-test/confirm', 'internal error', e);
+    Sentry.withScope((scope) => {
+      scope.setLevel('error');
+      scope.captureMessage('Technical error on LCA POST api/eligibility-test/confirm');
+      scope.captureException(e);
+    });
     return NextResponse.json('Internal error', { status: 500 });
   }
 }

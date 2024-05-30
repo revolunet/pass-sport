@@ -3,6 +3,7 @@
 import { CategoryWithArticles } from '../../../../types/Faq';
 import { getCrispArticles, getFormattedCategories } from '../../../../utils/faq';
 import { initCrispClient } from '../../../../utils/crisp';
+import * as Sentry from '@sentry/nextjs';
 
 const {
   envVars: { CRISP_WEBSITE },
@@ -27,7 +28,11 @@ export const getCategoriesWithArticles = async ({
       isProVersion,
     });
   } catch (err) {
-    console.error('Error occurred while trying to get articles from CRISP', err);
+    Sentry.withScope((scope) => {
+      scope.captureException(err);
+      scope.setLevel('error');
+      scope.captureMessage('Error occurred while trying to get articles from CRISP');
+    });
 
     return [];
   }
