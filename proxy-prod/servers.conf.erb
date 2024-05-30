@@ -15,7 +15,19 @@ server {
   location /jeunes-et-familles/obtenir-mon-code/ {
     return 301 https://pass.sports.gouv.fr/v2/test-eligibilite;
   }
-  
+
+  location /obtenir-mon-code/ {
+    return 301 https://pass.sports.gouv.fr/v2/test-eligibilite;
+  }
+
+  location /structures-daccueil/ {
+    return 301 https://pass.sports.gouv.fr/v2/trouver-un-club;
+  }
+
+  location /faq/passsport-quest-ce-que-cest/ {
+    return 301 https://pass.sports.gouv.fr/v2/une-question;
+  }
+
   location /ressources-et-relais-dinformations/le-club-de-ton-choix/ {
     return 301 https://pass.sports.gouv.fr/v2/trouver-un-club;
   }
