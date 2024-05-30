@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       throw new Error(
-        `Request to LCA api on /confirm has failed. Response status is ${response.status}`,
+        `Request to LCA api on /confirm has failed. Response status is ${response.status}. Response body is ${await response.json()}`,
       );
     }
 
