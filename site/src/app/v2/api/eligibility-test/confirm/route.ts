@@ -31,14 +31,18 @@ export async function POST(request: Request) {
     const responseBody = (await response.json()) as ConfirmResponseBody | ConfirmResponseErrorBody;
 
     if ('message' in responseBody) {
-      console.error(responseBody);
+      console.error(
+        'POST api/eligibility-test/confirm',
+        'request to LCA has a message field in the body. The body is: ',
+        responseBody,
+      );
       return NextResponse.json(responseBody);
     }
 
     const enhancedResponse = addQrCodeToConfirmResponse(responseBody);
     return NextResponse.json(enhancedResponse);
   } catch (e) {
-    console.error(e);
+    console.error('POST api/eligibility-test/confirm', 'internal error', e);
     return NextResponse.json('Internal error', { status: 500 });
   }
 }
