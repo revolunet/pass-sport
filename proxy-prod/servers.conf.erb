@@ -114,5 +114,5 @@ server {
 }
 
 limit_req_zone $binary_remote_addr zone=api_req_limit:10m rate=20r/m;
-limit_req_zone $binary_remote_addr zone=next_req_limit:10m rate=500r/m;
+limit_req_zone $binary_remote_addr zone=next_req_limit:10m rate=5000r/m;
 limit_req_zone $binary_remote_addr zone=next_v2_nav_req_limit:10m rate=150r/m;
