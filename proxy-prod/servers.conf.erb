@@ -4,27 +4,31 @@ server {
   listen <%= ENV['PORT'] %>;
   charset utf-8;
 
-  location /nous-contacter/ {
+  location /nous-contacter {
     return 301 https://pass.sports.gouv.fr/v2/une-question;
   }
 
-  location /jeunes-et-familles/faq/ {
+  location /decouvrir-le-passsport {
+    return 301 https://pass.sports.gouv.fr/v2/tout-savoir-sur-le-pass-sport;
+  }
+
+  location /obtenir-mon-code {
+    return 301 https://pass.sports.gouv.fr/v2/test-eligibilite;
+  }
+
+  location /jeunes-et-familles/faq {
     return 301 https://pass.sports.gouv.fr/v2/une-question;
   }
 
-  location /jeunes-et-familles/obtenir-mon-code/ {
+  location /jeunes-et-familles/obtenir-mon-code {
     return 301 https://pass.sports.gouv.fr/v2/test-eligibilite;
   }
 
-  location /obtenir-mon-code/ {
-    return 301 https://pass.sports.gouv.fr/v2/test-eligibilite;
-  }
-
-  location /structures-daccueil/ {
+  location /structures-daccueil {
     return 301 https://pass.sports.gouv.fr/v2/trouver-un-club;
   }
 
-  location /faq/passsport-quest-ce-que-cest/ {
+  location /faq/passsport-quest-ce-que-cest {
     return 301 https://pass.sports.gouv.fr/v2/une-question;
   }
 
@@ -34,6 +38,18 @@ server {
 
   location /decouvrir-le-passsport/ {
     return 301 https://pass.sports.gouv.fr/v2/tout-savoir-sur-le-pass-sport;
+  }
+
+  location /clubs-et-structures-daccueil/le-passport-pour-les-clubs {
+    return 301 https://pass.sports.gouv.fr/v2/pro/tout-savoir-sur-le-pass-sport;
+  }
+
+  location /clubs-et-structures-daccueil/comment-me-faire-rembourser-des-deductions-passsport-consenties {
+    return 301 https://pass.sports.gouv.fr/v2/pro/une-question?articleId=f0c80ff0-9132-4777-9019-6699b95f4fa9#f0c80ff0-9132-4777-9019-6699b95f4fa9;
+  }
+
+  location /clubs-et-structures-daccueil/les-outils-de-communication-a-destination-des-clubs {
+    return 301 https://pass.sports.gouv.fr/v2/pro/ressources;
   }
 
   location /v2/ {
