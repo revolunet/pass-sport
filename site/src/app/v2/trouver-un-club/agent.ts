@@ -136,7 +136,7 @@ const getClubsActivitiesBatch = async (
       scope.setExtra('responseBody', response.body);
       scope.setExtra('responseStatus', response.status);
       scope.captureMessage(
-        'Unexpected response from sports-sgsocialgouv.opendatasoft.com for activies',
+        'Unexpected response from sports-sgsocialgouv.opendatasoft.com for activities',
       );
     });
     throw new Error('Error fetching activities');
