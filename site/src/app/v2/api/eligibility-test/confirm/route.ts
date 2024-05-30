@@ -28,6 +28,13 @@ export async function POST(request: Request) {
 
     const url: URL = buildLCAConfirmUrl(payload);
     const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(
+        `Request to LCA api on /confirm has failed. Response status is ${response.status}. Response body is ${await response.json()}`,
+      );
+    }
+
     const responseBody = (await response.json()) as ConfirmResponseBody | ConfirmResponseErrorBody;
 
     if ('message' in responseBody) {
