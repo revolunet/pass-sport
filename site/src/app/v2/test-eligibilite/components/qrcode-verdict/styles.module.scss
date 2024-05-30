@@ -14,6 +14,10 @@
   @media (min-width: $sm) {
     flex-direction: row;
   }
+
+  @media print {
+    print-color-adjust: exact;
+  }
 }
 
 .blue {
