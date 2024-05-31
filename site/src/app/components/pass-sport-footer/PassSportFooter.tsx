@@ -92,7 +92,7 @@ export default function PassSportFooter() {
       {
         linkProps: {
           title: 'Hello asso',
-          href: 'https://www.helloasso.com/',
+          href: 'https://www.helloasso.com/secteurs/clubs-sportifs',
         },
         imgUrl: helloAssoLogo.src,
         alt: 'Hello asso',
