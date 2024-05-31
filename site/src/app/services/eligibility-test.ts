@@ -1,4 +1,11 @@
-import { ConfirmPayload } from 'types/EligibilityTest';
+import {
+  ConfirmPayload,
+  ConfirmResponseBody,
+  ConfirmResponseErrorBody,
+} from 'types/EligibilityTest';
+
+import * as Sentry from '@sentry/nextjs';
+import { addQrCodeToConfirmResponse } from './qr-code';
 
 export const buildLCAConfirmUrl = (data: ConfirmPayload): URL => {
   const domain = process.env.NEXT_PUBLIC_LCA_API_URL;
@@ -47,4 +54,33 @@ export const buildLCAConfirmUrl = (data: ConfirmPayload): URL => {
   url.search = params.toString();
 
   return url;
+};
+
+export const fetchQrCode = async (
+  payload: ConfirmPayload,
+): Promise<ConfirmResponseBody | ConfirmResponseErrorBody> => {
+  const url: URL = buildLCAConfirmUrl(payload);
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(
+      `Request to LCA api on /confirm has failed. Response status is ${response.status}. Response body is ${JSON.stringify(await response.json())}`,
+    );
+  }
+  const responseBody = (await response.json()) as ConfirmResponseBody | ConfirmResponseErrorBody;
+
+  if ('message' in responseBody) {
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', responseBody);
+      scope.captureMessage('Unexpected response on LCA POST api/eligibility-test/confirm');
+    });
+    return responseBody;
+  }
+  if (responseBody instanceof Array && responseBody.length === 0) {
+    return responseBody;
+  }
+  const enhancedResponse = addQrCodeToConfirmResponse(responseBody);
+  return enhancedResponse;
 };

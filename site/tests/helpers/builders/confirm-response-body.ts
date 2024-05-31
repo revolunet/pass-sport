@@ -1,4 +1,8 @@
-import { ConfirmResponseBody, ConfirmResponseBodyItem } from 'types/EligibilityTest';
+import {
+  ConfirmPayload,
+  ConfirmResponseBody,
+  ConfirmResponseBodyItem,
+} from 'types/EligibilityTest';
 
 export const buildConfirmResponseBody = ({
   nom,
@@ -41,4 +45,18 @@ export const buildConfirmResponseBody = ({
       nom_complet: 'MANON DUPOND',
     },
   ];
+};
+
+export const buildConfirmPayload = (data: Partial<ConfirmPayload>) => {
+  return {
+    id: '123456789',
+    situation: data.situation || 'jeune',
+    organisme: data.organisme || 'CAF',
+    recipientLastname: data.recipientLastname,
+    recipientFirstname: data.recipientFirstname,
+    recipientCafNumber: data.recipientCafNumber,
+    recipientBirthPlace: data.recipientBirthPlace,
+    recipientBirthDate: data.recipientBirthDate,
+    recipientBirthCountry: data.recipientBirthCountry,
+  };
 };
