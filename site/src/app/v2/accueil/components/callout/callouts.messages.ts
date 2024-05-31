@@ -12,7 +12,7 @@ export const calloutContents = [
   },
   {
     id: 2,
-    title: '-',
+    title: '80 266',
     description: 'Clubs labélisés',
   },
   {
