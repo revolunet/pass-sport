@@ -127,7 +127,7 @@ export default function ToutSavoirSurLePassSport() {
                   </div>
 
                   <div>
-                    <h6 className="fr-mb-2w">Affiches écoles</h6>
+                    <h6 className="fr-mb-2w">Affiches écoliers / étudiants</h6>
                     <p className={styles['accordion__links-container']}>
                       <Link
                         href="/assets/ressources/affiches-a4/primaire.pdf"
@@ -167,7 +167,7 @@ export default function ToutSavoirSurLePassSport() {
                   </div>
 
                   <div>
-                    <h6 className="fr-mb-2w">Affiches Print</h6>
+                    <h6 className="fr-mb-2w">Affiches Athlètes</h6>
                     <p className={styles['accordion__links-container']}>
                       <Link
                         href="/assets/ressources/affiches-a4/estelle.pdf"
