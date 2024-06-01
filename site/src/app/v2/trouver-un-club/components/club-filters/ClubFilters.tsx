@@ -10,6 +10,8 @@ import { City } from 'types/City';
 import { ActivityResponse } from 'types/Club';
 import cn from 'classnames';
 import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 interface Option {
   label: string;
@@ -34,10 +36,25 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
 }) => {
+  const searchParam = useSearchParams();
+  const regionCodeSearchParam = searchParam && searchParam.get('regionCode');
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (regionCodeSearchParam) {
+      onRegionChanged(regionCodeSearchParam);
+    }
+  }, [regionCodeSearchParam]);
+
   const parsedRegions: Option[] = regions.map((region) => ({
     label: region.nom,
     value: region.code,
   }));
+
+  const defaultRegionOption: Option | undefined = parsedRegions.find(
+    (r) => r.value === regionCodeSearchParam,
+  );
 
   const parsedActivities: Option[] = activities.results
     .filter((activity) => activity.activites)
@@ -69,7 +86,9 @@ const ClubFilters: React.FC<Props> = ({
     if (!newValue) {
       /* field was cleared */
       onRegionChanged();
+      router.push(`${pathname}`);
     } else {
+      router.push(`${pathname}?regionCode=${newValue.value}`);
       onRegionChanged(newValue.value);
     }
   };
@@ -145,6 +164,7 @@ const ClubFilters: React.FC<Props> = ({
                 ></span>
 
                 <Select
+                  defaultValue={defaultRegionOption}
                   instanceId="region-select-id"
                   className={styles.select}
                   isClearable
