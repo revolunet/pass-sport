@@ -83,7 +83,7 @@ export default function ToutSavoirSurLePassSport() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Logo Blanc (principal)
+                        Logo Bleu (principal)
                       </Link>
                       <Link
                         href="/assets/ressources/logo/secondaire.png"
