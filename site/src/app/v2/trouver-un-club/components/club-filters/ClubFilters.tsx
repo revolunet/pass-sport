@@ -45,6 +45,7 @@ const ClubFilters: React.FC<Props> = ({
     if (regionCodeSearchParam) {
       onRegionChanged(regionCodeSearchParam);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [regionCodeSearchParam]);
 
   const parsedRegions: Option[] = regions.map((region) => ({
