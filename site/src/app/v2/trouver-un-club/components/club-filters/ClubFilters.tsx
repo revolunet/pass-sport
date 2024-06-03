@@ -1,17 +1,19 @@
 'use client';
 
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import cn from 'classnames';
 import Select, { SingleValue } from 'react-select';
-import { GeoGouvRegion } from 'types/Region';
-import { getFranceCitiesByName } from '../../agent';
-import Search from '../search/Search';
-import styles from './styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { City } from 'types/City';
 import { ActivityResponse } from 'types/Club';
-import cn from 'classnames';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import { GeoGouvRegion } from 'types/Region';
+import { getFranceCitiesByName } from '../../agent';
+import Search from '../search/Search';
+import RegionFilter from './region-filter/RegionFilter';
+import styles from './styles.module.scss';
+import { Suspense } from 'react';
 
-interface Option {
+export interface Option {
   label: string;
   value: string;
 }
@@ -25,6 +27,33 @@ interface Props {
   onActivityChanged: (activity?: string) => void;
   onDisabilityChanged: (isDisabled: 'Non' | 'Oui') => void;
 }
+
+export const selectStyles = {
+  control: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    borderColor: '#ffffff',
+    '@media screen and (max-width: 768px)': {
+      width: '100%',
+    },
+    '@media screen and (max-width: 992px)': {
+      width: '150px',
+    },
+    width: '210px',
+  }),
+  indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    backgroundColor: '#ffffff',
+  }),
+  valueContainer: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    paddingLeft: '0px',
+  }),
+  menu: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    zIndex: 999,
+  }),
+};
+
 const ClubFilters: React.FC<Props> = ({
   regions,
   activities,
@@ -34,11 +63,6 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
 }) => {
-  const parsedRegions: Option[] = regions.map((region) => ({
-    label: region.nom,
-    value: region.code,
-  }));
-
   const parsedActivities: Option[] = activities.results
     .filter((activity) => activity.activites)
     .map((activity) => ({
@@ -64,15 +88,6 @@ const ClubFilters: React.FC<Props> = ({
 
   const fetchCityOptions = (inputValue: string) =>
     getFranceCitiesByName(inputValue, false).then((cities) => parseCities(cities));
-
-  const regionChangeHandler = (newValue: SingleValue<Option>) => {
-    if (!newValue) {
-      /* field was cleared */
-      onRegionChanged();
-    } else {
-      onRegionChanged(newValue.value);
-    }
-  };
 
   const cityChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
@@ -100,32 +115,6 @@ const ClubFilters: React.FC<Props> = ({
     }
   };
 
-  const selectStyles = {
-    control: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      borderColor: '#ffffff',
-      '@media screen and (max-width: 768px)': {
-        width: '100%',
-      },
-      '@media screen and (max-width: 992px)': {
-        width: '150px',
-      },
-      width: '210px',
-    }),
-    indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      backgroundColor: '#ffffff',
-    }),
-    valueContainer: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      paddingLeft: '0px',
-    }),
-    menu: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      zIndex: 999,
-    }),
-  };
-
   return (
     <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
       <div className="fr-px-2w">
@@ -134,29 +123,9 @@ const ClubFilters: React.FC<Props> = ({
         <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
         <div className={styles.filtersContainer}>
           <div className={cn(styles.flex)}>
-            <div className={styles['label-container']}>
-              <label htmlFor="region" className={styles.label}>
-                Choix d&apos;une région
-              </label>
-              <div className={styles['input-container']}>
-                <span
-                  className={cn('fr-icon-map-pin-2-fill', styles.icon)}
-                  aria-hidden="true"
-                ></span>
-
-                <Select
-                  instanceId="region-select-id"
-                  className={styles.select}
-                  isClearable
-                  placeholder="Toutes les régions"
-                  isSearchable
-                  name="region"
-                  options={parsedRegions}
-                  onChange={regionChangeHandler}
-                  styles={selectStyles}
-                />
-              </div>
-            </div>
+            <Suspense>
+              <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
+            </Suspense>
           </div>
           <div className={styles.separator} />
           <div className={cn(styles.flex)}>
