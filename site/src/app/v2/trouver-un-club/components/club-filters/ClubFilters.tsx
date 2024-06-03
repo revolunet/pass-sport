@@ -1,19 +1,19 @@
 'use client';
 
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import cn from 'classnames';
 import Select, { SingleValue } from 'react-select';
-import { GeoGouvRegion } from 'types/Region';
-import { getFranceCitiesByName } from '../../agent';
-import Search from '../search/Search';
-import styles from './styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { City } from 'types/City';
 import { ActivityResponse } from 'types/Club';
-import cn from 'classnames';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { GeoGouvRegion } from 'types/Region';
+import { getFranceCitiesByName } from '../../agent';
+import Search from '../search/Search';
+import RegionFilter from './region-filter/RegionFilter';
+import styles from './styles.module.scss';
+import { Suspense } from 'react';
 
-interface Option {
+export interface Option {
   label: string;
   value: string;
 }
@@ -27,6 +27,33 @@ interface Props {
   onActivityChanged: (activity?: string) => void;
   onDisabilityChanged: (isDisabled: 'Non' | 'Oui') => void;
 }
+
+export const selectStyles = {
+  control: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    borderColor: '#ffffff',
+    '@media screen and (max-width: 768px)': {
+      width: '100%',
+    },
+    '@media screen and (max-width: 992px)': {
+      width: '150px',
+    },
+    width: '210px',
+  }),
+  indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    backgroundColor: '#ffffff',
+  }),
+  valueContainer: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    paddingLeft: '0px',
+  }),
+  menu: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    zIndex: 999,
+  }),
+};
+
 const ClubFilters: React.FC<Props> = ({
   regions,
   activities,
@@ -36,27 +63,6 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
 }) => {
-  const searchParam = useSearchParams();
-  const regionCodeSearchParam = searchParam && searchParam.get('regionCode');
-  const router = useRouter();
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (regionCodeSearchParam) {
-      onRegionChanged(regionCodeSearchParam);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [regionCodeSearchParam]);
-
-  const parsedRegions: Option[] = regions.map((region) => ({
-    label: region.nom,
-    value: region.code,
-  }));
-
-  const defaultRegionOption: Option | undefined = parsedRegions.find(
-    (r) => r.value === regionCodeSearchParam,
-  );
-
   const parsedActivities: Option[] = activities.results
     .filter((activity) => activity.activites)
     .map((activity) => ({
@@ -82,17 +88,6 @@ const ClubFilters: React.FC<Props> = ({
 
   const fetchCityOptions = (inputValue: string) =>
     getFranceCitiesByName(inputValue, false).then((cities) => parseCities(cities));
-
-  const regionChangeHandler = (newValue: SingleValue<Option>) => {
-    if (!newValue) {
-      /* field was cleared */
-      onRegionChanged();
-      router.push(`${pathname}`);
-    } else {
-      router.push(`${pathname}?regionCode=${newValue.value}`);
-      onRegionChanged(newValue.value);
-    }
-  };
 
   const cityChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
@@ -120,32 +115,6 @@ const ClubFilters: React.FC<Props> = ({
     }
   };
 
-  const selectStyles = {
-    control: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      borderColor: '#ffffff',
-      '@media screen and (max-width: 768px)': {
-        width: '100%',
-      },
-      '@media screen and (max-width: 992px)': {
-        width: '150px',
-      },
-      width: '210px',
-    }),
-    indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      backgroundColor: '#ffffff',
-    }),
-    valueContainer: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      paddingLeft: '0px',
-    }),
-    menu: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      zIndex: 999,
-    }),
-  };
-
   return (
     <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
       <div className="fr-px-2w">
@@ -154,31 +123,9 @@ const ClubFilters: React.FC<Props> = ({
         <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
         <div className={styles.filtersContainer}>
           <div className={cn(styles.flex)}>
-            <div className={styles['label-container']}>
-              <label htmlFor="region" className={styles.label}>
-                Choix d&apos;une région
-              </label>
-              <div className={styles['input-container']}>
-                <span
-                  className={cn('fr-icon-map-pin-2-fill', styles.icon)}
-                  aria-hidden="true"
-                ></span>
-                <Suspense>
-                  <Select
-                    defaultValue={defaultRegionOption}
-                    instanceId="region-select-id"
-                    className={styles.select}
-                    isClearable
-                    placeholder="Toutes les régions"
-                    isSearchable
-                    name="region"
-                    options={parsedRegions}
-                    onChange={regionChangeHandler}
-                    styles={selectStyles}
-                  />
-                </Suspense>
-              </div>
-            </div>
+            <Suspense>
+              <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
+            </Suspense>
           </div>
           <div className={styles.separator} />
           <div className={cn(styles.flex)}>
