@@ -11,7 +11,7 @@ import { ActivityResponse } from 'types/Club';
 import cn from 'classnames';
 import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 interface Option {
   label: string;
@@ -163,19 +163,20 @@ const ClubFilters: React.FC<Props> = ({
                   className={cn('fr-icon-map-pin-2-fill', styles.icon)}
                   aria-hidden="true"
                 ></span>
-
-                <Select
-                  defaultValue={defaultRegionOption}
-                  instanceId="region-select-id"
-                  className={styles.select}
-                  isClearable
-                  placeholder="Toutes les régions"
-                  isSearchable
-                  name="region"
-                  options={parsedRegions}
-                  onChange={regionChangeHandler}
-                  styles={selectStyles}
-                />
+                <Suspense>
+                  <Select
+                    defaultValue={defaultRegionOption}
+                    instanceId="region-select-id"
+                    className={styles.select}
+                    isClearable
+                    placeholder="Toutes les régions"
+                    isSearchable
+                    name="region"
+                    options={parsedRegions}
+                    onChange={regionChangeHandler}
+                    styles={selectStyles}
+                  />
+                </Suspense>
               </div>
             </div>
           </div>
