@@ -6,6 +6,7 @@ import Select, { SingleValue } from 'react-select';
 import { GeoGouvRegion } from '../../../../../../../types/Region';
 import { selectStyles, Option } from '../ClubFilters';
 import styles from '../styles.module.scss';
+import { useEffect } from 'react';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -26,6 +27,11 @@ const RegionFilter: React.FC<Props> = ({ regions, onRegionChanged }) => {
   const defaultRegionOption: Option | undefined = parsedRegions.find(
     (r) => r.value === regionCodeSearchParam,
   );
+
+  useEffect(() => {
+    onRegionChanged(defaultRegionOption?.value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const regionChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
