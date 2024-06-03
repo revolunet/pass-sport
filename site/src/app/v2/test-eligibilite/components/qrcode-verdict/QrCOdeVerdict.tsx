@@ -5,7 +5,6 @@ import { QRCodeSVG } from 'qrcode.react';
 import styles from './styles.module.scss';
 import { EnhancedConfirmResponseBodyItem } from 'types/EligibilityTest';
 import Button from '@codegouvfr/react-dsfr/Button';
-import Link from 'next/link';
 
 interface Props {
   data: EnhancedConfirmResponseBodyItem;
