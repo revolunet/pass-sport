@@ -15,6 +15,7 @@ import CustomInput from '../custom-input/CustomInput';
 import CityFinder from '../city-finder/CityFinder';
 import { mapper } from '../../helpers/helper';
 import ErrorAlert from '../error-alert/ErrorAlert';
+import { fetchEligible } from '../../agent';
 
 const initialInputsState: StepOneFormInputsState = {
   beneficiaryLastname: { state: 'default' },
@@ -96,29 +97,13 @@ const StepOneForm = ({ onDataReceived }: Props) => {
     status: number;
     body: SearchResponseBody | SearchResponseErrorBody;
   }> => {
-    const domain = process.env.NEXT_PUBLIC_LCA_API_URL;
-
-    if (!domain) {
-      throw new Error('Error: NEXT_PUBLIC_LCA_API_URL is not set');
-    }
-
-    const baseUrl = `${domain}/gw/psp-server/beneficiaires/search`;
-    const params = new URLSearchParams();
-
     const formData = new FormData(formRef.current!);
 
-    params.append('nom', formData.get('beneficiaryLastname')!.toString().trim());
-    params.append('prenom', formData.get('beneficiaryFirstname')!.toString().trim());
-    params.append('dateNaissance', formData.get('beneficiaryBirthDate')!.toString().trim());
-    params.append('codeInsee', formData.get('recipientResidencePlace') as string);
+    formData.set('beneficiaryLastname', formData.get('beneficiaryLastname')!.toString().trim());
+    formData.set('beneficiaryFirstname', formData.get('beneficiaryFirstname')!.toString().trim());
+    formData.set('beneficiaryBirthDate', formData.get('beneficiaryBirthDate')!.toString().trim());
 
-    const url = new URL(baseUrl);
-    url.search = params.toString();
-
-    return fetch(url).then(async (response) => ({
-      status: response.status,
-      body: (await response.json()) as SearchResponseBody | SearchResponseErrorBody,
-    }));
+    return fetchEligible(formData);
   };
 
   const onInputChanged = (text: string | null, field: keyof StepOneFormInputsState) => {

@@ -2,16 +2,19 @@ import {
   ConfirmPayload,
   ConfirmResponseBody,
   ConfirmResponseErrorBody,
+  SearchPayload,
+  SearchResponseBody,
+  SearchResponseErrorBody,
 } from 'types/EligibilityTest';
 
 import * as Sentry from '@sentry/nextjs';
 import { addQrCodeToConfirmResponse } from './qr-code';
 
 export const buildLCAConfirmUrl = (data: ConfirmPayload): URL => {
-  const domain = process.env.NEXT_PUBLIC_LCA_API_URL;
+  const domain = process.env.LCA_API_URL;
 
   if (!domain) {
-    throw new Error('Error: NEXT_PUBLIC_LCA_API_URL is not set');
+    throw new Error('Error: LCA_API_URL is not set');
   }
 
   const params = new URLSearchParams();
@@ -56,6 +59,26 @@ export const buildLCAConfirmUrl = (data: ConfirmPayload): URL => {
   return url;
 };
 
+export const buildLCASearchUrl = (data: SearchPayload): URL => {
+  const domain = process.env.LCA_API_URL;
+
+  if (!domain) {
+    throw new Error('Error: LCA_API_URL is not set');
+  }
+
+  const params = new URLSearchParams();
+  params.append('nom', data.beneficiaryLastname);
+  params.append('prenom', data.beneficiaryFirstname);
+  params.append('dateNaissance', data.beneficiaryBirthDate);
+  params.append('codeInsee', data.recipientResidencePlace);
+
+  const baseUrl = `${domain}/gw/psp-server/beneficiaires/search`;
+  const url = new URL(baseUrl);
+  url.search = params.toString();
+
+  return url;
+};
+
 export const fetchQrCode = async (
   payload: ConfirmPayload,
 ): Promise<ConfirmResponseBody | ConfirmResponseErrorBody> => {
@@ -83,4 +106,27 @@ export const fetchQrCode = async (
   }
   const enhancedResponse = addQrCodeToConfirmResponse(responseBody);
   return enhancedResponse;
+};
+
+export const fetchEligible = async (payload: SearchPayload) => {
+  const url: URL = buildLCASearchUrl(payload);
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(
+      `Request to LCA api on /search has failed. Response status is ${response.status}. Response body is ${JSON.stringify(await response.json())}`,
+    );
+  }
+  const responseBody = (await response.json()) as SearchResponseBody | SearchResponseErrorBody;
+
+  if ('message' in responseBody) {
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', responseBody);
+      scope.captureMessage('Unexpected response on LCA POST api/eligibility-test/search');
+    });
+  }
+
+  return responseBody;
 };

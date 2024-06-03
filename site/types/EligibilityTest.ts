@@ -115,3 +115,10 @@ export interface ConfirmPayload {
   recipientBirthDate?: string;
   recipientBirthCountry?: string;
 }
+
+export interface SearchPayload {
+  beneficiaryLastname: string;
+  beneficiaryFirstname: string;
+  beneficiaryBirthDate: string;
+  recipientResidencePlace: string;
+}
