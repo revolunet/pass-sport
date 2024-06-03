@@ -36,10 +36,11 @@ function Page({ params: { encrypted } }: Props) {
   if (decryptedParams === null) return <InvalidContainer />;
 
   const searchParams = new URLSearchParams(decryptedParams);
+  const replaceDoubleQuotes = (input: string | null) => input?.replaceAll(`''`, `'`) || input;
 
   const [firstname, lastname, gender, birthDate, code] = [
-    searchParams.get('bp'),
-    searchParams.get('bn'),
+    replaceDoubleQuotes(searchParams.get('bp')),
+    replaceDoubleQuotes(searchParams.get('bn')),
     searchParams.get('bg'),
     searchParams.get('bdn'),
     searchParams.get('c'),
