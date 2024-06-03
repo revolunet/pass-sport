@@ -49,7 +49,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 2 - Responsable de traitement</h4>
+          <h4 className="fr-mb-2w">Article 2 - Qui est responsable ?</h4>
           <p className="fr-mb-2w">
             La Direction des sports du ministère des sports et des jeux olympiques et paralympiques
             (ci-après <span className="fr-text--bold">« la Direction des sports »</span>) est le
@@ -74,7 +74,7 @@ export default function PolitiqueDeConfidentialite() {
           <p>
             La Direction des sports s&apos;engage à ce que le traitement de vos données à caractère
             personnel effectué dans le cadre de l&apos;envoi du pass Sport 2024 respecte la
-            règlementation en vigueur applicable au traitement de données à caractère personnel et,
+            réglementation en vigueur applicable au traitement de données à caractère personnel et,
             en particulier,{' '}
             <a
               href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees"
@@ -93,34 +93,41 @@ export default function PolitiqueDeConfidentialite() {
             >
               loi n°78-17 informatique et Libertés du 6 janvier 1978 modifiée
             </a>{' '}
-            (« LIL ») et toute règlementation subséquente, ainsi que les dispositions prises par
+            (« LIL ») et toute réglementation subséquente, ainsi que les dispositions prises par
             toute autorité de contrôle compétente, notamment en France la Commission Nationale
-            Informatique & Libertés dit “CNIL”.
+            Informatique & Libertés (CNIL).
           </p>
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 3 - Finalités du traitement des données</h4>
-          <p>Le présent traitement a pour finalités la délivrance du pass Sport 2024.</p>
-        </section>
-
-        <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 4 - Base légale</h4>
-          {/* ATTENTION: A modifier dès la publication du décret 2024. pour ce texte suivant: "décret n° 2023-741 du 8
-            août 2023 relatif au « Pass'Sport » 2023." */}
+          <h4 className="fr-mb-2w">
+            Article 3 - Pourquoi traitons-nous des données à caractère personnel ?
+          </h4>
           <p>
-            Le présent traitement se fonde sur l&apos;article 6. 1. e du Règlement européen 2016/679
-            (règlement général sur la protection des données - RGPD) relatif à l&apos;exécution
-            d&apos;une mission d&apos;intérêt public dont est investie la Direction des sports au
-            sens des articles L. 100-1 et L. 100-2 du code du sport et du décret n° 2023-741 du 8
-            août 2023 relatif au « pass Sport » 2023.
+            Le présent traitement a pour finalité la délivrance du pass Sport 2024 aux bénéficiaires
+            âgés de 6 à 30 ans, dans le but de réduire le montant de l’adhésion ou de la prise de
+            licence proposée par les structures et associations sportives.
           </p>
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 5 - Typologie des données traitées</h4>
-          {/* ATTENTION: A modifier dès la publication du décret 2024. pour ce texte suivant: "décret n° 2023-741 du 8
-            août 2023 relatif au « Pass'Sport » 2023." */}
+          <h4 className="fr-mb-2w">
+            Article 4 - Qu’est-ce qui nous autorise à traiter vos données ?
+          </h4>
+          <p>
+            Le présent traitement se fonde sur l&apos;article 6. 1. e) du Règlement européen
+            2016/679 (règlement général sur la protection des données - RGPD) relatif à
+            l&apos;exécution d&apos;une mission d&apos;intérêt public dont est investie la Direction
+            des sports au sens des articles L. 100-1 et L. 100-2 du code du sport.
+            <br />
+            <br />
+            Cette mission d&apos;intérêt public se traduit en pratique par le décret n° 2023-741 du
+            8 août 2023 relatif au « pass Sport » 2023.
+          </p>
+        </section>
+
+        <section className="fr-mb-6w">
+          <h4 className="fr-mb-2w">Article 5 - Quelles sont les données traitées ?</h4>
           <p>Pour les bénéficiaires éligibles au dispositif pass Sport</p>
           <ul className="fr-pl-4w">
             <li>
@@ -128,8 +135,8 @@ export default function PolitiqueDeConfidentialite() {
               bénéficiaire) : civilité, nom, prénom, lieu de naissance ;
             </li>
             <li>
-              Données relatives à l&apos;identité de bénéficiaire : nom, prénom, sexe, date de
-              naissance ;
+              Données relatives à l&apos;identité du bénéficiaire (responsable légal ou mineur) :
+              nom, prénom, sexe, date de naissance, commune de résidence ;
             </li>
             <li>Coordonnées : adresse postale, courriel, téléphone.</li>
           </ul>
@@ -139,11 +146,15 @@ export default function PolitiqueDeConfidentialite() {
             <li>Données relatives à l&apos;identité : civilité, nom, prénom ;</li>
             <li>Coordonnées : courriel, téléphone ;</li>
             <li>Données relatives à la vie professionnelle : fonction dans la structure.</li>
+            <li>
+              Données relatives au formulaire de contact : prénom, nom, adresse e-mail, champs
+              libres
+            </li>
           </ul>
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 6 - Durée de conservation des données</h4>
+          <h4 className="fr-mb-2w">Article 6 - Combien de temps sont conservées vos données ?</h4>
           <p className="fr-mb-2w">
             Les données à caractère personnel des bénéficiaires éligibles au dispositif pass Sport
             seront effacées au bout de 12 mois à compter de leur réception par la direction des
@@ -157,43 +168,91 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 7 - Personnes concernées</h4>
+          <h4 className="fr-mb-2w">Qui est concerné par le traitement des données ?</h4>
           <p className="fr-mb-2w">
-            Sont concernées par le traitement mentionné à l&apos;article 3 les bénéficiaires
-            éligibles au dispositif pass Sport et les exploitants de structures éligibles au
-            dispositif pass Sport.
+            Sont concernées par le traitement mentionné à l&apos;article 3 les bénéficiaires, âgés
+            de 6 à 30 ans, éligibles au dispositif pass Sport et les exploitants de structures
+            éligibles au dispositif pass Sport.
           </p>
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 8 - Source des données</h4>
+          <h4 className="fr-mb-2w">Article 8 - Où ont été collectées vos données ?</h4>
           <p>
-            Vos données traitées ont été collectées indirectement. Elles nous ont été communiquées
-            par le Centre National des Œuvres Universitaires et Scolaires Établissement public
-            national, La Caisse nationale des allocations familiales et la Caisse Centrale de la
-            Mutualité Sociale Agricole.
+            Vos données sont collectées directement lorsque vous souhaitez obtenir votre pass Sport
+            ou lorsque vous remplissez le formulaire de contact.
+          </p>
+          <p>
+            Vos données traitées ont également été collectées indirectement. Elles nous ont été
+            communiquées par le Centre National des Œuvres Universitaires et Scolaires Établissement
+            public national, La Caisse nationale des allocations familiales et la Caisse Centrale de
+            la Mutualité Sociale Agricole.
           </p>
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 9 - Nécessité de la collecte</h4>
-          <p className="fr-mb-2w">
-            Seules les données à caractère personnel nécessaires pour le traitement réalisé dans le
-            cadre de la délivrance du pass Sport 2024 seront traitées.
-          </p>
-
+          <h4 className="fr-mb-2w">
+            Article 9 - Qui nous aide à traiter vos données à caractère personnel ?
+          </h4>
           <p>
-            Le recueil de vos données à caractère personnel est obligatoire pour répondre aux
-            finalités mentionnées à l&apos;article 3.
+            Certaines données sont envoyées à des “sous-traitants” qui nous aident dans le
+            traitement de vos données à caractère personnel. Le responsable de traitement s’est
+            assuré que les sous-traitants respectent notamment l&apos;article 28 du RGPD.
           </p>
+          <div className="fr-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sous-traitant</th>
+                  <th>Pays destinataire</th>
+                  <th>Traitement réalisé</th>
+                  <th>Garanties</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Scalingo</td>
+                  <td>France</td>
+                  <td>Hébergement du site vitrine</td>
+                  <td>https://scalingo.com/fr/contrat-gestion-traitements-donnees-personnelles</td>
+                </tr>
+                <tr>
+                  <td>Crisp</td>
+                  <td>France</td>
+                  <td>API pour le support</td>
+                  <td>
+                    https://help.crisp.chat/en/article/how-to-sign-my-gdpr-data-processing-agreement-dpa-1wfmngo/
+                  </td>
+                </tr>
+                <tr>
+                  <td>LinkMobility</td>
+                  <td>France</td>
+                  <td>Envoi d&apos;e-mails</td>
+                  <td>https://www.linkmobility.com/agreements-popd</td>
+                </tr>
+                <tr>
+                  <td>Vimeo</td>
+                  <td>États-Unis</td>
+                  <td>
+                    Vidéo sur le page d&apos;accueil, vidéos sur la page tout savoir sur le pass
+                    Sport
+                  </td>
+                  <td>https://vimeo.com/enterpriseterms/dpa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          Des cookies et traceurs sont déposés si vous décidez de l&apos;accepter pour consulter les
+          vidéos proposées par Vimeo sur la page d&apos;accueil du site ainsi que la page tout
+          savoir sur le pass Sport..
         </section>
 
         <section className="fr-mb-6w">
           <h4 className="fr-mb-2w">Article 10 - Quels sont vos droits ? Comment les exercer ?</h4>
           <p className="fr-mb-2w">
-            Conformément à la règlementation applicable, vous disposez d&apos;un droit d&apos;accès,
-            de rectification, d&apos;effacement, de limitation et d&apos;opposition des données qui
-            vous concernent.
+            Conformément à la réglementation applicable, à savoir le RGPD et la loi Informatique et
+            libertés, vous disposez d&apos;un droit d&apos;information, d&apos;accès, de
+            rectification,, de limitation et d&apos;opposition des données qui vous concernent.
           </p>
 
           <ul className="fr-pl-4w">
