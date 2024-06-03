@@ -2,6 +2,7 @@ import { City } from 'types/City';
 import { ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import { GeoGouvRegion } from 'types/Region';
 import * as Sentry from '@sentry/nextjs';
+import { parseFranceRegions } from 'utils/region';
 
 export interface SqlSearchParams {
   clubName?: string;
@@ -66,7 +67,8 @@ export const getFranceRegions = async (): Promise<GeoGouvRegion[]> => {
     return [];
   }
 
-  return response.json();
+  const body = await response.json();
+  return parseFranceRegions(body);
 };
 
 export const getFranceCitiesByName = async (
