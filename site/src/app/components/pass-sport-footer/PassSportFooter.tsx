@@ -151,6 +151,12 @@ export default function PassSportFooter() {
         href: isProVersion ? '/v2/pro/plan-du-site' : '/v2/plan-du-site',
       },
     },
+    {
+      text: 'Règlement du jeu-concours numéro 1 - pass Sport',
+      linkProps: {
+        href: '/v2/reglement-du-jeu-concours-numero-1-pass-sport',
+      },
+    },
   ];
 
   const linkList: FooterProps.LinkList.List = [
