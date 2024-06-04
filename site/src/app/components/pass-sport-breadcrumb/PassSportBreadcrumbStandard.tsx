@@ -15,6 +15,8 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/code/scan': 'Mon pass Sport',
   '/v2/plan-du-site': 'Plan du site',
   '/v2/test-eligibilite': 'Obtenir mon pass Sport',
+  '/v2/reglement-du-jeu-concours-numero-1-pass-sport':
+    'Règlement du jeu concours numéro 1 - pass Sport',
 };
 
 export default function PassSportBreadcrumbStandard() {
