@@ -1,15 +1,34 @@
 import {
   buildConfirmPayload,
   buildConfirmResponseBody,
+  buildSearchPayload,
+  buildSearchResponseBody,
 } from '../../../tests/helpers/builders/confirm-response-body';
-import { buildLCAConfirmUrl, fetchQrCode } from './eligibility-test';
-import { ConfirmResponseBody, ConfirmResponseErrorBody } from '../../../types/EligibilityTest';
+import {
+  buildLCAConfirmUrl,
+  buildLCASearchUrl,
+  fetchEligible,
+  fetchQrCode,
+} from './eligibility-test';
+import {
+  ConfirmResponseBody,
+  ConfirmResponseErrorBody,
+  SearchResponseBody,
+  SearchResponseErrorBody,
+} from '../../../types/EligibilityTest';
 
 global.fetch = jest.fn() as jest.Mock;
 
 jest.mock('./qr-code');
 
-function mockFetch(status: number, responseBody: ConfirmResponseBody | ConfirmResponseErrorBody) {
+function mockFetch(
+  status: number,
+  responseBody:
+    | ConfirmResponseBody
+    | ConfirmResponseErrorBody
+    | SearchResponseBody
+    | SearchResponseErrorBody,
+) {
   (global.fetch as jest.Mock).mockImplementationOnce(() =>
     Promise.resolve({
       json: () => Promise.resolve(responseBody),
@@ -20,7 +39,92 @@ function mockFetch(status: number, responseBody: ConfirmResponseBody | ConfirmRe
 }
 
 describe('eligibility-test service', () => {
-  describe('buildLCAConfirmUrl', () => {
+  beforeEach(() => {
+    (global.fetch as jest.Mock).mockReset();
+  });
+
+  describe('buildLCASearchUrl()', () => {
+    const apiVersions = [
+      { isUsingApiV1: true, segments: '/gw/psp-server/beneficiaires/search' },
+      { isUsingApiV1: false, segments: '/apim/api-asso-admin/passsport/beneficiaires/search' },
+    ];
+
+    apiVersions.forEach(({ isUsingApiV1, segments }) => {
+      it(`builds appropriate query string; using API version ${isUsingApiV1 ? '1' : '2'}`, () => {
+        const queryString = buildLCASearchUrl(buildSearchPayload({}), isUsingApiV1).toString();
+
+        const baseUrl = `http://fake-lca-api-url${segments}`;
+
+        expect(queryString).toEqual(
+          `${baseUrl}?nom=Marley&prenom=Bob&dateNaissance=2015-03-27&codeInsee=05023`,
+        );
+      });
+    });
+  });
+
+  describe('fetchEligible', () => {
+    it('should return an error when both remote LCA requests (v1 and v2) is not a 200', async () => {
+      const payload = buildSearchPayload({});
+
+      mockFetch(400, { message: 'error' }); // api v1 call
+      mockFetch(500, { message: 'error' }); // api v2 call
+
+      try {
+        await fetchEligible(payload);
+      } catch (error) {
+        expect(global.fetch as jest.Mock).toHaveBeenCalledTimes(2);
+        expect((error as Error).message).toEqual(
+          'Request to LCA api on /search has failed. API V1: Response status is 400; Response body is {"message":"error"}. API V2: Response status is 500; Response body is {"message":"error"}',
+        );
+      }
+    });
+
+    describe('using api v1', () => {
+      it('should return an empty array when eligible does not exist', async () => {
+        const payload = buildSearchPayload({});
+
+        mockFetch(200, []); // api v1 call
+        mockFetch(401, { message: 'error' }); // api v2 call
+
+        const data = await fetchEligible(payload);
+        expect(data).toEqual([]);
+      });
+
+      it('should return eligible data when eligible exists', async () => {
+        const payload = buildSearchPayload({});
+
+        mockFetch(200, buildSearchResponseBody()); // api v1 call
+        mockFetch(401, { message: 'error' }); // api v2 call
+
+        const data = await fetchEligible(payload);
+        expect(data).toMatchSnapshot();
+      });
+    });
+
+    describe('using api v2', () => {
+      it('should return an empty array when eligible does not exist', async () => {
+        const payload = buildSearchPayload({});
+
+        mockFetch(401, { message: 'error' }); // api v1 call
+        mockFetch(200, []); // api v2 call
+
+        const data = await fetchEligible(payload);
+        expect(data).toEqual([]);
+      });
+
+      it('should return eligible data when eligible exists', async () => {
+        const payload = buildSearchPayload({});
+
+        mockFetch(401, { message: 'error' }); // api v1 call
+        mockFetch(200, buildSearchResponseBody()); // api v2 call
+
+        const data = await fetchEligible(payload);
+        expect(data).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('buildLCAConfirmUrl()', () => {
     const tests = [
       {
         who: 'jeune caf',
@@ -75,45 +179,87 @@ describe('eligibility-test service', () => {
         expected: '?id=123456789&situation=AAH&organisme=MSA&codeIso=DZ',
       },
     ];
-    it.each(tests)("builds appropriate query string for '$who'", ({ payload, expected }) => {
-      const queryString = buildLCAConfirmUrl(buildConfirmPayload(payload)).toString();
 
-      const baseUrl = 'http://fake-lca-api-url/gw/psp-server/beneficiaires/confirm';
-      expect(queryString).toEqual(`${baseUrl}${expected}`);
+    const apiVersions = [
+      { isUsingApiV1: true, segments: '/gw/psp-server/beneficiaires/confirm' },
+      { isUsingApiV1: false, segments: '/apim/api-asso-admin/passsport/beneficiaires/confirm' },
+    ];
+
+    apiVersions.forEach(({ isUsingApiV1, segments }) => {
+      it.each(tests)(
+        `builds appropriate query string for '$who'; using API version ${isUsingApiV1 ? '1' : '2'}`,
+        ({ payload, expected }) => {
+          const queryString = buildLCAConfirmUrl(
+            buildConfirmPayload(payload),
+            isUsingApiV1,
+          ).toString();
+
+          const baseUrl = `http://fake-lca-api-url${segments}`;
+          expect(queryString).toEqual(`${baseUrl}${expected}`);
+        },
+      );
     });
   });
 
   describe('fetchQrCode', () => {
-    it('should return an error when remote LCA request is not a 200', async () => {
+    it('should return an error when both remote LCA requests (v1 and v2) is not a 200', async () => {
       const payload = buildConfirmPayload({});
 
-      mockFetch(500, { message: 'error' });
+      mockFetch(400, { message: 'error' }); // api v1 call
+      mockFetch(500, { message: 'error' }); // api v2 call
 
       try {
         await fetchQrCode(payload);
       } catch (error) {
+        expect(global.fetch as jest.Mock).toHaveBeenCalledTimes(2);
         expect((error as Error).message).toEqual(
-          'Request to LCA api on /confirm has failed. Response status is 500. Response body is {"message":"error"}',
+          'Request to LCA api on /confirm has failed. API V1: Response status is 400; Response body is {"message":"error"}. API V2: Response status is 500; Response body is {"message":"error"}',
         );
       }
     });
 
-    it('should return an empty array when eligible does not exist', async () => {
-      const payload = buildConfirmPayload({ recipientCafNumber: '1234567' });
+    describe('using api v1', () => {
+      it('should return an empty array when eligible does not exist', async () => {
+        const payload = buildConfirmPayload({ recipientCafNumber: '1234567' });
 
-      mockFetch(200, []);
+        mockFetch(200, []); // api v1 call
+        mockFetch(401, { message: 'error' }); // api v2 call
 
-      const data = await fetchQrCode(payload);
-      expect(data).toEqual([]);
+        const data = await fetchQrCode(payload);
+        expect(data).toEqual([]);
+      });
+
+      it('should return eligible data enhanced with a qrcode url when eligible exists', async () => {
+        const payload = buildConfirmPayload({ recipientCafNumber: '1234567' });
+
+        mockFetch(200, buildConfirmResponseBody({})); // api v1 call
+        mockFetch(401, { message: 'error' }); // api v2 call
+
+        const data = await fetchQrCode(payload);
+        expect(data).toMatchSnapshot();
+      });
     });
 
-    it('should return eligible data enhanced with a qrcode url when eligible exists', async () => {
-      const payload = buildConfirmPayload({ recipientCafNumber: '1234567' });
+    describe('using api v2', () => {
+      it('should return an empty array when eligible does not exist', async () => {
+        const payload = buildConfirmPayload({ recipientCafNumber: '1234567' });
 
-      mockFetch(200, buildConfirmResponseBody({}));
+        mockFetch(400, { message: 'error' }); // api v1 call
+        mockFetch(200, []); // api v2 call
 
-      const data = await fetchQrCode(payload);
-      expect(data).toMatchSnapshot();
+        const data = await fetchQrCode(payload);
+        expect(data).toEqual([]);
+      });
+
+      it('should return eligible data enhanced with a qrcode url when eligible exists', async () => {
+        const payload = buildConfirmPayload({ recipientCafNumber: '1234567' });
+
+        mockFetch(400, { message: 'error' }); // api v1 call
+        mockFetch(200, buildConfirmResponseBody({})); // api v2 call
+
+        const data = await fetchQrCode(payload);
+        expect(data).toMatchSnapshot();
+      });
     });
   });
 });

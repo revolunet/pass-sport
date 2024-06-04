@@ -2,7 +2,23 @@ import {
   ConfirmPayload,
   ConfirmResponseBody,
   ConfirmResponseBodyItem,
+  SearchPayload,
+  SearchResponseBody,
 } from 'types/EligibilityTest';
+
+export const buildSearchResponseBody = (): SearchResponseBody => {
+  return [
+    {
+      id: 123,
+      nom: 'DUPOND',
+      prenom: 'MANON',
+      date_naissance: '2011-01-01T23:00:00.000Z',
+      situation: 'jeune',
+      organisme: 'MSA',
+      matricule: '9999999999999',
+    },
+  ];
+};
 
 export const buildConfirmResponseBody = ({
   nom,
@@ -58,5 +74,14 @@ export const buildConfirmPayload = (data: Partial<ConfirmPayload>) => {
     recipientBirthPlace: data.recipientBirthPlace,
     recipientBirthDate: data.recipientBirthDate,
     recipientBirthCountry: data.recipientBirthCountry,
+  };
+};
+
+export const buildSearchPayload = (data: Partial<SearchPayload>) => {
+  return {
+    beneficiaryLastname: data.beneficiaryLastname || 'Marley',
+    beneficiaryFirstname: data.beneficiaryFirstname || 'Bob',
+    beneficiaryBirthDate: data.beneficiaryBirthDate || '2015-03-27',
+    recipientResidencePlace: data.recipientResidencePlace || '05023',
   };
 };
