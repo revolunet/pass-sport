@@ -9,7 +9,7 @@ import {
 
 import * as Sentry from '@sentry/nextjs';
 import { addQrCodeToConfirmResponse } from './qr-code';
-import { sanitize } from 'utils/eligibility-test';
+import { sanitize } from '../../../utils/eligibility-test';
 
 export const buildLCAConfirmUrl = (data: ConfirmPayload, isUsingApiV1: boolean): URL => {
   const domain = process.env.LCA_API_URL;
