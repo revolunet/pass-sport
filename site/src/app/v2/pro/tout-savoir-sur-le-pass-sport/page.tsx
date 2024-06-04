@@ -32,13 +32,6 @@ export default function ToutSavoirSurLePassSport() {
       <main className={styles['main-container']}>
         <section className={styles['section-container']}>
           <h4>Qui se mobilise pour vous accompagner ?</h4>
-          <Link
-            href="https://www.pass.sports.gouv.fr/app/uploads/2022/07/Accompagnement-Clubs-sur-les-territoires.xlsx"
-            target="_blank"
-            className="align-self--baseline"
-          >
-            Accompagnement Clubs sur les territoires
-          </Link>
           <p className="fr-text--bold">
             Plusieurs interlocuteurs peuvent vous accompagner dans votre département en fonction de
             votre statut :
@@ -145,7 +138,7 @@ export default function ToutSavoirSurLePassSport() {
 
           <p>
             Retrouvez notre tutoriel d&apos;accompagnement à la création de votre espace sur le
-            Compte Aso qui sera ensuite le lieu de demande des remboursements pass Sport :
+            Compte Asso qui sera ensuite le lieu de demande des remboursements pass Sport :
           </p>
 
           <Video
