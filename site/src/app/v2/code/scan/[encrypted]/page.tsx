@@ -50,7 +50,7 @@ function Page({ params: { encrypted } }: Props) {
     return <InvalidContainer />;
   }
 
-  const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encrypted}`;
+  const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encrypted)}`;
 
   return (
     <div className={cn(styles['page'], 'fr-px-2w')}>
