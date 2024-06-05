@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { QRCodeSVG } from 'qrcode.react';
 import styles from './styles.module.scss';
 import Button from '@codegouvfr/react-dsfr/Button';
+import { push } from '@socialgouv/matomo-next';
 
 interface Props {
   data: {
@@ -35,6 +36,7 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
 
   const printQRCode = () => {
     window.print();
+    push(['trackEvent', 'Print Button', 'Clicked', 'QR Recap page']);
   };
 
   return (
