@@ -37,18 +37,9 @@ const AllowanceStep = () => {
                 rootStyles['text--black'],
               )}
             >
-              Bonjour, vous souhaitez vérifier si vous pouvez bénéficier du pass Sport. Vous faites
-              le test.
-            </p>
-            <p
-              className={cn(
-                'fr-text--lg',
-                'fr-mb-0',
-                rootStyles['text--medium'],
-                rootStyles['text--black'],
-              )}
-            >
-              Bénéficiez-vous d’une de ces allocations :
+              Bonjour,
+              <br />
+              Bénéficiez-vous d’une de ces allocations ?
             </p>
           </>
         }
