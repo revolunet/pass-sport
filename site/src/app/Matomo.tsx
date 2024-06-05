@@ -38,7 +38,7 @@ export default function Matomo() {
     push(['setCustomUrl', updatedPathName]);
     push(['trackPageView']);
 
-    setPreviousURL(window.location.pathname);
+    setPreviousURL(updatedPathName);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
