@@ -6,6 +6,7 @@ import { getFranceCitiesByName } from '@/app/v2/trouver-un-club/agent';
 import { City } from 'types/City';
 import { InputState } from 'types/EligibilityTest';
 import { SingleValue } from 'react-select';
+import { sortCities } from 'utils/city';
 
 interface Option {
   label: string;
@@ -22,24 +23,15 @@ interface Props {
 
 const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Props) => {
   const parseCities = (cities: City[]): Option[] => {
-    return cities
-      .map((city) => {
-        return { label: `${city.nom} (${city.codeDepartement})`, value: city.code };
-      })
-
-      .sort((a: Option, b: Option) => {
-        if (a.label < b.label) {
-          return -1;
-        }
-        if (a.label > b.label) {
-          return 1;
-        }
-        return 0;
-      });
+    return cities.map((city) => {
+      return { label: `${city.nom} (${city.codeDepartement})`, value: city.code };
+    });
   };
 
   const fetchCityOptions = (inputValue: string) =>
-    getFranceCitiesByName(inputValue, true).then((cities) => parseCities(cities));
+    getFranceCitiesByName(inputValue, true).then((cities) =>
+      parseCities(sortCities(cities, inputValue)),
+    );
 
   const birthPlaceChangedHandler = (newValue: SingleValue<Option>) => {
     onChanged(newValue as string | null);
