@@ -22,7 +22,6 @@ const sortCitiesAlphabetically = (cities: City[]): City[] =>
 
 export const sortCities = (cities: City[], inputValue: string): City[] => {
   const matchingDistrict = parseDistrict(inputValue);
-  console.log('matchingDistrict', matchingDistrict);
 
   if (!matchingDistrict) {
     return sortCitiesAlphabetically(cities);
