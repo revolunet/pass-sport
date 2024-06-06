@@ -14,6 +14,7 @@ import { ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import cn from 'classnames';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import ClubCount from '../club-count/ClubCount';
+import { DisabilityTag } from '../disability-tag/DisabilityTag';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -187,7 +188,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
 
                     {club.handicap === 'Oui' && (
                       <li>
-                        <Tag> Handicap</Tag>
+                        <DisabilityTag club={club} />
                       </li>
                     )}
                   </ul>
