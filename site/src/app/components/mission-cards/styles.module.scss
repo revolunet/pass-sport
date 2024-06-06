@@ -1,0 +1,17 @@
+@import '../../sassVariables.module.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.end {
+  margin-bottom: -4rem !important;
+}
+
+.card-body {
+  @media (min-width: $md) {
+    padding-right: 1rem;
+  }
+}
