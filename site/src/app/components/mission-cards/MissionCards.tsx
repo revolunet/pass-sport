@@ -1,7 +1,7 @@
 import Card from '@codegouvfr/react-dsfr/Card';
 import styles from './styles.module.scss';
 import jeVeuxAiderImage from '@/images/eligibility-test/je-veux-aider.jpg';
-import snuImage from '@/images/eligibility-test/snu.webp';
+import snuImage from '@/images/eligibility-test/snu.jpg';
 import serviceCiviqueImage from '@/images/eligibility-test/service-civique.jpg';
 
 interface Props {
