@@ -5,7 +5,6 @@ import Search from '../search/Search';
 import RegionFilter from './region-filter/RegionFilter';
 import styles from './styles.module.scss';
 import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
 import CityFilter from '@/app/v2/trouver-un-club/components/club-filters/city-filter/CityFilter';
 import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/activity-filter/ActivityFilter';
 import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
@@ -60,8 +59,6 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
 }) => {
-  const searchParams = useSearchParams();
-
   return (
     <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
       <div className="fr-px-2w">
@@ -78,18 +75,24 @@ const ClubFilters: React.FC<Props> = ({
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <CityFilter onCityChanged={onCityChanged} />
+            <Suspense>
+              <CityFilter onCityChanged={onCityChanged} />
+            </Suspense>
           </div>
 
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
+            <Suspense>
+              <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
+            </Suspense>
           </div>
 
           <div className={styles.separator} />
 
-          <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
+          <Suspense>
+            <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
+          </Suspense>
         </div>
       </div>
     </div>

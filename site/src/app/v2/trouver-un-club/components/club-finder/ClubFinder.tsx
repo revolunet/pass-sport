@@ -200,17 +200,15 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
   return (
     <>
       <div className={styles.spacer}>
-        <Suspense>
-          <ClubFilters
-            regions={regions}
-            activities={activities}
-            onTextSearch={searchClubByTextHandler}
-            onRegionChanged={onRegionChanged}
-            onCityChanged={onCityChanged}
-            onActivityChanged={onActivityChanged}
-            onDisabilityChanged={onDisabilityChanged}
-          />
-        </Suspense>
+        <ClubFilters
+          regions={regions}
+          activities={activities}
+          onTextSearch={searchClubByTextHandler}
+          onRegionChanged={onRegionChanged}
+          onCityChanged={onCityChanged}
+          onActivityChanged={onActivityChanged}
+          onDisabilityChanged={onDisabilityChanged}
+        />
 
         <ClubCount displayedClubCount={clubs.results.length} totalClubCount={clubs.total_count} />
 

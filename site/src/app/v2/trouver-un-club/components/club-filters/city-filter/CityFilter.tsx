@@ -1,3 +1,5 @@
+'use client';
+
 import { getFranceCitiesByName, getFranceCitiesByPostalCode } from '@/app/v2/trouver-un-club/agent';
 import { SingleValue } from 'react-select';
 import { Option, selectStyles } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
