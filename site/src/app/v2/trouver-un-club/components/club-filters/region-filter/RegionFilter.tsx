@@ -1,12 +1,13 @@
 'use client';
 
 import cn from 'classnames';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Select, { SingleValue } from 'react-select';
 import { GeoGouvRegion } from '../../../../../../../types/Region';
 import { selectStyles, Option } from '../ClubFilters';
 import styles from '../styles.module.scss';
 import { useEffect } from 'react';
+import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -15,9 +16,7 @@ interface Props {
 
 const RegionFilter: React.FC<Props> = ({ regions, onRegionChanged }) => {
   const searchParam = useSearchParams();
-  const regionCodeSearchParam = searchParam && searchParam.get('regionCode');
-  const router = useRouter();
-  const pathname = usePathname();
+  const regionCodeSearchParam = searchParam && searchParam.get(SEARCH_QUERY_PARAMS.regionCode);
 
   const parsedRegions: Option[] = regions.map((region) => ({
     label: region.nom,
@@ -35,11 +34,8 @@ const RegionFilter: React.FC<Props> = ({ regions, onRegionChanged }) => {
 
   const regionChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
-      /* field was cleared */
       onRegionChanged();
-      router.push(`${pathname}`);
     } else {
-      router.push(`${pathname}?regionCode=${newValue.value}`);
       onRegionChanged(newValue.value);
     }
   };

@@ -24,12 +24,14 @@ export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRes
   params.append('offset', param.offset.toString());
 
   let whereClause = 'nom is not null';
+
   whereClause += param?.clubName ? ` AND ${param.clubName}` : '';
   whereClause += param?.regionCode ? ` AND ${param.regionCode}` : '';
   whereClause += param?.city ? ` AND ${param.city}` : '';
   whereClause += param?.postalCode ? ` AND ${param.postalCode}` : '';
   whereClause += param?.activity ? ` AND ${param.activity}` : '';
   whereClause += param?.disability ? ` AND ${param.disability}` : '';
+
   params.append('where', whereClause);
 
   const url = new URL(baseUrl);
@@ -69,6 +71,38 @@ export const getFranceRegions = async (): Promise<GeoGouvRegion[]> => {
 
   const body = await response.json();
   return parseFranceRegions(body);
+};
+
+export const getFranceCitiesByPostalCode = async (
+  postalCode: string,
+  includeDistricts: boolean,
+): Promise<City[]> => {
+  const baseUrl = 'https://geo.api.gouv.fr/communes';
+
+  const params = new URLSearchParams();
+  params.append('limit', '20');
+  params.append('boost', 'population');
+  params.append('codePostal', postalCode);
+  params.append(
+    'type',
+    includeDistricts ? 'arrondissement-municipal,commune-actuelle' : 'commune-actuelle',
+  );
+
+  const url = new URL(baseUrl);
+  url.search = params.toString();
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', response.body);
+      scope.setExtra('responseStatus', response.status);
+      scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+    });
+    return [];
+  }
+
+  return response.json();
 };
 
 export const getFranceCitiesByName = async (
