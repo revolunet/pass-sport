@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 interface Props {
   club: Club;
-  small: boolean;
+  small?: boolean;
 }
 export const DisabilityTag = ({ club, small }: Props) => {
   const { a_accueil_handicap_mental, a_accueil_handicap_moteur } = club;
