@@ -1,14 +1,70 @@
+'use client';
+
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
+import Button from '@codegouvfr/react-dsfr/Button';
 
 const Video = () => {
+  useEffect(() => {
+    const initAxeptio = (): void => {
+      if (!window.axeptioSettings) {
+        // Définition des paramètres de configuration pour Axeptio
+        window.axeptioSettings = {
+          clientId: '6662b7369f1ba1b27006fc0a',
+          cookiesVersion: 'pass sport-fr-EU',
+        };
+
+        // Chargement asynchrone du script Axeptio
+        (function (d: Document, s: string) {
+          const t = d.getElementsByTagName(s)[0];
+          const e = d.createElement(s);
+          e.async = true;
+          e.src = '//static.axept.io/sdk-slim.js';
+          if (t.parentNode) {
+            t.parentNode.insertBefore(e, t);
+          }
+        })(document, 'script');
+      }
+
+      if (!window._axcb) {
+        window._axcb = [];
+      }
+
+      window._axcb.push(function (sdk) {
+        sdk.on('cookies:complete', function (choices) {
+          document.querySelectorAll('[data-hide-on-vendor-consent]').forEach((el) => {
+            const vendor = el.getAttribute('data-hide-on-vendor-consent');
+            el.style.display = choices[vendor] ? 'none' : 'inherit';
+          });
+          document.querySelectorAll('[data-requires-vendor-consent]').forEach((el) => {
+            const vendor = el.getAttribute('data-requires-vendor-consent');
+            if (choices[vendor]) {
+              el.setAttribute('src', el.getAttribute('data-src'));
+            }
+          });
+        });
+      });
+    };
+    initAxeptio();
+  });
+
+  const onConsentClick = () => {
+    window.axeptioSDK.requestConsent('Vimeo');
+  };
+
   return (
     <div>
       <figure role="group" className="fr-my-2w fr-content-media">
         <iframe
-          src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
+          // </figure>src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
           className={styles.iframe}
+          data-requires-vendor-consent="vimeo"
+          data-src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
           allow="autoplay; fullscreen; picture-in-picture"
         ></iframe>
+        <div data-hide-on-vendor-consent="Vimeo">
+          <Button onClick={onConsentClick}>Accept Vimeo cookie</Button>
+        </div>
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
           Présentation du dispositif pass Sport du ministère des Sports
           <a className={`fr-link ${styles.text}`} href="https://vimeo.com/727000609">
