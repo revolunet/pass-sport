@@ -67,32 +67,24 @@ const ClubFilters: React.FC<Props> = ({
         <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
         <div className={styles.filtersContainer}>
           <div className={cn(styles.flex)}>
-            <Suspense>
-              <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
-            </Suspense>
+            <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
           </div>
 
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <Suspense>
-              <CityFilter onCityChanged={onCityChanged} />
-            </Suspense>
+            <CityFilter onCityChanged={onCityChanged} />
           </div>
 
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <Suspense>
-              <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
-            </Suspense>
+            <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
           </div>
 
           <div className={styles.separator} />
 
-          <Suspense>
-            <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
-          </Suspense>
+          <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
         </div>
       </div>
     </div>
