@@ -33,10 +33,8 @@ export default function PassSportNavigation() {
           {
             text: 'Je suis une structure partenaire',
             iconId: 'fr-icon-arrow-right-line',
-            buttonProps: {
-              onClick: () => {
-                router.push('/v2/pro/accueil');
-              },
+            linkProps: {
+              href: '/v2/pro/accueil',
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },
