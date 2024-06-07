@@ -27,11 +27,6 @@ const RegionFilter: React.FC<Props> = ({ regions, onRegionChanged }) => {
     (r) => r.value === regionCodeSearchParam,
   );
 
-  useEffect(() => {
-    onRegionChanged(defaultRegionOption?.value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const regionChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
       onRegionChanged();

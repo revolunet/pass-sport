@@ -45,6 +45,9 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       [SEARCH_QUERY_PARAMS.clubName]: searchParams.get(SEARCH_QUERY_PARAMS.clubName)
         ? `nom like '%${searchParams.get(SEARCH_QUERY_PARAMS.clubName)!.toUpperCase()}%'`
         : undefined,
+      [SEARCH_QUERY_PARAMS.regionCode]: searchParams.get(SEARCH_QUERY_PARAMS.regionCode)
+        ? `reg_code='${searchParams.get(SEARCH_QUERY_PARAMS.regionCode)}'`
+        : undefined,
       [SEARCH_QUERY_PARAMS.city]: searchParams.get(SEARCH_QUERY_PARAMS.city)
         ? `commune='${searchParams.get(SEARCH_QUERY_PARAMS.city)!.toUpperCase()}'`
         : undefined,
