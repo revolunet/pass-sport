@@ -18,6 +18,7 @@ import { DisabilityTag } from '../disability-tag/DisabilityTag';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { useAppendQueryString } from '@/app/hooks/use-append-query-string';
 import { useRemoveQueryString } from '@/app/hooks/use-remove-query-string';
+import { escapeSingleQuotes } from '../../../../../../utils/string';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -85,7 +86,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
     const params: SqlSearchParams = { ...clubParams, offset: 0, clubName: undefined };
 
     if (text.length !== 0) {
-      params.clubName = `nom like '%${text.toUpperCase()}%'`;
+      params.clubName = `nom like '%${escapeSingleQuotes(text).toUpperCase()}%'`;
 
       const queryString = appendQueryString([{ key: SEARCH_QUERY_PARAMS.clubName, value: text }]);
 
@@ -173,7 +174,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       setClubParams((clubParams) => ({
         ...clubParams,
         offset: 0,
-        activity: `activites='${activity}'`,
+        activity: `activites='${escapeSingleQuotes(activity)}'`,
       }));
 
       const queryString = appendQueryString([
