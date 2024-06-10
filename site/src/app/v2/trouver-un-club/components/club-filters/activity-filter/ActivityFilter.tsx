@@ -5,6 +5,7 @@ import styles from '../styles.module.scss';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { ActivityResponse } from '../../../../../../../types/Club';
 import { useSearchParams } from 'next/navigation';
+import { unescapeSingleQuotes } from '../../../../../../../utils/string';
 
 interface Props {
   onActivityChanged: (activity?: string) => void;
@@ -29,9 +30,12 @@ const ActivityFilter = ({ onActivityChanged, activities }: Props) => {
   };
 
   const searchParams = useSearchParams();
-  const activitySearchParams = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.activity);
+  const unescapedActivity = unescapeSingleQuotes(
+    searchParams?.get(SEARCH_QUERY_PARAMS.activity) || '',
+  );
+
   const defaultActivityOption: Option | undefined = parsedActivities.find(
-    (r) => r.value === activitySearchParams,
+    (r) => r.value === unescapedActivity,
   );
 
   return (

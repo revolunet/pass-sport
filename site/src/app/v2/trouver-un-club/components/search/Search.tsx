@@ -2,6 +2,7 @@ import { SearchBar } from '@codegouvfr/react-dsfr/SearchBar';
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
+import { unescapeSingleQuotes } from '../../../../../../utils/string';
 
 interface IProps {
   onTextSearch: (text: string) => void;
@@ -9,7 +10,8 @@ interface IProps {
 
 export default function Search({ onTextSearch }: IProps) {
   const searchParams = useSearchParams();
-  const [search, onSearchChange] = useState(searchParams?.get(SEARCH_QUERY_PARAMS.clubName) || '');
+  const clubName = unescapeSingleQuotes(searchParams?.get(SEARCH_QUERY_PARAMS.clubName) || '');
+  const [search, onSearchChange] = useState(clubName);
 
   return (
     <SearchBar

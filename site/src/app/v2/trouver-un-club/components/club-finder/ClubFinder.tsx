@@ -84,11 +84,14 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
 
   const searchClubByTextHandler = (text: string) => {
     const params: SqlSearchParams = { ...clubParams, offset: 0, clubName: undefined };
+    const escapedText = escapeSingleQuotes(text);
 
     if (text.length !== 0) {
-      params.clubName = `nom like '%${escapeSingleQuotes(text).toUpperCase()}%'`;
+      params.clubName = `nom like '%${escapedText.toUpperCase()}%'`;
 
-      const queryString = appendQueryString([{ key: SEARCH_QUERY_PARAMS.clubName, value: text }]);
+      const queryString = appendQueryString([
+        { key: SEARCH_QUERY_PARAMS.clubName, value: escapedText },
+      ]);
 
       router.push(`${pathname}?${queryString}`, { scroll: false });
     } else {
@@ -171,14 +174,16 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       const queryString = removeQueryString(SEARCH_QUERY_PARAMS.activity);
       router.push(`${pathname}?${queryString}`, { scroll: false });
     } else {
+      const escapedSingleQuotesActivity = escapeSingleQuotes(activity);
+
       setClubParams((clubParams) => ({
         ...clubParams,
         offset: 0,
-        activity: `activites='${escapeSingleQuotes(activity)}'`,
+        activity: `activites='${escapedSingleQuotesActivity}'`,
       }));
 
       const queryString = appendQueryString([
-        { key: SEARCH_QUERY_PARAMS.activity, value: activity },
+        { key: SEARCH_QUERY_PARAMS.activity, value: escapedSingleQuotesActivity },
       ]);
 
       router.push(`${pathname}?${queryString}`, { scroll: false });
