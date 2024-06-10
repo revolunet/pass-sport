@@ -4,8 +4,8 @@ import { Badge } from '@codegouvfr/react-dsfr/Badge';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import { Tag } from '@codegouvfr/react-dsfr/Tag';
 import styles from './style.module.scss';
-import { Suspense, useEffect, useState } from 'react';
-import { SqlSearchParams, getClubs } from '../../agent';
+import { useEffect, useState } from 'react';
+import { getClubs, SqlSearchParams } from '../../agent';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Button from '@codegouvfr/react-dsfr/Button';
 import ClubFilters from '../club-filters/ClubFilters';
@@ -75,7 +75,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
         }),
       );
     }
-  }, [clubName, regionCode, city, postalCode, activity, disability, offset]);
+  }, [clubName, regionCode, city, postalCode, activity, disability, offset, clubParams]);
 
   const seeMoreClubsHandler = () => {
     setClubParams((clubParams) => ({ ...clubParams, offset: clubParams.offset + limit }));
@@ -89,11 +89,11 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
 
       const queryString = appendQueryString([{ key: SEARCH_QUERY_PARAMS.clubName, value: text }]);
 
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     } else {
       const queryString = removeQueryString(SEARCH_QUERY_PARAMS.clubName);
 
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     }
 
     setClubParams(params);
@@ -104,7 +104,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       setClubParams((clubParams) => ({ ...clubParams, offset: 0, regionCode: undefined }));
 
       const queryString = removeQueryString(SEARCH_QUERY_PARAMS.regionCode);
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     } else {
       setClubParams((clubParams) => ({
         ...clubParams,
@@ -116,7 +116,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
         { key: SEARCH_QUERY_PARAMS.regionCode, value: region },
       ]);
 
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     }
   };
 
@@ -152,14 +152,14 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
         { key: SEARCH_QUERY_PARAMS.postalCode, value: '' },
       ]);
 
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     } else {
       const queryString = appendQueryString([
         { key: SEARCH_QUERY_PARAMS.city, value: '' },
         { key: SEARCH_QUERY_PARAMS.postalCode, value: postalCode?.toUpperCase() || '' },
       ]);
 
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     }
   };
 
@@ -168,7 +168,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       setClubParams((clubParams) => ({ ...clubParams, offset: 0, activity: undefined }));
 
       const queryString = removeQueryString(SEARCH_QUERY_PARAMS.activity);
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     } else {
       setClubParams((clubParams) => ({
         ...clubParams,
@@ -180,7 +180,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
         { key: SEARCH_QUERY_PARAMS.activity, value: activity },
       ]);
 
-      router.push(`${pathname}?${queryString}`);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     }
   };
 
@@ -195,7 +195,7 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       ? appendQueryString([{ key: SEARCH_QUERY_PARAMS.handicap, value: 'Oui' }])
       : removeQueryString(SEARCH_QUERY_PARAMS.handicap);
 
-    router.push(`${pathname}?${queryString}`);
+    router.push(`${pathname}?${queryString}`, { scroll: false });
   };
 
   const isLastPage = clubs.total_count === clubs.results.length;

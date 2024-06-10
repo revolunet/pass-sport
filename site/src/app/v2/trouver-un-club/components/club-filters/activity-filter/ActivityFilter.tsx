@@ -3,7 +3,6 @@ import Select, { SingleValue } from 'react-select';
 import { Option, selectStyles } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
 import styles from '../styles.module.scss';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
-import { useEffect } from 'react';
 import { ActivityResponse } from '../../../../../../../types/Club';
 import { useSearchParams } from 'next/navigation';
 
@@ -34,11 +33,6 @@ const ActivityFilter = ({ onActivityChanged, activities }: Props) => {
   const defaultActivityOption: Option | undefined = parsedActivities.find(
     (r) => r.value === activitySearchParams,
   );
-
-  useEffect(() => {
-    onActivityChanged(defaultActivityOption?.value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className={styles['label-container']}>

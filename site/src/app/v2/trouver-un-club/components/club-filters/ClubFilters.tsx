@@ -4,7 +4,6 @@ import { GeoGouvRegion } from 'types/Region';
 import Search from '../search/Search';
 import RegionFilter from './region-filter/RegionFilter';
 import styles from './styles.module.scss';
-import { Suspense } from 'react';
 import CityFilter from '@/app/v2/trouver-un-club/components/club-filters/city-filter/CityFilter';
 import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/activity-filter/ActivityFilter';
 import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
