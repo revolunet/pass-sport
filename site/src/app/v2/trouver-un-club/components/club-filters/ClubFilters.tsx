@@ -27,13 +27,13 @@ export const selectStyles = {
   control: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,
     borderColor: '#ffffff',
-    '@media screen and (max-width: 768px)': {
-      width: '100%',
-    },
+    width: '210px',
     '@media screen and (max-width: 992px)': {
       width: '150px',
     },
-    width: '210px',
+    '@media screen and (max-width: 768px)': {
+      width: '100%',
+    },
   }),
   indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,
