@@ -1,5 +1,5 @@
 import PageHeader from '@/components/PageHeader/PageHeader';
-import { getAllClubActivities, getFranceRegions } from './agent';
+import { getAllClubActivities, getFranceRegions, getFranceDepartments } from './agent';
 
 import ClubFinder from './components/club-finder/ClubFinder';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
@@ -13,12 +13,13 @@ export const metadata: Metadata = {
 const TrouverUnClub = async () => {
   const regions = await getFranceRegions();
   const activities = await getAllClubActivities();
+  const departments = await getFranceDepartments();
 
   return (
     <>
       <PageHeader title="Trouver un club" />
       <Suspense>
-        <ClubFinder regions={regions} activities={activities} />
+        <ClubFinder regions={regions} activities={activities} departments={departments} />
       </Suspense>
       <SocialMediaPanel />
     </>

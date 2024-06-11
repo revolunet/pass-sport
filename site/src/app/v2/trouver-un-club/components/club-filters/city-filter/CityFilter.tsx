@@ -80,9 +80,9 @@ const CityFilter = ({ onCityChanged }: Props) => {
           isClearable
           loadOptions={fetchCityOptions}
           onChange={cityChangeHandler}
-          styles={selectStyles}
           defaultInputValue={defaultOption.label}
           defaultValue={defaultOption}
+          styles={selectStyles}
         />
       ) : (
         <AsyncSelect
