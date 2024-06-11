@@ -7,6 +7,7 @@ import MedicalCertificatePanel from '@/app/v2/trouver-un-club/[club-name]/compon
 import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { useGetClubs } from '@/app/hooks/use-get-clubs';
+import { DisabilityTag } from '../../../components/disability-tag/DisabilityTag';
 
 interface Props {
   clubName: string;
@@ -37,16 +38,8 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
                 {club.activites.length} {club.activites.length > 1 ? 'activités' : 'activité'}
               </p>
             </Tag>
-            {club.a_accueil_handicap_moteur === 'Oui' && (
-              <Tag className={styles.disability} small>
-                <p className="fr-text--xs">Accueil personnes aux Handicaps moteurs</p>
-              </Tag>
-            )}
-            {club.a_accueil_handicap_mental === 'Oui' && (
-              <Tag className={styles.disability} small>
-                <p className="fr-text--xs">Accueil personnes aux Handicaps mentaux</p>
-              </Tag>
-            )}
+
+            <DisabilityTag club={club} small />
           </div>
           <div className={styles.contact}>
             {(club.adresse || club.commune) && (
