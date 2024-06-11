@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const EligibilityTest = () => {
   return (
     <main className={cn('fr-pb-4w', styles.main)}>
-      <h1 className={cn('fr-pt-2w', 'fr-pb-3w', 'fr-px-2w', styles.title)}>
+      <h1 className={cn('fr-pt-9w', 'fr-pb-4w', 'fr-px-2w', styles.title)}>
         Puis-je bénéficier du pass Sport?
       </h1>
 
