@@ -18,15 +18,17 @@ import { DisabilityTag } from '../disability-tag/DisabilityTag';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { useAppendQueryString } from '@/app/hooks/use-append-query-string';
 import { useRemoveQueryString } from '@/app/hooks/use-remove-query-string';
+import { GeoGouvDepartment } from '../../../../../../types/Department';
 import { escapeSingleQuotes } from '../../../../../../utils/string';
 
 interface Props {
   regions: GeoGouvRegion[];
   activities: ActivityResponse;
+  departments: GeoGouvDepartment[];
   isProVersion?: boolean;
 }
 
-const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
+const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) => {
   const limit = 20;
   const pathName = usePathname();
   const router = useRouter();
@@ -61,6 +63,9 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       [SEARCH_QUERY_PARAMS.activity]: searchParams.get(SEARCH_QUERY_PARAMS.activity)
         ? `activites='${searchParams.get(SEARCH_QUERY_PARAMS.activity)}'`
         : undefined,
+      [SEARCH_QUERY_PARAMS.departmentCode]: searchParams.get(SEARCH_QUERY_PARAMS.departmentCode)
+        ? `dep_code='${searchParams.get(SEARCH_QUERY_PARAMS.departmentCode)}'`
+        : undefined,
     }),
   });
 
@@ -88,7 +93,6 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
 
     if (text.length !== 0) {
       params.clubName = `nom like '%${escapedText.toUpperCase()}%'`;
-
       const queryString = appendQueryString([
         { key: SEARCH_QUERY_PARAMS.clubName, value: escapedText },
       ]);
@@ -119,8 +123,28 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
       const queryString = appendQueryString([
         { key: SEARCH_QUERY_PARAMS.regionCode, value: region },
       ]);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
+    }
+  };
+
+  const onDepartmentChanged = (departmentCode?: string) => {
+    if (!departmentCode) {
+      const queryString = removeQueryString(SEARCH_QUERY_PARAMS.departmentCode);
+      router.push(`${pathname}?${queryString}`, { scroll: false });
+
+      setClubParams((clubParams) => ({ ...clubParams, offset: 0, departmentCode: undefined }));
+    } else {
+      const queryString = appendQueryString([
+        { key: SEARCH_QUERY_PARAMS.departmentCode, value: departmentCode },
+      ]);
 
       router.push(`${pathname}?${queryString}`, { scroll: false });
+
+      setClubParams((clubParams) => ({
+        ...clubParams,
+        offset: 0,
+        departmentCode: `dep_code='${departmentCode}'`,
+      }));
     }
   };
 
@@ -144,15 +168,17 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
     }
 
     if (city) {
+      const escapedSingleQuotesCity = escapeSingleQuotes(city);
+
       setClubParams((clubParams) => ({
         ...clubParams,
         offset: 0,
-        city: `commune='${city.toUpperCase()}'`,
+        city: `commune='${escapedSingleQuotesCity.toUpperCase()}'`,
         postalCode: undefined,
       }));
 
       const queryString = appendQueryString([
-        { key: SEARCH_QUERY_PARAMS.city, value: city.toUpperCase() },
+        { key: SEARCH_QUERY_PARAMS.city, value: escapedSingleQuotesCity.toUpperCase() },
         { key: SEARCH_QUERY_PARAMS.postalCode, value: '' },
       ]);
 
@@ -204,6 +230,19 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
     router.push(`${pathname}?${queryString}`, { scroll: false });
   };
 
+  const onResetDepartments = () => {
+    setClubParams((clubParams) => ({
+      ...clubParams,
+      offset: 0,
+      departmentCode: undefined,
+    }));
+
+    const queryString = removeQueryString(SEARCH_QUERY_PARAMS.departmentCode);
+
+    console.log({ clubParams });
+    router.push(`${pathname}?${queryString}`, { scroll: false });
+  };
+
   const isLastPage = clubs.total_count === clubs.results.length;
 
   return (
@@ -212,8 +251,10 @@ const ClubFinder = ({ regions, activities, isProVersion }: Props) => {
         <ClubFilters
           regions={regions}
           activities={activities}
+          departments={departments}
           onTextSearch={searchClubByTextHandler}
           onRegionChanged={onRegionChanged}
+          onDepartmentChanged={onDepartmentChanged}
           onCityChanged={onCityChanged}
           onActivityChanged={onActivityChanged}
           onDisabilityChanged={onDisabilityChanged}

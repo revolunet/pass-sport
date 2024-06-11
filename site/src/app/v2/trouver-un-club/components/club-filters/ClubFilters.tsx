@@ -7,6 +7,8 @@ import styles from './styles.module.scss';
 import CityFilter from '@/app/v2/trouver-un-club/components/club-filters/city-filter/CityFilter';
 import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/activity-filter/ActivityFilter';
 import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
+import { GeoGouvDepartment } from '../../../../../../types/Department';
+import DepartmentFilter from '@/app/v2/trouver-un-club/components/club-filters/department-filter/DepartmentFilter';
 
 export interface Option {
   label: string;
@@ -15,9 +17,11 @@ export interface Option {
 
 interface Props {
   regions: GeoGouvRegion[];
+  departments: GeoGouvDepartment[];
   activities: ActivityResponse;
   onTextSearch: (text: string) => void;
   onRegionChanged: (region?: string) => void;
+  onDepartmentChanged: (department?: string) => void;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
   onActivityChanged: (activity?: string) => void;
   onDisabilityChanged: (isActivated: boolean) => void;
@@ -26,6 +30,7 @@ interface Props {
 export const selectStyles = {
   control: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,
+    flexGrow: 1,
     borderColor: '#ffffff',
     width: '210px',
     '@media screen and (max-width: 992px)': {
@@ -52,8 +57,10 @@ export const selectStyles = {
 const ClubFilters: React.FC<Props> = ({
   regions,
   activities,
+  departments,
   onTextSearch,
   onRegionChanged,
+  onDepartmentChanged,
   onCityChanged,
   onActivityChanged,
   onDisabilityChanged,
@@ -72,6 +79,12 @@ const ClubFilters: React.FC<Props> = ({
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
+            <DepartmentFilter departments={departments} onDepartmentChanged={onDepartmentChanged} />
+          </div>
+
+          <div className={styles.separator} />
+
+          <div className={cn(styles.flex)}>
             <CityFilter onCityChanged={onCityChanged} />
           </div>
 
@@ -80,11 +93,9 @@ const ClubFilters: React.FC<Props> = ({
           <div className={cn(styles.flex)}>
             <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
           </div>
-
-          <div className={styles.separator} />
-
-          <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
         </div>
+
+        <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
       </div>
     </div>
   );

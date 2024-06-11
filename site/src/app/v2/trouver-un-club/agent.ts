@@ -3,10 +3,12 @@ import { ActivityResponse, SportGouvJSONResponse } from 'types/Club';
 import { GeoGouvRegion } from 'types/Region';
 import * as Sentry from '@sentry/nextjs';
 import { parseFranceRegions } from 'utils/region';
+import { GeoGouvDepartment } from '../../../../types/Department';
 
 export interface SqlSearchParams {
   clubName?: string;
   regionCode?: string;
+  departmentCode?: string;
   city?: string;
   postalCode?: string;
   activity?: string;
@@ -27,6 +29,7 @@ export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRes
 
   whereClause += param?.clubName ? ` AND ${param.clubName}` : '';
   whereClause += param?.regionCode ? ` AND ${param.regionCode}` : '';
+  whereClause += param?.departmentCode ? ` AND ${param.departmentCode}` : '';
   whereClause += param?.city ? ` AND ${param.city}` : '';
   whereClause += param?.postalCode ? ` AND ${param.postalCode}` : '';
   whereClause += param?.activity ? ` AND ${param.activity}` : '';
@@ -70,7 +73,28 @@ export const getFranceRegions = async (): Promise<GeoGouvRegion[]> => {
   }
 
   const body = await response.json();
+
   return parseFranceRegions(body);
+};
+
+export const getFranceDepartments = async (): Promise<GeoGouvDepartment[]> => {
+  const url = 'https://geo.api.gouv.fr/departements';
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    Sentry.withScope((scope) => {
+      scope.setLevel('warning');
+      scope.setExtra('responseBody', response.body);
+      scope.setExtra('responseStatus', response.status);
+      scope.captureMessage('Unexpected response from geo.api.gouv.fr for departments');
+    });
+    return [];
+  }
+
+  const body = await response.json();
+
+  return body;
 };
 
 export const getFranceCitiesByPostalCode = async (

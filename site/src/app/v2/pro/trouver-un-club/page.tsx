@@ -2,7 +2,11 @@ import PageHeader from '@/components/PageHeader/PageHeader';
 
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
 import ClubFinder from '@/app/v2/trouver-un-club/components/club-finder/ClubFinder';
-import { getAllClubActivities, getFranceRegions } from '@/app/v2/trouver-un-club/agent';
+import {
+  getAllClubActivities,
+  getFranceDepartments,
+  getFranceRegions,
+} from '@/app/v2/trouver-un-club/agent';
 import styles from './styles.module.scss';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -14,6 +18,7 @@ export const metadata: Metadata = {
 const TrouverUnClub = async () => {
   const regions = await getFranceRegions();
   const activities = await getAllClubActivities();
+  const departments = await getFranceDepartments();
 
   const subtitle = (
     <div>
@@ -51,7 +56,12 @@ const TrouverUnClub = async () => {
         }}
       />
       <Suspense>
-        <ClubFinder regions={regions} activities={activities} isProVersion />
+        <ClubFinder
+          regions={regions}
+          activities={activities}
+          departments={departments}
+          isProVersion
+        />
       </Suspense>
       <SocialMediaPanel isProVersion />
     </>
