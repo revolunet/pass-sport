@@ -17,18 +17,18 @@ export default function Matomo() {
     IS_MATOMO_INITIALIZED = true;
   }, []);
 
-  const location = usePathname();
+  const pathname = usePathname();
   const [previousURL, setPreviousURL] = useState<string>();
 
   // track basic navigation
   useEffect(() => {
+    if (!pathname) return;
+
     if (previousURL) {
       push(['setReferrerUrl', previousURL]);
     }
 
-    const { pathname } = window.location;
-
-    let updatedPathName = pathname;
+    let updatedPathName = pathname.concat();
     let regex = /\/code\/scan\/.*/;
 
     if (regex.test(pathname)) {
