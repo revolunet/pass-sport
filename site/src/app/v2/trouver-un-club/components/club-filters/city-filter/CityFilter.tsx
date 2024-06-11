@@ -9,6 +9,7 @@ import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { useSearchParams } from 'next/navigation';
 import styles from '../styles.module.scss';
 import AsyncSelect from 'react-select/async';
+import { unescapeSingleQuotes } from '../../../../../../../utils/string';
 
 interface Props {
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
@@ -19,25 +20,31 @@ const CityFilter = ({ onCityChanged }: Props) => {
 
   const citySearchParams = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city);
   const postalCodeSearchParams = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode);
+  const [value, setValue] = useState<Option | null>(null);
 
   const cityChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
       /* field was cleared */
       onCityChanged({});
+      setValue(null);
     } else {
       const cityOrPostalCode = newValue.value;
+
       if (cityOrPostalCode === '') {
         onCityChanged({});
+        setValue(null);
+        return;
       }
+
       if (isNaN(cityOrPostalCode as unknown as number)) {
         onCityChanged({ city: newValue.value });
       } else {
         onCityChanged({ postalCode: newValue.value });
       }
+
+      setValue({ value: newValue.value, label: newValue.label });
     }
   };
-
-  let [defaultOption, setDefaultOption] = useState<Option>({ label: '', value: '' });
 
   useEffect(() => {
     const city = (searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city)) || '';
@@ -51,14 +58,16 @@ const CityFilter = ({ onCityChanged }: Props) => {
         );
 
         if (matchingCityWithPostalCode !== undefined) {
-          setDefaultOption(matchingCityWithPostalCode);
+          setValue(matchingCityWithPostalCode);
         }
       });
     }
     if (city) {
-      getFranceCitiesByName(city, false).then((cities) => {
+      const unescapedCity = unescapeSingleQuotes(city);
+
+      getFranceCitiesByName(unescapedCity, false).then((cities) => {
         parseCities(cities);
-        setDefaultOption(parseCities(cities)[0]);
+        setValue(parseCities(cities)[0]);
       });
     }
   }, [citySearchParams, postalCodeSearchParams, searchParams]);
@@ -68,37 +77,20 @@ const CityFilter = ({ onCityChanged }: Props) => {
       <label htmlFor="city" className={styles.label}>
         Ville
       </label>
-      {(citySearchParams || postalCodeSearchParams) && defaultOption?.value?.length > 0 ? (
-        <AsyncSelect
-          instanceId="city-select-id"
-          name="city"
-          key="city-select-with-search-param"
-          loadingMessage={() => <p>Chargement des villes</p>}
-          noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-          placeholder="Toutes les villes"
-          cacheOptions
-          isClearable
-          loadOptions={fetchCityOptions}
-          onChange={cityChangeHandler}
-          defaultInputValue={defaultOption.label}
-          defaultValue={defaultOption}
-          styles={selectStyles}
-        />
-      ) : (
-        <AsyncSelect
-          instanceId="city-select-id"
-          name="city"
-          key="city-select-without-search-param"
-          loadingMessage={() => <p>Chargement des villes</p>}
-          noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-          placeholder="Toutes les villes"
-          cacheOptions
-          isClearable
-          loadOptions={fetchCityOptions}
-          onChange={cityChangeHandler}
-          styles={selectStyles}
-        />
-      )}
+      <AsyncSelect
+        instanceId="city-select-id"
+        name="city"
+        key="city-select-with-search-param"
+        loadingMessage={() => <p>Chargement des villes</p>}
+        noOptionsMessage={() => <p>Aucune ville trouvée</p>}
+        placeholder="Toutes les villes"
+        cacheOptions
+        isClearable
+        loadOptions={fetchCityOptions}
+        onChange={cityChangeHandler}
+        styles={selectStyles}
+        value={value}
+      />
     </div>
   );
 };

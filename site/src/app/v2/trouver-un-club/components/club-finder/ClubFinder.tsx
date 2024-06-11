@@ -168,15 +168,17 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     }
 
     if (city) {
+      const escapedSingleQuotesCity = escapeSingleQuotes(city);
+
       setClubParams((clubParams) => ({
         ...clubParams,
         offset: 0,
-        city: `commune='${city.toUpperCase()}'`,
+        city: `commune='${escapedSingleQuotesCity.toUpperCase()}'`,
         postalCode: undefined,
       }));
 
       const queryString = appendQueryString([
-        { key: SEARCH_QUERY_PARAMS.city, value: city.toUpperCase() },
+        { key: SEARCH_QUERY_PARAMS.city, value: escapedSingleQuotesCity.toUpperCase() },
         { key: SEARCH_QUERY_PARAMS.postalCode, value: '' },
       ]);
 

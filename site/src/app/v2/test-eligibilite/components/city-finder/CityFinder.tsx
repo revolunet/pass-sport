@@ -7,6 +7,7 @@ import { City } from 'types/City';
 import { InputState } from 'types/EligibilityTest';
 import { SingleValue } from 'react-select';
 import { sortCities } from 'utils/city';
+import { selectStyles } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
 
 interface Option {
   label: string;
@@ -35,23 +36,6 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
 
   const birthPlaceChangedHandler = (newValue: SingleValue<Option>) => {
     onChanged(newValue as string | null);
-  };
-
-  const selectStyles = {
-    control: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      borderColor: '#ffffff',
-      backgroundColor: '#eeeeee',
-      borderBottom: inputState.state === 'error' ? 'solid #CE0500 2px' : 'solid black 2px',
-    }),
-    indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      backgroundColor: '#ffffff',
-    }),
-    valueContainer: (baseStyles: Record<string, unknown>) => ({
-      ...baseStyles,
-      paddingLeft: '14px',
-    }),
   };
 
   return (
