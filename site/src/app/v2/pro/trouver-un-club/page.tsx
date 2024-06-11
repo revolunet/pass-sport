@@ -5,6 +5,7 @@ import ClubFinder from '@/app/v2/trouver-un-club/components/club-finder/ClubFind
 import { getAllClubActivities, getFranceRegions } from '@/app/v2/trouver-un-club/agent';
 import styles from './styles.module.scss';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Carte des structures partenaires - pass Sport',
@@ -49,7 +50,9 @@ const TrouverUnClub = async () => {
           container: styles['page-header'],
         }}
       />
-      <ClubFinder regions={regions} activities={activities} isProVersion />
+      <Suspense>
+        <ClubFinder regions={regions} activities={activities} isProVersion />
+      </Suspense>
       <SocialMediaPanel isProVersion />
     </>
   );

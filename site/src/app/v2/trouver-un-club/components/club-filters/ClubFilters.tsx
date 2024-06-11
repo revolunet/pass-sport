@@ -1,17 +1,12 @@
-'use client';
-
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import cn from 'classnames';
-import Select, { SingleValue } from 'react-select';
-import AsyncSelect from 'react-select/async';
-import { City } from 'types/City';
 import { ActivityResponse } from 'types/Club';
 import { GeoGouvRegion } from 'types/Region';
-import { getFranceCitiesByName } from '../../agent';
 import Search from '../search/Search';
 import RegionFilter from './region-filter/RegionFilter';
 import styles from './styles.module.scss';
-import { Suspense } from 'react';
+import CityFilter from '@/app/v2/trouver-un-club/components/club-filters/city-filter/CityFilter';
+import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/activity-filter/ActivityFilter';
+import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
 
 export interface Option {
   label: string;
@@ -25,20 +20,20 @@ interface Props {
   onRegionChanged: (region?: string) => void;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
   onActivityChanged: (activity?: string) => void;
-  onDisabilityChanged: (isDisabled: 'Non' | 'Oui') => void;
+  onDisabilityChanged: (isActivated: boolean) => void;
 }
 
 export const selectStyles = {
   control: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,
     borderColor: '#ffffff',
-    '@media screen and (max-width: 768px)': {
-      width: '100%',
-    },
+    width: '210px',
     '@media screen and (max-width: 992px)': {
       width: '150px',
     },
-    width: '210px',
+    '@media screen and (max-width: 768px)': {
+      width: '100%',
+    },
   }),
   indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,
@@ -63,58 +58,6 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
 }) => {
-  const parsedActivities: Option[] = activities.results
-    .filter((activity) => activity.activites)
-    .map((activity) => ({
-      label: activity.activites,
-      value: activity.activites,
-    }));
-
-  const parseCities = (cities: City[]): Option[] =>
-    cities
-      .map((city) => {
-        const result: Option[] = [];
-        if (city.codesPostaux.length > 1) {
-          result.push({ label: city.nom, value: city.nom });
-        }
-        return result.concat(
-          city.codesPostaux.map((cp) => ({
-            label: `${city.nom} (${cp})`,
-            value: city.codesPostaux.length > 1 ? cp : city.nom,
-          })),
-        );
-      })
-      .flat();
-
-  const fetchCityOptions = (inputValue: string) =>
-    getFranceCitiesByName(inputValue, false).then((cities) => parseCities(cities));
-
-  const cityChangeHandler = (newValue: SingleValue<Option>) => {
-    if (!newValue) {
-      /* field was cleared */
-      onCityChanged({});
-    } else {
-      const cityOrPostalCode = newValue.value;
-      if (cityOrPostalCode === '') {
-        onCityChanged({});
-      }
-      if (isNaN(cityOrPostalCode as unknown as number)) {
-        onCityChanged({ city: newValue.value });
-      } else {
-        onCityChanged({ postalCode: newValue.value });
-      }
-    }
-  };
-
-  const activityChangeHandler = (newValue: SingleValue<Option>) => {
-    if (!newValue) {
-      /* field was cleared */
-      onActivityChanged();
-    } else {
-      onActivityChanged(newValue.value);
-    }
-  };
-
   return (
     <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
       <div className="fr-px-2w">
@@ -123,77 +66,24 @@ const ClubFilters: React.FC<Props> = ({
         <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
         <div className={styles.filtersContainer}>
           <div className={cn(styles.flex)}>
-            <Suspense>
-              <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
-            </Suspense>
+            <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
           </div>
-          <div className={styles.separator} />
-          <div className={cn(styles.flex)}>
-            <div className={styles['label-container']}>
-              <label htmlFor="city" className={styles.label}>
-                Ville
-              </label>
-              <AsyncSelect
-                instanceId="city-select-id"
-                name="city"
-                loadingMessage={() => <p>Chargement des villes</p>}
-                noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-                placeholder="Toutes les villes"
-                cacheOptions
-                isClearable
-                loadOptions={fetchCityOptions}
-                onChange={cityChangeHandler}
-                styles={selectStyles}
-              />
-            </div>
-          </div>
-          <div className={styles.separator} />
-          <div className={cn(styles.flex)}>
-            <div className={styles['label-container']}>
-              <label htmlFor="activity" className={styles.label}>
-                Activités
-              </label>
-              <div className={styles['input-container']}>
-                <span className={cn('ri-basketball-line', styles.icon)} />
 
-                <Select
-                  instanceId="activities-select-id"
-                  className={styles.select}
-                  isClearable
-                  isSearchable
-                  name="activity"
-                  placeholder="Toutes les activités"
-                  options={parsedActivities}
-                  onChange={activityChangeHandler}
-                  styles={selectStyles}
-                />
-              </div>
-            </div>
-          </div>
           <div className={styles.separator} />
-          <RadioButtons
-            className={cn(styles.flex, 'fr-mx-0', styles.radio, 'fr-mb-0')}
-            legend="Accueil de personnes en situation de handicaps"
-            name="disability"
-            small
-            options={[
-              {
-                label: 'Oui',
-                nativeInputProps: {
-                  value: 'oui',
-                  onChange: () => onDisabilityChanged('Oui'),
-                },
-              },
-              {
-                label: 'Non',
-                nativeInputProps: {
-                  value: 'non',
-                  onChange: () => onDisabilityChanged('Non'),
-                },
-              },
-            ]}
-            orientation="horizontal"
-          />
+
+          <div className={cn(styles.flex)}>
+            <CityFilter onCityChanged={onCityChanged} />
+          </div>
+
+          <div className={styles.separator} />
+
+          <div className={cn(styles.flex)}>
+            <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
+          </div>
+
+          <div className={styles.separator} />
+
+          <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
         </div>
       </div>
     </div>
