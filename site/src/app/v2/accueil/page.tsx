@@ -31,12 +31,13 @@ export default function Accueil() {
             ))}
           </div>
         </section>
+
+        <section className={cn('fr-mx-auto', 'fr-pb-2w', styles['video-section'])}>
+          <Video />
+        </section>
+
         <section className="fr-pt-8w">
           <FindClubCard />
-        </section>
-        <section className={cn('fr-mx-auto', 'fr-pb-2w', styles['video-section'])}>
-          <h4 className={cn(styles.title)}>Mieux comprendre le pass Sport</h4>
-          <Video />
         </section>
       </div>
 
