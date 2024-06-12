@@ -12,6 +12,7 @@ import CrousStep from '../crous-step/CrousStep';
 import EligibilityTestContext from '@/store/eligibilityTestContext';
 import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
+import styles from '@/app/v2/test-eligibilite/components/step-one-form/styles.module.scss';
 
 /* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
@@ -26,6 +27,8 @@ const AllowanceStep = () => {
 
   return (
     <EligibilityTestContext.Provider value={{ performNewTest: restartTest }}>
+      <p className={cn('fr-pb-2w', styles.paragraph)}>Les champs ci-dessous sont obligatoires*</p>
+
       <Question
         question={
           <>

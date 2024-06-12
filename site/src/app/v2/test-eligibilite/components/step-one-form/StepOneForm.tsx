@@ -127,10 +127,6 @@ const StepOneForm = ({ onDataReceived }: Props) => {
         style={QUESTION_STYLES.JUNE_STYLE}
       >
         <form ref={formRef} onSubmit={onSubmitHandler}>
-          <p className={cn('fr-pb-2w', styles.paragraph)}>
-            Les champs ci-dessous sont obligatoires*
-          </p>
-
           <CustomInput
             inputProps={{
               label: 'Nom du bénéficaire*',
@@ -142,8 +138,9 @@ const StepOneForm = ({ onDataReceived }: Props) => {
               state: inputStates.beneficiaryLastname.state,
               stateRelatedMessage: inputStates.beneficiaryLastname.errorMsg,
               disabled: isFormDisabled,
+              hintText:
+                'Format attendu : Votre nom tel qu’il est écrit sur vos papiers de la CAF ou la MSA',
             }}
-            secondHint="Personne qui bénéficie des aides de la CAF ou la MSA"
           />
 
           <Input
@@ -156,6 +153,7 @@ const StepOneForm = ({ onDataReceived }: Props) => {
             state={inputStates.beneficiaryFirstname.state}
             stateRelatedMessage={inputStates.beneficiaryFirstname.errorMsg}
             disabled={isFormDisabled}
+            hintText="Format attendu : Votre prénom tel qu’il est écrit sur vos papiers de la CAF ou la MSA"
           />
 
           <Input
@@ -178,6 +176,8 @@ const StepOneForm = ({ onDataReceived }: Props) => {
             inputName="recipientResidencePlace"
             inputState={inputStates.recipientResidencePlace}
             onChanged={(text) => onInputChanged(text, 'recipientResidencePlace')}
+            hintText="Format attendu : Si le nom de la commune est composé, veillez à saisir un tiret entre deux noms (ex : Saint-Joseph), sauf si la commune débute par le, la, les, auxquels cas vous devez séparer d’un caractère « espace » (ex : Le Havre). Si votre commune comporte moins de 4 caractères il faut ajouter un espace à la fin (ex : Eus). Si vous avez déménagé dans les 12 derniers mois, remplissez le champs avec le nom de votre ancienne ville"
+            secondHint="L’allocataire est la personne qui perçoit au moins une aide en regard de leur situation familiale et/ou monétaire."
           />
 
           <Button
