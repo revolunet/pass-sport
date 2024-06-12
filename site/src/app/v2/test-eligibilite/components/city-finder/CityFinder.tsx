@@ -23,6 +23,23 @@ interface Props {
 }
 
 const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Props) => {
+  const selectStyles = {
+    control: (baseStyles: Record<string, unknown>) => ({
+      ...baseStyles,
+      borderColor: '#ffffff',
+      backgroundColor: '#eeeeee',
+      borderBottom: inputState.state === 'error' ? 'solid #CE0500 2px' : 'solid black 2px',
+    }),
+    indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
+      ...baseStyles,
+      backgroundColor: '#ffffff',
+    }),
+    valueContainer: (baseStyles: Record<string, unknown>) => ({
+      ...baseStyles,
+      paddingLeft: '14px',
+    }),
+  };
+
   const parseCities = (cities: City[]): Option[] => {
     return cities.map((city) => {
       return { label: `${city.nom} (${city.codeDepartement})`, value: city.code };
