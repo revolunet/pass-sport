@@ -127,20 +127,17 @@ const StepOneForm = ({ onDataReceived }: Props) => {
         style={QUESTION_STYLES.JUNE_STYLE}
       >
         <form ref={formRef} onSubmit={onSubmitHandler}>
-          <CustomInput
-            inputProps={{
-              label: 'Nom du bénéficaire*',
-              nativeInputProps: {
-                name: 'beneficiaryLastname',
-                onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                  onInputChanged(e.target.value, 'beneficiaryLastname'),
-              },
-              state: inputStates.beneficiaryLastname.state,
-              stateRelatedMessage: inputStates.beneficiaryLastname.errorMsg,
-              disabled: isFormDisabled,
-              hintText:
-                'Format attendu : Votre nom tel qu’il est écrit sur vos papiers de la CAF ou la MSA',
+          <Input
+            label="Nom du bénéficaire*"
+            nativeInputProps={{
+              name: 'beneficiaryLastname',
+              onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                onInputChanged(e.target.value, 'beneficiaryLastname'),
             }}
+            state={inputStates.beneficiaryLastname.state}
+            stateRelatedMessage={inputStates.beneficiaryLastname.errorMsg}
+            disabled={isFormDisabled}
+            hintText="Format attendu : Votre nom tel qu’il est écrit sur vos papiers de la CAF ou la MSA"
           />
 
           <Input
