@@ -46,7 +46,7 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (value.length > 7) {
+            if (value.length > 8) {
               states[fieldName] = {
                 state: 'error',
                 errorMsg: 'Le numéro CAF doit être composé de 6, 7 ou 8 chiffres',
