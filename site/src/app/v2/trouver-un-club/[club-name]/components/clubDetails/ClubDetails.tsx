@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { useGetClubs } from '@/app/hooks/use-get-clubs';
 import { DisabilityTag } from '../../../components/disability-tag/DisabilityTag';
+import cn from 'classnames';
 
 interface Props {
   clubName: string;
@@ -28,7 +29,7 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
   }
 
   return (
-    <div className="fr-mx-2w">
+    <div className="fr-mx-2w fr-mb-10w">
       <div className={`fr-p-3w fr-mt-3w fr-mx-auto fr-mb-12w ${styles.panel}`}>
         <section className={styles.info}>
           <h2>{club.nom}</h2>
@@ -94,7 +95,11 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
         </section>
       </div>
 
-      {!isProVersion && <MedicalCertificatePanel />}
+      {!isProVersion && (
+        <div className={cn('fr-mx-auto', styles['max-width'])}>
+          <MedicalCertificatePanel />
+        </div>
+      )}
     </div>
   );
 }
