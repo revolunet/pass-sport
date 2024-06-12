@@ -33,7 +33,7 @@ const MedicalCertificatePanel = () => {
         title="Besoin d'un certificat médical ?"
         titleAs="h3"
         classes={{
-          end: styles.end,
+          end: 'fr-hidden',
           title: cn('fr-mb-2w', styles.blue),
           body: styles.body,
         }}
