@@ -9,7 +9,6 @@ import {
 
 import * as Sentry from '@sentry/nextjs';
 import { addQrCodeToConfirmResponse } from './qr-code';
-import { sanitize } from '../../../utils/eligibility-test';
 
 export const buildLCAConfirmUrl = (data: ConfirmPayload, isUsingApiV1: boolean): URL => {
   const domain = process.env.LCA_API_URL;
@@ -19,38 +18,38 @@ export const buildLCAConfirmUrl = (data: ConfirmPayload, isUsingApiV1: boolean):
   }
 
   const params = new URLSearchParams();
-  params.append('id', sanitize(data.id));
+  params.append('id', data.id);
   params.append('situation', data.situation);
   params.append('organisme', data.organisme);
 
   const allocataireName = data.recipientLastname;
   if (allocataireName) {
-    params.append('allocataireName', sanitize(allocataireName));
+    params.append('allocataireName', allocataireName);
   }
 
   const allocataireSurname = data.recipientFirstname;
   if (allocataireSurname) {
-    params.append('allocataireSurname', sanitize(allocataireSurname));
+    params.append('allocataireSurname', allocataireSurname);
   }
 
   const matricule = data.recipientCafNumber;
   if (matricule) {
-    params.append('matricule', sanitize(matricule));
+    params.append('matricule', matricule);
   }
 
   const recipientBirthPlace = data.recipientBirthPlace;
   if (recipientBirthPlace) {
-    params.append('codeInseeBirth', sanitize(recipientBirthPlace));
+    params.append('codeInseeBirth', recipientBirthPlace);
   }
 
   const recipientBirthDate = data.recipientBirthDate;
   if (recipientBirthDate) {
-    params.append('allocataireBirthDate', sanitize(recipientBirthDate));
+    params.append('allocataireBirthDate', recipientBirthDate);
   }
 
   const recipientBirthCountry = data.recipientBirthCountry;
   if (recipientBirthCountry) {
-    params.append('codeIso', sanitize(recipientBirthCountry));
+    params.append('codeIso', recipientBirthCountry);
   }
 
   const baseUrl = isUsingApiV1
@@ -70,10 +69,10 @@ export const buildLCASearchUrl = (data: SearchPayload, isUsingApiV1: boolean): U
   }
 
   const params = new URLSearchParams();
-  params.append('nom', sanitize(data.beneficiaryLastname));
-  params.append('prenom', sanitize(data.beneficiaryFirstname));
-  params.append('dateNaissance', sanitize(data.beneficiaryBirthDate));
-  params.append('codeInsee', sanitize(data.recipientResidencePlace));
+  params.append('nom', data.beneficiaryLastname);
+  params.append('prenom', data.beneficiaryFirstname);
+  params.append('dateNaissance', data.beneficiaryBirthDate);
+  params.append('codeInsee', data.recipientResidencePlace);
 
   const baseUrl = isUsingApiV1
     ? `${domain}/gw/psp-server/beneficiaires/search`
