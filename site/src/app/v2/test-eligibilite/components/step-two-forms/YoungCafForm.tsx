@@ -11,6 +11,7 @@ import FormButton from './FormButton';
 import CustomInput from '../custom-input/CustomInput';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
+import { cafErrorMessage, isInputValidCaf } from '@/app/v2/test-eligibilite/constants/caf';
 
 const initialInputsState: YoungCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -53,10 +54,10 @@ const YoungCafForm = ({
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (value.length > 8) {
+            if (!isInputValidCaf(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 6, 7 ou 8 chiffres',
+                errorMsg: cafErrorMessage,
               };
 
               isValid = false;
@@ -153,7 +154,7 @@ const YoungCafForm = ({
             nativeInputProps: {
               name: 'recipientCafNumber',
               placeholder: 'ex: 0000000',
-              type: 'number',
+              type: 'text',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
             },

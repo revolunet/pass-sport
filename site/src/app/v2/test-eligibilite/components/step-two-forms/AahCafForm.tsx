@@ -10,6 +10,7 @@ import { mapper } from '../../helpers/helper';
 import FormButton from './FormButton';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
+import { cafErrorMessage, isInputValidCaf } from '@/app/v2/test-eligibilite/constants/caf';
 
 const initialInputsState: AahCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -49,10 +50,10 @@ const AahCafForm = ({
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (value.length !== 7) {
+            if (!isInputValidCaf(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 7 chiffres',
+                errorMsg: cafErrorMessage,
               };
 
               isValid = false;
@@ -144,7 +145,7 @@ const AahCafForm = ({
           nativeInputProps={{
             name: 'recipientCafNumber',
             placeholder: 'ex: 0000000',
-            type: 'number',
+            type: 'text',
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'recipientCafNumber'),
           }}
