@@ -1,4 +1,3 @@
-import Input from '@codegouvfr/react-dsfr/Input';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import {
   AahCafInputsState,
@@ -10,7 +9,14 @@ import { mapper } from '../../helpers/helper';
 import FormButton from './FormButton';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
-import { cafErrorMessage, isInputValidCaf } from '@/app/v2/test-eligibilite/constants/caf';
+import {
+  cafErrorMessage,
+  cafHintText,
+  cafLabel,
+  cafPlaceholder,
+  cafSecondHintText,
+  isInputValidCaf,
+} from '@/app/v2/test-eligibilite/constants/caf';
 import CustomInput from '@/app/v2/test-eligibilite/components/custom-input/CustomInput';
 
 const initialInputsState: AahCafInputsState = {
@@ -143,11 +149,11 @@ const AahCafForm = ({
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <CustomInput
           inputProps={{
-            label: 'Numéro de l’allocataire CAF*',
-            hintText: 'Format attendu : 6, 7 ou 8 chiffres',
+            label: cafLabel,
+            hintText: cafHintText,
             nativeInputProps: {
               name: 'recipientCafNumber',
-              placeholder: 'ex: 0000000',
+              placeholder: cafPlaceholder,
               type: 'text',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
@@ -156,9 +162,7 @@ const AahCafForm = ({
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
             disabled: isFormDisabled,
           }}
-          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
-          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
-          espace personnel."
+          secondHint={cafSecondHintText}
         />
 
         <FormButton isDisabled={isFormDisabled} />
