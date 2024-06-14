@@ -158,6 +158,7 @@ const YoungMsaForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
           disabled={isFormDisabled}
+          hintText="Format attendu : Nom de l'allocataire tel qu’il est écrit sur les papiers de la MSA"
         />
 
         <Input
@@ -166,6 +167,7 @@ const YoungMsaForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}
           disabled={isFormDisabled}
+          hintText="Format attendu : Prénom de l'allocataire tel qu’il est écrit sur les papiers de la MSA"
         />
 
         <Input

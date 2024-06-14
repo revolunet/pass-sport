@@ -46,10 +46,10 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (value.length > 7) {
+            if (value.length > 8) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 7 chiffres au plus',
+                errorMsg: 'Le numéro CAF doit être composé de 6, 7 ou 8 chiffres',
               };
 
               isValid = false;
@@ -135,7 +135,7 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
         <CustomInput
           inputProps={{
             label: 'Numéro de l’allocataire CAF*',
-            hintText: 'Format attendu : 7 chiffres au plus. Ex : 0000000',
+            hintText: 'Format attendu : 6, 7 ou 8 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
               placeholder: 'ex: 0000000',
@@ -147,7 +147,7 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
             disabled: isFormDisabled,
           }}
-          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
+          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
           par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
           espace personnel."
         />
@@ -163,6 +163,7 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
           disabled={isFormDisabled}
+          hintText="Format attendu : Nom de l'allocataire tel qu’il est écrit sur les papiers de la CAF"
         />
         <Input
           label="Prénom de l’allocataire CAF*"
@@ -175,6 +176,7 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}
           disabled={isFormDisabled}
+          hintText="Format attendu : Prénom de l'allocataire tel qu’il est écrit sur les papiers de la CAF"
         />
         <FormButton isDisabled={isFormDisabled} />
       </form>
