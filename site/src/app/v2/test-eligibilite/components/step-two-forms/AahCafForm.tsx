@@ -11,6 +11,7 @@ import FormButton from './FormButton';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
 import { cafErrorMessage, isInputValidCaf } from '@/app/v2/test-eligibilite/constants/caf';
+import CustomInput from '@/app/v2/test-eligibilite/components/custom-input/CustomInput';
 
 const initialInputsState: AahCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -140,18 +141,24 @@ const AahCafForm = ({
   return (
     <div>
       <form ref={formRef} onSubmit={onSubmitHandler}>
-        <Input
-          label="Numéro de l’allocataire CAF*"
-          nativeInputProps={{
-            name: 'recipientCafNumber',
-            placeholder: 'ex: 0000000',
-            type: 'text',
-            onChange: (e: ChangeEvent<HTMLInputElement>) =>
-              onInputChanged(e.target.value, 'recipientCafNumber'),
+        <CustomInput
+          inputProps={{
+            label: 'Numéro de l’allocataire CAF*',
+            hintText: 'Format attendu : 6, 7 ou 8 chiffres',
+            nativeInputProps: {
+              name: 'recipientCafNumber',
+              placeholder: 'ex: 0000000',
+              type: 'text',
+              onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                onInputChanged(e.target.value, 'recipientCafNumber'),
+            },
+            state: inputStates.recipientCafNumber.state,
+            stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
+            disabled: isFormDisabled,
           }}
-          state={inputStates.recipientCafNumber.state}
-          stateRelatedMessage={inputStates.recipientCafNumber.errorMsg}
-          disabled={isFormDisabled}
+          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
+          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
+          espace personnel."
         />
 
         <FormButton isDisabled={isFormDisabled} />
