@@ -11,14 +11,6 @@ import FormButton from './FormButton';
 import CustomInput from '../custom-input/CustomInput';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
-import {
-  cafErrorMessage,
-  cafHintText,
-  cafLabel,
-  cafPlaceholder,
-  cafSecondHintText,
-  isInputValidCaf,
-} from '@/app/v2/test-eligibilite/constants/caf';
 
 const initialInputsState: YoungCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -61,10 +53,10 @@ const YoungCafForm = ({
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (!isInputValidCaf(value)) {
+            if (!/^\d{1,7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: cafErrorMessage,
+                errorMsg: 'Le numéro CAF doit être composé de 1 à 7 chiffres',
               };
 
               isValid = false;
@@ -156,11 +148,11 @@ const YoungCafForm = ({
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <CustomInput
           inputProps={{
-            label: cafLabel,
-            hintText: cafHintText,
+            label: 'Numéro de l’allocataire CAF*',
+            hintText: 'Format attendu : 1 à 7 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
-              placeholder: cafPlaceholder,
+              placeholder: 'ex: 0000000',
               type: 'text',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
@@ -169,7 +161,9 @@ const YoungCafForm = ({
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
             disabled: isFormDisabled,
           }}
-          secondHint={cafSecondHintText}
+          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
+          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
+          espace personnel."
         />
 
         <Input

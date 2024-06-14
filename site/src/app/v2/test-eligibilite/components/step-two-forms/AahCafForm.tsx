@@ -9,14 +9,6 @@ import { mapper } from '../../helpers/helper';
 import FormButton from './FormButton';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
-import {
-  cafErrorMessage,
-  cafHintText,
-  cafLabel,
-  cafPlaceholder,
-  cafSecondHintText,
-  isInputValidCaf,
-} from '@/app/v2/test-eligibilite/constants/caf';
 import CustomInput from '@/app/v2/test-eligibilite/components/custom-input/CustomInput';
 
 const initialInputsState: AahCafInputsState = {
@@ -57,10 +49,10 @@ const AahCafForm = ({
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (!isInputValidCaf(value)) {
+            if (!/^\d{6,7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: cafErrorMessage,
+                errorMsg: 'Le numéro CAF doit être composé de 6, 7 chiffres',
               };
 
               isValid = false;
@@ -149,11 +141,11 @@ const AahCafForm = ({
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <CustomInput
           inputProps={{
-            label: cafLabel,
-            hintText: cafHintText,
+            label: 'Numéro de l’allocataire CAF*',
+            hintText: 'Format attendu : 6, 7 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
-              placeholder: cafPlaceholder,
+              placeholder: 'ex: 0000000',
               type: 'text',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
@@ -162,7 +154,9 @@ const AahCafForm = ({
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
             disabled: isFormDisabled,
           }}
-          secondHint={cafSecondHintText}
+          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
+          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
+          espace personnel."
         />
 
         <FormButton isDisabled={isFormDisabled} />
