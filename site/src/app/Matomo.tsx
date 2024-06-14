@@ -12,7 +12,7 @@ export default function Matomo() {
       init({
         url: process.env.NEXT_PUBLIC_MATOMO_URL || '',
         siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID || '',
-        excludeUrlsPatterns: [/^\//],
+        // excludeUrlsPatterns: [/^\//],
       });
     }
     IS_MATOMO_INITIALIZED = true;
