@@ -22,9 +22,16 @@ const initialInputsState: YoungMsaInputsState = {
 interface Props {
   eligibilityDataItem: SearchResponseBodyItem;
   onDataReceived: (data: EnhancedConfirmResponseBody) => void;
+  onEligibilitySuccess: () => void;
+  onEligibilityFailure: () => void;
 }
 
-const YoungMsaForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
+const YoungMsaForm = ({
+  eligibilityDataItem,
+  onDataReceived,
+  onEligibilitySuccess,
+  onEligibilityFailure,
+}: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<YoungMsaInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -109,7 +116,14 @@ const YoungMsaForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
             notifyError(status);
             return;
           }
+
           onDataReceived(body);
+
+          if (body?.length > 0) {
+            onEligibilitySuccess();
+          } else {
+            onEligibilityFailure();
+          }
         }
       },
     );

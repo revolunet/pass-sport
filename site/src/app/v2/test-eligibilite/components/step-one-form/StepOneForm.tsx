@@ -5,13 +5,10 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import Input from '@codegouvfr/react-dsfr/Input';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import {
-  StepOneFormInputsState,
   SearchResponseBody,
   SearchResponseErrorBody,
+  StepOneFormInputsState,
 } from 'types/EligibilityTest';
-import styles from './styles.module.scss';
-import cn from 'classnames';
-import CustomInput from '../custom-input/CustomInput';
 import CityFinder from '../city-finder/CityFinder';
 import { mapper } from '../../helpers/helper';
 import ErrorAlert from '../error-alert/ErrorAlert';
@@ -26,9 +23,10 @@ const initialInputsState: StepOneFormInputsState = {
 
 interface Props {
   onDataReceived: (data: SearchResponseBody) => void;
+  onEligibilityFailure: () => void;
 }
 
-const StepOneForm = ({ onDataReceived }: Props) => {
+const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [inputStates, setInputStates] = useState<StepOneFormInputsState>(initialInputsState);
@@ -76,7 +74,12 @@ const StepOneForm = ({ onDataReceived }: Props) => {
           notifyError(status, body);
           return;
         }
+
         onDataReceived(body);
+
+        if (body?.length === 0) {
+          onEligibilityFailure();
+        }
       }
     });
   };
