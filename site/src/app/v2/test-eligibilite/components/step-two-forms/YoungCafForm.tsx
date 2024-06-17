@@ -21,9 +21,16 @@ const initialInputsState: YoungCafInputsState = {
 interface Props {
   eligibilityDataItem: SearchResponseBodyItem;
   onDataReceived: (data: EnhancedConfirmResponseBody) => void;
+  onEligibilitySuccess: () => void;
+  onEligibilityFailure: () => void;
 }
 
-const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
+const YoungCafForm = ({
+  eligibilityDataItem,
+  onDataReceived,
+  onEligibilitySuccess,
+  onEligibilityFailure,
+}: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<YoungCafInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -79,6 +86,7 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
 
   const notifyError = (status: number) => {
     setError('Une erreur a eu lieu. Merci de rééessayer plus tard');
+    onEligibilityFailure();
   };
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -109,7 +117,9 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
             notifyError(status);
             return;
           }
+
           onDataReceived(body);
+          onEligibilitySuccess();
         }
       },
     );
