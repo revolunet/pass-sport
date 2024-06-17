@@ -119,7 +119,10 @@ const YoungMsaForm = ({
           }
 
           onDataReceived(body);
-          onEligibilitySuccess();
+
+          if (body?.length > 0) {
+            onEligibilitySuccess();
+          }
         }
       },
     );

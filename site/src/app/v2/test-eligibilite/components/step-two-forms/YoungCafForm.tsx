@@ -119,7 +119,10 @@ const YoungCafForm = ({
           }
 
           onDataReceived(body);
-          onEligibilitySuccess();
+
+          if (body?.length > 0) {
+            onEligibilitySuccess();
+          }
         }
       },
     );

@@ -107,7 +107,10 @@ const AahMsaForm = ({
             return;
           }
           onDataReceived(body);
-          onEligibilitySuccess();
+
+          if (body?.length > 0) {
+            onEligibilitySuccess();
+          }
         }
       },
     );
