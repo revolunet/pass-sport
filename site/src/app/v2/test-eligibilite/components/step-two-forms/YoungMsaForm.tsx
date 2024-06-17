@@ -86,7 +86,6 @@ const YoungMsaForm = ({
 
   const notifyError = (status: number) => {
     setError('Une erreur a eu lieu. Merci de rééessayer plus tard');
-    onEligibilityFailure();
   };
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -122,6 +121,8 @@ const YoungMsaForm = ({
 
           if (body?.length > 0) {
             onEligibilitySuccess();
+          } else {
+            onEligibilityFailure();
           }
         }
       },

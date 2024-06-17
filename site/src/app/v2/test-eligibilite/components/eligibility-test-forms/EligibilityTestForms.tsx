@@ -21,12 +21,12 @@ const EligibilityTestForms = () => {
     ]);
   }, []);
 
-  const onEligibilityFailure = useCallback(() => {
+  const onEligibilityFailure = useCallback((name = 'final step') => {
     push([
       'trackEvent',
       'Eligibility Test',
       'Eligibility test completed',
-      'Eligibility test unsuccessful',
+      `Eligibility test unsuccessful - ${name}`,
     ]);
   }, []);
 
@@ -37,6 +37,7 @@ const EligibilityTestForms = () => {
           setEligibilityData(data);
           setpspCodeData(null);
         }}
+        onEligibilityFailure={() => onEligibilityFailure('first step')}
       />
 
       {eligibilityData &&
