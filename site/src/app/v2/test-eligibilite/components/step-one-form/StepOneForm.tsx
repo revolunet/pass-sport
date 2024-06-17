@@ -66,7 +66,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
     }
 
     await requestEligibilityTest().then(({ status, body }) => {
-      setIsFormDisabled(true);
       if (status !== 200) {
         notifyError(status, body as SearchResponseErrorBody);
       } else {
@@ -79,6 +78,8 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
 
         if (body?.length === 0) {
           onEligibilityFailure();
+        } else {
+          setIsFormDisabled(true);
         }
       }
     });
