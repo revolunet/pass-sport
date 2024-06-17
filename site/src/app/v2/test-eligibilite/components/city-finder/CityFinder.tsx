@@ -6,6 +6,7 @@ import { getFranceCitiesByName } from '@/app/v2/trouver-un-club/agent';
 import { City } from 'types/City';
 import { InputState } from 'types/EligibilityTest';
 import { SingleValue } from 'react-select';
+import { sortCities } from 'utils/city';
 
 interface Option {
   label: string;
@@ -21,30 +22,6 @@ interface Props {
 }
 
 const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Props) => {
-  const parseCities = (cities: City[]): Option[] => {
-    return cities
-      .map((city) => {
-        return { label: `${city.nom} (${city.codeDepartement})`, value: city.code };
-      })
-
-      .sort((a: Option, b: Option) => {
-        if (a.label < b.label) {
-          return -1;
-        }
-        if (a.label > b.label) {
-          return 1;
-        }
-        return 0;
-      });
-  };
-
-  const fetchCityOptions = (inputValue: string) =>
-    getFranceCitiesByName(inputValue, true).then((cities) => parseCities(cities));
-
-  const birthPlaceChangedHandler = (newValue: SingleValue<Option>) => {
-    onChanged(newValue as string | null);
-  };
-
   const selectStyles = {
     control: (baseStyles: Record<string, unknown>) => ({
       ...baseStyles,
@@ -62,24 +39,42 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
     }),
   };
 
+  const parseCities = (cities: City[]): Option[] => {
+    return cities.map((city) => {
+      return { label: `${city.nom} (${city.codeDepartement})`, value: city.code };
+    });
+  };
+
+  const fetchCityOptions = (inputValue: string) =>
+    getFranceCitiesByName(inputValue, true).then((cities) =>
+      parseCities(sortCities(cities, inputValue)),
+    );
+
+  const birthPlaceChangedHandler = (newValue: SingleValue<Option>) => {
+    onChanged(newValue as string | null);
+  };
+
   return (
     <div
       className={cn('fr-select-group', {
         'fr-select-group--error': inputState.state === 'error',
       })}
     >
-      <label className={rootStyles['text--black']} id="city-select-id">
+      <label className={rootStyles['text--black']} htmlFor="city-select-id">
         {legend}
+        <p className={cn('fr-text--xs', styles.hint, 'fr-mb-1w', 'fr-mt-1v')}>
+          Format attendu : Si le nom de la commune est composé, veillez à saisir un tiret entre deux
+          noms (ex : Saint-Joseph), sauf si la commune débute par le, la, les, auxquels cas vous
+          devez séparer d’un caractère « espace » (ex : Le Havre). Si votre commune comporte moins
+          de 4 caractères il faut ajouter un espace à la fin (ex : Eus). Si vous avez déménagé dans
+          les 12 derniers mois, remplissez le champs avec le nom de votre ancienne ville
+        </p>
       </label>
-      <p className={cn('fr-text--xs', styles.hint, 'fr-mb-1w')}>
-        Format attendu : Si le nom de la commune est composé, veillez à saisir un tiret entre deux
-        noms (ex : Saint-Joseph), sauf si le pays débute par le, la, les, auxquels cas vous devez
-        séparer d’un caractère « espace » (ex : Le Havre). Si votre pays comporte moins de 4
-        caractères il faut ajouter un espace à la fin (ex : Eus).
-      </p>
+
       <AsyncSelect
         aria-labelledby="city-select-id"
         instanceId="city-select-id"
+        inputId="city-select-id"
         name={inputName}
         loadingMessage={() => <p>Chargement des villes...</p>}
         noOptionsMessage={() => <p>Aucune ville trouvée</p>}
@@ -91,6 +86,14 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
         onChange={birthPlaceChangedHandler}
         styles={selectStyles}
       />
+
+      <div className={cn('fr-mt-2w', styles.secondHintBlock)}>
+        <span className={cn('fr-icon--sm', 'fr-icon-info-fill')} aria-hidden="true" />
+        <p className={cn('fr-mb-4w', 'fr-text--xs')}>
+          L’allocataire est la personne qui perçoit au moins une aide en regard de leur situation
+          familiale et/ou monétaire.
+        </p>
+      </div>
 
       {inputState.state === 'error' && (
         <div className={cn('fr-pt-2w', styles.container)}>

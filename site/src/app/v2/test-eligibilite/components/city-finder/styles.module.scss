@@ -10,3 +10,10 @@
 .error {
   color: var(--text-default-error);
 }
+
+.secondHintBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  color: var(--text-default-info);
+}

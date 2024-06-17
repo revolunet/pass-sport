@@ -1,38 +1,9 @@
 @import '../../../../../sassVariables.module.scss';
 
-.background {
-  background-color: var(--artwork-minor-blue-france);
-  max-width: 1200px;
+.blue {
+  color: var(--background-action-high-blue-france);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  @media (min-width: $xl) {
-    flex-direction: row;
-  }
-
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    flex-basis: 100px;
-    flex-grow: 1;
-  }
-}
-
-.button-wrapper {
-  button {
-    background-color: var(--color-white);
-  }
-}
-
-.text-color {
-  color: var(--color-white);
-}
-
-.link::after {
-  display: none;
+.body {
+  background-color: var(--grey-1000-50-hover);
 }

@@ -1,31 +1,45 @@
-import Button from '@codegouvfr/react-dsfr/Button';
 import Link from 'next/link';
 import styles from './styles.module.scss';
+import Card from '@codegouvfr/react-dsfr/Card';
+import cn from 'classnames';
+import image from '@/images/medical-certificate/medical-certificate.jpg';
+import utilsStyles from '../../../../../utilities.module.scss';
 
 const MedicalCertificatePanel = () => {
   return (
-    <div className={`fr-p-4w fr-mb-8w fr-mx-auto ${styles.background}`}>
-      <div className={styles.container}>
-        <div className={styles['text-container']}>
-          <h3 className={styles['text-color']}>Besoin d &apos;un certificat médical ?</h3>
-          <p className={`fr-text--lg fr-mb-0 ${styles['text-color']}`}>
-            Ce simulateur vous indique si vous devez obtenir un certificat médical pour pratiquer
-            une activité sportive (loisir ou compétition).
-          </p>
-        </div>
-        <div className={`fr-m-auto ${styles['button-wrapper']}`}>
-          <Link
-            href="https://www.service-public.fr/simulateur/calcul/certificatMedical"
-            target="_blank"
-            className={styles.link}
-          >
-            <Button priority="tertiary" size="large">
+    <>
+      <Card
+        border={false}
+        desc={
+          <>
+            <p className="fr-text--lg">
+              Ce simulateur vous indique si vous devez obtenir un certificat médical pour pratiquer
+              une activité sportive (loisir ou compétition).
+            </p>
+
+            <Link
+              href="https://www.service-public.fr/simulateur/calcul/certificatMedical"
+              target="_blank"
+              className={cn('fr-text--lg', styles.blue, utilsStyles['text--medium'])}
+            >
               Faire le simulateur de certificat médical
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </div>
+            </Link>
+          </>
+        }
+        horizontal
+        imageAlt=""
+        imageUrl={image.src}
+        size="medium"
+        title="Besoin d'un certificat médical ?"
+        titleAs="h3"
+        classes={{
+          end: 'fr-hidden',
+          title: cn('fr-mb-2w', styles.blue),
+          body: styles.body,
+        }}
+        ratio="33/66"
+      />
+    </>
   );
 };
 

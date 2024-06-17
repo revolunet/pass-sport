@@ -92,7 +92,9 @@ export default function Page() {
             accessible via le compte de l&apos;un des Créateur de Contenus suivants:
           </p>
 
-          <h5>Catégorie jeunes (uniquement réservés aux participants entre 14 ans et 25 ans)</h5>
+          <h5 className="fr-mb-2w">
+            Catégorie jeunes (uniquement réservés aux participants entre 14 ans et 25 ans)
+          </h5>
           <ul className="fr-mb-2w">
             <li>
               <Link href="https://www.instagram.com/natoogram/" target="_blank">
@@ -161,7 +163,7 @@ export default function Page() {
             </li>
           </ul>
 
-          <h5>
+          <h5 className="fr-mb-2w">
             Catégorie parents et grands parents (uniquement réservés aux participants parents
             d&apos;enfants de 6 ans à 12 ans)
           </h5>
@@ -172,6 +174,14 @@ export default function Page() {
                 @elisabeth_loncke
               </Link>
             </li>
+          </ul>
+
+          <h5 className="fr-mb-2w">
+            Catégorie parents et grands parents (uniquement réservés aux participants parents ou
+            grands-parents d&apos;enfants entre 12 à 18 ans)
+          </h5>
+
+          <ul className="fr-mb-2w">
             <li>
               <Link href="https://www.instagram.com/nathsimofficiel/" target="_blank">
                 @nathsimofficiel

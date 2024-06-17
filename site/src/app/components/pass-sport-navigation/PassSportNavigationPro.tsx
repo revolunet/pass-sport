@@ -39,10 +39,8 @@ export default function PassSportNavigationPro() {
           {
             text: 'Je suis un particulier',
             iconId: 'fr-icon-arrow-right-line',
-            buttonProps: {
-              onClick: () => {
-                router.push('/v2/accueil');
-              },
+            linkProps: {
+              href: '/v2/accueil',
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },
