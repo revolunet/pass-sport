@@ -3,6 +3,7 @@
 .iframe {
   width: 100%;
   height: calc(100vh / 4);
+  background-color: white;
 
   @media (min-width: $sm) {
     height: calc(100vh / 2);
