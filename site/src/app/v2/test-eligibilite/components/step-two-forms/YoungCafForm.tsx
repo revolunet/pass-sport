@@ -108,7 +108,6 @@ const YoungCafForm = ({
         body: EnhancedConfirmResponseBody | ConfirmResponseErrorBody;
         status: number;
       }) => {
-        setIsFormDisabled(true);
         if (status !== 200) {
           notifyError(status);
         } else {
@@ -121,6 +120,7 @@ const YoungCafForm = ({
 
           if (body?.length > 0) {
             onEligibilitySuccess();
+            setIsFormDisabled(true);
           } else {
             onEligibilityFailure();
           }
