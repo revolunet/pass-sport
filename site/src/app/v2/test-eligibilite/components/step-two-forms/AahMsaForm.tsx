@@ -18,9 +18,16 @@ const initialInputsState: AahMsaInputsState = {
 interface Props {
   eligibilityDataItem: SearchResponseBodyItem;
   onDataReceived: (data: EnhancedConfirmResponseBody) => void;
+  onEligibilitySuccess: () => void;
+  onEligibilityFailure: () => void;
 }
 
-const AahMsaForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
+const AahMsaForm = ({
+  eligibilityDataItem,
+  onDataReceived,
+  onEligibilitySuccess,
+  onEligibilityFailure,
+}: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<AahMsaInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -90,7 +97,6 @@ const AahMsaForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
         body: EnhancedConfirmResponseBody | ConfirmResponseErrorBody;
         status: number;
       }) => {
-        setIsFormDisabled(true);
         if (status !== 200) {
           notifyError(status);
         } else {
@@ -98,7 +104,15 @@ const AahMsaForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
             notifyError(status);
             return;
           }
+
           onDataReceived(body);
+
+          if (body?.length > 0) {
+            onEligibilitySuccess();
+            setIsFormDisabled(true);
+          } else {
+            onEligibilityFailure();
+          }
         }
       },
     );

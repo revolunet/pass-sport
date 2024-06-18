@@ -21,9 +21,16 @@ const initialInputsState: YoungCafInputsState = {
 interface Props {
   eligibilityDataItem: SearchResponseBodyItem;
   onDataReceived: (data: EnhancedConfirmResponseBody) => void;
+  onEligibilitySuccess: () => void;
+  onEligibilityFailure: () => void;
 }
 
-const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
+const YoungCafForm = ({
+  eligibilityDataItem,
+  onDataReceived,
+  onEligibilitySuccess,
+  onEligibilityFailure,
+}: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<YoungCafInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -46,10 +53,10 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (value.length > 8) {
+            if (!/^\d{1,7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 6, 7 ou 8 chiffres',
+                errorMsg: 'Le numéro CAF doit être composé de 1 à 7 chiffres',
               };
 
               isValid = false;
@@ -101,7 +108,6 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
         body: EnhancedConfirmResponseBody | ConfirmResponseErrorBody;
         status: number;
       }) => {
-        setIsFormDisabled(true);
         if (status !== 200) {
           notifyError(status);
         } else {
@@ -109,7 +115,15 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
             notifyError(status);
             return;
           }
+
           onDataReceived(body);
+
+          if (body?.length > 0) {
+            onEligibilitySuccess();
+            setIsFormDisabled(true);
+          } else {
+            onEligibilityFailure();
+          }
         }
       },
     );
@@ -135,11 +149,11 @@ const YoungCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
         <CustomInput
           inputProps={{
             label: 'Numéro de l’allocataire CAF*',
-            hintText: 'Format attendu : 6, 7 ou 8 chiffres',
+            hintText: 'Format attendu : 1 à 7 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
               placeholder: 'ex: 0000000',
-              type: 'number',
+              type: 'text',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
             },

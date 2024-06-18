@@ -1,4 +1,3 @@
-import Input from '@codegouvfr/react-dsfr/Input';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import {
   AahCafInputsState,
@@ -10,6 +9,7 @@ import { mapper } from '../../helpers/helper';
 import FormButton from './FormButton';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
+import CustomInput from '@/app/v2/test-eligibilite/components/custom-input/CustomInput';
 
 const initialInputsState: AahCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -18,9 +18,16 @@ const initialInputsState: AahCafInputsState = {
 interface Props {
   eligibilityDataItem: SearchResponseBodyItem;
   onDataReceived: (data: EnhancedConfirmResponseBody) => void;
+  onEligibilitySuccess: () => void;
+  onEligibilityFailure: () => void;
 }
 
-const AahCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
+const AahCafForm = ({
+  eligibilityDataItem,
+  onDataReceived,
+  onEligibilitySuccess,
+  onEligibilityFailure,
+}: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<AahCafInputsState>(initialInputsState);
   const [error, setError] = useState<string | null>();
@@ -42,10 +49,10 @@ const AahCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (value.length !== 7) {
+            if (!/^\d{6,7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 7 chiffres',
+                errorMsg: 'Le numéro CAF doit être composé de 6, 7 chiffres',
               };
 
               isValid = false;
@@ -95,7 +102,6 @@ const AahCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
         body: EnhancedConfirmResponseBody | ConfirmResponseErrorBody;
         status: number;
       }) => {
-        setIsFormDisabled(true);
         if (status !== 200) {
           notifyError(status);
         } else {
@@ -103,7 +109,15 @@ const AahCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
             notifyError(status);
             return;
           }
+
           onDataReceived(body);
+
+          if (body?.length > 0) {
+            onEligibilitySuccess();
+            setIsFormDisabled(true);
+          } else {
+            onEligibilityFailure();
+          }
         }
       },
     );
@@ -126,18 +140,24 @@ const AahCafForm = ({ eligibilityDataItem, onDataReceived }: Props) => {
   return (
     <div>
       <form ref={formRef} onSubmit={onSubmitHandler}>
-        <Input
-          label="Numéro de l’allocataire CAF*"
-          nativeInputProps={{
-            name: 'recipientCafNumber',
-            placeholder: 'ex: 0000000',
-            type: 'number',
-            onChange: (e: ChangeEvent<HTMLInputElement>) =>
-              onInputChanged(e.target.value, 'recipientCafNumber'),
+        <CustomInput
+          inputProps={{
+            label: 'Numéro de l’allocataire CAF*',
+            hintText: 'Format attendu : 6, 7 chiffres',
+            nativeInputProps: {
+              name: 'recipientCafNumber',
+              placeholder: 'ex: 0000000',
+              type: 'text',
+              onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                onInputChanged(e.target.value, 'recipientCafNumber'),
+            },
+            state: inputStates.recipientCafNumber.state,
+            stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
+            disabled: isFormDisabled,
           }}
-          state={inputStates.recipientCafNumber.state}
-          stateRelatedMessage={inputStates.recipientCafNumber.errorMsg}
-          disabled={isFormDisabled}
+          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
+          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
+          espace personnel."
         />
 
         <FormButton isDisabled={isFormDisabled} />

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import StepOneForm from '../step-one-form/StepOneForm';
 import YoungCafForm from '../step-two-forms/YoungCafForm';
 import { EnhancedConfirmResponseBody, SearchResponseBody } from 'types/EligibilityTest';
@@ -7,10 +7,28 @@ import AahCafForm from '../step-two-forms/AahCafForm';
 import QrCodeVerdict from '../qrcode-verdict/QrCOdeVerdict';
 import AahMsaForm from '../step-two-forms/AahMsaForm';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
+import { push } from '@socialgouv/matomo-next';
 
 const EligibilityTestForms = () => {
   const [eligibilityData, setEligibilityData] = useState<SearchResponseBody | null>(null);
   const [pspCodeData, setpspCodeData] = useState<EnhancedConfirmResponseBody | null>(null);
+  const onEligibilitySuccess = useCallback(() => {
+    push([
+      'trackEvent',
+      'Eligibility Test',
+      'Eligibility test completed',
+      'Eligibility test successful',
+    ]);
+  }, []);
+
+  const onEligibilityFailure = useCallback((name = 'final step') => {
+    push([
+      'trackEvent',
+      'Eligibility Test',
+      'Eligibility test completed',
+      `Eligibility test unsuccessful - ${name}`,
+    ]);
+  }, []);
 
   return (
     <div>
@@ -19,6 +37,7 @@ const EligibilityTestForms = () => {
           setEligibilityData(data);
           setpspCodeData(null);
         }}
+        onEligibilityFailure={() => onEligibilityFailure('first step')}
       />
 
       {eligibilityData &&
@@ -28,6 +47,8 @@ const EligibilityTestForms = () => {
           <YoungCafForm
             eligibilityDataItem={eligibilityData[0]}
             onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+            onEligibilitySuccess={onEligibilitySuccess}
+            onEligibilityFailure={onEligibilityFailure}
           />
         )}
 
@@ -38,6 +59,8 @@ const EligibilityTestForms = () => {
           <YoungMsaForm
             eligibilityDataItem={eligibilityData[0]}
             onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+            onEligibilitySuccess={onEligibilitySuccess}
+            onEligibilityFailure={onEligibilityFailure}
           />
         )}
 
@@ -48,6 +71,8 @@ const EligibilityTestForms = () => {
           <AahCafForm
             eligibilityDataItem={eligibilityData[0]}
             onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+            onEligibilitySuccess={onEligibilitySuccess}
+            onEligibilityFailure={onEligibilityFailure}
           />
         )}
 
@@ -58,6 +83,8 @@ const EligibilityTestForms = () => {
           <AahMsaForm
             eligibilityDataItem={eligibilityData[0]}
             onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+            onEligibilitySuccess={onEligibilitySuccess}
+            onEligibilityFailure={onEligibilityFailure}
           />
         )}
 

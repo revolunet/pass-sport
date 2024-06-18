@@ -26,6 +26,7 @@ export default function Matomo() {
       onInitialization: () => {
         push(['setCustomUrl', transformQrCodeUrl()]);
       },
+      disableCookies: true,
     });
   }, []);
 
