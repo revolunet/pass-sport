@@ -50,22 +50,20 @@ const Video = () => {
   });
 
   const onConsentClick = () => {
-    window.axeptioSDK.requestConsent('Vimeo');
+    window.axeptioSDK.requestConsent('vimeo');
   };
 
   return (
     <div>
       <figure role="group" className="fr-my-2w fr-content-media">
         <iframe
-          // </figure>src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
-          src="https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0"
           className={styles.iframe}
           data-requires-vendor-consent="vimeo"
-          data-src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
+          data-src="https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0"
           allow="autoplay; fullscreen; picture-in-picture"
         ></iframe>
-        <div data-hide-on-vendor-consent="Vimeo">
-          <Button onClick={onConsentClick}>Accept Vimeo cookie</Button>
+        <div data-hide-on-vendor-consent="vimeo">
+          <Button onClick={onConsentClick}>Autoriser Viméo</Button>
         </div>
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
           Présentation du dispositif pass Sport du ministère des Sports
