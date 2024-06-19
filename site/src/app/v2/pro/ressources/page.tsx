@@ -338,6 +338,123 @@ export default function ToutSavoirSurLePassSport() {
                 </div>
               </Accordion>
 
+              <Accordion label="Affiches A2">
+                <div className={styles['accordion__expanded-container']}>
+                  <div>
+                    <h6 className="fr-mb-2w">Affiches Génériques</h6>
+                    <p className={styles['accordion__links-container']}>
+                      <Link
+                        href="/assets/ressources/affiches-a2/generique-50-euros-economie.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche Générique 50€ d’économie
+                      </Link>
+                      <Link
+                        href="/assets/ressources/affiches-a2/generique-plus-de-sport.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche Générique plus de sport
+                      </Link>
+                    </p>
+                  </div>
+
+                  <div>
+                    <h6 className="fr-mb-2w">Affiches écoles</h6>
+                    <p className={styles['accordion__links-container']}>
+                      <Link
+                        href="/assets/ressources/affiches-a2/primaire.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche Primaire
+                      </Link>
+                      <Link
+                        href="/assets/ressources/affiches-a2/college-lycee.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche Collège - Lycée
+                      </Link>
+                      <Link
+                        href="/assets/ressources/affiches-a2/boursier.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche Boursier
+                      </Link>
+                    </p>
+                  </div>
+
+                  <div>
+                    <h6 className="fr-mb-2w">Affiches Handisport</h6>
+                    <p className={styles['accordion__links-container']}>
+                      <Link
+                        href="/assets/ressources/affiches-a2/handisport.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche Handi
+                      </Link>
+                    </p>
+                  </div>
+
+                  <div>
+                    <h6 className="fr-mb-2w">Affiches Print</h6>
+                    <p className={styles['accordion__links-container']}>
+                      <Link
+                        href="/assets/ressources/affiches-a2/estelle.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche print Estelle
+                      </Link>
+
+                      <Link
+                        href="/assets/ressources/affiches-a2/gael.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche print Gael
+                      </Link>
+
+                      <Link
+                        href="/assets/ressources/affiches-a2/mariejo.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche print Marie-Jo
+                      </Link>
+
+                      <Link
+                        href="/assets/ressources/affiches-a2/teddy.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche print Teddy
+                      </Link>
+
+                      <Link
+                        href="/assets/ressources/affiches-a2/tony.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche print Tony
+                      </Link>
+
+                      <Link
+                        href="/assets/ressources/affiches-a2/zinedine.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Affiche print Zinedine
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              </Accordion>
+
               <Accordion label="Flyers">
                 <div className={styles['accordion__expanded-container']}>
                   <div>
