@@ -6,6 +6,7 @@ import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPan
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import Geolocation from './components/geolocation/Geolocation';
 
 export const metadata: Metadata = {
   title: 'Trouver un club partenaire - pass Sport',
@@ -19,9 +20,11 @@ const TrouverUnClub = async () => {
   return (
     <>
       <PageHeader title="Trouver un club" />
-      <Suspense>
+      <Suspense fallback={<p>Loading</p>}>
         <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
-          <ClubFinder regions={regions} activities={activities} departments={departments} />
+          <Geolocation>
+            <ClubFinder regions={regions} activities={activities} departments={departments} />
+          </Geolocation>
         </main>
       </Suspense>
       <SocialMediaPanel />
