@@ -21,6 +21,25 @@
     gap: 8px;
   }
 
+  .contact-wrapper {
+    display: flex;
+
+    @media screen and (max-width: $md) {
+      flex-direction: column;
+    }
+  }
+
+  .contact-itinerary {
+    text-align: right;
+    flex: 1;
+
+    @media screen and (max-width: $md) {
+      flex: initial;
+      text-align: left;
+      padding-top: 16px;
+    }
+  }
+
   .tags {
     display: flex;
     flex-direction: column;
