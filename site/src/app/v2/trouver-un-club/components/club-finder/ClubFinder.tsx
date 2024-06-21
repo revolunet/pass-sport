@@ -239,7 +239,6 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
 
     const queryString = removeQueryString(SEARCH_QUERY_PARAMS.departmentCode);
 
-    console.log({ clubParams });
     router.push(`${pathname}?${queryString}`, { scroll: false });
   };
 
