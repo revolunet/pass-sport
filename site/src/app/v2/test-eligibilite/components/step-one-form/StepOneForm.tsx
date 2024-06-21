@@ -132,7 +132,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
       >
         <form ref={formRef} onSubmit={onSubmitHandler}>
           <Input
-            label="Nom du bénéficaire*"
+            label="Nom du bénéficiaire*"
             nativeInputProps={{
               name: 'beneficiaryLastname',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
@@ -145,7 +145,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           />
 
           <Input
-            label="Prénom du bénéficaire*"
+            label="Prénom du bénéficiaire*"
             nativeInputProps={{
               name: 'beneficiaryFirstname',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
@@ -158,7 +158,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           />
 
           <Input
-            label="Date de naissance du bénéficaire*"
+            label="Date de naissance du bénéficiaire*"
             hintText="Format attendu: JJ/MM/AAAA"
             nativeInputProps={{
               name: 'beneficiaryBirthDate',
