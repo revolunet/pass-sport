@@ -77,7 +77,7 @@ export default function Page() {
 
           <ul>
             <li>Date de début: 1er juin 2024</li>
-            <li>Date de fin: /// 15 juillet 2024</li>
+            <li>Date de fin: 15 juillet 2024</li>
           </ul>
         </section>
 

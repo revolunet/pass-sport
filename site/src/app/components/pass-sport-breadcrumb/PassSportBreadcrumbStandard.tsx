@@ -16,6 +16,8 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
   '/v2/plan-du-site': 'Plan du site',
   '/v2/reglement-du-jeu-concours-numero-1-pass-sport':
     'Règlement du jeu concours numéro 1 - pass Sport',
+  '/v2/reglement-du-jeu-concours-numero-2-pass-sport':
+    'Règlement du jeu concours numéro 2 - pass Sport',
 };
 
 export default function PassSportBreadcrumbStandard() {

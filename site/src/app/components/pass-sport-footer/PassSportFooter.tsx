@@ -157,6 +157,12 @@ export default function PassSportFooter() {
         href: '/v2/reglement-du-jeu-concours-numero-1-pass-sport',
       },
     },
+    {
+      text: 'Règlement du jeu-concours numéro 2 - pass Sport',
+      linkProps: {
+        href: '/v2/reglement-du-jeu-concours-numero-2-pass-sport',
+      },
+    },
   ];
 
   const linkList: FooterProps.LinkList.List = [
