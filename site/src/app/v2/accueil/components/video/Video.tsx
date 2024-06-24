@@ -3,7 +3,9 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
+import Image from 'next/image';
 import Button from '@codegouvfr/react-dsfr/Button';
+import vignetteImage from '@/images/vignette-video.png';
 
 const Video = () => {
   useEffect(() => {
@@ -41,6 +43,7 @@ const Video = () => {
             const vendor = el.getAttribute('data-requires-vendor-consent');
             if (choices[vendor]) {
               el.setAttribute('src', el.getAttribute('data-src'));
+              el.setAttribute('display', 'inherit');
             }
           });
         });
@@ -50,7 +53,7 @@ const Video = () => {
   });
 
   const onConsentClick = () => {
-    window.axeptioSDK.requestConsent('vimeo');
+    window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
   };
 
   return (
@@ -62,8 +65,11 @@ const Video = () => {
           data-src="https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0"
           allow="autoplay; fullscreen; picture-in-picture"
         ></iframe>
-        <div data-hide-on-vendor-consent="vimeo">
-          <Button onClick={onConsentClick}>Autoriser Viméo</Button>
+        <div data-hide-on-vendor-consent="vimeo" className={styles.videoContainer}>
+          <Image src={vignetteImage} alt="Vidéo Viméo" />
+          <Button onClick={onConsentClick} className={styles.consent}>
+            Autoriser Viméo
+          </Button>
         </div>
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
           Présentation du dispositif pass Sport du ministère des Sports
