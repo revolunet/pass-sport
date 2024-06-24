@@ -19,6 +19,7 @@ import helloAssoLogo from '@/images/footer/hello-asso-logo.svg';
 import cnafLogo from '@/images/footer/cnaf-logo.png';
 import fneaplLogo from '@/images/footer/fneapl-logo.png';
 import unionSportCycleLogo from '@/images/footer/union-sport-cycle-logo.png';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export default function PassSportFooter() {
   const isProVersion = useIsProVersion();
@@ -26,7 +27,7 @@ export default function PassSportFooter() {
   const partnersLogos: FooterProps.PartnersLogos = {
     main: {
       linkProps: {
-        title: `Ministere de l'education nationale et de la jeune, liberté, égalité, fraternité`,
+        title: `Ouvrir une nouvelle fenêtre vers le Ministere de l'education nationale et de la jeune, liberté, égalité, fraternité`,
         href: 'https://www.education.gouv.fr/',
       },
       // non-transparent logo
@@ -36,7 +37,8 @@ export default function PassSportFooter() {
     sub: [
       {
         linkProps: {
-          title: 'Comité National Olympique et Sportif Français',
+          title:
+            'Ouvrir une nouvelle fenêtre vers le Comité National Olympique et Sportif Français',
           href: 'https://cnosf.franceolympique.com/',
         },
         imgUrl: cnosfLogo.src,
@@ -44,7 +46,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'MSA - La sécurité sociale agricole',
+          title: 'Ouvrir une nouvelle fenêtre vers le MSA - La sécurité sociale agricole',
           href: 'https://www.msa.fr/lfp/accueil',
         },
         imgUrl: msaLogo.src,
@@ -52,30 +54,40 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'DINUM - La direction interministérielle du numérique',
+          title:
+            'Ouvrir une nouvelle fenêtre vers la DINUM - La direction interministérielle du numérique',
           href: 'https://www.numerique.gouv.fr/dinum/',
         },
         imgUrl: dinumLogo.src,
         alt: 'DINUM - La direction interministérielle du numérique',
       },
       {
-        linkProps: { title: 'France Paralympique', href: 'https://france-paralympique.fr/' },
+        linkProps: {
+          title: 'Ouvrir une nouvelle fenêtre vers France Paralympique',
+          href: 'https://france-paralympique.fr/',
+        },
         imgUrl: paralympiqueLogo.src,
         alt: 'France Paralympique',
       },
       {
-        linkProps: { title: 'Crous', href: 'https://www.lescrous.fr/' },
+        linkProps: {
+          title: 'Ouvrir une nouvelle fenêtre vers le CROUS',
+          href: 'https://www.lescrous.fr/',
+        },
         imgUrl: crousLogo.src,
         alt: 'CROUS',
       },
       {
-        linkProps: { title: 'Decathlon', href: 'https://www.decathlon.fr/' },
+        linkProps: {
+          title: 'Ouvrir une nouvelle fenêtre vers Decathlon',
+          href: 'https://www.decathlon.fr/',
+        },
         imgUrl: decathlonLogo.src,
         alt: 'Decathlon',
       },
       {
         linkProps: {
-          title: 'Le Compte Asso',
+          title: 'Ouvrir une nouvelle fenêtre vers Le Compte Asso',
           href: 'https://lecompteasso.associations.gouv.fr/',
         },
         imgUrl: lcaLogo.src,
@@ -83,7 +95,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Union Sport & Cycle',
+          title: 'Ouvrir une nouvelle fenêtre vers Union Sport & Cycle',
           href: 'https://www.unionsportcycle.com/accueil',
         },
         imgUrl: unionSportCycleLogo.src,
@@ -91,7 +103,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Hello asso',
+          title: 'Ouvrir une nouvelle fenêtre vers Hello asso',
           href: 'https://www.helloasso.com/secteurs/clubs-sportifs',
         },
         imgUrl: helloAssoLogo.src,
@@ -99,7 +111,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Caisse nationale allocations familiales',
+          title: 'Ouvrir une nouvelle fenêtre vers la Caisse nationale allocations familiales',
           href: 'https://www.caf.fr/',
         },
         imgUrl: cnafLogo.src,
@@ -107,14 +119,18 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
+          title:
+            'Ouvrir une nouvelle fenêtre vers la Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
           href: 'https://www.active-fneapl.fr/',
         },
         imgUrl: fneaplLogo.src,
         alt: 'Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
       },
       {
-        linkProps: { title: 'Cosmos Sports', href: 'https://www.cosmos-sports.fr/' },
+        linkProps: {
+          title: 'Ouvrir une nouvelle fenêtre vers Cosmos Sports',
+          href: 'https://www.cosmos-sports.fr/',
+        },
         imgUrl: logoCosmos.src,
         alt: 'Cosmos sports',
       },
@@ -122,7 +138,7 @@ export default function PassSportFooter() {
   };
 
   const homeLinkProps: NonNullable<FooterProps['homeLinkProps']> = {
-    title: `pass Sport accueil`,
+    title: `Retourner à l'accueil du site pass Sport`,
     href: '/v2/accueil',
   };
 
@@ -215,6 +231,7 @@ export default function PassSportFooter() {
           linkProps: {
             href: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
             target: '_blank',
+            title: 'Ouvrir une nouvelle fenêtre vers le Tableau de bord',
           },
         },
       ],
@@ -225,6 +242,7 @@ export default function PassSportFooter() {
 
   return (
     <Footer
+      id={SKIP_LINKS_ID.footer}
       classes={{
         logo: styles['partners-logo'],
         root: styles.root,

@@ -2,13 +2,12 @@
 
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { navigationItemStandard } from './navigation';
 import styles from './styles.module.scss';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
-  const router = useRouter();
 
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));
@@ -23,7 +22,7 @@ export default function PassSportNavigation() {
         }}
         brandTop={FOOTER_BRAND_TOP}
         operatorLogo={{
-          alt: '',
+          alt: `Logo du pass Sport`,
           imgUrl: '/images/pass-sport-logo.svg',
           orientation: 'vertical',
         }}
@@ -41,13 +40,14 @@ export default function PassSportNavigation() {
         ]}
         homeLinkProps={{
           href: '/v2/accueil',
-          title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",
+          title: `Accueil - pass Sport - Ministère des Sports`,
         }}
         navigation={navigationItemStandard.map((item) => ({
           isActive: isActive(item.link),
           linkProps: {
             href: item.link,
             target: !!item.isExternal ? '_blank' : '_self',
+            ...(item.title && { title: item.title }),
           },
           text: item.text,
         }))}

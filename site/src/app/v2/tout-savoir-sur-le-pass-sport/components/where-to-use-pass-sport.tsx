@@ -2,6 +2,7 @@
 
 import Button from '@codegouvfr/react-dsfr/Button';
 import { useRouter } from 'next/navigation';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export default function WhereToUsePassSport() {
   const router = useRouter();
@@ -19,7 +20,11 @@ export default function WhereToUsePassSport() {
         La liste des établissements partenaires est disponible ici :
       </p>
 
-      <Button priority="secondary" onClick={() => router.push('trouver-un-club', { scroll: true })}>
+      <Button
+        id={SKIP_LINKS_ID.findClubButton}
+        priority="secondary"
+        onClick={() => router.push('trouver-un-club', { scroll: true })}
+      >
         Trouver mon club partenaire
       </Button>
     </section>

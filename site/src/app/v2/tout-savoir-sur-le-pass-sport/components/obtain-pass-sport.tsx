@@ -4,6 +4,7 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
 import { useRouter } from 'next/navigation';
 import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export default function ObtainPassPort() {
   const router = useRouter();
@@ -42,6 +43,7 @@ export default function ObtainPassPort() {
       </ul>
 
       <Button
+        id={SKIP_LINKS_ID.eligibilityTestButton}
         iconId="fr-icon-arrow-right-line"
         iconPosition="right"
         onClick={eligibilityTestOnClick}

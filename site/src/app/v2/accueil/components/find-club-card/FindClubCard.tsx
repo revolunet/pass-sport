@@ -5,12 +5,14 @@ import styles from './styles.module.scss';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import boysTeamImage from '@/images/homepage/boys-team.jpeg';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const FindClubCard = () => {
   const router = useRouter();
   const buttonHandler = () => {
     router.push('/v2/trouver-un-club');
   };
+
   return (
     <div className={`fr-mx-auto ${styles.sizer} `}>
       <div
@@ -26,6 +28,7 @@ const FindClubCard = () => {
           </div>
           <div className="fr-card__footer">
             <Button
+              id={SKIP_LINKS_ID.findClubButton}
               className={styles.button}
               priority="secondary"
               iconId="fr-icon-arrow-right-line"

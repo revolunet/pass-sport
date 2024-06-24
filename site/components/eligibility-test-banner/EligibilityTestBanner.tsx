@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import Link from 'next/link';
 import { push } from '@socialgouv/matomo-next';
 import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const EligibilityTestBanner = () => {
   const eligibilityTestOnClick = () => {
@@ -22,6 +23,7 @@ const EligibilityTestBanner = () => {
 
       <Link href={isUsingJuneEligibilityTest ? '/v2/test-eligibilite' : '/v2/test-eligibilite-mai'}>
         <Button
+          id={SKIP_LINKS_ID.eligibilityTestButton}
           className="fr-mx-auto"
           priority="primary"
           size="large"

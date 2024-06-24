@@ -11,6 +11,7 @@ import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
 import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
 import PassSportBreadcrumb from '@/app/components/pass-sport-breadcrumb/PassSportBreadCrumb';
 import Matomo from './Matomo';
+import SkipLinksWrapper from '@/app/components/skip-links-wrapper/SkipLinksWrapper';
 
 export default function RootLayout({
   children,
@@ -35,6 +36,7 @@ export default function RootLayout({
       </head>
 
       <body>
+        <SkipLinksWrapper />
         <PassSportNavigation />
         <PassSportBreadcrumb />
 
