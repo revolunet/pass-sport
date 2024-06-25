@@ -45,7 +45,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
           href: jeVeuxAiderUrl,
         }}
         size="medium"
-        title="Je veux aider.gouv.fr"
+        title="Redirection vers le site Je veux aider.gouv.fr"
         titleAs="h4"
         classes={{
           end: styles.end,
@@ -70,7 +70,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
           href: snuUrl,
         }}
         size="medium"
-        title="Le SNU, pour moi, pour les autres, et pour la France."
+        title="Redirection vers le site Le SNU, pour moi, pour les autres, et pour la France."
         titleAs="h4"
         classes={{
           end: styles.end,
@@ -97,7 +97,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
           href: serviceCiviqueUrl,
         }}
         size="medium"
-        title="Le Service Civique, une mission pour chacun au service de tous"
+        title="Redirection vers le site le Service Civique, une mission pour chacun au service de tous"
         titleAs="h4"
         classes={{
           end: styles.end,

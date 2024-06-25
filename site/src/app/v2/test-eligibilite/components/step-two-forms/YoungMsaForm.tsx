@@ -84,7 +84,7 @@ const YoungMsaForm = ({
     return fetchPspCode(formData);
   };
 
-  const notifyError = (status: number) => {
+  const notifyError = () => {
     setError('Une erreur a eu lieu. Merci de rééessayer plus tard');
   };
 
@@ -109,10 +109,10 @@ const YoungMsaForm = ({
         status: number;
       }) => {
         if (status !== 200) {
-          notifyError(status);
+          notifyError();
         } else {
           if ('message' in body) {
-            notifyError(status);
+            notifyError();
             return;
           }
 
@@ -161,7 +161,7 @@ const YoungMsaForm = ({
   };
 
   return (
-    <div>
+    <>
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <Input
           label="Nom de l’allocataire*"
@@ -208,7 +208,7 @@ const YoungMsaForm = ({
       </form>
 
       {error && <ErrorAlert title={error} />}
-    </div>
+    </>
   );
 };
 

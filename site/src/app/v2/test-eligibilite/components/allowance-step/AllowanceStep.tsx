@@ -89,9 +89,16 @@ const AllowanceStep = () => {
         />
       </Question>
 
-      {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
-      {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
-      {allowance === ALLOWANCE.CROUS && <CrousStep />}
+      <fieldset
+        className="fr-fieldset"
+        id="second-step-form"
+        aria-labelledby="second-step-form"
+        role="status"
+      >
+        {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
+        {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
+        {allowance === ALLOWANCE.CROUS && <CrousStep />}
+      </fieldset>
     </EligibilityTestContext.Provider>
   );
 };

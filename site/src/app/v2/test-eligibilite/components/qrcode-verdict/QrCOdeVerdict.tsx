@@ -38,7 +38,13 @@ const QrCodePanel = ({ data }: Props) => {
     <>
       <div className={cn('fr-mx-4w', 'fr-p-3w', 'fr-mb-3w', styles.container)}>
         <div>
-          <QRCodeSVG value={qrcodeUrl} size={240} />
+          <QRCodeSVG
+            value={qrcodeUrl}
+            size={240}
+            // @ts-ignore
+            title="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
+            alt="QR Code"
+          />
         </div>
         <div className={styles.center}>
           <h6 className={cn('fr-mb-1w', styles.blue)}>

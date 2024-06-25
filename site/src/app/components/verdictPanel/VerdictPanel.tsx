@@ -26,8 +26,9 @@ const VerdictPanel = ({
   qrCodeComponent,
 }: Props) => {
   return (
-    <div>
+    <>
       <div
+        role="alert"
         className={cn(styles.background, { 'fr-p-2w': !isLean, [`${styles.bordered}`]: !isLean })}
       >
         <div
@@ -54,7 +55,7 @@ const VerdictPanel = ({
       <div className={cn(styles.background, { 'fr-p-2w': !isLean })}>
         <MissionCards isUsingSuccessUrls={isSuccess} />
       </div>
-    </div>
+    </>
   );
 };
 

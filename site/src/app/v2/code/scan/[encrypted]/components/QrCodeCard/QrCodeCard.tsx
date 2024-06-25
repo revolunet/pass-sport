@@ -43,7 +43,13 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div>
-          <QRCodeSVG value={qrCodeValue} size={240} />
+          <QRCodeSVG
+            value={qrCodeValue}
+            size={240}
+            // @ts-ignore
+            title="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
+            alt="QR Code"
+          />
         </div>
 
         <div>

@@ -37,6 +37,10 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
       ...baseStyles,
       paddingLeft: '14px',
     }),
+    placeholder: (baseStyles: Record<string, unknown>) => ({
+      ...baseStyles,
+      color: 'var(--text-default-grey)',
+    }),
   };
 
   const parseCities = (cities: City[]): Option[] => {
@@ -96,7 +100,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
       </div>
 
       {inputState.state === 'error' && (
-        <div className={cn('fr-pt-2w', styles.container)}>
+        <div className={cn('fr-pt-2w', styles.container)} role="status">
           <span
             className={cn('fr-icon--sm', 'fr-icon-error-fill', styles.error)}
             aria-hidden="true"

@@ -31,7 +31,7 @@ const EligibilityTestForms = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <StepOneForm
         onDataReceived={(data: SearchResponseBody) => {
           setEligibilityData(data);
@@ -100,7 +100,7 @@ const EligibilityTestForms = () => {
           <QrCodeVerdict data={pspCodeData[0]} />
         </div>
       )}
-    </div>
+    </>
   );
 };
 
