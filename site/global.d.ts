@@ -1,5 +1,3 @@
-import { styles } from '@/app/v2/test-eligibilite/components/step-one-form/styles.module.scss';
-import { boolean } from 'zod';
 // global.d.ts
 
 export {};
