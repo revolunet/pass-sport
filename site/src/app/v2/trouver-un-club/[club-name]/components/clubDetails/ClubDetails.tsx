@@ -34,11 +34,13 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
         <section className={styles.info}>
           <h2>{club.nom}</h2>
           <div className={`fr-my-2w ${styles.tags}`}>
-            <Tag small>
-              <p className="fr-text--xs">
-                {club.activites.length} {club.activites.length > 1 ? 'activités' : 'activité'}
-              </p>
-            </Tag>
+            {Array.isArray(club.activites) && (
+              <Tag small>
+                <p className="fr-text--xs">
+                  {club.activites.length} {club.activites.length > 1 ? 'activités' : 'activité'}
+                </p>
+              </Tag>
+            )}
 
             <DisabilityTag club={club} small />
           </div>
@@ -76,17 +78,23 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
             )}
           </div>
           <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
-          <h3>Les activités</h3>
-          <ul className={styles.activities}>
-            <div className={styles.grid}>
-              {club.activites.map((activity) => (
-                <li key={activity} className="fr-mr-3w fr-p-0">
-                  {activity}
-                </li>
-              ))}
-            </div>
-          </ul>
-          <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
+
+          {Array.isArray(club.activites) && (
+            <>
+              <h3>Les activités</h3>
+              <ul className={styles.activities}>
+                <div className={styles.grid}>
+                  {club.activites?.map((activity) => (
+                    <li key={activity} className="fr-mr-3w fr-p-0">
+                      {activity}
+                    </li>
+                  ))}
+                </div>
+              </ul>
+
+              <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
+            </>
+          )}
         </section>
 
         <section>
