@@ -37,11 +37,11 @@ const Video = () => {
         sdk.on('cookies:complete', function (choices) {
           document.querySelectorAll('[data-hide-on-vendor-consent]').forEach((el) => {
             const vendor = el.getAttribute('data-hide-on-vendor-consent');
-            el.style.display = choices[vendor] ? 'none' : 'inherit';
+            el.style.display = vendor && choices[vendor] ? 'none' : 'inherit';
           });
           document.querySelectorAll('[data-requires-vendor-consent]').forEach((el) => {
             const vendor = el.getAttribute('data-requires-vendor-consent');
-            if (choices[vendor]) {
+            if (vendor && choices[vendor]) {
               el.setAttribute(
                 'src',
                 'https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0',
