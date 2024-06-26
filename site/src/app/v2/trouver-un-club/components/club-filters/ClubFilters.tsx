@@ -52,6 +52,10 @@ export const selectStyles = {
     ...baseStyles,
     zIndex: 999,
   }),
+  placeholder: (baseStyles: Record<string, unknown>) => ({
+    ...baseStyles,
+    color: 'var(--text-default-grey)',
+  }),
 };
 
 const ClubFilters: React.FC<Props> = ({
