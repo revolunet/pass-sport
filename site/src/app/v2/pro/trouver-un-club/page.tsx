@@ -58,7 +58,7 @@ const TrouverUnClub = async () => {
         }}
       />
 
-      <Suspense>
+      <Suspense fallback={<p>En cours de chargement</p>}>
         <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
           <Geolocation>
             <ClubFinder

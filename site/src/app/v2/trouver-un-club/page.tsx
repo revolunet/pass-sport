@@ -20,7 +20,7 @@ const TrouverUnClub = async () => {
   return (
     <>
       <PageHeader title="Trouver un club" />
-      <Suspense fallback={<p>Loading</p>}>
+      <Suspense fallback={<p>En cours de chargement</p>}>
         <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
           <Geolocation>
             <ClubFinder regions={regions} activities={activities} departments={departments} />
