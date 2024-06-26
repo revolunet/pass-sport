@@ -22,7 +22,7 @@ const Video = () => {
           const t = d.getElementsByTagName(s)[0];
           const e = d.createElement(s);
           e.async = true;
-          e.src = '//static.axept.io/sdk-slim.js';
+          e.src = 'https://static.axept.io/sdk-slim.js';
           if (t.parentNode) {
             t.parentNode.insertBefore(e, t);
           }
@@ -42,8 +42,13 @@ const Video = () => {
           document.querySelectorAll('[data-requires-vendor-consent]').forEach((el) => {
             const vendor = el.getAttribute('data-requires-vendor-consent');
             if (choices[vendor]) {
-              el.setAttribute('src', el.getAttribute('data-src'));
-              el.setAttribute('display', 'inherit');
+              el.setAttribute(
+                'src',
+                'https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0',
+              );
+              el.style.display = 'block';
+            } else {
+              el.style.display = 'none';
             }
           });
         });
@@ -62,12 +67,15 @@ const Video = () => {
         <iframe
           className={styles.iframe}
           data-requires-vendor-consent="vimeo"
-          data-src="https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0"
           allow="autoplay; fullscreen; picture-in-picture"
         ></iframe>
         <div data-hide-on-vendor-consent="vimeo" className={styles.videoContainer}>
           <Image src={vignetteImage} alt="Vidéo Viméo" />
-          <Button onClick={onConsentClick} className={styles.consent}>
+          <Button
+            onClick={onConsentClick}
+            className={styles.consent}
+            aria-label="Autoriser la vidéo viméo"
+          >
             Autoriser Viméo
           </Button>
         </div>
