@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import Geolocation from '../../trouver-un-club/components/geolocation/Geolocation';
 
 export const metadata: Metadata = {
   title: 'Carte des structures partenaires - pass Sport',
@@ -59,12 +60,14 @@ const TrouverUnClub = async () => {
 
       <Suspense>
         <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
-          <ClubFinder
-            regions={regions}
-            activities={activities}
-            departments={departments}
-            isProVersion
-          />
+          <Geolocation>
+            <ClubFinder
+              regions={regions}
+              activities={activities}
+              departments={departments}
+              isProVersion
+            />
+          </Geolocation>
         </main>
       </Suspense>
       <SocialMediaPanel isProVersion />
