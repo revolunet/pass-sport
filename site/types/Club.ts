@@ -7,8 +7,9 @@ type YesNo = 'Oui' | 'Non';
 
 export interface Club {
   nom: string;
+  cplt_1: string | null;
   cp: string;
-  activites: string[];
+  activites: string[] | null;
   adresse: string | null;
   com_arm_name: string;
   handicap: YesNo;

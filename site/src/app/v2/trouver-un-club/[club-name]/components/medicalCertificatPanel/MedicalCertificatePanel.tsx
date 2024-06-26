@@ -12,10 +12,13 @@ const MedicalCertificatePanel = () => {
         border={false}
         desc={
           <>
-            <p className="fr-text--lg">
+            <span className="fr-text--lg">
               Ce simulateur vous indique si vous devez obtenir un certificat médical pour pratiquer
               une activité sportive (loisir ou compétition).
-            </p>
+            </span>
+
+            <br />
+            <br />
 
             <Link
               href="https://www.service-public.fr/simulateur/calcul/certificatMedical"

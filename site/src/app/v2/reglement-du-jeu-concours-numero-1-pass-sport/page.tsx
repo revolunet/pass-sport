@@ -77,7 +77,7 @@ export default function Page() {
 
           <ul>
             <li>Date de début: 1er juin 2024</li>
-            <li>Date de fin: /// 15 juillet 2024</li>
+            <li>Date de fin: 15 juillet 2024</li>
           </ul>
         </section>
 
@@ -102,8 +102,8 @@ export default function Page() {
               </Link>
             </li>
             <li>
-              <Link href="https://www.instagram.com/doglogan__/" target="_blank">
-                @doglogan__
+              <Link href="https://www.instagram.com/allonsrider/" target="_blank">
+                @allonsrider
               </Link>
             </li>
             <li>
@@ -139,11 +139,6 @@ export default function Page() {
             <li>
               <Link href="https://www.instagram.com/brisco_s3/" target="_blank">
                 @brisco_s3
-              </Link>
-            </li>
-            <li>
-              <Link href="https://www.instagram.com/natoogram/" target="_blank">
-                @natoogram
               </Link>
             </li>
             <li>

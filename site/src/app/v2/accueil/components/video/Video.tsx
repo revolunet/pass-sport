@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './styles.module.scss';
 
 const Video = () => {
@@ -5,7 +6,7 @@ const Video = () => {
     <div>
       <figure role="group" className="fr-my-2w fr-content-media">
         <iframe
-          src="https://player.vimeo.com/video/727000609?h=8478bc2ce1&title=0&byline=0&portrait=0"
+          src="https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0"
           className={styles.iframe}
           allow="autoplay; fullscreen; picture-in-picture"
         ></iframe>
@@ -72,37 +73,34 @@ const Video = () => {
                           Présentation du dispositif pass Sport du ministère des Sports
                         </h1>
                         <div>
-                          <p>pass Sport C’est quoi ?</p>
+                          <p>Tu veux profiter d’une aide de 50 euros grâce au pass Sport ?</p>
                           <p>
-                            Tu as entre 6 et 17 ans révolus ? Et tu bénéficies déjà de l’Allocation
-                            de rentrée scolaire (ARS)?
+                            Pour en profiter, tu n’as rien à faire, juste à attendre de recevoir ton
+                            pass Sport par sms ou par mail.
                           </p>
                           <p>
-                            Tu as entre 6 et 19 ans révolus ? Et tu bénéficies déjà l’Allocation
-                            d’éducation de l’enfant handicapé (AEEH) ?
+                            Les envois auront lieu entre le 30 mai et le 2 juin et à partir du 30
+                            août. Tu pourras aussi faire la demande ou retrouver ton pass Sport sur
+                            le site pass.sports.gouv.fr.
                           </p>
                           <p>
-                            Tu as entre 6 et 30 ans et tu bénéficies déjà de l’Allocation aux
-                            adultes handicapés (AAH) ?
+                            Ensuite, trouve ton futur club de sport parmi plus de 85 000 structures
+                            partenaires !
                           </p>
                           <p>
-                            Tu as jusqu’à 28 ans révolus et tu bénéficies d’une bourse sur critères
-                            sociaux de l’enseignement supérieur ?
+                            Dépêche toi de profiter d’une aide de 50 euros grâce au pass Sport !
                           </p>
                           <p>
-                            Alors tu recevras fin août un mail avec un code personnel t’informant
-                            que tu peux bénéficier du pass Sport.
+                            Ça concerne plus de 6,5 millions de jeunes de 6 à 30 ans… Alors pourquoi
+                            pas toi !
                           </p>
                           <p>
-                            Présente-toi avec ton code personnel pass Sport dans le club sportif de
-                            ton choix
+                            Si tu veux plus d’infos, rendez-vous sur{' '}
+                            <Link href="https://www.pass.sports.gouv.fr" target="_blank">
+                              pass.sports.gouv.fr
+                            </Link>{' '}
+                            ou sur nos réseaux sociaux !
                           </p>
-                          <p>50 euros seront déduits de ton inscription pour la saison 2023/2024</p>
-                          <p>
-                            Ce coup de pouce du gouvernement va bénéficier à plus de 6 millions de
-                            jeunes comme toi
-                          </p>
-                          <p>pass Sport Faites entrer le sport dans votre vie</p>
                         </div>
                       </div>
                     </div>
