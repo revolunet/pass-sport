@@ -18,7 +18,7 @@ export default function ObtainPassPort() {
 
   return (
     <section id="pour-qui">
-      <h4>Qui peut obtenir le pass Sport ?</h4>
+      <h3 className="fr-h4">Qui peut obtenir le pass Sport ?</h3>
 
       <span>Le pass Sport 2024 s&apos;adressera aux jeunes qui sont :</span>
       <ul>

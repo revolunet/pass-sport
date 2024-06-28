@@ -20,9 +20,14 @@ import cnafLogo from '@/images/footer/cnaf-logo.png';
 import fneaplLogo from '@/images/footer/fneapl-logo.png';
 import unionSportCycleLogo from '@/images/footer/union-sport-cycle-logo.png';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import { useRef } from 'react';
+import { useUpdateHeadings } from '@/app/hooks/use-update-headings';
 
 export default function PassSportFooter() {
   const isProVersion = useIsProVersion();
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  useUpdateHeadings({ parentRef: footerRef, level: 2, selector: ['.fr-footer__partners-title'] });
 
   const partnersLogos: FooterProps.PartnersLogos = {
     main: {
@@ -211,7 +216,6 @@ export default function PassSportFooter() {
 
   const linkList: FooterProps.LinkList.List = [
     {
-      categoryName: 'Liens utiles',
       links: [
         {
           text: 'Accueil',
@@ -252,7 +256,6 @@ export default function PassSportFooter() {
       ],
     },
     {
-      categoryName: 'Liens externes',
       links: [
         {
           text: isProVersion ? 'Je suis un particulier' : 'Je suis une structure partenaire',
@@ -288,6 +291,7 @@ export default function PassSportFooter() {
 
   return (
     <Footer
+      ref={footerRef}
       id={SKIP_LINKS_ID.footer}
       classes={{
         logo: styles['partners-logo'],
