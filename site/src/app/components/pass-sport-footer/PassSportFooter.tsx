@@ -220,6 +220,7 @@ export default function PassSportFooter() {
           linkProps: {
             href: isProVersion ? '/v2/pro/accueil' : '/v2/accueil',
             title: 'Liens utiles',
+            'aria-label': 'Visiter la page des liens utiles',
           },
         },
         {

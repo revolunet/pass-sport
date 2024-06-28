@@ -43,6 +43,7 @@ const QrCodePanel = ({ data }: Props) => {
             size={240}
             // @ts-ignore
             title="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
+            ariaLabel="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
             alt="QR Code"
           />
         </div>

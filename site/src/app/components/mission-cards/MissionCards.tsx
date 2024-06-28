@@ -43,6 +43,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         imageUrl={jeVeuxAiderImage.src}
         linkProps={{
           href: jeVeuxAiderUrl,
+          'aria-label': 'Redirection vers le site Je veux aider.gouv.fr',
         }}
         size="medium"
         title="Redirection vers le site Je veux aider.gouv.fr"
@@ -68,6 +69,8 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         imageUrl={snuImage.src}
         linkProps={{
           href: snuUrl,
+          'aria-label':
+            'Redirection vers le site Le SNU, pour moi, pour les autres, et pour la France.',
         }}
         size="medium"
         title="Redirection vers le site Le SNU, pour moi, pour les autres, et pour la France."
@@ -95,6 +98,8 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         imageUrl={serviceCiviqueImage.src}
         linkProps={{
           href: serviceCiviqueUrl,
+          'aria-label':
+            'Redirection vers le site le Service Civique, une mission pour chacun au service de tous',
         }}
         size="medium"
         title="Redirection vers le site le Service Civique, une mission pour chacun au service de tous"
