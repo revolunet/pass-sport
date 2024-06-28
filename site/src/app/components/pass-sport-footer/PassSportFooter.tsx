@@ -27,10 +27,9 @@ export default function PassSportFooter() {
   const partnersLogos: FooterProps.PartnersLogos = {
     main: {
       linkProps: {
-        title:
-          "Ouvrir une nouvelle fenêtre vers le Ministere de l'education nationale et de la jeune, liberté, égalité, fraternité",
+        title: '',
         'aria-label':
-          "Ouvrir une nouvelle fenêtre vers le Ministere de l'education nationale et de la jeune, liberté, égalité, fraternité",
+          "Ouvrir une nouvelle fenêtre vers le Ministere de l'education nationale et de la jeunesse, liberté, égalité, fraternité",
         href: 'https://www.education.gouv.fr/',
       },
       // non-transparent logo
@@ -40,8 +39,7 @@ export default function PassSportFooter() {
     sub: [
       {
         linkProps: {
-          title:
-            'Ouvrir une nouvelle fenêtre vers le Comité National Olympique et Sportif Français',
+          title: '',
           'aria-label':
             'Ouvrir une nouvelle fenêtre vers le Comité National Olympique et Sportif Français',
           href: 'https://cnosf.franceolympique.com/',
@@ -51,8 +49,8 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers le MSA - La sécurité sociale agricole',
-          'aria-label': 'Ouvrir une nouvelle fenêtre vers le MSA - La sécurité sociale agricole',
+          title: '',
+
           href: 'https://www.msa.fr/lfp/accueil',
         },
         imgUrl: msaLogo.src,
@@ -60,8 +58,8 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title:
-            'Ouvrir une nouvelle fenêtre vers la DINUM - La direction interministérielle du numérique',
+          title: '',
+
           'aria-label':
             'Ouvrir une nouvelle fenêtre vers la DINUM - La direction interministérielle du numérique',
           href: 'https://www.numerique.gouv.fr/dinum/',
@@ -71,7 +69,8 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers France Paralympique',
+          title: '',
+
           'aria-label': 'Ouvrir une nouvelle fenêtre vers France Paralympique',
           href: 'https://france-paralympique.fr/',
         },
@@ -80,7 +79,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers le CROUS',
+          title: '',
           'aria-label': 'Ouvrir une nouvelle fenêtre vers le CROUS',
           href: 'https://www.lescrous.fr/',
         },
@@ -89,7 +88,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers Decathlon',
+          title: '',
           'aria-label': 'Ouvrir une nouvelle fenêtre vers Decathlon',
           href: 'https://www.decathlon.fr/',
         },
@@ -98,7 +97,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers Le Compte Asso',
+          title: '',
           'aria-label': 'Ouvrir une nouvelle fenêtre vers Le Compte Asso',
           href: 'https://lecompteasso.associations.gouv.fr/',
         },
@@ -107,7 +106,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers Union Sport & Cycle',
+          title: '',
           'aria-label': 'Ouvrir une nouvelle fenêtre vers Union Sport & Cycle',
           href: 'https://www.unionsportcycle.com/accueil',
         },
@@ -116,7 +115,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers Hello asso',
+          title: '',
           'aria-label': 'Ouvrir une nouvelle fenêtre vers Hello asso',
           href: 'https://www.helloasso.com/secteurs/clubs-sportifs',
         },
@@ -125,7 +124,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers la Caisse nationale allocations familiales',
+          title: '',
           'aria-label':
             'Ouvrir une nouvelle fenêtre vers la Caisse nationale allocations familiales',
           href: 'https://www.caf.fr/',
@@ -135,8 +134,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title:
-            'Ouvrir une nouvelle fenêtre vers la Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
+          title: '',
           'aria-label':
             'Ouvrir une nouvelle fenêtre vers la Fédération Nationale des Entreprises des Activités Physiques de Loisirs',
           href: 'https://www.active-fneapl.fr/',
@@ -146,7 +144,7 @@ export default function PassSportFooter() {
       },
       {
         linkProps: {
-          title: 'Ouvrir une nouvelle fenêtre vers Cosmos Sports',
+          title: '',
           'aria-label': 'Ouvrir une nouvelle fenêtre vers Cosmos Sports',
           href: 'https://www.cosmos-sports.fr/',
         },
@@ -157,7 +155,7 @@ export default function PassSportFooter() {
   };
 
   const homeLinkProps: NonNullable<FooterProps['homeLinkProps']> = {
-    title: `Retourner à l'accueil du site pass Sport`,
+    title: '',
     'aria-label': `Retourner à l'accueil du site pass Sport`,
     href: '/v2/accueil',
   };
@@ -173,7 +171,7 @@ export default function PassSportFooter() {
       text: 'Mentions légales',
       linkProps: {
         href: '/v2/mentions-legales',
-        title: 'Mentions légales',
+        title: '',
         'aria-label': 'Visiter la page des mentions légales',
       },
     },
@@ -181,7 +179,7 @@ export default function PassSportFooter() {
       text: 'Données personnelles',
       linkProps: {
         href: '/v2/politique-de-confidentialite',
-        title: 'Données personnelles',
+        title: '',
         'aria-label': 'Visiter la page des données personnelles',
       },
     },
@@ -189,7 +187,7 @@ export default function PassSportFooter() {
       text: 'Plan du site',
       linkProps: {
         href: isProVersion ? '/v2/pro/plan-du-site' : '/v2/plan-du-site',
-        title: 'Plan du site',
+        title: '',
         'aria-label': 'Visiter la page du plan du site',
       },
     },
@@ -197,7 +195,7 @@ export default function PassSportFooter() {
       text: 'Règlement du jeu-concours numéro 1 - pass Sport',
       linkProps: {
         href: '/v2/reglement-du-jeu-concours-numero-1-pass-sport',
-        title: 'Règlement du jeu concours numéro 1 pass Sport',
+        title: '',
         'aria-label': 'Visiter la page du règlement du jeu concours numéro 1 pass Sport',
       },
     },
@@ -205,7 +203,7 @@ export default function PassSportFooter() {
       text: 'Règlement du jeu-concours numéro 2 - pass Sport',
       linkProps: {
         href: '/v2/reglement-du-jeu-concours-numero-2-pass-sport',
-        title: 'Règlement du jeu concours numéro 2 pass Sport',
+        title: '',
         'aria-label': 'Visiter la page du règlement du jeu concours numéro 2 pass Sport',
       },
     },
@@ -219,7 +217,7 @@ export default function PassSportFooter() {
           text: 'Accueil',
           linkProps: {
             href: isProVersion ? '/v2/pro/accueil' : '/v2/accueil',
-            title: 'Liens utiles',
+            title: '',
             'aria-label': 'Visiter la page des liens utiles',
           },
         },
@@ -229,7 +227,7 @@ export default function PassSportFooter() {
             href: isProVersion
               ? '/v2/pro/tout-savoir-sur-le-pass-sport'
               : '/v2/tout-savoir-sur-le-pass-sport',
-            title: 'Tout savoir sur le pass Sport',
+            title: '',
             'aria-label': 'Visiter la page pour tout savoir sur le pass Sport',
           },
         },
@@ -237,7 +235,7 @@ export default function PassSportFooter() {
           text: isProVersion ? 'Carte des structures partenaires' : 'Trouver un club partenaire',
           linkProps: {
             href: isProVersion ? '/v2/pro/trouver-un-club' : '/v2/trouver-un-club',
-            title: isProVersion ? 'Carte des structures partenaires' : 'Trouver un club partenaire',
+            title: '',
             'aria-label': isProVersion
               ? 'Visiter la page pour trouver un club'
               : 'Visiter la page sur la carte des structures partenaires',
@@ -247,7 +245,7 @@ export default function PassSportFooter() {
           text: 'Une question ?',
           linkProps: {
             href: isProVersion ? '/v2/pro/une-question' : '/v2/une-question',
-            title: 'Foire aux questions',
+            title: '',
             'aria-label': 'Visiter la page sur la foire aux questions',
           },
         },
@@ -258,7 +256,10 @@ export default function PassSportFooter() {
       links: [
         {
           text: isProVersion ? 'Je suis un particulier' : 'Je suis une structure partenaire',
-          linkProps: { href: isProVersion ? '/v2/accueil' : '/v2/pro/accueil' },
+          linkProps: {
+            href: isProVersion ? '/v2/accueil' : '/v2/pro/accueil',
+            'aria-label': `Visiter la page d'accueil les ressources`,
+          },
         },
         ...((isProVersion
           ? [
@@ -266,7 +267,6 @@ export default function PassSportFooter() {
                 text: 'Ressources',
                 linkProps: {
                   href: '/v2/pro/ressources',
-                  title: 'Ressources',
                   'aria-label': 'Visiter la page contenant les ressources',
                 },
               },

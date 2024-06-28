@@ -135,7 +135,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
             label="Nom du bénéficiaire*"
             nativeInputProps={{
               name: 'beneficiaryLastname',
-              title: 'Saisir le nom du bénéficiaire',
               'aria-label': 'Saisir le nom du bénéficiaire',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'beneficiaryLastname'),
@@ -152,7 +151,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
             label="Prénom du bénéficiaire*"
             nativeInputProps={{
               name: 'beneficiaryFirstname',
-              title: 'Saisir le prénom du bénéficiaire',
               'aria-label': 'Saisir le prénom du bénéficiaire',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'beneficiaryFirstname'),
@@ -170,7 +168,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
             hintText="Format attendu: JJ/MM/AAAA"
             nativeInputProps={{
               name: 'beneficiaryBirthDate',
-              title: 'Saisir la date de naissance du bénéficiaire',
               'aria-label': 'Saisir la date de naissance du bénéficiaire',
               type: 'date',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>

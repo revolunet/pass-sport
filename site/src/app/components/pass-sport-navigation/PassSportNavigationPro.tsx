@@ -32,7 +32,6 @@ export default function PassSportNavigationPro() {
             linkProps: {
               className: 'fr-btn--icon-right',
               href: 'https://lecompteasso.associations.gouv.fr/',
-              title: 'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
               'aria-label':
                 'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
             },
@@ -42,7 +41,6 @@ export default function PassSportNavigationPro() {
             iconId: 'fr-icon-arrow-right-line',
             linkProps: {
               href: '/v2/accueil',
-              title: `Aller sur la page d'accueil dédiée aux particuliers`,
               'aria-label': `Aller sur la page d'accueil dédiée aux particuliers`,
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
@@ -50,7 +48,8 @@ export default function PassSportNavigationPro() {
         ]}
         homeLinkProps={{
           href: '/v2/pro/accueil',
-          title: `Accueil - pass Sport - Ministère des Sports`,
+          title: ``,
+          'aria-label': `Visiter la page d'accueil du pass Sport`,
         }}
         navigation={navigationItemPro.map((item) => ({
           isActive: isActive(item.link),

@@ -234,7 +234,7 @@ export default function PolitiqueDeConfidentialite() {
                   <td>Vimeo</td>
                   <td>États-Unis</td>
                   <td>
-                    Vidéo sur le page d&apos;accueil, vidéos sur la page tout savoir sur le pass
+                    Vidéo sur la page d&apos;accueil, vidéos sur la page tout savoir sur le pass
                     Sport
                   </td>
                   <td>https://vimeo.com/enterpriseterms/dpa</td>

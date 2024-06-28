@@ -41,8 +41,8 @@ export default function PassSportNavigation() {
         ]}
         homeLinkProps={{
           href: '/v2/accueil',
-          title: `Accueil - pass Sport - Ministère des Sports`,
-          'aria-label': `Retourner sur le page d'accueil du pass Sport Ministère des Sports`,
+          title: '',
+          'aria-label': `Retourner sur la page d'accueil du pass Sport`,
         }}
         navigation={navigationItemStandard.map((item) => ({
           isActive: isActive(item.link),
