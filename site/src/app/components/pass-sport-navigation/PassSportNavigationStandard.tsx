@@ -34,7 +34,7 @@ export default function PassSportNavigation() {
             iconId: 'fr-icon-arrow-right-line',
             linkProps: {
               href: '/v2/pro/accueil',
-              'aria-label': 'Aller sur la page dédiée aux structures partenaires',
+              'aria-label': 'Visiter le site dédié aux structures partenaires',
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },

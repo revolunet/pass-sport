@@ -32,18 +32,10 @@ const AllowanceStep = () => {
       <Question
         question={
           <>
-            <p
-              className={cn(
-                'fr-text--lg',
-                'fr-mb-0',
-                rootStyles['text--medium'],
-                rootStyles['text--black'],
-              )}
-            >
-              Bonjour,
-              <br />
-              Bénéficiez-vous d’une de ces allocations ?
-            </p>
+            <div className={cn(rootStyles['text--medium'], rootStyles['text--black'])}>
+              <p className="fr-text--lg fr-mb-0">Bonjour,</p>
+              <p className="fr-text--lg fr-mb-0">Bénéficiez-vous d’une de ces allocations ?</p>
+            </div>
           </>
         }
         style={QUESTION_STYLES.JUNE_STYLE}

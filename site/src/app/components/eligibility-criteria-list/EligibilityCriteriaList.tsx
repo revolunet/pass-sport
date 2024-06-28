@@ -37,13 +37,19 @@ const EligibilityCriteriaList = () => {
         personnes nées entre le 16 septembre 1993 et le 31 décembre 2008 bénéficiant de
         l&apos;allocation aux adultes handicapés (AAH) (16 à 30 ans)
       </li>
-      <li className={cn('fr-text--lg', rootStyles['text--black'], rootStyles['text--medium'])}>
+      <li
+        className={cn(
+          'fr-text--lg',
+          'fr-mb-4w',
+          rootStyles['text--black'],
+          rootStyles['text--medium'],
+        )}
+      >
         étudiants, âgés de 28 ans révolus au plus, et bénéficient au plus tard le 15 octobre 2024,
         d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
         ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour les
         formations sanitaires et sociales pour l&apos;année universitaire 2024 - 2025.
       </li>
-      <br />
     </ul>
   );
 };

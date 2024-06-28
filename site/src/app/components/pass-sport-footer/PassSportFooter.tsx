@@ -168,7 +168,7 @@ export default function PassSportFooter() {
   const operatorLogo: NonNullable<FooterProps['operatorLogo']> = {
     orientation: 'horizontal',
     imgUrl: passSportLogo.src,
-    alt: `pass Sport`,
+    alt: ``,
   };
 
   const bottomItems: FooterProps.BottomItem[] = [
@@ -232,7 +232,8 @@ export default function PassSportFooter() {
               ? '/v2/pro/tout-savoir-sur-le-pass-sport'
               : '/v2/tout-savoir-sur-le-pass-sport',
             title: '',
-            'aria-label': 'Visiter la page pour tout savoir sur le pass Sport',
+            'aria-label':
+              'Visiter la page pour connaître toutes les informations sur le pass Sport',
           },
         },
         {
@@ -250,7 +251,7 @@ export default function PassSportFooter() {
           linkProps: {
             href: isProVersion ? '/v2/pro/une-question' : '/v2/une-question',
             title: '',
-            'aria-label': 'Visiter la page sur la foire aux questions',
+            'aria-label': 'Visiter la page de foire aux questions',
           },
         },
       ],
@@ -261,7 +262,9 @@ export default function PassSportFooter() {
           text: isProVersion ? 'Je suis un particulier' : 'Je suis une structure partenaire',
           linkProps: {
             href: isProVersion ? '/v2/accueil' : '/v2/pro/accueil',
-            'aria-label': `Visiter la page d'accueil les ressources`,
+            'aria-label': isProVersion
+              ? 'Visiter le site dédié aux structures partenaires'
+              : `Visiter le site dédié aux particuliers`,
           },
         },
         ...((isProVersion

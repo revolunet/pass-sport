@@ -88,7 +88,6 @@ const CrousStep = () => {
             .
           </p>
           <Button priority="primary" onClick={() => router.push('/v2/trouver-un-club')}>
-            {' '}
             Trouver une structure partenaire
           </Button>
         </VerdictPanel>
