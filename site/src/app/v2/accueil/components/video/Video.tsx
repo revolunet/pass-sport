@@ -5,7 +5,7 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 import Image from 'next/image';
 import Button from '@codegouvfr/react-dsfr/Button';
-import vignetteImage from '@/images/vignette-video.png';
+import vignetteImage from '@/images/vignette-video-accueil.png';
 
 const Video = () => {
   useEffect(() => {
