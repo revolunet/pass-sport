@@ -6,7 +6,7 @@ export function register() {
     Sentry.init({
       environment: process.env.ENV,
       dsn: process.env.SENTRY_DSN,
-      tracesSampleRate: 1.0,
+      tracesSampleRate: 0.1,
       attachStacktrace: true,
     });
     console.info('Sentry initialized for ' + process.env.NEXT_RUNTIME);
