@@ -33,6 +33,8 @@ export default function PassSportNavigationPro() {
               className: 'fr-btn--icon-right',
               href: 'https://lecompteasso.associations.gouv.fr/',
               title: 'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
+              'aria-label':
+                'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
             },
           },
           {
@@ -40,6 +42,8 @@ export default function PassSportNavigationPro() {
             iconId: 'fr-icon-arrow-right-line',
             linkProps: {
               href: '/v2/accueil',
+              title: `Aller sur la page d'accueil dédiée aux particuliers`,
+              'aria-label': `Aller sur la page d'accueil dédiée aux particuliers`,
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },
@@ -53,6 +57,7 @@ export default function PassSportNavigationPro() {
           linkProps: {
             href: item.link,
             target: !!item.isExternal ? '_blank' : '_self',
+            ariaLabel: item.ariaLabel,
             ...(item.title && { title: item.title }),
           },
           text: item.text,

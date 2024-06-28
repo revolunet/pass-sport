@@ -34,6 +34,7 @@ export default function PassSportNavigation() {
             iconId: 'fr-icon-arrow-right-line',
             linkProps: {
               href: '/v2/pro/accueil',
+              'aria-label': 'Aller sur la page dédiée aux structures partenaires',
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },
@@ -41,12 +42,14 @@ export default function PassSportNavigation() {
         homeLinkProps={{
           href: '/v2/accueil',
           title: `Accueil - pass Sport - Ministère des Sports`,
+          'aria-label': `Retourner sur le page d'accueil du pass Sport Ministère des Sports`,
         }}
         navigation={navigationItemStandard.map((item) => ({
           isActive: isActive(item.link),
           linkProps: {
             href: item.link,
             target: !!item.isExternal ? '_blank' : '_self',
+            'aria-label': item.ariaLabel,
             ...(item.title && { title: item.title }),
           },
           text: item.text,
