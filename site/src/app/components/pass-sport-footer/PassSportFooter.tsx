@@ -153,30 +153,35 @@ export default function PassSportFooter() {
       text: 'Mentions légales',
       linkProps: {
         href: '/v2/mentions-legales',
+        title: 'Mentions légales',
       },
     },
     {
       text: 'Données personnelles',
       linkProps: {
         href: '/v2/politique-de-confidentialite',
+        title: 'Données personnelles',
       },
     },
     {
       text: 'Plan du site',
       linkProps: {
         href: isProVersion ? '/v2/pro/plan-du-site' : '/v2/plan-du-site',
+        title: 'Plan du site',
       },
     },
     {
       text: 'Règlement du jeu-concours numéro 1 - pass Sport',
       linkProps: {
         href: '/v2/reglement-du-jeu-concours-numero-1-pass-sport',
+        title: 'Règlement du jeu concours numéro 1 pass Sport',
       },
     },
     {
       text: 'Règlement du jeu-concours numéro 2 - pass Sport',
       linkProps: {
         href: '/v2/reglement-du-jeu-concours-numero-2-pass-sport',
+        title: 'Règlement du jeu concours numéro 2 pass Sport',
       },
     },
   ];
@@ -187,7 +192,10 @@ export default function PassSportFooter() {
       links: [
         {
           text: 'Accueil',
-          linkProps: { href: isProVersion ? '/v2/pro/accueil' : '/v2/accueil' },
+          linkProps: {
+            href: isProVersion ? '/v2/pro/accueil' : '/v2/accueil',
+            title: 'Liens utiles',
+          },
         },
         {
           text: 'Tout savoir sur le pass Sport',
@@ -195,17 +203,22 @@ export default function PassSportFooter() {
             href: isProVersion
               ? '/v2/pro/tout-savoir-sur-le-pass-sport'
               : '/v2/tout-savoir-sur-le-pass-sport',
+            title: 'Tout savoir sur le pass Sport',
           },
         },
         {
           text: isProVersion ? 'Carte des structures partenaires' : 'Trouver un club partenaire',
           linkProps: {
             href: isProVersion ? '/v2/pro/trouver-un-club' : '/v2/trouver-un-club',
+            title: isProVersion ? 'Carte des structures partenaires' : 'Trouver un club partenaire',
           },
         },
         {
           text: 'Une question ?',
-          linkProps: { href: isProVersion ? '/v2/pro/une-question' : '/v2/une-question' },
+          linkProps: {
+            href: isProVersion ? '/v2/pro/une-question' : '/v2/une-question',
+            title: 'Foire aux questions',
+          },
         },
       ],
     },
@@ -222,6 +235,7 @@ export default function PassSportFooter() {
                 text: 'Ressources',
                 linkProps: {
                   href: '/v2/pro/ressources',
+                  title: 'Ressources',
                 },
               },
             ]
