@@ -1,61 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
-import Link from 'next/link';
-import styles from './styles.module.scss';
-import Image from 'next/image';
-import Button from '@codegouvfr/react-dsfr/Button';
 import vignetteImage from '@/images/vignette-video-accueil.png';
+import Button from '@codegouvfr/react-dsfr/Button';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useAxeptio } from '../../../../hooks/use-axeptio';
+import styles from './styles.module.scss';
 
 const Video = () => {
-  useEffect(() => {
-    const initAxeptio = (): void => {
-      if (!window.axeptioSettings) {
-        // Définition des paramètres de configuration pour Axeptio
-        window.axeptioSettings = {
-          clientId: '6662b7369f1ba1b27006fc0a',
-          cookiesVersion: 'pass sport-fr-EU',
-        };
-
-        // Chargement asynchrone du script Axeptio
-        (function (d: Document, s: string) {
-          const t = d.getElementsByTagName(s)[0];
-          const e = d.createElement(s);
-          e.async = true;
-          e.src = 'https://static.axept.io/sdk-slim.js';
-          if (t.parentNode) {
-            t.parentNode.insertBefore(e, t);
-          }
-        })(document, 'script');
-      }
-
-      if (!window._axcb) {
-        window._axcb = [];
-      }
-
-      window._axcb.push(function (sdk) {
-        sdk.on('cookies:complete', function (choices) {
-          document.querySelectorAll('[data-hide-on-vendor-consent]').forEach((el) => {
-            const vendor = el.getAttribute('data-hide-on-vendor-consent');
-            el.style.display = vendor && choices[vendor] ? 'none' : 'inherit';
-          });
-          document.querySelectorAll('[data-requires-vendor-consent]').forEach((el) => {
-            const vendor = el.getAttribute('data-requires-vendor-consent');
-            if (vendor && choices[vendor]) {
-              el.setAttribute(
-                'src',
-                'https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0',
-              );
-              el.style.display = 'block';
-            } else {
-              el.style.display = 'none';
-            }
-          });
-        });
-      });
-    };
-    initAxeptio();
-  });
+  useAxeptio('https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0');
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
