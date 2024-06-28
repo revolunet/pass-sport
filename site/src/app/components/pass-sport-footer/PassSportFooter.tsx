@@ -21,13 +21,17 @@ import fneaplLogo from '@/images/footer/fneapl-logo.png';
 import unionSportCycleLogo from '@/images/footer/union-sport-cycle-logo.png';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import { useRef } from 'react';
-import { useUpdateHeadings } from '@/app/hooks/use-update-headings';
+import { useUpdateHeadings } from '@/app/hooks/accessibility/use-update-headings';
 
 export default function PassSportFooter() {
   const isProVersion = useIsProVersion();
   const footerRef = useRef<HTMLDivElement>(null);
 
-  useUpdateHeadings({ parentRef: footerRef, level: 2, selector: ['.fr-footer__partners-title'] });
+  useUpdateHeadings({
+    parentRef: footerRef,
+    level: 2,
+    headingSelectors: ['.fr-footer__partners-title'],
+  });
 
   const partnersLogos: FooterProps.PartnersLogos = {
     main: {

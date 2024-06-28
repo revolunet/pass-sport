@@ -2,18 +2,20 @@ import { MutableRefObject, useEffect } from 'react';
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
+// Workaround for accessibility
+// Update headings level in order to be compliant with accessibility (headings level order matter)
 export function useUpdateHeadings({
   parentRef,
   level,
-  selector,
+  headingSelectors,
 }: {
   parentRef: MutableRefObject<HTMLDivElement | null>;
   level: HeadingLevel;
-  selector: string[];
+  headingSelectors: string[];
 }) {
   useEffect(() => {
     if (parentRef?.current) {
-      const headings = parentRef.current.querySelectorAll(selector.join(','));
+      const headings = parentRef.current.querySelectorAll(headingSelectors.join(','));
 
       if (headings?.length <= 0) {
         return;

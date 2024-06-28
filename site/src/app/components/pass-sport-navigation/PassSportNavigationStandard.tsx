@@ -5,6 +5,8 @@ import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
 import { navigationItemStandard } from './navigation';
 import styles from './styles.module.scss';
+import { useUpdateList } from '@/app/hooks/accessibility/use-update-list';
+import { useRef } from 'react';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
@@ -13,9 +15,18 @@ export default function PassSportNavigation() {
     return !!(paths && paths.includes(path));
   };
 
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useUpdateList({
+    parentRef: headerRef,
+    role: 'none',
+    listSelector: '.fr-btns-group',
+  });
+
   return (
     <div>
       <Header
+        ref={headerRef}
         className={styles.header}
         classes={{
           service: styles.service,
