@@ -41,17 +41,14 @@ const QrCodePanel = ({ data }: Props) => {
           <QRCodeSVG
             value={qrcodeUrl}
             size={240}
-            // @ts-ignore
-            title="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
-            ariaLabel="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
-            alt="QR Code"
+            aria-label="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
           />
         </div>
         <div className={styles.center}>
-          <h6 className={cn('fr-mb-1w', styles.blue)}>
+          <p className={cn('fr-mb-1w', 'fr-h6', styles.blue)}>
             <span className={styles['text-casing']}>{prenom}</span>{' '}
             <span className={styles['text-casing']}>{nom}</span>
-          </h6>
+          </p>
 
           <p className={cn('fr-mb-3w', rootStyles['text--medium'])}>
             {formatBirthDate(date_naissance, genre)}
@@ -67,6 +64,7 @@ const QrCodePanel = ({ data }: Props) => {
           size="large"
           iconPosition="right"
           iconId="fr-icon-external-link-line"
+          aria-label="Ouvrir une nouvelle fenêtre vers la page récapitulatif du QR code afin de pouvoir l'imprimer au format PDF"
           linkProps={{
             href: qrcodeUrl,
             target: '_blank',

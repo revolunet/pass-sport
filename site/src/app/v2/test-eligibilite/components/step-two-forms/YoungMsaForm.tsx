@@ -168,6 +168,7 @@ const YoungMsaForm = ({
           nativeInputProps={{
             name: 'recipientLastname',
             placeholder: 'ex: Dupont',
+            'aria-label': "Saisir le nom de l'allocataire",
           }}
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
@@ -177,7 +178,11 @@ const YoungMsaForm = ({
 
         <Input
           label="Prénom de l’allocataire*"
-          nativeInputProps={{ name: 'recipientFirstname', placeholder: 'ex: Marie' }}
+          nativeInputProps={{
+            name: 'recipientFirstname',
+            placeholder: 'ex: Marie',
+            'aria-label': "Saisir le prénom de l'allocataire",
+          }}
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}
           disabled={isFormDisabled}
@@ -187,7 +192,11 @@ const YoungMsaForm = ({
         <Input
           label="Date de naissance de l’allocataire*"
           hintText="Format attendu JJ/MM/AAAA"
-          nativeInputProps={{ name: 'recipientBirthDate', type: 'date' }}
+          nativeInputProps={{
+            name: 'recipientBirthDate',
+            type: 'date',
+            'aria-label': "Saisir la date de naissance de l'allocataire",
+          }}
           state={inputStates.recipientBirthDate.state}
           stateRelatedMessage={inputStates.recipientBirthDate.errorMsg}
           disabled={isFormDisabled}

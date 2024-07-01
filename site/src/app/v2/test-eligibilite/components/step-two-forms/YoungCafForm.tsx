@@ -156,6 +156,7 @@ const YoungCafForm = ({
               type: 'text',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
+              'aria-label': "Saisir le numéro de l'allocataire CAF",
             },
             state: inputStates.recipientCafNumber.state,
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
@@ -173,6 +174,7 @@ const YoungCafForm = ({
             placeholder: 'ex: Dupont',
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'recipientLastname'),
+            'aria-label': "Saisir le nom de l'allocataire CAF",
           }}
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
@@ -186,6 +188,7 @@ const YoungCafForm = ({
             placeholder: 'ex: Marie',
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'recipientFirstname'),
+            'aria-label': "Saisir le prénom de l'allocataire CAF",
           }}
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}

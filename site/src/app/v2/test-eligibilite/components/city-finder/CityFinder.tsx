@@ -104,7 +104,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
           <span
             className={cn('fr-icon--sm', 'fr-icon-error-fill', styles.error)}
             aria-hidden="true"
-          ></span>
+          />
           <p className={cn('fr-text--xs', 'fr-mb-0', styles.error)}>{inputState.errorMsg}</p>
         </div>
       )}
