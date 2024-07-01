@@ -12,6 +12,7 @@ import {
 import { Metadata } from 'next';
 import Video from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/Video';
 import TranscriptionVisibilityClub from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionVisibilityClub';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',
@@ -29,7 +30,7 @@ export default function ToutSavoirSurLePassSport() {
         }}
       />
 
-      <main className={styles['main-container']}>
+      <main className={styles['main-container']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
         <section className={styles['section-container']}>
           <h4>Qui se mobilise pour vous accompagner ?</h4>
           <p className="fr-text--bold">

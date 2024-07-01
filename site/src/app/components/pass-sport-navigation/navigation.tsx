@@ -45,8 +45,7 @@ export const navigationItemStandard: NavigationItem[] = [
   {
     link: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
     isExternal: true,
-    title: `Ouverture d'une nouvelle fenêtre vers le tableau de bord de pass Sport`,
-    ariaLabel: `Ouverture d'une nouvelle fenêtre vers le tableau de bord de pass Sport`,
+    ariaLabel: `Ouvrir une nouvelle fenêtre vers le tableau de bord de pass Sport`,
     text: (
       <>
         <div className={styles['menu-item-spacer']}>
@@ -107,7 +106,6 @@ export const navigationItemPro: NavigationItem[] = [
     link: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
     isExternal: true,
     text: 'Tableau de bord',
-    title: `Ouverture d'une nouvelle fenêtre vers le tableau de bord de pass Sport`,
-    ariaLabel: `Ouverture d'une nouvelle fenêtre vers le tableau de bord de pass Sport`,
+    ariaLabel: `Ouvrir une nouvelle fenêtre vers le tableau de bord de pass Sport`,
   },
 ];

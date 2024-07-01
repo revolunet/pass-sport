@@ -10,6 +10,7 @@ import {
 import styles from './styles.module.scss';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Carte des structures partenaires - pass Sport',
@@ -55,13 +56,16 @@ const TrouverUnClub = async () => {
           container: styles['page-header'],
         }}
       />
+
       <Suspense>
-        <ClubFinder
-          regions={regions}
-          activities={activities}
-          departments={departments}
-          isProVersion
-        />
+        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+          <ClubFinder
+            regions={regions}
+            activities={activities}
+            departments={departments}
+            isProVersion
+          />
+        </main>
       </Suspense>
       <SocialMediaPanel isProVersion />
     </>

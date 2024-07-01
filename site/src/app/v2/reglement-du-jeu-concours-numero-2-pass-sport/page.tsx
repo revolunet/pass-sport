@@ -5,6 +5,7 @@ import EligibilityTestBanner from '@/components/eligibility-test-banner/Eligibil
 import { Metadata } from 'next';
 import Link from 'next/link';
 import cn from 'classnames';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Règlement du jeu concours numéro 2 - pass Sport',
@@ -20,7 +21,11 @@ export default function Page() {
           container: styles['page-header'],
         }}
       />
-      <main className={cn(styles.main, styles.wrapper)}>
+      <main
+        className={cn(styles.main, styles.wrapper)}
+        tabIndex={-1}
+        id={SKIP_LINKS_ID.mainContent}
+      >
         <section className="fr-mb-6w">
           <h4 className="fr-mb-2w">Présentation du jeu-concours pass Sport</h4>
 

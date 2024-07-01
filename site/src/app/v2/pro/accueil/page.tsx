@@ -9,6 +9,7 @@ import secondaryImage from '@/images/pro/homepage/secondary.png';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Accueil - pass Sport',
@@ -30,7 +31,7 @@ export default function Accueil() {
         }}
       />
 
-      <main className={styles['main-wrapper']}>
+      <main className={styles['main-wrapper']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
         <Card
           className={styles['main-card__highlight']}
           classes={{

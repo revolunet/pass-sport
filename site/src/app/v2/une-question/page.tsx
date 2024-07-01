@@ -9,6 +9,7 @@ import ContactSection from '@/app/v2/une-question/components/ContactSection/Cont
 import { getCategoriesWithArticles } from '@/app/v2/une-question/server-agent';
 import { headers } from 'next/headers';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -31,7 +32,10 @@ export default async function Questions() {
         }}
       />
 
-      <ContentSection categoriesWithArticles={categoriesWithArticles} />
+      <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+        <ContentSection categoriesWithArticles={categoriesWithArticles} />
+      </main>
+
       <ContactSection />
 
       <EligibilityTestBanner />

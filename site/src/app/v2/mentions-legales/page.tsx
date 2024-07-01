@@ -3,6 +3,7 @@ import PageHeader from '../../../../components/PageHeader/PageHeader';
 import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Mentions légales - pass Sport',
@@ -18,7 +19,7 @@ export default function PolitiqueDeConfidentialite() {
           container: styles['page-header'],
         }}
       />
-      <main className={styles.wrapper}>
+      <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
         <section className="fr-mb-6w">
           <p className="fr-mb-2w">
             Le Portail pass Sport est un service du ministère des Sports et des Jeux Olympiques et

@@ -5,17 +5,28 @@ import Header from '@codegouvfr/react-dsfr/Header';
 import { usePathname } from 'next/navigation';
 import { navigationItemPro } from './navigation';
 import styles from './styles.module.scss';
+import { useUpdateList } from '@/app/hooks/accessibility/use-update-list';
+import { useRef } from 'react';
+import { HEADER_CLASSES } from '@/app/constants/dsfr-classes';
 
 export default function PassSportNavigationPro() {
   const paths: string | null = usePathname();
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));
   };
 
+  useUpdateList({
+    parentRef: headerRef,
+    role: 'none',
+    listSelector: HEADER_CLASSES.list,
+  });
+
   return (
     <div>
       <Header
+        ref={headerRef}
         className={styles.header}
         brandTop={FOOTER_BRAND_TOP}
         operatorLogo={{

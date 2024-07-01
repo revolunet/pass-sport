@@ -4,4 +4,5 @@ export const SKIP_LINKS_ID = {
   findClubButton: 'find-club-button',
   footer: 'footer',
   contactUsByMail: 'contact-us-by-mail',
+  mainContent: 'main',
 };

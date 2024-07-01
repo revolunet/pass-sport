@@ -22,6 +22,7 @@ import unionSportCycleLogo from '@/images/footer/union-sport-cycle-logo.png';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import { useRef } from 'react';
 import { useUpdateHeadings } from '@/app/hooks/accessibility/use-update-headings';
+import { FOOTER_CLASSES } from '@/app/constants/dsfr-classes';
 
 export default function PassSportFooter() {
   const isProVersion = useIsProVersion();
@@ -30,7 +31,7 @@ export default function PassSportFooter() {
   useUpdateHeadings({
     parentRef: footerRef,
     level: 2,
-    headingSelectors: ['.fr-footer__partners-title'],
+    headingSelectors: [FOOTER_CLASSES.partnersTitle],
   });
 
   const partnersLogos: FooterProps.PartnersLogos = {
@@ -226,7 +227,7 @@ export default function PassSportFooter() {
           linkProps: {
             href: isProVersion ? '/v2/pro/accueil' : '/v2/accueil',
             title: '',
-            'aria-label': 'Visiter la page des liens utiles',
+            'aria-label': "Retourner sur la page d'accueil",
           },
         },
         {

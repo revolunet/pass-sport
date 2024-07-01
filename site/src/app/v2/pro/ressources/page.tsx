@@ -5,6 +5,7 @@ import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPan
 import Link from 'next/link';
 import Accordion from '@codegouvfr/react-dsfr/Accordion';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Ressources - pass Sport',
@@ -14,7 +15,7 @@ export default function ToutSavoirSurLePassSport() {
   return (
     <>
       <PageHeader title="Ressources" subtitle="" isProVersion />
-      <main className={styles.container}>
+      <main className={styles.container} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
         <About />
 
         <div className={styles['section-container']}>

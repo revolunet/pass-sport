@@ -5,6 +5,7 @@ import ClubFinder from './components/club-finder/ClubFinder';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Trouver un club partenaire - pass Sport',
@@ -19,7 +20,9 @@ const TrouverUnClub = async () => {
     <>
       <PageHeader title="Trouver un club" />
       <Suspense>
-        <ClubFinder regions={regions} activities={activities} departments={departments} />
+        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+          <ClubFinder regions={regions} activities={activities} departments={departments} />
+        </main>
       </Suspense>
       <SocialMediaPanel />
     </>

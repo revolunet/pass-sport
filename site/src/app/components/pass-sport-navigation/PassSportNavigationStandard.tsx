@@ -7,6 +7,7 @@ import { navigationItemStandard } from './navigation';
 import styles from './styles.module.scss';
 import { useUpdateList } from '@/app/hooks/accessibility/use-update-list';
 import { useRef } from 'react';
+import { HEADER_CLASSES } from '@/app/constants/dsfr-classes';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
@@ -20,7 +21,7 @@ export default function PassSportNavigation() {
   useUpdateList({
     parentRef: headerRef,
     role: 'none',
-    listSelector: '.fr-btns-group',
+    listSelector: HEADER_CLASSES.list,
   });
 
   return (

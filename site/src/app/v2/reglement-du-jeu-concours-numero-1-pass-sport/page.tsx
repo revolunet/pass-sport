@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Règlement du jeu concours numéro 1 - pass Sport',
@@ -19,7 +20,7 @@ export default function Page() {
           container: styles['page-header'],
         }}
       />
-      <main className={styles.wrapper}>
+      <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
         <section className="fr-mb-6w">
           <h4 className="fr-mb-2w">Présentation du jeu-concours pass Sport</h4>
 

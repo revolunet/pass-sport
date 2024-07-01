@@ -47,6 +47,10 @@ const SkipLinksWrapper = () => {
   return (
     <SkipLinks
       links={[
+        {
+          label: 'Aller au contenu',
+          anchor: `#${SKIP_LINKS_ID.mainContent}`,
+        },
         ...(eligibilityTestSkipLink ? [eligibilityTestSkipLink] : []),
         ...(findAClubSkipLink ? [findAClubSkipLink] : []),
         ...(contactUsLink ? [contactUsLink] : []),
