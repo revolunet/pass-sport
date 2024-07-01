@@ -46,7 +46,6 @@ const AllowancesStep = ({ isForChild }: Props) => {
             pass.sports.gouv.fr
           </Link>
         </p>
-        dsadasdsad
       </VerdictPanel>
     </div>
   );
