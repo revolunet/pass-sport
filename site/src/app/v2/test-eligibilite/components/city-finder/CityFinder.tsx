@@ -37,6 +37,10 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
       ...baseStyles,
       paddingLeft: '14px',
     }),
+    placeholder: (baseStyles: Record<string, unknown>) => ({
+      ...baseStyles,
+      color: 'var(--text-default-grey)',
+    }),
   };
 
   const parseCities = (cities: City[]): Option[] => {
@@ -78,7 +82,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
         name={inputName}
         loadingMessage={() => <p>Chargement des villes...</p>}
         noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-        placeholder="Trouver la commune"
+        placeholder="Entrez le nom de votre commune"
         cacheOptions
         isClearable
         loadOptions={fetchCityOptions}
@@ -96,11 +100,11 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
       </div>
 
       {inputState.state === 'error' && (
-        <div className={cn('fr-pt-2w', styles.container)}>
+        <div className={cn('fr-pt-2w', styles.container)} role="status">
           <span
             className={cn('fr-icon--sm', 'fr-icon-error-fill', styles.error)}
             aria-hidden="true"
-          ></span>
+          />
           <p className={cn('fr-text--xs', 'fr-mb-0', styles.error)}>{inputState.errorMsg}</p>
         </div>
       )}

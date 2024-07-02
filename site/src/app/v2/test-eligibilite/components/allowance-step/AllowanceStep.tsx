@@ -4,6 +4,7 @@ import Question, {
   QUESTION_STYLES,
 } from '@/app/v2/test-eligibilite-mai/components/Question/Question';
 import rootStyles from '@/app/utilities.module.scss';
+import styles from '@/app/v2/test-eligibilite/styles.module.scss';
 import cn from 'classnames';
 import { useState } from 'react';
 import { ALLOWANCE } from '../types/types';
@@ -12,7 +13,6 @@ import CrousStep from '../crous-step/CrousStep';
 import EligibilityTestContext from '@/store/eligibilityTestContext';
 import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
-import styles from '@/app/v2/test-eligibilite/components/step-one-form/styles.module.scss';
 
 /* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
@@ -32,18 +32,10 @@ const AllowanceStep = () => {
       <Question
         question={
           <>
-            <p
-              className={cn(
-                'fr-text--lg',
-                'fr-mb-0',
-                rootStyles['text--medium'],
-                rootStyles['text--black'],
-              )}
-            >
-              Bonjour,
-              <br />
-              Bénéficiez-vous d’une de ces allocations ?
-            </p>
+            <div className={cn(rootStyles['text--medium'], rootStyles['text--black'])}>
+              <p className="fr-text--lg fr-mb-0">Bonjour,</p>
+              <p className="fr-text--lg fr-mb-0">Bénéficiez-vous d’une de ces allocations ?</p>
+            </div>
           </>
         }
         style={QUESTION_STYLES.JUNE_STYLE}
@@ -89,9 +81,25 @@ const AllowanceStep = () => {
         />
       </Question>
 
-      {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
-      {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
-      {allowance === ALLOWANCE.CROUS && <CrousStep />}
+      <fieldset
+        id="second-step-form"
+        className="fr-fieldset"
+        aria-labelledby="second-step-form-legend"
+        role="status"
+      >
+        {[ALLOWANCE.ARS_AEEH_AAH, ALLOWANCE.CROUS].includes(allowance as ALLOWANCE) && (
+          <legend
+            className="fr-fieldset__legend--regular fr-fieldset__legend fr-pt-1w fr-pb-2w"
+            id="second-step-form-legend"
+          >
+            Deuxième étape du formulaire
+          </legend>
+        )}
+
+        {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
+        {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
+        {allowance === ALLOWANCE.CROUS && <CrousStep />}
+      </fieldset>
     </EligibilityTestContext.Provider>
   );
 };

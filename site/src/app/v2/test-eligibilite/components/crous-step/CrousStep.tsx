@@ -17,7 +17,7 @@ const CrousStep = () => {
   const router = useRouter();
 
   return (
-    <div>
+    <>
       <Question question="Quel âge avez-vous ?" style={QUESTION_STYLES.JUNE_STYLE}>
         <RadioButtons
           legend="Choississez une option:"
@@ -88,7 +88,6 @@ const CrousStep = () => {
             .
           </p>
           <Button priority="primary" onClick={() => router.push('/v2/trouver-un-club')}>
-            {' '}
             Trouver une structure partenaire
           </Button>
         </VerdictPanel>
@@ -97,7 +96,7 @@ const CrousStep = () => {
       {(ageRange === CROUS_AGE_RANGE.MORE_THAN_29 || ageRange === CROUS_AGE_RANGE.MORE_THAN_28) && (
         <FullNegativeVerdictPanel isLean />
       )}
-    </div>
+    </>
   );
 };
 

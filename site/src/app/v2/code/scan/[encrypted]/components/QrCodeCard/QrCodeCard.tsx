@@ -43,14 +43,19 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div>
-          <QRCodeSVG value={qrCodeValue} size={240} />
+          <QRCodeSVG
+            value={qrCodeValue}
+            size={240}
+            // @ts-ignore
+            aria-label="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
+          />
         </div>
 
         <div>
-          <h6 className={cn('fr-mb-1w', styles.fullname)}>
+          <p className={cn('fr-mb-1w', 'fr-h6', styles.fullname)}>
             <span className={styles['text-casing']}>{firstname}</span>{' '}
             <span className={styles['text-casing']}>{lastname}</span>
-          </h6>
+          </p>
 
           <p className="fr-mb-2w fr-text--md">{formatBirthDate(birthDate, gender)}</p>
           <p className="fr-text--md fr-text--bold fr-mb-0">Code:</p>
@@ -63,7 +68,7 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
           id="print-button"
           size="large"
           onClick={printQRCode}
-          title="Bouton pour imprimer la page contenant le QR Code"
+          aria-label="Bouton pour imprimer la page contenant le QR Code"
         >
           Imprimer mon pass Sport au format PDF
         </Button>

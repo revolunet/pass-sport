@@ -6,6 +6,7 @@ import cn from 'classnames';
 import styles from '@/app/v2/une-question/styles.module.scss';
 import { useIsModalOpen } from '@codegouvfr/react-dsfr/Modal/useIsModalOpen';
 import { useState } from 'react';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const contactModal = createModal({
   id: 'contact-modal',
@@ -41,6 +42,7 @@ const ContactSection = () => {
           Contactez-nous directement par e-mail pour que nous puissions trouver une solution.
         </p>
         <button
+          id={SKIP_LINKS_ID.contactUsByMail}
           className="fr-btn fr-btn--primary fr-btn--icon-left fr-icon-mail-fill"
           onClick={() => contactModal.open()}
         >

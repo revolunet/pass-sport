@@ -23,6 +23,7 @@ const SocialMediaLinks = () => {
             className={cn('fr-link', media.iconClassName, 'fr-link--icon-left')}
             href={media.href}
             target="_blank"
+            aria-label={`Ouvrir une nouvelle fenêtre vers la page ${media.label} du dispositif pass Sport`}
           >
             {media.label}
           </a>

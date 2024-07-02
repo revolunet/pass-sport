@@ -2,6 +2,7 @@ import Highlight from '@codegouvfr/react-dsfr/Highlight';
 import styles from '../styles.module.scss';
 import Image from 'next/image';
 import aboutImage from '@/images/tout-savoir-sur-le-pass-sport/about.png';
+import cn from 'classnames';
 
 export default function About() {
   return (
@@ -12,9 +13,9 @@ export default function About() {
         </div>
 
         <div id="découvrir">
-          <h3 className={styles['about-container__highlight-title']}>
+          <h2 className={cn(styles['about-container__highlight-title'], 'fr-h3')}>
             Qu&apos;est-ce que le pass Sport ?
-          </h3>
+          </h2>
 
           <Highlight className={styles['about-container__highlight-text']}>
             Le pass Sport est une aide de 50 euros qui permet de financer une partie de

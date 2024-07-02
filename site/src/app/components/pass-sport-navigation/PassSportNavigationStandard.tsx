@@ -2,28 +2,54 @@
 
 import { FOOTER_BRAND_TOP } from '@/app/constants/footer-brand-top';
 import Header from '@codegouvfr/react-dsfr/Header';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { navigationItemStandard } from './navigation';
 import styles from './styles.module.scss';
+import { useUpdateList } from '@/app/hooks/accessibility/use-update-list';
+import { useRef } from 'react';
+import { HEADER_CLASSES } from '@/app/constants/dsfr-classes';
+import { useReplaceTitlesByAriaLabels } from '@/app/hooks/accessibility/use-replace-titles-by-aria-labels';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
-  const router = useRouter();
 
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));
   };
 
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useUpdateList({
+    parentRef: headerRef,
+    role: 'none',
+    listSelector: HEADER_CLASSES.list,
+  });
+
+  useReplaceTitlesByAriaLabels({
+    parentRef: headerRef,
+    elementsToUpdate: [
+      {
+        selector: HEADER_CLASSES.closeButton,
+        ariaLabel: 'Fermer le menu de navigation',
+      },
+      {
+        selector: HEADER_CLASSES.menuButton,
+        ariaLabel: 'Menu de navigation',
+      },
+    ],
+  });
+
   return (
     <div>
       <Header
+        ref={headerRef}
         className={styles.header}
         classes={{
           service: styles.service,
         }}
         brandTop={FOOTER_BRAND_TOP}
         operatorLogo={{
-          alt: '',
+          alt: `Logo du pass Sport`,
           imgUrl: '/images/pass-sport-logo.svg',
           orientation: 'vertical',
         }}
@@ -35,19 +61,23 @@ export default function PassSportNavigation() {
             iconId: 'fr-icon-arrow-right-line',
             linkProps: {
               href: '/v2/pro/accueil',
+              'aria-label': 'Visiter le site dédié aux structures partenaires',
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },
         ]}
+        // @ts-ignore
         homeLinkProps={{
           href: '/v2/accueil',
-          title: "Accueil - Nom de l'entité (ministère, secrétariat d'état, gouvernement)",
+          'aria-label': `Retourner sur la page d'accueil du pass Sport`,
         }}
         navigation={navigationItemStandard.map((item) => ({
           isActive: isActive(item.link),
           linkProps: {
             href: item.link,
             target: !!item.isExternal ? '_blank' : '_self',
+            'aria-label': item.ariaLabel,
+            ...(item.title && { title: item.title }),
           },
           text: item.text,
         }))}

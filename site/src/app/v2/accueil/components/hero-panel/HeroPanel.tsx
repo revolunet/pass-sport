@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import cn from 'classnames';
 import { push } from '@socialgouv/matomo-next';
 import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const HeroPanel = () => {
   const router = useRouter();
@@ -39,6 +40,7 @@ const HeroPanel = () => {
       </div>
       <div className={styles['button-wrapper']}>
         <Button
+          id={SKIP_LINKS_ID.eligibilityTestButton}
           className="fr-mt-3w"
           priority="primary"
           size="large"

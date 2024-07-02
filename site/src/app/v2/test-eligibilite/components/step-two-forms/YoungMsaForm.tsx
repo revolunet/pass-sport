@@ -84,7 +84,7 @@ const YoungMsaForm = ({
     return fetchPspCode(formData);
   };
 
-  const notifyError = (status: number) => {
+  const notifyError = () => {
     setError('Une erreur a eu lieu. Merci de rééessayer plus tard');
   };
 
@@ -109,10 +109,10 @@ const YoungMsaForm = ({
         status: number;
       }) => {
         if (status !== 200) {
-          notifyError(status);
+          notifyError();
         } else {
           if ('message' in body) {
-            notifyError(status);
+            notifyError();
             return;
           }
 
@@ -161,13 +161,14 @@ const YoungMsaForm = ({
   };
 
   return (
-    <div>
+    <>
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <Input
           label="Nom de l’allocataire*"
           nativeInputProps={{
             name: 'recipientLastname',
             placeholder: 'ex: Dupont',
+            'aria-label': "Saisir le nom de l'allocataire",
           }}
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
@@ -177,7 +178,11 @@ const YoungMsaForm = ({
 
         <Input
           label="Prénom de l’allocataire*"
-          nativeInputProps={{ name: 'recipientFirstname', placeholder: 'ex: Marie' }}
+          nativeInputProps={{
+            name: 'recipientFirstname',
+            placeholder: 'ex: Marie',
+            'aria-label': "Saisir le prénom de l'allocataire",
+          }}
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}
           disabled={isFormDisabled}
@@ -187,7 +192,11 @@ const YoungMsaForm = ({
         <Input
           label="Date de naissance de l’allocataire*"
           hintText="Format attendu JJ/MM/AAAA"
-          nativeInputProps={{ name: 'recipientBirthDate', type: 'date' }}
+          nativeInputProps={{
+            name: 'recipientBirthDate',
+            type: 'date',
+            'aria-label': "Saisir la date de naissance de l'allocataire",
+          }}
           state={inputStates.recipientBirthDate.state}
           stateRelatedMessage={inputStates.recipientBirthDate.errorMsg}
           disabled={isFormDisabled}
@@ -208,7 +217,7 @@ const YoungMsaForm = ({
       </form>
 
       {error && <ErrorAlert title={error} />}
-    </div>
+    </>
   );
 };
 

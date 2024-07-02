@@ -78,7 +78,7 @@ const AahCafForm = ({
     return fetchPspCode(formData);
   };
 
-  const notifyError = (status: number) => {
+  const notifyError = () => {
     setError('Une erreur a eu lieu. Merci de rééessayer plus tard');
   };
 
@@ -103,10 +103,10 @@ const AahCafForm = ({
         status: number;
       }) => {
         if (status !== 200) {
-          notifyError(status);
+          notifyError();
         } else {
           if ('message' in body) {
-            notifyError(status);
+            notifyError();
             return;
           }
 
@@ -138,7 +138,7 @@ const AahCafForm = ({
   };
 
   return (
-    <div>
+    <>
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <CustomInput
           inputProps={{
@@ -150,6 +150,7 @@ const AahCafForm = ({
               type: 'text',
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
+              'aria-label': "Saisir le numéro de l'allocataire CAF",
             },
             state: inputStates.recipientCafNumber.state,
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
@@ -168,7 +169,7 @@ const AahCafForm = ({
           <ErrorAlert title={error} />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ import FindClubCard from './components/find-club-card/FindClubCard';
 import Hero from './components/hero/Hero';
 import cn from 'classnames';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Accueil - pass Sport',
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function Accueil() {
   return (
-    <main>
+    <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
       <section>
         <Hero />
       </section>

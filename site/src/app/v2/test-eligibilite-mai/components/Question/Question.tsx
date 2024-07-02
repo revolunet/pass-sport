@@ -20,9 +20,9 @@ const Question = ({
   style = QUESTION_STYLES.MAY_STYLE,
 }: Props) => {
   return (
-    <div className={` ${styles.container} ${styles.fit}`}>
+    <>
       <div
-        className={cn('fr-p-2w', styles.panel, styles.fit, {
+        className={cn('fr-p-2w', 'fr-mb-1w', styles.panel, styles.fit, {
           [`${styles['panel_may']}`]: style === QUESTION_STYLES.MAY_STYLE,
           [`${styles['panel_june']}`]: style === QUESTION_STYLES.JUNE_STYLE,
         })}
@@ -33,19 +33,20 @@ const Question = ({
           question
         )}
       </div>
+      <div className={` ${styles.container} ${styles.fit}`}>
+        {description && (
+          <div className={`fr-p-2w ${styles.panel}`}>
+            {typeof description === 'string' ? (
+              <p className={`fr-text--md fr-mb-0 ${styles.description}`}>{description}</p>
+            ) : (
+              description
+            )}
+          </div>
+        )}
 
-      {description && (
-        <div className={`fr-p-2w ${styles.panel}`}>
-          {typeof description === 'string' ? (
-            <p className={`fr-text--md fr-mb-0 ${styles.description}`}>{description}</p>
-          ) : (
-            description
-          )}
-        </div>
-      )}
-
-      <div className="fr-pb-1w">{children}</div>
-    </div>
+        <div className="fr-pb-1w">{children}</div>
+      </div>
+    </>
   );
 };
 

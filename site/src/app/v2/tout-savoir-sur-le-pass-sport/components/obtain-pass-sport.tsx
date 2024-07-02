@@ -4,6 +4,7 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
 import { useRouter } from 'next/navigation';
 import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export default function ObtainPassPort() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function ObtainPassPort() {
 
   return (
     <section id="pour-qui">
-      <h4>Qui peut obtenir le pass Sport ?</h4>
+      <h3 className="fr-h4">Qui peut obtenir le pass Sport ?</h3>
 
       <span>Le pass Sport 2024 s&apos;adressera aux jeunes qui sont :</span>
       <ul>
@@ -42,6 +43,7 @@ export default function ObtainPassPort() {
       </ul>
 
       <Button
+        id={SKIP_LINKS_ID.eligibilityTestButton}
         iconId="fr-icon-arrow-right-line"
         iconPosition="right"
         onClick={eligibilityTestOnClick}

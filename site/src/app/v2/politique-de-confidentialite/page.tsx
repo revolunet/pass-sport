@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import cn from 'classnames';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
   title: 'Politique de confidentialité - pass Sport',
@@ -19,7 +20,7 @@ export default function PolitiqueDeConfidentialite() {
           container: styles['page-header'],
         }}
       />
-      <main className={styles.wrapper}>
+      <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
         <section className="fr-mb-6w">
           <h4 className="fr-mb-2w">Article 1 - Définitions</h4>
           <p className="fr-mb-2w">
@@ -234,7 +235,7 @@ export default function PolitiqueDeConfidentialite() {
                   <td>Vimeo</td>
                   <td>États-Unis</td>
                   <td>
-                    Vidéo sur le page d&apos;accueil, vidéos sur la page tout savoir sur le pass
+                    Vidéo sur la page d&apos;accueil, vidéos sur la page tout savoir sur le pass
                     Sport
                   </td>
                   <td>https://vimeo.com/enterpriseterms/dpa</td>
