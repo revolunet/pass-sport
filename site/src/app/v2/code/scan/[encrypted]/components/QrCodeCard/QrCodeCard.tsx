@@ -46,7 +46,6 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
           <QRCodeSVG
             value={qrCodeValue}
             size={240}
-            // @ts-ignore
             aria-label="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
           />
         </div>
