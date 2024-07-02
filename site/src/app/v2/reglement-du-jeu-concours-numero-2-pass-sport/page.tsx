@@ -63,7 +63,7 @@ export default function Page() {
           </p>
           <p>
             Le présent règlement définit les règles juridiques applicables au jeu-concours « pass
-            Sport x DECATHLON ».
+            Sport ».
           </p>
         </section>
 
