@@ -41,8 +41,8 @@ export default function Page() {
             Le ministère des Sports et des Jeux Olympiques et Paralympiques, sis 95 avenue de
             France, 75013 – Paris est désigné ci-après comme: «l&apos;Organisateur » Les
             participants au jeu-concours sont désignés ci-après comme «le/les Participant(s)» Le
-            présent règlement définit les règles juridiques applicables au jeu-concours « pass Sport
-            ».
+            présent règlement définit les règles juridiques applicables au jeu-concours « Ministère
+            des Sports et des Jeux Olympiques et Paralympiques x pass Sport».
           </p>
         </section>
 
