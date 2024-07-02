@@ -7,7 +7,7 @@ export default function TranscriptionVisibilityClub() {
           rappelant l&apos;univers du sport (trophées, ballons etc..).
         </p>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Vous êtes un club ou une salle de sport et vous souhaitez accueillir de nouveaux licenciés
           grâce au pass Sport ? Dans cette vidéo, je vous explique comment vous faire rembourser les
           50 euros des nouveaux inscrits…
@@ -19,7 +19,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Tout d&apos;abord, commencez par vous connecter à votre compte asso sur
           lecompteasso.associations.gouv.fr. Si vous n&apos;avez pas de compte, créez-le et associez
           votre club avec votre compte asso, grâce à votre Siret/siren et/ou votre numéro RNA.
@@ -27,7 +27,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Une fois que votre structure (club ou salle de sport)est associée à votre compte asso,
           rendez-vous sur la page d&apos;accueil. Cliquez sur le bouton “Gérer les inscriptions pass
           Sport”.
@@ -35,7 +35,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Dans “Domaine”, sélectionnez “Sport”. Cochez “Dispositif pass Sport” qui permet de
           saisir/sélectionner les activités sportives proposées par votre structure. Indiquez si
           votre club est en capacité d&apos;accueillir des personnes en situation de handicap et
@@ -44,7 +44,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Que vous soyez une association ou une structure marchande, il faut compléter la partie
           “Saisir les affiliations aux fédérations sportives de la structure”. Cherchez les
           fédérations sportives auxquelles votre structure est affiliée et entrez-les. Pour les
@@ -55,7 +55,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Dans la partie “Affiliations et adhérents personnes morales”, si vous êtes affilié à une
           ou plusieurs fédérations sportives, renseignez le en saisissant le ou les numéros
           d&apos;affiliations avant de téléverser l&apos;attestation la plus récente de chaque
@@ -64,7 +64,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Si votre association n&apos;est pas affiliée à une fédération sportive éligible alors
           téléversez l&apos;agrément valideSPORT (datant d&apos;après 2015) ou l&apos;agrément JEP
           (datant d&apos;après 2018). Enfin, si votre structure à un but lucratif et est non
@@ -76,7 +76,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Votre compte asso est crée et à jour, il ne reste plus qu&apos;à saisir ou mettre à jour
           le RIB de votre club avant de cliquer sur “suivi des inscriptions pass Sport”. Cliquer sur
           ajouter un bénéficiaire, saisissez le code de 9 caractères et vérifiez que les
@@ -87,7 +87,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           Si un message d&apos;erreur apparaît, vérifiez que le licencié ne soit pas déjà inscrit,
           ou que son pass ne soit pas d&apos;une année anterieur. Pour rappel le pass Sport est à
           usage unique et valable pour l&apos;année en cours seulement.
@@ -95,7 +95,7 @@ export default function TranscriptionVisibilityClub() {
       </li>
       <li>
         <p>
-          <span className="fr-text--bold">Le créateur</span> <br />
+          <span className="fr-text--bold fr-mb-1w">Le créateur</span>
           C&apos;est terminé, la demande de remboursement sera transmise automatiquement ! Tous les
           15 du mois une vague de remboursement sera déclenchée par le ministère sur les dossiers
           vérifiés par les services instructeurs.
