@@ -1,9 +1,8 @@
 'use client';
-
-import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
 import { useRouter } from 'next/navigation';
-import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
+
+import Button from '@codegouvfr/react-dsfr/Button';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export default function ObtainPassPort() {
@@ -11,9 +10,7 @@ export default function ObtainPassPort() {
 
   const eligibilityTestOnClick = () => {
     push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Know everything test button']);
-    isUsingJuneEligibilityTest
-      ? router.push('/v2/test-eligibilite', { scroll: true })
-      : router.push('/v2/test-eligibilite-mai', { scroll: true });
+    router.push('/v2/test-eligibilite', { scroll: true });
   };
 
   return (
@@ -46,7 +43,11 @@ export default function ObtainPassPort() {
         id={SKIP_LINKS_ID.eligibilityTestButton}
         iconId="fr-icon-arrow-right-line"
         iconPosition="right"
-        onClick={eligibilityTestOnClick}
+        linkProps={{
+          href: '/v2/test-eligibilite',
+          'aria-label': "Visiter la page pour effectuer le test d'éligibilité",
+          onClick: eligibilityTestOnClick,
+        }}
       >
         Je fais le test
       </Button>

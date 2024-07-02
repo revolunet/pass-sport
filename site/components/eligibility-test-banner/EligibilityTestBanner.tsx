@@ -21,17 +21,19 @@ const EligibilityTestBanner = () => {
         </p>
       </div>
 
-      <Link href={isUsingJuneEligibilityTest ? '/v2/test-eligibilite' : '/v2/test-eligibilite-mai'}>
-        <Button
-          id={SKIP_LINKS_ID.eligibilityTestButton}
-          className="fr-mx-auto"
-          priority="primary"
-          size="large"
-          onClick={eligibilityTestOnClick}
-        >
-          Je fais le test
-        </Button>
-      </Link>
+      <Button
+        id={SKIP_LINKS_ID.eligibilityTestButton}
+        className="fr-mx-auto"
+        priority="primary"
+        size="large"
+        linkProps={{
+          href: '/v2/test-eligibilite',
+          'aria-label': "Visiter la page pour effectuer le test d'éligibilité",
+          onClick: eligibilityTestOnClick,
+        }}
+      >
+        Je fais le test
+      </Button>
     </div>
   );
 };

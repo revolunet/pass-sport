@@ -32,7 +32,7 @@ export default function ToutSavoirSurLePassSport() {
 
       <main className={styles['main-container']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
         <section className={styles['section-container']}>
-          <h4>Qui se mobilise pour vous accompagner ?</h4>
+          <h2 className="fr-h4">Qui se mobilise pour vous accompagner ?</h2>
           <p className="fr-text--bold">
             Plusieurs interlocuteurs peuvent vous accompagner dans votre département en fonction de
             votre statut :
@@ -57,7 +57,7 @@ export default function ToutSavoirSurLePassSport() {
         </section>
 
         <section className={styles['section-container']}>
-          <h4>Comment me faire rembourser un pass Sport ?</h4>
+          <h2 className="fr-h4">Comment me faire rembourser un pass Sport ?</h2>
 
           <p className="fr-text--bold">
             Les bénéficiaires du dispositif recevront fin mai (80% des bénéficiaires) ou fin août
@@ -72,8 +72,17 @@ export default function ToutSavoirSurLePassSport() {
           </p>
 
           <div className="fr-grid-row fr-grid-row--center">
-            {' '}
-            <Button priority="secondary" iconPosition="right" iconId="fr-icon-external-link-line">
+            <Button
+              priority="secondary"
+              iconPosition="right"
+              iconId="fr-icon-external-link-line"
+              linkProps={{
+                className: 'fr-btn--icon-right',
+                href: 'https://lecompteasso.associations.gouv.fr/',
+                'aria-label':
+                  'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
+              }}
+            >
               Le Compte Asso
             </Button>
           </div>
@@ -128,9 +137,9 @@ export default function ToutSavoirSurLePassSport() {
         </section>
 
         <section className={styles['section-container']}>
-          <h4>
+          <h2 className="fr-h4">
             Comment faire apparaître mon club sur la carte des structures éligibles au pass Sport ?{' '}
-          </h4>
+          </h2>
 
           <p className="fr-text--bold">
             Pour donner de la visibilité à votre club et anticiper l&apos;accueil des jeunes à la
@@ -150,10 +159,10 @@ export default function ToutSavoirSurLePassSport() {
         </section>
 
         <section className={styles['section-container']}>
-          <h4>
+          <h2 className="fr-h4">
             Liste des fédérations agréées par le ministère des sports et des jeux Olympiques et
             Paralympiques
-          </h4>
+          </h2>
 
           <p className="fr-text--bold">
             Si votre club est affilié à l&apos;une des fédérations suivantes pour la saison
@@ -175,7 +184,7 @@ export default function ToutSavoirSurLePassSport() {
         </section>
 
         <section className={styles['section-container']}>
-          <h4>Texte de référence</h4>
+          <h2 className="fr-h4">Texte de référence</h2>
           <Link
             href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049643030"
             target="_blank"
@@ -197,8 +206,7 @@ interface FederationListProps {
 function FederationList({ federations }: FederationListProps) {
   return federations.map((fed) => (
     <>
-      {fed}
-      <br />
+      <span className="display--block">{fed}</span>
     </>
   ));
 }
