@@ -57,7 +57,7 @@ function Page({ params: { encrypted } }: Props) {
     <div className={cn(styles['page'], 'fr-px-2w')}>
       <div className={cn(styles['container'], 'fr-container--fluid', 'fr-grid-row', 'fr-py-6w')}>
         <div className="fr-container fr-col-sm-12 fr-col-md-4 fr-px-md-2 fr-col--middle fr-mb-2w fr-mb-md-0">
-          <h2 className="fr-mb-2vw">Voici votre pass Sport</h2>
+          <h1 className="fr-mb-2vw fr-h2">Voici votre pass Sport</h1>
 
           <p className="fr-mb-2w">
             Vous avez fait la demande de votre pass Sport. Il est strictement confidentiel.
