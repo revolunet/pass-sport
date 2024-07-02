@@ -6,6 +6,7 @@ import { URLSearchParams } from 'next/dist/compiled/@edge-runtime/primitives';
 import QrCodeCard from './components/QrCodeCard/QrCodeCard';
 import { decryptData } from '../../../../../../utils/decryption';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 interface Props {
   params: {
@@ -15,7 +16,7 @@ interface Props {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'QR - pass Sport',
+    title: 'Résultat de votre QR pass Sport',
   };
 }
 
@@ -72,7 +73,7 @@ function Page({ params: { encrypted } }: Props) {
           </p>
         </div>
 
-        <div className="fr-col-12 fr-col-md-8">
+        <main className="fr-col-12 fr-col-md-8" tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
           <QrCodeCard
             data={{
               firstname,
@@ -83,7 +84,7 @@ function Page({ params: { encrypted } }: Props) {
             }}
             qrCodeValue={qrCodeValue}
           />
-        </div>
+        </main>
       </div>
     </div>
   );
