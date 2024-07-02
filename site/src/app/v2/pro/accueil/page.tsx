@@ -113,7 +113,7 @@ export default function Accueil() {
                 iconPosition="right"
                 linkProps={{
                   href: '/v2/pro/ressources',
-                  title: 'Lien vers la page des ressources',
+                  'aria-label': 'Visiter la page des ressources',
                 }}
               >
                 Ressources

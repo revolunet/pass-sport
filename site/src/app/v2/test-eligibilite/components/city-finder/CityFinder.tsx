@@ -82,7 +82,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
         name={inputName}
         loadingMessage={() => <p>Chargement des villes...</p>}
         noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-        placeholder="Trouver la commune"
+        placeholder="Entrez le nom de votre commune"
         cacheOptions
         isClearable
         loadOptions={fetchCityOptions}

@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 import { useUpdateList } from '@/app/hooks/accessibility/use-update-list';
 import { useRef } from 'react';
 import { HEADER_CLASSES } from '@/app/constants/dsfr-classes';
+import { useReplaceTitlesByAriaLabels } from '@/app/hooks/accessibility/use-replace-titles-by-aria-labels';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
@@ -22,6 +23,20 @@ export default function PassSportNavigation() {
     parentRef: headerRef,
     role: 'none',
     listSelector: HEADER_CLASSES.list,
+  });
+
+  useReplaceTitlesByAriaLabels({
+    parentRef: headerRef,
+    elementsToUpdate: [
+      {
+        selector: HEADER_CLASSES.closeButton,
+        ariaLabel: 'Fermer le menu de navigation',
+      },
+      {
+        selector: HEADER_CLASSES.menuButton,
+        ariaLabel: 'Menu de navigation',
+      },
+    ],
   });
 
   return (
@@ -51,9 +66,9 @@ export default function PassSportNavigation() {
             },
           },
         ]}
+        // @ts-ignore
         homeLinkProps={{
           href: '/v2/accueil',
-          title: '',
           'aria-label': `Retourner sur la page d'accueil du pass Sport`,
         }}
         navigation={navigationItemStandard.map((item) => ({

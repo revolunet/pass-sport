@@ -21,7 +21,7 @@ const Question = ({
 }: Props) => {
   return (
     <>
-      <legend
+      <div
         className={cn('fr-p-2w', 'fr-mb-1w', styles.panel, styles.fit, {
           [`${styles['panel_may']}`]: style === QUESTION_STYLES.MAY_STYLE,
           [`${styles['panel_june']}`]: style === QUESTION_STYLES.JUNE_STYLE,
@@ -32,7 +32,7 @@ const Question = ({
         ) : (
           question
         )}
-      </legend>
+      </div>
       <div className={` ${styles.container} ${styles.fit}`}>
         {description && (
           <div className={`fr-p-2w ${styles.panel}`}>

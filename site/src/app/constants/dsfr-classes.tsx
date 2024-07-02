@@ -5,6 +5,8 @@
 
 export const HEADER_CLASSES = {
   list: '.fr-btns-group',
+  closeButton: '#fr-header-mobile-overlay-button-close',
+  menuButton: '.fr-header__navbar .fr-btn--menu.fr-btn',
 };
 
 export const FOOTER_CLASSES = {
