@@ -22,7 +22,9 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
 
   return (
     <div className={styles.container}>
-      <h3> Pour vous engager dans des missions de volontariat ou de bénévolat :</h3>
+      <h2 className="fr-h3">
+        Pour vous engager dans des missions de volontariat ou de bénévolat :
+      </h2>
 
       <Card
         background
@@ -47,7 +49,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         }}
         size="medium"
         title="Ouvrir une nouvelle fenêtre vers le site Je veux aider.gouv.fr"
-        titleAs="h4"
+        titleAs="h3"
         classes={{
           end: styles.end,
         }}
@@ -74,7 +76,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         }}
         size="medium"
         title="Ouvrir une nouvelle fenêtre vers le site Le SNU, pour moi, pour les autres, et pour la France."
-        titleAs="h4"
+        titleAs="h3"
         classes={{
           end: styles.end,
         }}
@@ -103,7 +105,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         }}
         size="medium"
         title="Ouvrir une nouvelle fenêtre vers le site le Service Civique, une mission pour chacun au service de tous"
-        titleAs="h4"
+        titleAs="h3"
         classes={{
           end: styles.end,
           body: styles['card-body'],
