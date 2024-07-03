@@ -83,12 +83,14 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
           <ul className={cn('fr-summary__list', 'fr-p-0', 'fr-pl-md-3w')}>
             {categoriesWithArticles.map((category, index) => {
               return (
-                <li key={category.id}>
+                <li
+                  key={category.id}
+                  className={cn('cursor--pointer', {
+                    [styles['faq__category--selected']]: selectedCategory?.id === category.id,
+                  })}
+                >
                   <div
                     role="button"
-                    className={cn(styles['faq__category--pointer'], {
-                      [styles['faq__category--selected']]: selectedCategory?.id === category.id,
-                    })}
                     tabIndex={0}
                     onClick={() => {
                       onCategorySelect(category);
@@ -118,7 +120,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
           if (selectedArticle !== null && article.id !== selectedArticle.id) return null;
 
           return (
-            <li key={article.id} id={article.id}>
+            <li key={article.id} id={article.id} className="cursor--pointer">
               <div
                 className="fr-callout"
                 role="button"
