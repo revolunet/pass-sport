@@ -100,6 +100,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                       }
                     }}
                   >
+                    {/* We need to do it this way otherwise the voice over is reading the numbering (if we use the css property list-style-type) */}
                     <span aria-hidden="true" className="fr-text--bold">
                       {index + 1}.{' '}
                     </span>
