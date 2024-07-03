@@ -30,7 +30,12 @@ export default function ToutSavoirSurLePassSport() {
         }}
       />
 
-      <main className={styles['main-container']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+      <main
+        className={styles['main-container']}
+        tabIndex={-1}
+        id={SKIP_LINKS_ID.mainContent}
+        role="main"
+      >
         <section className={styles['section-container']}>
           <h2 className="fr-h4">Qui se mobilise pour vous accompagner ?</h2>
           <p className="fr-text--bold">

@@ -25,6 +25,7 @@ export default function Page() {
         className={cn(styles.main, styles.wrapper)}
         tabIndex={-1}
         id={SKIP_LINKS_ID.mainContent}
+        role="main"
       >
         <section className="fr-mb-6w">
           <h4 className="fr-mb-2w">Présentation du jeu-concours pass Sport</h4>

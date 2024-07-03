@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function Accueil() {
   return (
-    <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+    <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
       <section>
         <Hero />
       </section>

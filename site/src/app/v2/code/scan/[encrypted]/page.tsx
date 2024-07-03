@@ -73,7 +73,12 @@ function Page({ params: { encrypted } }: Props) {
           </p>
         </div>
 
-        <main className="fr-col-12 fr-col-md-8" tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+        <main
+          className="fr-col-12 fr-col-md-8"
+          tabIndex={-1}
+          id={SKIP_LINKS_ID.mainContent}
+          role="main"
+        >
           <QrCodeCard
             data={{
               firstname,

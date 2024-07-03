@@ -20,7 +20,7 @@ export default function PolitiqueDeConfidentialite() {
           container: styles['page-header'],
         }}
       />
-      <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+      <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
         <section className="fr-mb-6w">
           <p className="fr-mb-2w">
             Le Portail pass Sport est un service du ministère des Sports et des Jeux Olympiques et
