@@ -85,7 +85,6 @@ const AllowanceStep = () => {
         id="second-step-form"
         className="fr-fieldset"
         aria-labelledby="second-step-form-legend"
-        role="status"
       >
         {[ALLOWANCE.ARS_AEEH_AAH, ALLOWANCE.CROUS].includes(allowance as ALLOWANCE) && (
           <legend
@@ -95,10 +94,11 @@ const AllowanceStep = () => {
             Deuxième étape du formulaire
           </legend>
         )}
-
-        {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
-        {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
-        {allowance === ALLOWANCE.CROUS && <CrousStep />}
+        <div role="status">
+          {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
+          {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
+          {allowance === ALLOWANCE.CROUS && <CrousStep />}
+        </div>
       </fieldset>
     </EligibilityTestContext.Provider>
   );

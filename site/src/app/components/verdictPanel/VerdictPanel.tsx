@@ -37,7 +37,7 @@ const VerdictPanel = ({
             'fr-callout--pink-tuile': !isSuccess,
           })}
         >
-          <h3 className={cn('fr-callout__title', 'fr-pb-1w')}>{title}</h3>
+          <h2 className={cn('fr-callout__title', 'fr-pb-1w', 'fr-h3')}>{title}</h2>
           <div>{children}</div>
 
           {buttonProps && <Button {...buttonProps} />}
