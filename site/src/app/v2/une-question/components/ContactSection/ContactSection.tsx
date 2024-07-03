@@ -37,7 +37,7 @@ const ContactSection = () => {
       </contactModal.Component>
 
       <div className="fr-mb-4w">
-        <h3 className="fr-mb-2w">Vous ne trouvez pas de réponse satisfaisante.</h3>
+        <h2 className="fr-mb-2w fr-h3">Vous ne trouvez pas de réponse satisfaisante.</h2>
         <p className="fr-mb-2w">
           Contactez-nous directement par e-mail pour que nous puissions trouver une solution.
         </p>

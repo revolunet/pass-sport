@@ -20,23 +20,29 @@ const initialInputsState: InputsState = {
   consent: 'default',
 };
 
-const reasons: string[] = [
-  'Bénéficiaires et familles : comment obtenir le pass Sport ?',
-  'Bénéficiaires et familles : qui reçoit le code ?',
-  'Bénéficiaires et familles : comment utiliser mon pass ?',
-  'Bénéficiaires et familles : où utiliser mon pass ?',
-  'Bénéficiaires et familles : comment trouver une structure partenaire ?',
-  'Bénéficiaires et familles : mon club refuse de prendre le pass Sport que faire ?',
-  "Bénéficiaires et familles : mon club refuse de me faire la réduction de 50€ à l’inscription et attend d'être remboursé pour m'appliquer la ristourne que faire ?",
-  'Bénéficiaires et familles : les inscriptions dans mon club sont avant l’envoi des codes que faire ?',
-  'Code : Je n’ai pas reçu mon code pass Sport',
-  'Code  : Je n’arrive à obtenir mon code sur le portail via « obtenir mon code »',
-  'Clubs et structures : le code ne fonctionne pas !',
-  'Clubs et structures : quel est le principe du dipositif ?',
-  'Clubs et structures : Comment rentrer dans le dispositif ?',
-  'Clubs et structures : Comment demander le remboursement pass Sport ?',
-  'Clubs et structures : quand mon club sera-t-il remboursé ?',
-  'Clubs et structures : j’ai un problème avec mon compte asso',
+const beneficiariesReasons = [
+  'Comment obtenir le pass Sport ?',
+  'Qui reçoit le code ?',
+  'Comment utiliser mon pass ?',
+  'Où utiliser mon pass ?',
+  'Comment trouver une structure partenaire ?',
+  'Mon club refuse de prendre le pass Sport que faire ?',
+  "Mon club refuse de me faire la réduction de 50€ à l’inscription et attend d'être remboursé pour m'appliquer la ristourne que faire ?",
+  'Les inscriptions dans mon club sont avant l’envoi des codes que faire ?',
+];
+
+const codeReasons: string[] = [
+  'Je n’ai pas reçu mon code pass Sport',
+  'Je n’arrive à obtenir mon code sur le portail via « obtenir mon code »',
+];
+
+const clubReasons: string[] = [
+  'Le code ne fonctionne pas !',
+  'Quel est le principe du dipositif ?',
+  'Comment rentrer dans le dispositif ?',
+  'Comment demander le remboursement pass Sport ?',
+  'Quand mon club sera-t-il remboursé ?',
+  'J’ai un problème avec mon compte asso',
 ];
 
 interface Props {
@@ -117,10 +123,12 @@ const ContactForm = ({ closeFn }: Props) => {
   };
 
   return (
-    <div>
+    <>
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <div>
-          <h6 className="fr-text--bold fr-my-2w">Avez-vous d&apos;abord consulté notre FAQ ?</h6>
+          <h2 className="fr-text--bold fr-my-2w fr-h6">
+            Avez-vous d&apos;abord consulté notre FAQ ?
+          </h2>
           <p className="fr-mb-2w">
             La réponse à votre question s&apos;y trouve peut-être. Si tel est le cas, vous gagnerez
             certainement du temps grâce à elle.
@@ -141,11 +149,19 @@ const ContactForm = ({ closeFn }: Props) => {
         </div>
         <div>
           <div className={styles.form}>
+            <div>
+              <p className={styles.paragraph}>Les champs ci-dessous sont obligatoires*</p>
+            </div>
             <div className={styles['names-input-container']}>
               <div>
                 <Input
                   label="Prénom*"
-                  nativeInputProps={{ name: 'firstname' }}
+                  nativeInputProps={{
+                    name: 'firstname',
+                    'aria-label': 'Saisir votre prénom',
+                    autoComplete: 'given-name',
+                    'aria-autocomplete': 'none',
+                  }}
                   state={inputStates.firstname}
                   stateRelatedMessage="Le prénom est requis"
                 />
@@ -154,7 +170,12 @@ const ContactForm = ({ closeFn }: Props) => {
               <div>
                 <Input
                   label="Nom de famille*"
-                  nativeInputProps={{ name: 'lastname' }}
+                  nativeInputProps={{
+                    name: 'lastname',
+                    'aria-label': 'Saisir votre nom',
+                    autoComplete: 'family-name',
+                    'aria-autocomplete': 'none',
+                  }}
                   state={inputStates.lastname}
                   stateRelatedMessage="Le nom de famille est requis"
                 />
@@ -163,15 +184,24 @@ const ContactForm = ({ closeFn }: Props) => {
             <div>
               <Input
                 label="Adresse e-mail*"
-                nativeInputProps={{ name: 'email' }}
+                nativeInputProps={{
+                  name: 'email',
+                  'aria-label': 'Saisir votre adresse e-mail',
+                  autoComplete: 'email',
+                  'aria-autocomplete': 'none',
+                }}
                 state={inputStates.email}
-                stateRelatedMessage="L'email est requis dans un format valide"
+                stateRelatedMessage="Veuillez saisir une adresse e-mail valide. Par exemple : john.doe@access42.net"
               />
             </div>
             <div>
               <Select
                 label="Objet de la demande*"
-                nativeSelectProps={{ name: 'reason', defaultValue: '' }}
+                nativeSelectProps={{
+                  name: 'reason',
+                  defaultValue: '',
+                  'aria-label': "Selectionnez l'objet de votre demande",
+                }}
                 state={inputStates.reason}
                 stateRelatedMessage="L'objet de l'email est requis"
               >
@@ -179,11 +209,29 @@ const ContactForm = ({ closeFn }: Props) => {
                   <option disabled hidden value="">
                     Veuillez sélectionnez un objet
                   </option>
-                  {reasons.map((r) => (
-                    <option value={r} key={r}>
-                      {r}
-                    </option>
-                  ))}
+                  <optgroup label="Bénéficiaires et familles">
+                    {beneficiariesReasons.map((r) => (
+                      <option value={r} key={r}>
+                        {r}
+                      </option>
+                    ))}
+                  </optgroup>
+
+                  <optgroup label="Code">
+                    {codeReasons.map((r) => (
+                      <option value={r} key={r}>
+                        {r}
+                      </option>
+                    ))}
+                  </optgroup>
+
+                  <optgroup label="Clubs et structures">
+                    {clubReasons.map((r) => (
+                      <option value={r} key={r}>
+                        {r}
+                      </option>
+                    ))}
+                  </optgroup>
                 </React.Fragment>
               </Select>
             </div>
@@ -192,7 +240,11 @@ const ContactForm = ({ closeFn }: Props) => {
               className={styles['textarea-wrapper']}
               textArea
               label="Message*"
-              nativeTextAreaProps={{ placeholder: 'Message*', name: 'message' }}
+              nativeTextAreaProps={{
+                placeholder: 'Message*',
+                name: 'message',
+                'aria-label': 'Saisir votre message',
+              }}
               state={inputStates.message}
               stateRelatedMessage="Le message est requis"
             />
@@ -248,7 +300,7 @@ const ContactForm = ({ closeFn }: Props) => {
           closable
         />
       )}
-    </div>
+    </>
   );
 };
 

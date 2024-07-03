@@ -83,27 +83,28 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
           <ul className={cn('fr-summary__list', 'fr-p-0', 'fr-pl-md-3w')}>
             {categoriesWithArticles.map((category, index) => {
               return (
-                <li
-                  key={category.id}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => {
-                    onCategorySelect(category);
-                  }}
-                  onKeyDown={(event) => {
-                    // Check if the key is Enter or Space
-                    if (event.key === 'Enter' || event.key === ' ') {
+                <li key={category.id}>
+                  <div
+                    role="button"
+                    className={cn(styles['faq__category--pointer'], {
+                      [styles['faq__category--selected']]: selectedCategory?.id === category.id,
+                    })}
+                    tabIndex={0}
+                    onClick={() => {
                       onCategorySelect(category);
-                    }
-                  }}
-                  className={cn(styles['faq__category--pointer'], {
-                    [styles['faq__category--selected']]: selectedCategory?.id === category.id,
-                  })}
-                >
-                  <span aria-hidden="true" className="fr-text--bold">
-                    {index + 1}.{' '}
-                  </span>
-                  <span>{category.name}</span>
+                    }}
+                    onKeyDown={(event) => {
+                      // Check if the key is Enter or Space
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        onCategorySelect(category);
+                      }
+                    }}
+                  >
+                    <span aria-hidden="true" className="fr-text--bold">
+                      {index + 1}.{' '}
+                    </span>
+                    <span>{category.name}</span>
+                  </div>
                 </li>
               );
             })}
@@ -116,55 +117,53 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
           if (selectedArticle !== null && article.id !== selectedArticle.id) return null;
 
           return (
-            <li
-              key={article.id}
-              role="button"
-              tabIndex={0}
-              className="fr-callout"
-              id={article.id}
-              style={{ cursor: 'pointer' }}
-              onKeyDown={(event) => {
-                // Check if the key is Enter or Space
-                if (event.key === 'Enter' || event.key === ' ') {
+            <li key={article.id} id={article.id}>
+              <div
+                className="fr-callout"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  // Check if the key is Enter or Space
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    onArticleSelect(article);
+                  }
+                }}
+                onClick={() => {
                   onArticleSelect(article);
-                }
-              }}
-              onClick={() => {
-                onArticleSelect(article);
-              }}
-            >
-              <span className="display--block fr-callout__title fr-h3">{article.title}</span>
+                }}
+              >
+                <span className="display--block fr-callout__title fr-h3">{article.title}</span>
+                {selectedArticle !== null && (
+                  <>
+                    <div className={cn('fr-callout__text', styles['faq__callout-text'])}>
+                      <Markdown remarkPlugins={[remarkBreaks]} className={styles['faq__markdown']}>
+                        {article.content}
+                      </Markdown>
+                    </div>
 
-              {selectedArticle !== null && (
-                <>
-                  <div className={cn('fr-callout__text', styles['faq__callout-text'])}>
-                    <Markdown remarkPlugins={[remarkBreaks]} className={styles['faq__markdown']}>
-                      {article.content}
-                    </Markdown>
-                  </div>
+                    <button
+                      aria-label="Retour à la foire aux questions"
+                      className="fr-btn fr-btn--secondary fr-icon-arrow-left-line fr-btn--icon-left"
+                      onClick={(e) => {
+                        // Stop propagation to prevent clicking
+                        // on the article itself thus setting the selectedArticle again instead of setting it to null
+                        e.stopPropagation();
+                        setSelectedArticle(null);
+                        replace(`${pathname}#header`);
+                      }}
+                    >
+                      Retour
+                    </button>
 
-                  <button
-                    aria-label="Retour à la foire aux questions"
-                    className="fr-btn fr-btn--secondary fr-icon-arrow-left-line fr-btn--icon-left"
-                    onClick={(e) => {
-                      // Stop propagation to prevent clicking
-                      // on the article itself thus setting the selectedArticle again instead of setting it to null
-                      e.stopPropagation();
-                      setSelectedArticle(null);
-                      replace(`${pathname}#header`);
-                    }}
-                  >
-                    Retour
-                  </button>
-
-                  <div
-                    className={cn(styles['faq__feedback-date'], 'fr-text--sm')}
-                    suppressHydrationWarning
-                  >
-                    Mis à jour le : {new Date(selectedArticle.updatedAt).toLocaleDateString()}
-                  </div>
-                </>
-              )}
+                    <div
+                      className={cn(styles['faq__feedback-date'], 'fr-text--sm')}
+                      suppressHydrationWarning
+                    >
+                      Mis à jour le : {new Date(selectedArticle.updatedAt).toLocaleDateString()}
+                    </div>
+                  </>
+                )}
+              </div>
             </li>
           );
         })}
