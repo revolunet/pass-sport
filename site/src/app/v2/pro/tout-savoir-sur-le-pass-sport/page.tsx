@@ -13,6 +13,7 @@ import { Metadata } from 'next';
 import Video from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/Video';
 import TranscriptionVisibilityClub from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionVisibilityClub';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionRefundPassSport';
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',
@@ -126,19 +127,16 @@ export default function ToutSavoirSurLePassSport() {
             </li>
           </ul>
 
-          {/* todo: Include this section back when we get the video */}
-          {/*<p>*/}
-          {/*  Vous pouvez consulter notre tutoriel d&apos;accompagnement qui vous guide pour*/}
-          {/*  l&apos;ensemble de la démarche sur LCA :*/}
-          {/*</p>*/}
+          <p>
+            Vous pouvez consulter notre tutoriel d&apos;accompagnement qui vous guide pour
+            l&apos;ensemble de la démarche sur LCA :
+          </p>
 
-          {/*<Link*/}
-          {/*  href="https://www.pass.sports.gouv.fr/app/uploads/2022/09/2022_PassSport_Comment-se-faire-rembourser.pdf"*/}
-          {/*  target="_blank"*/}
-          {/*  className="align-self--baseline"*/}
-          {/*>*/}
-          {/*  2022_PassSport_Comment se faire rembourser*/}
-          {/*</Link>*/}
+          <Video
+            videoId="956954295"
+            title="Tutoriel : se faire rembourser un pass Sport"
+            transcriptionContent={<TranscriptionRefundPassSport />}
+          />
         </section>
 
         <section className={styles['section-container']}>
