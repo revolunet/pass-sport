@@ -12,6 +12,12 @@ import PassSportNavigation from './components/pass-sport-navigation/PassSportNav
 import PassSportBreadcrumb from '@/app/components/pass-sport-breadcrumb/PassSportBreadCrumb';
 import Matomo from './Matomo';
 import SkipLinksWrapper from '@/app/components/skip-links-wrapper/SkipLinksWrapper';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Accueil - pass Sport',
+  description: "Page d'accueil du site pass.sports.gouv.fr pour les particuliers",
+};
 
 export default function RootLayout({
   children,
