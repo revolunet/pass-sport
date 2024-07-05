@@ -137,6 +137,7 @@ export default function ToutSavoirSurLePassSport() {
           <Video
             videoId="video-956954295"
             videoPathUrl="956954295?h=c830d2877e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            videoFullUrl="https://vimeo.com/956954295/c830d2877e"
             title="Tutoriel : se faire rembourser un pass Sport"
             transcriptionContent={<TranscriptionRefundPassSport />}
             vignette={vignetteRefund}
@@ -161,6 +162,7 @@ export default function ToutSavoirSurLePassSport() {
           <Video
             videoId="video-949861035"
             videoPathUrl="949861035"
+            videoFullUrl="https://vimeo.com/949861035"
             title="Tutoriel : devenez partenaire du pass Sport"
             transcriptionContent={<TranscriptionVisibilityClub />}
             vignette={vignetteClub}

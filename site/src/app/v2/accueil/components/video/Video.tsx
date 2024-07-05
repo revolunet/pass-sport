@@ -41,7 +41,12 @@ const Video = ({ videoId, videoPathUrl }: Props) => {
         </div>
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
           Vidéo de présentation du dispositif pass Sport du ministère des Sports
-          <a className={`fr-link ${styles.text}`} href="https://vimeo.com/727000609">
+          <a
+            className={`fr-link ${styles.text}`}
+            href="https://vimeo.com/727000609"
+            aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viméo"
+            target="_blank"
+          >
             Voir la vidéo sur Viméo
           </a>
         </figcaption>

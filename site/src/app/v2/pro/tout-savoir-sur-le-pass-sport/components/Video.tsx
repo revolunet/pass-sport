@@ -9,12 +9,20 @@ import styles from './styles.module.scss';
 interface Props {
   videoId: string;
   videoPathUrl: string;
+  videoFullUrl: string;
   title: string;
   transcriptionContent: ReactNode;
   vignette: StaticImageData;
 }
 
-const Video = ({ videoId, videoPathUrl, title, transcriptionContent, vignette }: Props) => {
+const Video = ({
+  videoId,
+  videoPathUrl,
+  videoFullUrl,
+  title,
+  transcriptionContent,
+  vignette,
+}: Props) => {
   useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
@@ -43,8 +51,13 @@ const Video = ({ videoId, videoPathUrl, title, transcriptionContent, vignette }:
         </div>
         <figcaption className="fr-content-media__caption">
           {title}
-          <a className={`fr-link `} href={`https://vimeo.com/${videoId}`}>
-            {`https://vimeo.com/${videoId}`}
+          <a
+            className={`fr-link `}
+            href={videoFullUrl}
+            target="_blank"
+            aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viémo"
+          >
+            {videoFullUrl}
           </a>
         </figcaption>
 
