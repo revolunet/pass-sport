@@ -55,7 +55,7 @@ const Video = ({
             className={`fr-link `}
             href={videoFullUrl}
             target="_blank"
-            aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viémo"
+            aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viméo"
           >
             {videoFullUrl}
           </a>
