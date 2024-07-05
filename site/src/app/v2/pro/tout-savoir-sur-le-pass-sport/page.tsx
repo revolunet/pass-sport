@@ -14,8 +14,8 @@ import Video from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/Video';
 import TranscriptionVisibilityClub from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionVisibilityClub';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionRefundPassSport';
-import vignetteRefund from '@/images/vignette-video-remboursement.avif';
-import vignetteClub from '@/images/vignette-video-structure.avif';
+import vignetteRefund from '@/images/vignette-video-remboursement.png';
+import vignetteClub from '@/images/vignette-video-structure.png';
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',

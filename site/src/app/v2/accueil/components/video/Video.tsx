@@ -1,6 +1,6 @@
 'use client';
 
-import vignetteImage from '@/images/vignette-video-accueil.avif';
+import vignetteImage from '@/images/vignette-video-accueil.png';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Image from 'next/image';
 import Link from 'next/link';
