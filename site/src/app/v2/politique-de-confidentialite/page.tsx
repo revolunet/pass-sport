@@ -5,6 +5,7 @@ import EligibilityTestBanner from '@/components/eligibility-test-banner/Eligibil
 import cn from 'classnames';
 import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Politique de confidentialité - pass Sport',
@@ -22,7 +23,7 @@ export default function PolitiqueDeConfidentialite() {
       />
       <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 1 - Définitions</h4>
+          <h2 className="fr-mb-2w">Article 1 - Définitions</h2>
           <p className="fr-mb-2w">
             Les définitions fournies à l&apos;article 4 du RGPD sont applicables aux présentes.
           </p>
@@ -50,7 +51,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 2 - Qui est responsable ?</h4>
+          <h2 className="fr-mb-2w">Article 2 - Qui est responsable ?</h2>
           <p className="fr-mb-2w">
             La Direction des sports du ministère des sports et des jeux olympiques et paralympiques
             (ci-après <span className="fr-text--bold">« la Direction des sports »</span>) est le
@@ -69,7 +70,7 @@ export default function PolitiqueDeConfidentialite() {
           <p className="fr-mb-2w">
             <span className="fr-text--bold">Adresse mail :</span>
             <br />
-            ds-rgpd@sports.gouv.fr
+            <Link href="mailto:ds-rgpd@sports.gouv.fr">ds-rgpd@sports.gouv.fr</Link>
           </p>
 
           <p>
@@ -79,8 +80,7 @@ export default function PolitiqueDeConfidentialite() {
             en particulier,{' '}
             <a
               href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees"
-              title="Lien vers les dispositions du Règlement (UE) 2016/679 général sur la protection des données"
-              aria-label="Lien vers les dispositions du Règlement (UE) 2016/679 général sur la protection des données"
+              aria-label="Ouvrir une nouvelle fenêtre vers les dispositions du Règlement (UE) 2016/679 général sur la protection des données"
               target="_blank"
             >
               les dispositions du Règlement (UE) 2016/679 général sur la protection des données
@@ -88,8 +88,7 @@ export default function PolitiqueDeConfidentialite() {
             (« RGPD »), de la{' '}
             <a
               href="https://www.cnil.fr/fr/la-loi-informatique-et-libertes"
-              title="Lien vers la loi n°78-17 informatique et Libertés du 6 janvier 1978 modifiée"
-              aria-label="Lien vers la loi n°78-17 informatique et Libertés du 6 janvier 1978 modifiée"
+              aria-label="Ouvrir une nouvelle fenêtre vers vers la loi n°78-17 informatique et Libertés du 6 janvier 1978 modifiée"
               target="_blank"
             >
               loi n°78-17 informatique et Libertés du 6 janvier 1978 modifiée
@@ -101,9 +100,9 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">
+          <h2 className="fr-mb-2w">
             Article 3 - Pourquoi traitons-nous des données à caractère personnel ?
-          </h4>
+          </h2>
           <p>
             Le présent traitement a pour finalité la délivrance du pass Sport 2024 aux bénéficiaires
             âgés de 6 à 30 ans, dans le but de réduire le montant de l’adhésion ou de la prise de
@@ -112,9 +111,9 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">
+          <h2 className="fr-mb-2w">
             Article 4 - Qu’est-ce qui nous autorise à traiter vos données ?
-          </h4>
+          </h2>
           <p>
             Le présent traitement se fonde sur l&apos;article 6. 1. e) du Règlement européen
             2016/679 (règlement général sur la protection des données - RGPD) relatif à
@@ -128,7 +127,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 5 - Quelles sont les données traitées ?</h4>
+          <h2 className="fr-mb-2w">Article 5 - Quelles sont les données traitées ?</h2>
           <p>Pour les bénéficiaires éligibles au dispositif pass Sport</p>
           <ul className="fr-pl-4w">
             <li>
@@ -155,7 +154,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 6 - Combien de temps sont conservées vos données ?</h4>
+          <h2 className="fr-mb-2w">Article 6 - Combien de temps sont conservées vos données ?</h2>
           <p className="fr-mb-2w">
             Les données à caractère personnel des bénéficiaires éligibles au dispositif pass Sport
             seront effacées au bout de 12 mois à compter de leur réception par la direction des
@@ -169,7 +168,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Qui est concerné par le traitement des données ?</h4>
+          <h2 className="fr-mb-2w">Qui est concerné par le traitement des données ?</h2>
           <p className="fr-mb-2w">
             Sont concernées par le traitement mentionné à l&apos;article 3 les bénéficiaires, âgés
             de 6 à 30 ans, éligibles au dispositif pass Sport et les exploitants de structures
@@ -178,7 +177,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 8 - Où ont été collectées vos données ?</h4>
+          <h2 className="fr-mb-2w">Article 8 - Où ont été collectées vos données ?</h2>
           <p>
             Vos données sont collectées directement lorsque vous souhaitez obtenir votre pass Sport
             ou lorsque vous remplissez le formulaire de contact.
@@ -192,9 +191,9 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">
+          <h2 className="fr-mb-2w">
             Article 9 - Qui nous aide à traiter vos données à caractère personnel ?
-          </h4>
+          </h2>
           <p>
             Certaines données sont envoyées à des “sous-traitants” qui nous aident dans le
             traitement de vos données à caractère personnel. Le responsable de traitement s’est
@@ -249,7 +248,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 10 - Quels sont vos droits ? Comment les exercer ?</h4>
+          <h2 className="fr-mb-2w">Article 10 - Quels sont vos droits ? Comment les exercer ?</h2>
           <p className="fr-mb-2w">
             Conformément à la réglementation applicable, à savoir le RGPD et la loi Informatique et
             libertés, vous disposez d&apos;un droit d&apos;information, d&apos;accès, de
@@ -269,7 +268,10 @@ export default function PolitiqueDeConfidentialite() {
             LA DIRECTION DES SPORTS <br /> 95 avenue de France 75013 PARIS
           </p>
 
-          <p>Par voie électronique à l&apos;adresse suivante : ds-rgpd@sports.gouv.fr</p>
+          <p>
+            Par voie électronique à l&apos;adresse suivante :{' '}
+            <Link href="mailto:ds-rgpd@sports.gouv.fr">ds-rgpd@sports.gouv.fr</Link>
+          </p>
 
           <ul className="fr-pl-4w">
             <li className="fr-text--bold">Délégué à la protection des données</li>
@@ -291,12 +293,12 @@ export default function PolitiqueDeConfidentialite() {
           </p>
 
           <p className="fr-mb-2w">
-            Par voie électronique à l&apos;adresse suivante : dpd@education.gouv.fr <br />
+            Par voie électronique à l&apos;adresse suivante :{' '}
+            <Link href="mailto:dpd@education.gouv.fr">dpd@education.gouv.fr</Link> <br />
             Ou via le formulaire de saisine en ligne :{' '}
             <a
               href="http://www.education.gouv.fr/pid33441/nous-contacter.html#RGPD"
-              title="Lien vers le formulaire de saisine en ligne pour les difficultés rencontrées dans l'exercice de vos droits"
-              aria-label="Lien vers le formulaire de saisine en ligne pour les difficultés rencontrées dans l'exercice de vos droits"
+              aria-label="Ouvrir une nouvelle fenêtre vers le formulaire de saisine en ligne pour les difficultés rencontrées dans l'exercice de vos droits"
               target="_blank"
             >
               http://www.education.gouv.fr/pid33441/nous-contacter.html#RGPD
@@ -312,8 +314,7 @@ export default function PolitiqueDeConfidentialite() {
             été respectés, vous pouvez introduire une réclamation auprès de la CNIL.{' '}
             <a
               href="https://www.cnil.fr/fr/mes-demarches/les-droits-pour-maitriser-vos-donnees-personnelles"
-              title="Voir le site de la CNIL pour plus d'informations sur vos droits."
-              aria-label="Voir le site de la CNIL pour plus d'informations sur vos droits."
+              aria-label="Ouvrir une nouvelle fneêtre vers le site de la CNIL pour plus d'informations sur vos droits."
               target="_blank"
             >
               Voir le site de la CNIL pour plus d&apos;informations sur vos droits.
@@ -322,7 +323,7 @@ export default function PolitiqueDeConfidentialite() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 11 - Indications en cas de violation de données</h4>
+          <h2 className="fr-mb-2w">Article 11 - Indications en cas de violation de données</h2>
           <p className="fr-mb-2w">
             La Direction des sports s&apos;engage à mettre en œuvre toutes les mesures techniques et
             organisationnelles appropriées grâce à des moyens de sécurisation physiques et
