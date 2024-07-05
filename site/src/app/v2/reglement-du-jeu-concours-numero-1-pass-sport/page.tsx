@@ -22,7 +22,7 @@ export default function Page() {
       />
       <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Présentation du jeu-concours pass Sport</h2>
+          <h2 className="fr-mb-2w">Présentation du jeu-concours pass Sport</h2>
 
           <p className="fr-mb-2w">
             Le Portail pass Sport est un service du ministère des Sports et des Jeux Olympiques et
@@ -36,7 +36,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 1er - Définitions</h2>
+          <h2 className="fr-mb-2w">Article 1er - Définitions</h2>
 
           <p className="fr-mb-2w">
             Le ministère des Sports et des Jeux Olympiques et Paralympiques, sis 95 avenue de
@@ -48,7 +48,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 2 – Conditions de participation</h2>
+          <h2 className="fr-mb-2w">Article 2 – Conditions de participation</h2>
 
           <p className="fr-mb-2w">
             Le présent jeu-concours est ouvert à toute personne physique, majeure et mineure (à
@@ -69,7 +69,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 3 – Dates du concours</h2>
+          <h2 className="fr-mb-2w">Article 3 – Dates du concours</h2>
 
           <p className="fr-mb-2w">
             Le jeu-concours se déroulera en deux phases indépendantes l&apos;une de l&apos;autre
@@ -83,8 +83,8 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 4 – Modalités de participation</h2>
-          <h3 className="fr-mb-2w fr-h5">4.1 Conditions de participation</h3>
+          <h2 className="fr-mb-2w">Article 4 – Modalités de participation</h2>
+          <h3 className="fr-mb-2w">4.1 Conditions de participation</h3>
 
           <p className="fr-mb-2w">
             Afin de participer au présent jeu-concours, le Participant devra se rendre sur la
@@ -234,7 +234,7 @@ export default function Page() {
             présent règlement.
           </p>
 
-          <h4 className="fr-mb-2w fr-h5">4.3) Détermination des Gagnants et attribution du lot</h4>
+          <h4 className="fr-mb-2w">4.3) Détermination des Gagnants et attribution du lot</h4>
 
           <p className="fr-mb-2w">
             Sur la base des réponses apportées par les Participants, l&apos;Organisateur,
@@ -250,8 +250,8 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h2">Article 5 – Lots</h2>
-          <h3 className="fr-mb-2w fr-h5">5.1) Valeur commerciale des dotations</h3>
+          <h2 className="fr-mb-2w">Article 5 – Lots</h2>
+          <h3 className="fr-mb-2w">5.1) Valeur commerciale des dotations</h3>
 
           <p className="fr-mb-2w">
             La valeur commerciale du lot correspond à la valeur de marché sur le territoire
@@ -266,9 +266,7 @@ export default function Page() {
             être proposée.
           </p>
 
-          <h3 className="fr-mb-2w fr-h5">
-            5.2) Modalités de délivrance et d&apos;utilisation du lot
-          </h3>
+          <h3 className="fr-mb-2w">5.2) Modalités de délivrance et d&apos;utilisation du lot</h3>
           <p className="fr-mb-2w">
             Tel que le prévoit l&apos;article 4, le Gagnant sera contacté par le Créateur par
             message privé par le biais du compte Instagram avec lequel le Participant aura participé
@@ -284,7 +282,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 6 - Communication – Droit à l&apos;image</h2>
+          <h2 className="fr-mb-2w">Article 6 - Communication – Droit à l&apos;image</h2>
 
           <p className="fr-mb-2w">
             Chaque Gagnant autorise l&apos;Organisateur à réaliser des vidéos et à reproduire
@@ -304,7 +302,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 7 - Données nominatives et personnelles</h2>
+          <h2 className="fr-mb-2w">Article 7 - Données nominatives et personnelles</h2>
 
           <p className="fr-mb-2w">
             Pour la prise en compte de la participation au présent jeu-concours, la détermination
@@ -326,7 +324,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 8 - Responsabilités et droits</h2>
+          <h2 className="fr-mb-2w">Article 8 - Responsabilités et droits</h2>
 
           <p className="fr-mb-2w">L&apos;Organisateur :</p>
 
@@ -350,7 +348,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 9 - Conditions d&apos;exclusion</h2>
+          <h2 className="fr-mb-2w">Article 9 - Conditions d&apos;exclusion</h2>
 
           <p className="fr-mb-2w">
             La participation à ce jeu-concours implique l&apos;acceptation pleine et entière des
@@ -365,7 +363,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 10 – Règlement du jeu</h2>
+          <h2 className="fr-mb-2w">Article 10 – Règlement du jeu</h2>
 
           <p className="fr-mb-2w">
             Le règlement sera tenu à la libre disposition de tout Participant via l&apos;URL
@@ -382,7 +380,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h2 className="fr-mb-2w fr-h4">Article 11 - Juridictions compétentes</h2>
+          <h2 className="fr-mb-2w">Article 11 - Juridictions compétentes</h2>
 
           <p className="fr-mb-2w">
             Le présent règlement est soumis à la loi française. Les parties s&apos;efforcent de
