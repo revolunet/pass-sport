@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export function useAxeptio(vimeoURL: string) {
+export function useAxeptio({ vimeoURL, videoId }: { vimeoURL: string; videoId: string }) {
   useEffect(() => {
     const initAxeptio = (): void => {
       if (!window.axeptioSettings) {
@@ -32,15 +32,17 @@ export function useAxeptio(vimeoURL: string) {
             const vendor = el.getAttribute('data-hide-on-vendor-consent');
             el.style.display = vendor && choices[vendor] ? 'none' : 'inherit';
           });
-          document.querySelectorAll('[data-requires-vendor-consent]').forEach((el) => {
-            const vendor = el.getAttribute('data-requires-vendor-consent');
-            if (vendor && choices[vendor]) {
-              el.setAttribute('src', vimeoURL);
-              el.style.display = 'block';
-            } else {
-              el.style.display = 'none';
-            }
-          });
+          document
+            .querySelectorAll(`iframe#${videoId}[data-requires-vendor-consent]`)
+            .forEach((el) => {
+              const vendor = el.getAttribute('data-requires-vendor-consent');
+              if (vendor && choices[vendor]) {
+                el.setAttribute('src', vimeoURL);
+                el.style.display = 'block';
+              } else {
+                el.style.display = 'none';
+              }
+            });
         });
       });
     };
