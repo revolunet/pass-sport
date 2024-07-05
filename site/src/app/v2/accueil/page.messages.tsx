@@ -5,9 +5,8 @@ export const presentationTiles: PresentationTileProps[] = [
     id: 1,
     title: (
       <>
-        Découvrir
-        <br />
-        le pass Sport
+        <span className="display--block">Découvrir</span>
+        <span className="display--block">le pass Sport</span>
       </>
     ),
     badgeLabel: 'le pass sport',
@@ -17,9 +16,8 @@ export const presentationTiles: PresentationTileProps[] = [
     id: 2,
     title: (
       <>
-        Qui peut
-        <br />
-        en bénéficier ?
+        <span className="display--block">Qui peut</span>
+        <span className="display--block">en bénéficier ?</span>
       </>
     ),
     badgeLabel: 'le pass sport',
@@ -29,8 +27,8 @@ export const presentationTiles: PresentationTileProps[] = [
     id: 3,
     title: (
       <>
-        Besoin d&apos;aide ?<br />
-        Une question ?
+        <span className="display--block">Besoin d&apos;aide ?</span>
+        <span className="display--block">Une question ?</span>
       </>
     ),
     badgeLabel: 'faq',

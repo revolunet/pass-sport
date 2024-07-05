@@ -2,17 +2,11 @@
 
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import boysTeamImage from '@/images/homepage/boys-team.jpeg';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const FindClubCard = () => {
-  const router = useRouter();
-  const buttonHandler = () => {
-    router.push('/v2/trouver-un-club');
-  };
-
   return (
     <div className={`fr-mx-auto ${styles.sizer} `}>
       <div
@@ -20,7 +14,7 @@ const FindClubCard = () => {
       >
         <div className={`fr-card__body fr-my-auto `}>
           <div className="fr-card__content ">
-            <h4 className={`fr-card__title ${styles.title}`}>Trouver un club partenaire</h4>
+            <h2 className={`fr-card__title ${styles.title} fr-h4`}>Trouver un club partenaire</h2>
             <p className="fr-card__desc">
               Choisis le club de ton choix parmi plus de 85&nbsp;000 clubs et salles de sport
               partout en France !
@@ -34,7 +28,10 @@ const FindClubCard = () => {
               iconId="fr-icon-arrow-right-line"
               size="large"
               iconPosition="right"
-              onClick={buttonHandler}
+              linkProps={{
+                href: '/v2/trouver-un-club',
+                'aria-label': 'Visiter la page pour trouver un club',
+              }}
             >
               Trouver un club
             </Button>

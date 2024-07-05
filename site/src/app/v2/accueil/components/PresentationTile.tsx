@@ -9,20 +9,20 @@ export interface PresentationTileProps {
 
 const PresentationTile: React.FC<PresentationTileProps> = ({ title, badgeLabel, link }) => {
   return (
-    <div>
+    <>
       <div className="fr-tile fr-enlarge-link ">
         <div className="fr-tile__body">
           <div className="fr-tile__content fr-pb-3w">
-            <h3 className="fr-tile__title">
+            <p className="fr-tile__title fr-h6">
               <Link href={link}>{title}</Link>
-            </h3>
+            </p>
           </div>
         </div>
         <div className="fr-tile__header">
           <p className="fr-badge fr-badge--purple-glycine">{badgeLabel}</p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

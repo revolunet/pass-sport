@@ -131,14 +131,13 @@
     height: 435px;
     background-color: #D69E75;
     color: var(--brown-caramel-850-200);
-    //background-color: var(--border-action-low-brown-caramel);
+
+    h1 {
+      max-width: 800px;
+    }
 
     @media screen and (max-width: $md) {
       height: 345px;
     }
-  }
-
-  &__title-block {
-    display: block;
   }
 }

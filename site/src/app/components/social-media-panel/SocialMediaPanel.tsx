@@ -18,6 +18,7 @@ const SocialMediaPanel = ({ isHomePage = false, isProVersion = false }: Props) =
       className={cn('fr-text--lg', 'fr-text--bold', styles.color)}
       href={link.href}
       target="_blank"
+      aria-label={`Ouvrir une nouvelle fenêtre vers la page ${link.label} du dispositif pass Sport`}
     >
       <span className={cn('fr-pr-1w', link.iconClassName)} aria-hidden="true" />
       {link.label}

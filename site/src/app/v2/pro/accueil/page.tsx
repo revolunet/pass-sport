@@ -10,6 +10,7 @@ import { Card } from '@codegouvfr/react-dsfr/Card';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import { Fragment } from 'react';
 
 export const metadata: Metadata = {
   title: 'Accueil - pass Sport',
@@ -20,12 +21,7 @@ export default function Accueil() {
   return (
     <div className={styles['root']}>
       <PageHeader
-        title={
-          <>
-            L&apos;État et le mouvement sportif se mobilisent
-            <span className={styles['page-header__title-block']}>pour vous accompagner</span>
-          </>
-        }
+        title={<>L&apos;État et le mouvement sportif se mobilisent pour vous accompagner</>}
         classes={{
           container: styles['page-header'],
         }}
@@ -47,6 +43,7 @@ export default function Accueil() {
             end: styles['main-card__end'],
           }}
           title="Clubs et structures sportives"
+          titleAs="h2"
           imageUrl={mainImage.src}
           imageAlt="Image principale pour la promotion du pass Sport aux clubs et structures sportives"
           horizontal
@@ -66,7 +63,8 @@ export default function Accueil() {
                 size="large"
                 linkProps={{
                   href: 'https://vimeo.com/949861035?share=copy',
-                  title: "Lien vers une vidéo expliquant comment s'inscrire au Compte Asso",
+                  'aria-label':
+                    "Ouvrir une nouvelle fenêtre vers une vidéo expliquant comment s'inscrire au Compte Asso",
                   target: '_blank',
                 }}
               >
@@ -96,7 +94,7 @@ export default function Accueil() {
             end: styles['secondary-card__end'],
           }}
           title="Faire la promotion du pass Sport"
-          titleAs="h4"
+          titleAs="h2"
           imageUrl={secondaryImage.src}
           imageAlt="Image secondaire pour faire la promotion du pass Sport"
           border={false}

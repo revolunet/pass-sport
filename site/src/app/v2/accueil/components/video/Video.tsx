@@ -21,7 +21,8 @@ const Video = () => {
           className={styles.iframe}
           data-requires-vendor-consent="vimeo"
           allow="autoplay; fullscreen; picture-in-picture"
-        ></iframe>
+          aria-label="Vidéo de présentation du dispositif pass Sport du ministère des Sports 2024 sur Viméo"
+        />
         <div data-hide-on-vendor-consent="vimeo" className={styles.videoContainer}>
           <Image src={vignetteImage} alt="Vidéo Viméo" />
           <Button
