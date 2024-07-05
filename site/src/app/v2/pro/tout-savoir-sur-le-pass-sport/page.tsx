@@ -14,6 +14,8 @@ import Video from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/Video';
 import TranscriptionVisibilityClub from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionVisibilityClub';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionRefundPassSport';
+import vignetteRefund from '@/images/vignette-video-remboursement.avif';
+import vignetteClub from '@/images/vignette-video-structure.avif';
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',
@@ -133,9 +135,11 @@ export default function ToutSavoirSurLePassSport() {
           </p>
 
           <Video
-            videoId="956954295"
+            videoId="video-956954295"
+            videoPathUrl="956954295?h=c830d2877e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
             title="Tutoriel : se faire rembourser un pass Sport"
             transcriptionContent={<TranscriptionRefundPassSport />}
+            vignette={vignetteRefund}
           />
         </section>
 
@@ -155,9 +159,11 @@ export default function ToutSavoirSurLePassSport() {
           </p>
 
           <Video
-            videoId="949861035"
+            videoId="video-949861035"
+            videoPathUrl="949861035"
             title="Tutoriel : devenez partenaire du pass Sport"
             transcriptionContent={<TranscriptionVisibilityClub />}
+            vignette={vignetteClub}
           />
         </section>
 

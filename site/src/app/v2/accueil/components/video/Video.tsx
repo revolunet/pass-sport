@@ -1,14 +1,19 @@
 'use client';
 
-import vignetteImage from '@/images/vignette-video-accueil.png';
+import vignetteImage from '@/images/vignette-video-accueil.avif';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAxeptio } from '../../../../hooks/use-axeptio';
+import { useAxeptio } from '@/app/hooks/use-axeptio';
 import styles from './styles.module.scss';
 
-const Video = () => {
-  useAxeptio('https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0');
+interface Props {
+  videoId: string;
+  videoPathUrl: string;
+}
+
+const Video = ({ videoId, videoPathUrl }: Props) => {
+  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
@@ -18,6 +23,7 @@ const Video = () => {
     <div>
       <figure role="group" className="fr-my-2w fr-content-media">
         <iframe
+          id={videoId}
           className={styles.iframe}
           data-requires-vendor-consent="vimeo"
           allow="autoplay; fullscreen; picture-in-picture"
