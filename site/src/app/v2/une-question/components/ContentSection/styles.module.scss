@@ -24,6 +24,7 @@
 
   &__questions {
     width: 100%;
+    list-style-type: none;
 
     @media (min-width: $md) {
       width: 792px;
@@ -33,10 +34,6 @@
   &__category {
     &--selected {
       color: #000091;
-    }
-
-    &--pointer {
-      cursor: pointer;
     }
   }
 

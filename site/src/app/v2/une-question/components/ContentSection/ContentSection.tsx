@@ -2,7 +2,7 @@
 
 import { Article, CategoryWithArticles } from '../../../../../../types/Faq';
 import styles from './styles.module.scss';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import cn from 'classnames';
 import Markdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
@@ -45,6 +45,27 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
     CategoryWithArticles['articles'][0] | null
   >(articleFromUrl);
 
+  const onArticleSelect = useCallback(
+    (article: Article) => {
+      if (selectedArticle === null) {
+        setSelectedArticle(article);
+        replace(`${pathname}?articleId=${article.id}#${article.id}`);
+        push(['trackEvent', 'View FAQ', `Clicked`, `${article.title} (${article.id})`]);
+      }
+    },
+    [pathname, replace, selectedArticle],
+  );
+
+  const onCategorySelect = useCallback(
+    (category: CategoryWithArticles) => {
+      setSelectedCategory(category);
+      setSelectedArticle(null);
+      replace(`${pathname}`);
+      push(['trackEvent', 'View FAQ', `Clicked`, `${category.name} (${category.id})`]);
+    },
+    [pathname, replace],
+  );
+
   return (
     <section className={styles['faq']}>
       <div>
@@ -59,64 +80,72 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
             </p>
           )}
 
-          <ol
-            className={cn('fr-summary__list', 'fr-p-0', 'fr-pl-md-3w', styles['faq__summary-list'])}
-          >
-            {categoriesWithArticles.map((category) => {
+          <ul className={cn('fr-summary__list', 'fr-p-0', 'fr-pl-md-3w')}>
+            {categoriesWithArticles.map((category, index) => {
               return (
                 <li
                   key={category.id}
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setSelectedArticle(null);
-                    replace(`${pathname}`);
-                    push([
-                      'trackEvent',
-                      'View FAQ',
-                      `Clicked`,
-                      `${category.name} (${category.id})`,
-                    ]);
-                  }}
-                  className={cn(styles['faq__category--pointer'], 'fr-pl-2w', {
+                  className={cn('cursor--pointer', {
                     [styles['faq__category--selected']]: selectedCategory?.id === category.id,
                   })}
                 >
-                  <span className="fr-summary__link">{category.name}</span>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => {
+                      onCategorySelect(category);
+                    }}
+                    onKeyDown={(event) => {
+                      // Check if the key is Enter or Space
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        onCategorySelect(category);
+                      }
+                    }}
+                  >
+                    {/* We need to do it this way otherwise the voice over is reading the numbering (if we use the css property list-style-type) */}
+                    <span aria-hidden="true" className="fr-text--bold">
+                      {index + 1}.{' '}
+                    </span>
+                    <span>{category.name}</span>
+                  </div>
                 </li>
               );
             })}
-          </ol>
+          </ul>
         </nav>
       </div>
 
-      <div className={styles['faq__questions']}>
+      <ul className={cn('fr-ml-0', styles['faq__questions'])}>
         {selectedCategory?.articles.map((article) => {
           if (selectedArticle !== null && article.id !== selectedArticle.id) return null;
 
           return (
-            <div
-              id={article.id}
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                if (selectedArticle === null) {
-                  setSelectedArticle(article);
-                  replace(`${pathname}?articleId=${article.id}#${article.id}`);
-                  push(['trackEvent', 'View FAQ', `Clicked`, `${article.title} (${article.id})`]);
-                }
-              }}
-              key={article.id}
-            >
-              <div className="fr-callout" id={article.id}>
-                <h3 className="fr-callout__title">{article.title}</h3>
-                <div className={cn('fr-callout__text', styles['faq__callout-text'])}>
-                  <Markdown remarkPlugins={[remarkBreaks]} className={styles['faq__markdown']}>
-                    {selectedArticle !== null ? article.content : null}
-                  </Markdown>
-                </div>
-
+            <li key={article.id} id={article.id} className="cursor--pointer">
+              <div
+                className="fr-callout"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  // Check if the key is Enter or Space
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    onArticleSelect(article);
+                  }
+                }}
+                onClick={() => {
+                  onArticleSelect(article);
+                }}
+              >
+                <span className="display--block fr-callout__title fr-h3">{article.title}</span>
                 {selectedArticle !== null && (
                   <>
+                    <div className={cn('fr-callout__text', styles['faq__callout-text'])}>
+                      <Markdown remarkPlugins={[remarkBreaks]} className={styles['faq__markdown']}>
+                        {article.content}
+                      </Markdown>
+                    </div>
+
                     <button
+                      aria-label="Retour à la foire aux questions"
                       className="fr-btn fr-btn--secondary fr-icon-arrow-left-line fr-btn--icon-left"
                       onClick={(e) => {
                         // Stop propagation to prevent clicking
@@ -138,10 +167,10 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                   </>
                 )}
               </div>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </section>
   );
 }

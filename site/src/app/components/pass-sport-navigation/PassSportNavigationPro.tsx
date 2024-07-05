@@ -82,7 +82,7 @@ export default function PassSportNavigationPro() {
           linkProps: {
             href: item.link,
             target: !!item.isExternal ? '_blank' : '_self',
-            ariaLabel: item.ariaLabel,
+            'aria-label': item.ariaLabel,
             ...(item.title && { title: item.title }),
           },
           text: item.text,

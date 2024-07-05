@@ -20,7 +20,7 @@ const TrouverUnClub = async () => {
     <>
       <PageHeader title="Trouver un club" />
       <Suspense>
-        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
           <ClubFinder regions={regions} activities={activities} departments={departments} />
         </main>
       </Suspense>

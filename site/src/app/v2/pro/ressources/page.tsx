@@ -15,7 +15,7 @@ export default function ToutSavoirSurLePassSport() {
   return (
     <>
       <PageHeader title="Ressources" subtitle="" isProVersion />
-      <main className={styles.container} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+      <main className={styles.container} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
         <About />
 
         <div className={styles['section-container']}>

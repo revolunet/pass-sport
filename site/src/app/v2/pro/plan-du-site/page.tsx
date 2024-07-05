@@ -16,7 +16,7 @@ export default function PlanDuSite() {
           container: styles['page-header'],
         }}
       />
-      <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+      <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
         <section
           className={cn('fr-py-4w', 'fr-px-2w', 'fr-px-md-13w', 'fr-m-auto', styles.container)}
         >

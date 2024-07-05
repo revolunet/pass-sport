@@ -31,7 +31,12 @@ export default function Accueil() {
         }}
       />
 
-      <main className={styles['main-wrapper']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+      <main
+        className={styles['main-wrapper']}
+        tabIndex={-1}
+        id={SKIP_LINKS_ID.mainContent}
+        role="main"
+      >
         <Card
           className={styles['main-card__highlight']}
           classes={{

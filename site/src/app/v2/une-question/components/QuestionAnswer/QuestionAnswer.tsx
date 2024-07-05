@@ -17,10 +17,6 @@ const QuestionAnswer: React.FC<Props> = ({ questionAnswer }) => {
       <h3 className="fr-callout__title">{questionAnswer.question}</h3>
       <div className={styles.container}>
         <p className="fr-callout__text">{questionAnswer.answer}</p>
-        {/* <div className={styles['popularity-container']}>
-          <p>Populaire</p>
-          <PopularityLevel level={questionAnswer.popularityLevel} />
-        </div> */}
       </div>
     </div>
   );
