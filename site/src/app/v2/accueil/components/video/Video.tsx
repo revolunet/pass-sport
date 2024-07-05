@@ -10,9 +10,10 @@ import styles from './styles.module.scss';
 interface Props {
   videoId: string;
   videoPathUrl: string;
+  videoFullUrl: string;
 }
 
-const Video = ({ videoId, videoPathUrl }: Props) => {
+const Video = ({ videoId, videoPathUrl, videoFullUrl }: Props) => {
   useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
@@ -43,7 +44,7 @@ const Video = ({ videoId, videoPathUrl }: Props) => {
           Vidéo de présentation du dispositif pass Sport du ministère des Sports
           <a
             className={`fr-link ${styles.text}`}
-            href="https://vimeo.com/727000609"
+            href={videoFullUrl}
             aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viméo"
             target="_blank"
           >
