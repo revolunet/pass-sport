@@ -31,12 +31,12 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         border
         desc={
           <>
-            <p className="fr-text--sm fr-mb-0">
+            <span className="display--block fr-text--sm fr-mb-0">
               La plateforme, qui propose des missions dans tous les domaines de l’intérêt général.
-            </p>
-            <p className="fr-text--sm fr-mb-0">
+            </span>
+            <span className="display--block fr-text--sm fr-mb-0">
               Plus de 18 000 missions de bénévolat sont en ligne !
-            </p>
+            </span>
           </>
         }
         enlargeLink
@@ -61,8 +61,12 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         border
         desc={
           <>
-            <p className="fr-text--sm fr-mb-0">Vous souhaitez être volontaire ?</p>
-            <p className="fr-text--sm fr-mb-0">Découvrez les 8 360 missions en ligne.</p>
+            <span className="display--block fr-text--sm fr-mb-0">
+              Vous souhaitez être volontaire ?
+            </span>
+            <span className="display--block fr-text--sm fr-mb-0">
+              Découvrez les 8 360 missions en ligne.
+            </span>
           </>
         }
         enlargeLink
@@ -88,10 +92,10 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         border
         desc={
           <>
-            <p className="fr-text--sm fr-mb-0">
+            <span className="display--block fr-text--sm fr-mb-0">
               Une expérience qui va changer ta vie. Solidarité, santé, éducation, sport,
               environnement… Des milliers de missions indemnisées t’attendent.
-            </p>
+            </span>
           </>
         }
         enlargeLink
