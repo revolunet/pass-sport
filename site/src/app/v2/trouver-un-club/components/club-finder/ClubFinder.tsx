@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './style.module.scss';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { getClubs, getClubsWithoutLimit, SqlSearchParams } from '../../agent';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ClubFilters from '../club-filters/ClubFilters';
@@ -82,6 +82,8 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     }),
   });
 
+  const [isGeolocationFilterActive, setIsGeolocationFilterActive] = useState(true);
+
   const parseParameterFromQuery = (searchQueryParam: keyof typeof SEARCH_QUERY_PARAMS) => {
     const param = searchParams && searchParams.get(SEARCH_QUERY_PARAMS[searchQueryParam]);
 
@@ -155,15 +157,15 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     loading,
   ]);
 
+  const buildDistanceExpression = useCallback((): string | null => {
+    if (!latitude && !longitude) {
+      return null;
+    }
+
+    return `within_distance(geoloc_finale, GEOM'POINT(${longitude} ${latitude} )',${distanceParam}km)`;
+  }, [latitude, longitude, distanceParam]);
+
   useEffect(() => {
-    const buildDistanceExpression = (): string | null => {
-      if (!latitude && !longitude) {
-        return null;
-      }
-
-      return `within_distance(geoloc_finale, GEOM'POINT(${longitude} ${latitude} )',${distanceParam}km)`;
-    };
-
     if (!loading) {
       setClubParams((previousState) => {
         return {
@@ -172,7 +174,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
         };
       });
     }
-  }, [loading, latitude, longitude, distanceParam]);
+  }, [loading, buildDistanceExpression]);
 
   const seeMoreClubsHandler = () => {
     setClubParams((clubParams) => ({ ...clubParams, offset: clubParams.offset + limit }));
@@ -349,7 +351,8 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
   };
 
   const onAroundMeActiveStateChanged = (isAroundMeFilterActive: boolean) => {
-    console.log('isAroundMeFilterActive', String(isAroundMeFilterActive));
+    setIsGeolocationFilterActive(isAroundMeFilterActive);
+
     let queryString: String;
     if (isAroundMeFilterActive) {
       setClubParams((previousState) => ({
@@ -358,6 +361,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
         postalCode: undefined,
         departmentCode: undefined,
         regionCode: undefined,
+        distance: buildDistanceExpression(),
       }));
 
       queryString = appendQueryString([
@@ -366,15 +370,14 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
         { key: SEARCH_QUERY_PARAMS.departmentCode, value: '' },
         { key: SEARCH_QUERY_PARAMS.regionCode, value: '' },
       ]);
+
+      router.push(`${pathname}?${queryString}`, { scroll: false });
     } else {
       setClubParams((previousState) => ({
         ...previousState,
-        distance: undefined,
+        distance: null,
       }));
-
-      queryString = appendQueryString([{ key: SEARCH_QUERY_PARAMS.distance, value: '' }]);
     }
-    router.push(`${pathname}?${queryString}`, { scroll: false });
   };
 
   const showClubsOnListTabHandler = () => {
@@ -400,6 +403,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
           activities={activities}
           departments={departments}
           isGeolocationFilterVisible={showClubListOnMap}
+          isGeolocationFilterActive={isGeolocationFilterActive}
           onTextSearch={searchClubByTextHandler}
           onRegionChanged={onRegionChanged}
           onDepartmentChanged={onDepartmentChanged}
@@ -446,7 +450,10 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
 
         <div className="fr-pt-3w">
           {showClubListOnMap ? (
-            <ClubMapView clubsProvider={clubsOnMap} />
+            <ClubMapView
+              clubsProvider={clubsOnMap}
+              isGeolocationCircleVisible={isGeolocationFilterActive}
+            />
           ) : (
             <ClubListView clubs={clubsOnList} onSeeMoreClubsClicked={seeMoreClubsHandler} />
           )}

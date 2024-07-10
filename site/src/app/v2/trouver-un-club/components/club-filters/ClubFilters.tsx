@@ -25,6 +25,7 @@ interface Props {
   departments: GeoGouvDepartment[];
   activities: ActivityResponse;
   isGeolocationFilterVisible: boolean;
+  isGeolocationFilterActive: boolean;
   onTextSearch: (text: string) => void;
   onRegionChanged: (region?: string) => void;
   onDepartmentChanged: (department?: string) => void;
@@ -75,6 +76,7 @@ const ClubFilters: React.FC<Props> = ({
   activities,
   departments,
   isGeolocationFilterVisible,
+  isGeolocationFilterActive,
   onTextSearch,
   onRegionChanged,
   onDepartmentChanged,
@@ -84,10 +86,7 @@ const ClubFilters: React.FC<Props> = ({
   onDistanceChanged,
   onAroundMeActiveStateChanged,
 }) => {
-  const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(true);
-
   const activeStateAroundMeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsGeolocationEnabled(!isGeolocationEnabled);
     onAroundMeActiveStateChanged(e.target.checked);
   };
 
@@ -101,7 +100,7 @@ const ClubFilters: React.FC<Props> = ({
           <div className={cn(styles.flex)}>
             <RegionFilter
               regions={regions}
-              isDisabled={isGeolocationEnabled}
+              isDisabled={isGeolocationFilterActive}
               onRegionChanged={onRegionChanged}
             />
           </div>
@@ -111,7 +110,7 @@ const ClubFilters: React.FC<Props> = ({
           <div className={cn(styles.flex)}>
             <DepartmentFilter
               departments={departments}
-              isDisabled={isGeolocationEnabled}
+              isDisabled={isGeolocationFilterActive}
               onDepartmentChanged={onDepartmentChanged}
             />
           </div>
@@ -119,7 +118,7 @@ const ClubFilters: React.FC<Props> = ({
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <CityFilter isDisabled={isGeolocationEnabled} onCityChanged={onCityChanged} />
+            <CityFilter isDisabled={isGeolocationFilterActive} onCityChanged={onCityChanged} />
           </div>
 
           <div className={styles.separator} />
@@ -141,13 +140,13 @@ const ClubFilters: React.FC<Props> = ({
                     {
                       label: (
                         <GeolocationFilter
-                          isDisabled={!isGeolocationEnabled}
+                          isDisabled={!isGeolocationFilterActive}
                           onChanged={onDistanceChanged}
                         />
                       ),
                       nativeInputProps: {
                         name: 'geolocation-checkbox',
-                        checked: isGeolocationEnabled,
+                        checked: isGeolocationFilterActive,
                         onChange: activeStateAroundMeHandler,
                       },
                     },

@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 
 interface Props {
   clubsProvider: ClubsOnMapProvider;
+  isGeolocationCircleVisible: boolean;
 }
 
 const Loading = () => {
@@ -23,7 +24,7 @@ const Loading = () => {
   );
 };
 
-const ClubMapView: React.FC<Props> = ({ clubsProvider }) => {
+const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisible }) => {
   const isFetching = clubsProvider.isFetchingClubsOnMap;
 
   const ClubsMap = useMemo(
@@ -76,6 +77,10 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider }) => {
   };
 
   const buildUserPosition = (): LatLngLiteral | undefined => {
+    if (!isGeolocationCircleVisible) {
+      return undefined;
+    }
+
     if (longitude && latitude) {
       return { lat: latitude, lng: longitude };
     }
