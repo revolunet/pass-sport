@@ -11,9 +11,10 @@ import { DEFAULT_DISTANCE } from 'utils/map';
 
 interface Props {
   onChanged: (distance: string) => void;
+  isDisabled: boolean;
 }
 
-const GeolocalisationFilter: React.FC<Props> = ({ onChanged }) => {
+const GeolocationFilter: React.FC<Props> = ({ onChanged, isDisabled }) => {
   const { loading, error } = useContext(GeolocationContext);
 
   const searchParam = useSearchParams();
@@ -41,6 +42,7 @@ const GeolocalisationFilter: React.FC<Props> = ({ onChanged }) => {
     <Range
       hintText="Dans un rayon autour de"
       label="Autour de moi"
+      disabled={isDisabled}
       max={200}
       min={10}
       suffix=" km"
@@ -51,9 +53,10 @@ const GeolocalisationFilter: React.FC<Props> = ({ onChanged }) => {
           setSelectedDistance(e.currentTarget.value);
         },
       }}
-      className={cn('fr-py-2w', styles.width)}
+      className={cn(styles.width)}
+      classes={{ label: 'fr-pt-0' }}
     />
   );
 };
 
-export default GeolocalisationFilter;
+export default GeolocationFilter;

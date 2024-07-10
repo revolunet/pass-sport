@@ -10,10 +10,11 @@ import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 
 interface Props {
   regions: GeoGouvRegion[];
+  isDisabled: boolean;
   onRegionChanged: (region?: string) => void;
 }
 
-const RegionFilter: React.FC<Props> = ({ regions, onRegionChanged }) => {
+const RegionFilter: React.FC<Props> = ({ regions, isDisabled, onRegionChanged }) => {
   const searchParam = useSearchParams();
   const regionCodeSearchParam = searchParam && searchParam.get(SEARCH_QUERY_PARAMS.regionCode);
 
@@ -42,6 +43,7 @@ const RegionFilter: React.FC<Props> = ({ regions, onRegionChanged }) => {
       <div className={styles['input-container']}>
         <span className={cn('fr-icon-map-pin-2-fill', styles.icon)} aria-hidden="true"></span>
         <Select
+          isDisabled={isDisabled}
           defaultValue={defaultRegionOption}
           instanceId="region-select-id"
           className={styles.select}

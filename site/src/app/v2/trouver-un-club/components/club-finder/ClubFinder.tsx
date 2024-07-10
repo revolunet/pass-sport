@@ -348,6 +348,35 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     router.push(`${pathname}?${queryString}`, { scroll: false });
   };
 
+  const onAroundMeActiveStateChanged = (isAroundMeFilterActive: boolean) => {
+    console.log('isAroundMeFilterActive', String(isAroundMeFilterActive));
+    let queryString: String;
+    if (isAroundMeFilterActive) {
+      setClubParams((previousState) => ({
+        ...previousState,
+        city: undefined,
+        postalCode: undefined,
+        departmentCode: undefined,
+        regionCode: undefined,
+      }));
+
+      queryString = appendQueryString([
+        { key: SEARCH_QUERY_PARAMS.city, value: '' },
+        { key: SEARCH_QUERY_PARAMS.postalCode, value: '' },
+        { key: SEARCH_QUERY_PARAMS.departmentCode, value: '' },
+        { key: SEARCH_QUERY_PARAMS.regionCode, value: '' },
+      ]);
+    } else {
+      setClubParams((previousState) => ({
+        ...previousState,
+        distance: undefined,
+      }));
+
+      queryString = appendQueryString([{ key: SEARCH_QUERY_PARAMS.distance, value: '' }]);
+    }
+    router.push(`${pathname}?${queryString}`, { scroll: false });
+  };
+
   const showClubsOnListTabHandler = () => {
     const queryString = appendQueryString([
       { key: SEARCH_QUERY_PARAMS.isShowingMapTab, value: '0' },
@@ -378,6 +407,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
           onActivityChanged={onActivityChanged}
           onDisabilityChanged={onDisabilityChanged}
           onDistanceChanged={onDistanceChanged}
+          onAroundMeActiveStateChanged={onAroundMeActiveStateChanged}
         />
 
         <div className={styles.center}>

@@ -12,6 +12,8 @@ import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/act
 import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
 import { GeoGouvDepartment } from '../../../../../../types/Department';
 import DepartmentFilter from '@/app/v2/trouver-un-club/components/club-filters/department-filter/DepartmentFilter';
+import { ChangeEvent, useState } from 'react';
+import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
 
 export interface Option {
   label: string;
@@ -30,6 +32,7 @@ interface Props {
   onActivityChanged: (activity?: string) => void;
   onDisabilityChanged: (isActivated: boolean) => void;
   onDistanceChanged: (distance: string) => void;
+  onAroundMeActiveStateChanged: (isAroundMeFilterActive: boolean) => void;
 }
 
 export const selectStyles = {
@@ -79,7 +82,15 @@ const ClubFilters: React.FC<Props> = ({
   onActivityChanged,
   onDisabilityChanged,
   onDistanceChanged,
+  onAroundMeActiveStateChanged,
 }) => {
+  const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(true);
+
+  const activeStateAroundMeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsGeolocationEnabled(!isGeolocationEnabled);
+    onAroundMeActiveStateChanged(e.target.checked);
+  };
+
   return (
     <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
       <div className="fr-px-2w">
@@ -88,19 +99,27 @@ const ClubFilters: React.FC<Props> = ({
         <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
         <div className={styles.firstLinefiltersContainer}>
           <div className={cn(styles.flex)}>
-            <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
+            <RegionFilter
+              regions={regions}
+              isDisabled={isGeolocationEnabled}
+              onRegionChanged={onRegionChanged}
+            />
           </div>
 
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <DepartmentFilter departments={departments} onDepartmentChanged={onDepartmentChanged} />
+            <DepartmentFilter
+              departments={departments}
+              isDisabled={isGeolocationEnabled}
+              onDepartmentChanged={onDepartmentChanged}
+            />
           </div>
 
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <CityFilter onCityChanged={onCityChanged} />
+            <CityFilter isDisabled={isGeolocationEnabled} onCityChanged={onCityChanged} />
           </div>
 
           <div className={styles.separator} />
@@ -115,7 +134,27 @@ const ClubFilters: React.FC<Props> = ({
             <div className={styles.secondLinefilters_separator} />
           </div>
           <div className={styles.secondLinefilters_container}>
-            {isGeolocationFilterVisible && <GeolocationFilter onChanged={onDistanceChanged} />}
+            {isGeolocationFilterVisible && (
+              <>
+                <Checkbox
+                  options={[
+                    {
+                      label: (
+                        <GeolocationFilter
+                          isDisabled={!isGeolocationEnabled}
+                          onChanged={onDistanceChanged}
+                        />
+                      ),
+                      nativeInputProps: {
+                        name: 'geolocation-checkbox',
+                        checked: isGeolocationEnabled,
+                        onChange: activeStateAroundMeHandler,
+                      },
+                    },
+                  ]}
+                />
+              </>
+            )}
             <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
           </div>
         </div>
