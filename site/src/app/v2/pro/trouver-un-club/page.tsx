@@ -50,7 +50,7 @@ const TrouverUnClub = async () => {
   return (
     <>
       <PageHeader
-        title="Carte des structures partenaire"
+        title="Carte des structures partenaires"
         isProVersion
         subtitle={subtitle}
         classes={{
