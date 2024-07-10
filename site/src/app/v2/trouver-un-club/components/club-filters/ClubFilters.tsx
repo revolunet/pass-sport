@@ -24,7 +24,7 @@ interface Props {
   regions: GeoGouvRegion[];
   departments: GeoGouvDepartment[];
   activities: ActivityResponse;
-  isGeolocationFilterVisible: boolean;
+  isGeolocationCheckboxActive: boolean;
   isGeolocationFilterActive: boolean;
   onTextSearch: (text: string) => void;
   onRegionChanged: (region?: string) => void;
@@ -75,8 +75,9 @@ const ClubFilters: React.FC<Props> = ({
   regions,
   activities,
   departments,
-  isGeolocationFilterVisible,
+  isGeolocationCheckboxActive,
   isGeolocationFilterActive,
+
   onTextSearch,
   onRegionChanged,
   onDepartmentChanged,
@@ -133,27 +134,25 @@ const ClubFilters: React.FC<Props> = ({
             <div className={styles.secondLinefilters_separator} />
           </div>
           <div className={styles.secondLinefilters_container}>
-            {isGeolocationFilterVisible && (
-              <>
-                <Checkbox
-                  options={[
-                    {
-                      label: (
-                        <GeolocationFilter
-                          isDisabled={!isGeolocationFilterActive}
-                          onChanged={onDistanceChanged}
-                        />
-                      ),
-                      nativeInputProps: {
-                        name: 'geolocation-checkbox',
-                        checked: isGeolocationFilterActive,
-                        onChange: activeStateAroundMeHandler,
-                      },
-                    },
-                  ]}
-                />
-              </>
-            )}
+            <Checkbox
+              options={[
+                {
+                  label: (
+                    <GeolocationFilter
+                      isDisabled={!isGeolocationFilterActive}
+                      onChanged={onDistanceChanged}
+                    />
+                  ),
+                  nativeInputProps: {
+                    name: 'geolocation-checkbox',
+                    checked: isGeolocationFilterActive,
+                    onChange: activeStateAroundMeHandler,
+                    disabled: !isGeolocationCheckboxActive,
+                  },
+                },
+              ]}
+            />
+
             <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
           </div>
         </div>

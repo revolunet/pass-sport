@@ -176,6 +176,10 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     }
   }, [loading, buildDistanceExpression]);
 
+  useEffect(() => {
+    setIsGeolocationFilterActive(!!latitude);
+  }, [latitude]);
+
   const seeMoreClubsHandler = () => {
     setClubParams((clubParams) => ({ ...clubParams, offset: clubParams.offset + limit }));
   };
@@ -402,7 +406,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
           regions={regions}
           activities={activities}
           departments={departments}
-          isGeolocationFilterVisible={showClubListOnMap}
+          isGeolocationCheckboxActive={!!latitude}
           isGeolocationFilterActive={isGeolocationFilterActive}
           onTextSearch={searchClubByTextHandler}
           onRegionChanged={onRegionChanged}

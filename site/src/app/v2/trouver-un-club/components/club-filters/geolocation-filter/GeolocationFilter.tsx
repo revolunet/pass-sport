@@ -34,7 +34,7 @@ const GeolocationFilter: React.FC<Props> = ({ onChanged, isDisabled }) => {
     return () => clearTimeout(identifier);
   }, [selectedDistance, onChanged]);
 
-  const isHidden = loading || !!error;
+  const isHidden = loading;
 
   if (isHidden) return null;
 
