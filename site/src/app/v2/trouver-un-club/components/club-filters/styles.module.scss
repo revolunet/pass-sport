@@ -69,9 +69,11 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 16px;
+    padding-top: 16px;
 
     @media (min-width: $md) {
       flex-direction: row;
+      padding-top: 0;
     }
   }
 }
