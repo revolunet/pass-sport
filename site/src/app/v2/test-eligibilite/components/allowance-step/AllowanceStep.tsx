@@ -94,11 +94,10 @@ const AllowanceStep = () => {
             Deuxième étape du formulaire
           </legend>
         )}
-        <div role="status">
-          {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
-          {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
-          {allowance === ALLOWANCE.CROUS && <CrousStep />}
-        </div>
+
+        {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
+        {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
+        {allowance === ALLOWANCE.CROUS && <CrousStep />}
       </fieldset>
     </EligibilityTestContext.Provider>
   );

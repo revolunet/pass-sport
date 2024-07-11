@@ -99,6 +99,19 @@ const ContactForm = ({ closeFn }: Props) => {
     setInputStates({ ...states });
 
     if (!isValid) {
+      // Go through each input, stops at the first one and focuses on it
+      // Transform into map for iteration to preserve the order of the keys
+      for (const [key, value] of new Map(Object.entries(states))) {
+        if (value === 'error') {
+          const invalidInput: HTMLInputElement | null | undefined = formRef.current?.querySelector(
+            `[name="${key}"]`,
+          );
+
+          invalidInput?.focus();
+          break;
+        }
+      }
+
       return;
     }
 

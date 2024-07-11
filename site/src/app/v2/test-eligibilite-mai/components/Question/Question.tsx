@@ -22,6 +22,7 @@ const Question = ({
   return (
     <>
       <div
+        role="alert"
         className={cn('fr-p-2w', 'fr-mb-1w', styles.panel, styles.fit, {
           [`${styles['panel_may']}`]: style === QUESTION_STYLES.MAY_STYLE,
           [`${styles['panel_june']}`]: style === QUESTION_STYLES.JUNE_STYLE,
