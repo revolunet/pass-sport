@@ -40,8 +40,8 @@ const GeolocationFilter: React.FC<Props> = ({ onChanged, isDisabled }) => {
 
   return (
     <Range
-      hintText={`${error ? 'Vous devez authoriser la geolocalisation pour utiliser ce filtre' : ''}. Dans un rayon autour de `}
-      label="Autour de moi"
+      hintText={`${error ? 'Vous devez authoriser la geolocalisation pour utiliser ce filtre. ' : ''}Dans un rayon autour de `}
+      label=""
       disabled={isDisabled}
       max={200}
       min={10}

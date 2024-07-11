@@ -12,6 +12,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import Geolocation from '../../trouver-un-club/components/geolocation/Geolocation';
+import Loading from '@/app/components/loading/Loading';
 
 export const metadata: Metadata = {
   title: 'Carte des structures partenaires - pass Sport',
@@ -58,7 +59,7 @@ const TrouverUnClub = async () => {
         }}
       />
 
-      <Suspense fallback={<p>En cours de chargement</p>}>
+      <Suspense fallback={<Loading />}>
         <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
           <Geolocation>
             <ClubFinder

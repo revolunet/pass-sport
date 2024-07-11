@@ -138,24 +138,25 @@ const ClubFilters: React.FC<Props> = ({
           <div className={styles.secondLinefilters_container}>
             <>
               {isGeolocationVisible && (
-                <Checkbox
-                  options={[
-                    {
-                      label: (
-                        <GeolocationFilter
-                          isDisabled={!isGeolocationFilterActive}
-                          onChanged={onDistanceChanged}
-                        />
-                      ),
-                      nativeInputProps: {
-                        name: 'geolocation-checkbox',
-                        checked: isGeolocationFilterActive,
-                        onChange: activeStateAroundMeHandler,
-                        disabled: !isGeolocationCheckboxActive,
+                <div className={styles['secondLinefilters_geolocation-container']}>
+                  <Checkbox
+                    options={[
+                      {
+                        label: 'Autour de moi',
+                        nativeInputProps: {
+                          name: 'geolocation-checkbox',
+                          checked: isGeolocationFilterActive,
+                          onChange: activeStateAroundMeHandler,
+                          disabled: !isGeolocationCheckboxActive,
+                        },
                       },
-                    },
-                  ]}
-                />
+                    ]}
+                  />
+                  <GeolocationFilter
+                    isDisabled={!isGeolocationFilterActive}
+                    onChanged={onDistanceChanged}
+                  />
+                </div>
               )}
             </>
 
