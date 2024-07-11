@@ -12,7 +12,7 @@ import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/act
 import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
 import { GeoGouvDepartment } from '../../../../../../types/Department';
 import DepartmentFilter from '@/app/v2/trouver-un-club/components/club-filters/department-filter/DepartmentFilter';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
 
 export interface Option {
@@ -24,6 +24,7 @@ interface Props {
   regions: GeoGouvRegion[];
   departments: GeoGouvDepartment[];
   activities: ActivityResponse;
+  isGeolocationVisible: boolean;
   isGeolocationCheckboxActive: boolean;
   isGeolocationFilterActive: boolean;
   onTextSearch: (text: string) => void;
@@ -77,6 +78,7 @@ const ClubFilters: React.FC<Props> = ({
   departments,
   isGeolocationCheckboxActive,
   isGeolocationFilterActive,
+  isGeolocationVisible,
 
   onTextSearch,
   onRegionChanged,
@@ -134,24 +136,28 @@ const ClubFilters: React.FC<Props> = ({
             <div className={styles.secondLinefilters_separator} />
           </div>
           <div className={styles.secondLinefilters_container}>
-            <Checkbox
-              options={[
-                {
-                  label: (
-                    <GeolocationFilter
-                      isDisabled={!isGeolocationFilterActive}
-                      onChanged={onDistanceChanged}
-                    />
-                  ),
-                  nativeInputProps: {
-                    name: 'geolocation-checkbox',
-                    checked: isGeolocationFilterActive,
-                    onChange: activeStateAroundMeHandler,
-                    disabled: !isGeolocationCheckboxActive,
-                  },
-                },
-              ]}
-            />
+            <>
+              {isGeolocationVisible && (
+                <Checkbox
+                  options={[
+                    {
+                      label: (
+                        <GeolocationFilter
+                          isDisabled={!isGeolocationFilterActive}
+                          onChanged={onDistanceChanged}
+                        />
+                      ),
+                      nativeInputProps: {
+                        name: 'geolocation-checkbox',
+                        checked: isGeolocationFilterActive,
+                        onChange: activeStateAroundMeHandler,
+                        disabled: !isGeolocationCheckboxActive,
+                      },
+                    },
+                  ]}
+                />
+              )}
+            </>
 
             <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
           </div>

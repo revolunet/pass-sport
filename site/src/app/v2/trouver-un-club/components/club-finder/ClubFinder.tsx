@@ -406,6 +406,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
           regions={regions}
           activities={activities}
           departments={departments}
+          isGeolocationVisible={showClubListOnMap}
           isGeolocationCheckboxActive={!!latitude}
           isGeolocationFilterActive={isGeolocationFilterActive}
           onTextSearch={searchClubByTextHandler}
