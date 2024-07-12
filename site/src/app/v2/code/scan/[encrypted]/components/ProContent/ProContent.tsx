@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ProContent = ({ code }: Props) => {
-  const redirectionUrl = new URL(process.env.NEXT_PUBLIC_LCA_REDIRECTION_URL || '');
+  const redirectionUrl = new URL(process.env.NEXT_PUBLIC_LCA_APP_URL || '');
   const redirectionUrlSearchParams = new URLSearchParams({ id_psp: code });
 
   redirectionUrl.search = redirectionUrlSearchParams.toString();
@@ -35,9 +35,9 @@ const ProContent = ({ code }: Props) => {
         <Badge className={cn(styles['container-pro__content-badge'], 'fr-mb-3v')}>
           Structures partenaires
         </Badge>
-        <h2 className={cn(styles['container-pro__content-title'], 'fr-h6')}>
+        <h1 className={cn(styles['container-pro__content-title'], 'fr-h6')}>
           Je valide le pass Sport de mon adhérent
-        </h2>
+        </h1>
         <p className="fr-text--sm fr-text-default--grey">
           Identifiez-vous à votre compte Le Compte Asso pour valider ce pass Sport en quelques
           clics. Les informations de ce pass Sport seront automatiquement préremplies, il vous

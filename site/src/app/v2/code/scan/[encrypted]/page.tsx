@@ -53,7 +53,7 @@ function Page({ params: { encrypted } }: Props) {
   }
 
   const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encrypted)}`;
-  const LCA_REDIRECTION_ENABLED = process.env.NEXT_PUBLIC_LCA_REDIRECTION_URL !== '';
+  const LCA_REDIRECTION_ENABLED = process.env.NEXT_PUBLIC_LCA_APP_URL !== '';
 
   return (
     <main className={styles['page']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
