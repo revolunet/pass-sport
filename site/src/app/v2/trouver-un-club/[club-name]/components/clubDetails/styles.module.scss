@@ -1,4 +1,4 @@
-@import '../../../sassVariables.module.scss';
+@import '../../../../../sassVariables.module.scss';
 
 .icon-color {
   color: var(--background-action-high-blue-france);
@@ -40,34 +40,26 @@
     }
   }
 
-  .tags {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    @media (min-width: $xl) {
-      flex-direction: row;
-    }
-  }
-
   .separator {
     color: var(--border-default-grey);
   }
 
   .activities {
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      row-gap: 8px;
-
-      @media (min-width: $xl) {
-        row-gap: 24px;
-        grid-template-columns: 1fr 1fr 1fr;
-      }
+    columns: 1;
+    @media (min-width: $sm) {
+      columns: 2;
+    }
+    @media (min-width: $md) {
+      columns: 3;
     }
   }
 }
 
 .error {
   text-align: center;
+}
+
+.list {
+  list-style: none;
+  padding-inline-start: 0px;
 }
