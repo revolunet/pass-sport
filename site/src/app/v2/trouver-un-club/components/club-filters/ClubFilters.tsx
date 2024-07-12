@@ -24,6 +24,7 @@ interface Props {
   regions: GeoGouvRegion[];
   departments: GeoGouvDepartment[];
   activities: ActivityResponse;
+  isMapVisible: boolean;
   isGeolocationVisible: boolean;
   isGeolocationCheckboxActive: boolean;
   isGeolocationFilterActive: boolean;
@@ -79,6 +80,7 @@ const ClubFilters: React.FC<Props> = ({
   isGeolocationCheckboxActive,
   isGeolocationFilterActive,
   isGeolocationVisible,
+  isMapVisible,
 
   onTextSearch,
   onRegionChanged,
@@ -103,7 +105,7 @@ const ClubFilters: React.FC<Props> = ({
           <div className={cn(styles.flex)}>
             <RegionFilter
               regions={regions}
-              isDisabled={isGeolocationFilterActive}
+              isDisabled={isGeolocationFilterActive && isMapVisible}
               onRegionChanged={onRegionChanged}
             />
           </div>
@@ -113,7 +115,7 @@ const ClubFilters: React.FC<Props> = ({
           <div className={cn(styles.flex)}>
             <DepartmentFilter
               departments={departments}
-              isDisabled={isGeolocationFilterActive}
+              isDisabled={isGeolocationFilterActive && isMapVisible}
               onDepartmentChanged={onDepartmentChanged}
             />
           </div>
@@ -121,7 +123,10 @@ const ClubFilters: React.FC<Props> = ({
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <CityFilter isDisabled={isGeolocationFilterActive} onCityChanged={onCityChanged} />
+            <CityFilter
+              isDisabled={isGeolocationFilterActive && isMapVisible}
+              onCityChanged={onCityChanged}
+            />
           </div>
 
           <div className={styles.separator} />

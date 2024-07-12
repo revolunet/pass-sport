@@ -134,14 +134,14 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
       setClubsOnMap((provider) => ({ ...provider, isFetchingClubsOnMap: true }));
       getClubsWithoutLimit({
         clubName,
-        regionCode,
-        city,
-        postalCode,
+        regionCode: isGeolocationFilterActive ? undefined : regionCode,
+        city: isGeolocationFilterActive ? undefined : city,
+        postalCode: isGeolocationFilterActive ? undefined : postalCode,
+        departmentCode: isGeolocationFilterActive ? undefined : departmentCode,
         activity,
         disability,
         distance,
         offset,
-        departmentCode,
       }).then((response) => setClubsOnMap({ ...response, isFetchingClubsOnMap: false }));
     }
   }, [
@@ -155,6 +155,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     disability,
     distance,
     loading,
+    isGeolocationFilterActive,
   ]);
 
   const buildDistanceExpression = useCallback((): string | null => {
@@ -393,9 +394,22 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
   };
 
   const showClubsOnMapTabHandler = () => {
-    const queryString = appendQueryString([
-      { key: SEARCH_QUERY_PARAMS.isShowingMapTab, value: '1' },
-    ]);
+    let removableQueryStrings = [{ key: SEARCH_QUERY_PARAMS.isShowingMapTab, value: '1' }];
+
+    if (latitude && isGeolocationFilterActive) {
+      removableQueryStrings.push({ key: SEARCH_QUERY_PARAMS.regionCode, value: '' });
+      removableQueryStrings.push({ key: SEARCH_QUERY_PARAMS.departmentCode, value: '' });
+      removableQueryStrings.push({ key: SEARCH_QUERY_PARAMS.city, value: '' });
+
+      setClubParams((prevState) => ({
+        ...prevState,
+        regionCode: undefined,
+        departmentCode: undefined,
+        city: undefined,
+      }));
+    }
+
+    const queryString = appendQueryString(removableQueryStrings);
     router.push(`${pathname}?${queryString}`, { scroll: false });
   };
 
@@ -409,6 +423,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
           isGeolocationVisible={showClubListOnMap}
           isGeolocationCheckboxActive={!!latitude}
           isGeolocationFilterActive={isGeolocationFilterActive}
+          isMapVisible={showClubListOnMap}
           onTextSearch={searchClubByTextHandler}
           onRegionChanged={onRegionChanged}
           onDepartmentChanged={onDepartmentChanged}
