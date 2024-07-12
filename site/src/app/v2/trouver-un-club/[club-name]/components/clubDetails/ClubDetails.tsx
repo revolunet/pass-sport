@@ -38,7 +38,7 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
     <div className="fr-mx-2w fr-mb-10w">
       <div className={`fr-p-3w fr-mt-3w fr-mx-auto fr-mb-12w ${styles.panel}`}>
         <section className={styles.info}>
-          <h2>{club.nom}</h2>
+          <h1 className="fr-h2">{club.nom}</h1>
           <div className={`fr-my-2w ${styles.tags}`}>
             {Array.isArray(club.activites) && (
               <Tag small>
@@ -109,7 +109,7 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
 
           {Array.isArray(club.activites) && (
             <>
-              <h3>Les activités</h3>
+              <h2 className="fr-h3">Les activités</h2>
               <ul className={styles.activities}>
                 <div className={styles.grid}>
                   {club.activites?.map((activity) => (
@@ -126,7 +126,12 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
         </section>
 
         <section>
-          <h4 className="fr-mb-2w">Où nous trouver</h4>
+          <h2
+            className="fr-h4"
+            aria-label="Où nous trouver. Carte interactive de l'emplacement du club"
+          >
+            Où nous trouver
+          </h2>
           <Map club={club} />
         </section>
       </div>
