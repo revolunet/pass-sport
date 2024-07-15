@@ -18,11 +18,14 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
   const clubName = decodeURIComponent(params['club-name']);
 
   return (
-    <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
-      <ClubDetails clubName={clubName} />
+    <>
+      <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <ClubDetails clubName={clubName} />
+      </main>
+
       <EligibilityTestBanner />
       <SocialMediaPanel />
-    </main>
+    </>
   );
 };
 
