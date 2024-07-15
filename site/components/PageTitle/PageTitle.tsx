@@ -11,12 +11,11 @@ interface IProps {
   };
 }
 
-export default function PageHeader({ title, subtitle, classes, isProVersion = false }: IProps) {
+export default function PageTitle({ title, subtitle, classes, isProVersion = false }: IProps) {
   return (
-    <header
+    <div
       // Mainly used as an anchor
       id="header"
-      role="banner"
       className={cn(styles.container, classes?.container, {
         [styles['container--pro']]: isProVersion,
       })}
@@ -26,6 +25,6 @@ export default function PageHeader({ title, subtitle, classes, isProVersion = fa
         {subtitle &&
           (typeof subtitle === 'string' ? <p className={styles.subtitle}>{subtitle}</p> : subtitle)}
       </div>
-    </header>
+    </div>
   );
 }

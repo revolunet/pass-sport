@@ -3,14 +3,13 @@ import { presentationTiles } from './page.messages';
 import styles from './styles.module.scss';
 import SocialMediaPanel from '../../../components/social-media-panel/SocialMediaPanel';
 import cn from 'classnames';
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import mainImage from '@/images/pro/homepage/main.png';
 import secondaryImage from '@/images/pro/homepage/secondary.png';
 import { Card } from '@codegouvfr/react-dsfr/Card';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
-import { Fragment } from 'react';
 
 export const metadata: Metadata = {
   title: 'Accueil - pass Sport',
@@ -19,20 +18,19 @@ export const metadata: Metadata = {
 
 export default function Accueil() {
   return (
-    <div className={styles['root']}>
-      <PageHeader
-        title={<>L&apos;État et le mouvement sportif se mobilisent pour vous accompagner</>}
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
-
+    <>
       <main
-        className={styles['main-wrapper']}
+        className={cn(styles['main-wrapper'], styles['root'])}
         tabIndex={-1}
         id={SKIP_LINKS_ID.mainContent}
         role="main"
       >
+        <PageTitle
+          title={<>L&apos;État et le mouvement sportif se mobilisent pour vous accompagner</>}
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <Card
           className={styles['main-card__highlight']}
           classes={{
@@ -126,9 +124,7 @@ export default function Accueil() {
         />
       </main>
 
-      <section>
-        <SocialMediaPanel isHomePage isProVersion />
-      </section>
-    </div>
+      <SocialMediaPanel isHomePage isProVersion />
+    </>
   );
 }

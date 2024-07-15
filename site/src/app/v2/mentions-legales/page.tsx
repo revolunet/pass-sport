@@ -1,5 +1,5 @@
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
-import PageHeader from '../../../../components/PageHeader/PageHeader';
+import PageTitle from '../../../../components/PageTitle/PageTitle';
 import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import { Metadata } from 'next';
@@ -12,15 +12,15 @@ export const metadata: Metadata = {
 
 export default function PolitiqueDeConfidentialite() {
   return (
-    <div>
-      <PageHeader
-        title="Mentions légales"
-        subtitle=""
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
+    <>
       <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle
+          title="Mentions légales"
+          subtitle=""
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <section className="fr-mb-6w">
           <p className="fr-mb-2w">
             Le Portail pass Sport est un service du ministère des Sports et des Jeux Olympiques et
@@ -113,6 +113,6 @@ export default function PolitiqueDeConfidentialite() {
 
       <EligibilityTestBanner />
       <SocialMediaPanel />
-    </div>
+    </>
   );
 }

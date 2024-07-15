@@ -1,5 +1,5 @@
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
-import PageHeader from '../../../../components/PageHeader/PageHeader';
+import PageTitle from '../../../../components/PageTitle/PageTitle';
 import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import { Metadata } from 'next';
@@ -13,20 +13,20 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div>
-      <PageHeader
-        title="Règlement du jeu-concours numéro 2 - pass Sport"
-        subtitle=""
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
+    <>
       <main
         className={cn(styles.main, styles.wrapper)}
         tabIndex={-1}
         id={SKIP_LINKS_ID.mainContent}
         role="main"
       >
+        <PageTitle
+          title="Règlement du jeu-concours numéro 2 - pass Sport"
+          subtitle=""
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <section className="fr-mb-6w">
           <h2 className="fr-mb-2w">Présentation du jeu-concours pass Sport</h2>
 
@@ -400,6 +400,6 @@ export default function Page() {
 
       <EligibilityTestBanner />
       <SocialMediaPanel />
-    </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 'use server';
 
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import styles from './styles.module.scss';
 import ContentSection from '@/app/v2/une-question/components/ContentSection/ContentSection';
 import ContactSection from '@/app/v2/une-question/components/ContactSection/ContactSection';
@@ -23,16 +23,15 @@ export default async function Questions() {
 
   return (
     <>
-      <PageHeader
-        title="Vous avez une question ?"
-        subtitle="Consultez notre FAQ la réponse à votre question s'y trouve peut-être."
-        classes={{
-          container: styles['page-header'],
-        }}
-        isProVersion
-      />
-
       <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle
+          title="Vous avez une question ?"
+          subtitle="Consultez notre FAQ la réponse à votre question s'y trouve peut-être."
+          classes={{
+            container: styles['page-header'],
+          }}
+          isProVersion
+        />
         <ContentSection categoriesWithArticles={categoriesWithArticles} />
       </main>
 

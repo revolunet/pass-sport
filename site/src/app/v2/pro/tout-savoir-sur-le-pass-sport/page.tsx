@@ -1,4 +1,4 @@
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import styles from './styles.module.scss';
 import SocialMediaPanel from '../../../components/social-media-panel/SocialMediaPanel';
 import Link from 'next/link';
@@ -24,21 +24,20 @@ export const metadata: Metadata = {
 export default function ToutSavoirSurLePassSport() {
   return (
     <>
-      <PageHeader
-        title="Tout savoir sur le pass Sport"
-        subtitle=""
-        isProVersion
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
-
       <main
         className={styles['main-container']}
         tabIndex={-1}
         id={SKIP_LINKS_ID.mainContent}
         role="main"
       >
+        <PageTitle
+          title="Tout savoir sur le pass Sport"
+          subtitle=""
+          isProVersion
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <section className={styles['section-container']}>
           <h2 className="fr-h4">Qui se mobilise pour vous accompagner ?</h2>
           <p className="fr-text--bold">
@@ -205,6 +204,7 @@ export default function ToutSavoirSurLePassSport() {
           </Link>
         </section>
       </main>
+
       <SocialMediaPanel isProVersion />
     </>
   );

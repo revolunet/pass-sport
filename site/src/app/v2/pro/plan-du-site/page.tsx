@@ -1,5 +1,5 @@
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
-import PageHeader from '../../../../../components/PageHeader/PageHeader';
+import PageTitle from '../../../../../components/PageTitle/PageTitle';
 import styles from './style.module.scss';
 import Link from 'next/link';
 import cn from 'classnames';
@@ -7,16 +7,16 @@ import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export default function PlanDuSite() {
   return (
-    <div>
-      <PageHeader
-        title="Plan du site"
-        subtitle=""
-        isProVersion
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
+    <>
       <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle
+          title="Plan du site"
+          subtitle=""
+          isProVersion
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <section
           className={cn('fr-py-4w', 'fr-px-2w', 'fr-px-md-13w', 'fr-m-auto', styles.container)}
         >
@@ -95,6 +95,6 @@ export default function PlanDuSite() {
       </main>
 
       <SocialMediaPanel isProVersion />
-    </div>
+    </>
   );
 }

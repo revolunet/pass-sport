@@ -1,4 +1,4 @@
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import { getAllClubActivities, getFranceRegions, getFranceDepartments } from './agent';
 
 import ClubFinder from './components/club-finder/ClubFinder';
@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import Geolocation from './components/geolocation/Geolocation';
 import Loading from '@/app/components/loading/Loading';
+import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 
 export const metadata: Metadata = {
   title: 'Trouver un club partenaire - pass Sport',
@@ -20,14 +21,16 @@ const TrouverUnClub = async () => {
 
   return (
     <>
-      <PageHeader title="Trouver un club" />
-      <Suspense fallback={<Loading />}>
-        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+      <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle title="Trouver un club" />
+        <Suspense fallback={<Loading />}>
           <Geolocation>
             <ClubFinder regions={regions} activities={activities} departments={departments} />
           </Geolocation>
-        </main>
-      </Suspense>
+        </Suspense>
+      </main>
+
+      <EligibilityTestBanner />
       <SocialMediaPanel />
     </>
   );
