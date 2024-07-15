@@ -2,6 +2,10 @@
 
 .container {
   &-pro {
+    @media print {
+      display: none;
+    }
+
     background-color: var(--brown-caramel-925-125);
 
     &__content {
