@@ -1,3 +1,6 @@
+'use client';
+
+import dynamic from 'next/dynamic';
 import cn from 'classnames';
 import { ActivityResponse } from 'types/Club';
 import { GeoGouvRegion } from 'types/Region';
@@ -9,6 +12,8 @@ import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/act
 import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
 import { GeoGouvDepartment } from '../../../../../../types/Department';
 import DepartmentFilter from '@/app/v2/trouver-un-club/components/club-filters/department-filter/DepartmentFilter';
+import { ChangeEvent } from 'react';
+import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
 
 export interface Option {
   label: string;
@@ -19,12 +24,18 @@ interface Props {
   regions: GeoGouvRegion[];
   departments: GeoGouvDepartment[];
   activities: ActivityResponse;
+  isMapVisible: boolean;
+  isGeolocationVisible: boolean;
+  isGeolocationCheckboxActive: boolean;
+  isGeolocationFilterActive: boolean;
   onTextSearch: (text: string) => void;
   onRegionChanged: (region?: string) => void;
   onDepartmentChanged: (department?: string) => void;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
   onActivityChanged: (activity?: string) => void;
   onDisabilityChanged: (isActivated: boolean) => void;
+  onDistanceChanged: (distance: string) => void;
+  onAroundMeActiveStateChanged: (isAroundMeFilterActive: boolean) => void;
 }
 
 export const selectStyles = {
@@ -58,38 +69,64 @@ export const selectStyles = {
   }),
 };
 
+const GeolocationFilter = dynamic(() => import('./geolocation-filter/GeolocationFilter'), {
+  ssr: false,
+});
+
 const ClubFilters: React.FC<Props> = ({
   regions,
   activities,
   departments,
+  isGeolocationCheckboxActive,
+  isGeolocationFilterActive,
+  isGeolocationVisible,
+  isMapVisible,
+
   onTextSearch,
   onRegionChanged,
   onDepartmentChanged,
   onCityChanged,
   onActivityChanged,
   onDisabilityChanged,
+  onDistanceChanged,
+  onAroundMeActiveStateChanged,
 }) => {
+  const activeStateAroundMeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    onAroundMeActiveStateChanged(e.target.checked);
+  };
+
   return (
     <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
       <div className="fr-px-2w">
         <Search onTextSearch={onTextSearch} />
 
         <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
-        <div className={styles.filtersContainer}>
+        <div className={styles.firstLinefiltersContainer}>
           <div className={cn(styles.flex)}>
-            <RegionFilter regions={regions} onRegionChanged={onRegionChanged} />
+            <RegionFilter
+              regions={regions}
+              isDisabled={isGeolocationFilterActive && isMapVisible}
+              onRegionChanged={onRegionChanged}
+            />
           </div>
 
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <DepartmentFilter departments={departments} onDepartmentChanged={onDepartmentChanged} />
+            <DepartmentFilter
+              departments={departments}
+              isDisabled={isGeolocationFilterActive && isMapVisible}
+              onDepartmentChanged={onDepartmentChanged}
+            />
           </div>
 
           <div className={styles.separator} />
 
           <div className={cn(styles.flex)}>
-            <CityFilter onCityChanged={onCityChanged} />
+            <CityFilter
+              isDisabled={isGeolocationFilterActive && isMapVisible}
+              onCityChanged={onCityChanged}
+            />
           </div>
 
           <div className={styles.separator} />
@@ -99,7 +136,38 @@ const ClubFilters: React.FC<Props> = ({
           </div>
         </div>
 
-        <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
+        <div className={styles.secondLinefilters}>
+          <div className="fr-pt-2w">
+            <div className={styles.secondLinefilters_separator} />
+          </div>
+          <div className={styles.secondLinefilters_container}>
+            <>
+              {isGeolocationVisible && (
+                <div className={styles['secondLinefilters_geolocation-container']}>
+                  <Checkbox
+                    options={[
+                      {
+                        label: 'Autour de moi',
+                        nativeInputProps: {
+                          name: 'geolocation-checkbox',
+                          checked: isGeolocationFilterActive,
+                          onChange: activeStateAroundMeHandler,
+                          disabled: !isGeolocationCheckboxActive,
+                        },
+                      },
+                    ]}
+                  />
+                  <GeolocationFilter
+                    isDisabled={!isGeolocationFilterActive}
+                    onChanged={onDistanceChanged}
+                  />
+                </div>
+              )}
+            </>
+
+            <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
+          </div>
+        </div>
       </div>
     </div>
   );

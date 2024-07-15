@@ -1,33 +1,34 @@
 'use client';
 
-import cn from 'classnames';
 import { useSearchParams } from 'next/navigation';
 import Select, { SingleValue } from 'react-select';
 import { Option, selectStyles } from '../ClubFilters';
 import styles from '../styles.module.scss';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { GeoGouvDepartment } from '../../../../../../../types/Department';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   departments: GeoGouvDepartment[];
+  isDisabled: boolean;
   onDepartmentChanged: (department?: string) => void;
   selectedRegionCode?: string;
 }
 
-const DepartmentFilter = ({ departments, onDepartmentChanged }: Props) => {
+const DepartmentFilter = ({ departments, isDisabled, onDepartmentChanged }: Props) => {
   const searchParam = useSearchParams();
-  const departmentCodeSearchParam =
-    searchParam && searchParam.get(SEARCH_QUERY_PARAMS.departmentCode);
+  const departmentCode = searchParam && searchParam.get(SEARCH_QUERY_PARAMS.departmentCode);
+  const regionCode = searchParam && searchParam.get(SEARCH_QUERY_PARAMS.regionCode);
 
-  const regionCodeSearchParam = searchParam && searchParam.get(SEARCH_QUERY_PARAMS.regionCode);
   const [availableDepartments, setAvailableDepartments] = useState<GeoGouvDepartment[]>(
     departments.filter((department) => {
-      if (!regionCodeSearchParam) return true;
+      if (!regionCode) return true;
 
-      return department.codeRegion === regionCodeSearchParam;
+      return department.codeRegion === regionCode;
     }),
   );
+
+  const [selectedDepartmentCode, setSelectedDepartmentCode] = useState<string | null>(null);
 
   const formatOptions = (departments: GeoGouvDepartment[]) =>
     departments.map((department) => ({
@@ -38,20 +39,36 @@ const DepartmentFilter = ({ departments, onDepartmentChanged }: Props) => {
   useEffect(() => {
     setAvailableDepartments(
       departments.filter((department) => {
-        if (!regionCodeSearchParam) return true;
+        if (!regionCode) return true;
 
-        return department.codeRegion === regionCodeSearchParam;
+        return department.codeRegion === regionCode;
       }),
     );
-  }, [departments, regionCodeSearchParam]);
+  }, [departments, regionCode]);
 
-  const defaultDepartmentOption = departments.find((r) => r.code === departmentCodeSearchParam);
+  useEffect(() => {
+    setSelectedDepartmentCode(departmentCode);
+  }, [departmentCode]);
+
+  const buildSelectedDepartmentOption = () => {
+    const geoGouvDepartment = departments.find((r) => r.code === selectedDepartmentCode);
+    if (geoGouvDepartment) {
+      return {
+        label: geoGouvDepartment.nom,
+        value: geoGouvDepartment.code,
+      };
+    } else {
+      return null;
+    }
+  };
+
   const departmentChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
       onDepartmentChanged();
     } else {
       onDepartmentChanged(newValue.value);
     }
+    setSelectedDepartmentCode(newValue?.value || null);
   };
 
   return (
@@ -61,6 +78,7 @@ const DepartmentFilter = ({ departments, onDepartmentChanged }: Props) => {
       </label>
       <div className={styles['input-container']}>
         <Select
+          isDisabled={isDisabled}
           instanceId="department-select-id"
           className={styles.select}
           isClearable
@@ -70,12 +88,7 @@ const DepartmentFilter = ({ departments, onDepartmentChanged }: Props) => {
           options={formatOptions(availableDepartments)}
           onChange={departmentChangeHandler}
           styles={selectStyles}
-          {...(defaultDepartmentOption && {
-            defaultValue: {
-              label: defaultDepartmentOption.nom,
-              value: defaultDepartmentOption.code,
-            },
-          })}
+          value={buildSelectedDepartmentOption()}
         />
       </div>
     </div>
