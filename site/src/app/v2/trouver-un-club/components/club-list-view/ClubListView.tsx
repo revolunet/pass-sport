@@ -6,6 +6,7 @@ import Badge from '@codegouvfr/react-dsfr/Badge';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { usePathname } from 'next/navigation';
 import ClubTags from '../club-tags/ClubTags';
+import rootStyles from '@/app/utilities.module.scss';
 
 interface Props {
   clubs: SportGouvJSONRecordsResponse;
@@ -18,36 +19,27 @@ const ClubListView = ({ clubs, onSeeMoreClubsClicked }: Props) => {
   return (
     <>
       <div className={cn('fr-mx-auto', 'fr-mt-6w', 'fr-mb-10w', styles.sizer)}>
-        <div className={cn('fr-mt-6w', styles.container)}>
+        <ul className={cn('fr-mt-6w', styles.container, rootStyles['list--lean'])}>
           {clubs.results.map((club) => (
-            /** @ts-ignore */
-            <Card
-              key={club.nom + club.adresse + club.commune}
-              className={styles.item}
-              background
-              badge={
-                !!club.activites &&
-                club.activites.slice(0, 1).map((a) => (
-                  <Badge key={a} severity="new">
-                    {a}
-                  </Badge>
-                ))
-              }
-              imageAlt=""
-              border
-              detail={club.adresse ? `${club.adresse}, ${club.com_arm_name}` : club.com_arm_name}
-              enlargeLink
-              linkProps={{
-                href: `${pathname}/${encodeURIComponent(club.nom)}`,
-                'aria-label': `Voir la fiche du club ${club.nom}`,
-              }}
-              size="medium"
-              start={<ClubTags club={club} />}
-              title={`${club.nom}`}
-              titleAs="h3"
-            />
+            <li key={club.nom + club.adresse + club.commune} className={styles.item}>
+              <Card
+                background
+                border
+                detail={club.adresse ? `${club.adresse}, ${club.com_arm_name}` : club.com_arm_name}
+                enlargeLink
+                linkProps={{
+                  href: `${pathname}/${encodeURIComponent(club.nom)}`,
+                  'aria-label': `Voir la fiche du club ${club.nom}`,
+                }}
+                size="medium"
+                start={<ClubTags club={club} />}
+                title={`${club.nom}`}
+                titleAs="h3"
+                classes={{ root: styles.card }}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
 
         {!isLastPage && (
           <div className={cn('fr-mt-9w', styles['more-clubs-wrapper'])}>

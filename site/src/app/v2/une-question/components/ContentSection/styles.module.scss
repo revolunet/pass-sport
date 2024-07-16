@@ -24,7 +24,6 @@
 
   &__questions {
     width: 100%;
-    list-style-type: none;
 
     @media (min-width: $md) {
       width: 792px;
@@ -52,7 +51,7 @@
   }
 
   &__callout {
-    &-text{
+    &-text {
       position: relative;
       display: flex;
       align-items: center;
