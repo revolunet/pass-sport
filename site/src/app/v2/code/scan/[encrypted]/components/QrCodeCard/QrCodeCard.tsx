@@ -5,6 +5,8 @@ import { QRCodeSVG } from 'qrcode.react';
 import styles from './styles.module.scss';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
+import { useCopyToClipboard } from '@uidotdev/usehooks';
+import { useCallback } from 'react';
 
 interface Props {
   data: {
@@ -39,6 +41,14 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
     push(['trackEvent', 'Print Button', 'Clicked', 'QR Recap page']);
   };
 
+  const [, copyToClipboard] = useCopyToClipboard();
+
+  const onCopyCallback = useCallback(() => {
+    push(['trackEvent', 'Copy Code', 'Clicked', 'QR Recap page']);
+
+    return copyToClipboard(data.code);
+  }, [copyToClipboard, data.code]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -58,7 +68,17 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
 
           <p className="fr-mb-2w fr-text--md">{formatBirthDate(birthDate, gender)}</p>
           <p className="fr-text--md fr-text--bold fr-mb-0">Code:</p>
-          <p className="fr-text--md fr-text--bold">{formatPspCode(code)}</p>
+          <p className="fr-text--md fr-text--bold fr-mb-2w">{formatPspCode(code)}</p>
+
+          <Button
+            priority="secondary"
+            iconPosition="right"
+            iconId="fr-icon-clipboard-line"
+            onClick={onCopyCallback}
+            size="small"
+          >
+            Copier
+          </Button>
         </div>
       </div>
 

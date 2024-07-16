@@ -7,6 +7,7 @@ import QrCodeCard from './components/QrCodeCard/QrCodeCard';
 import { decryptData } from '../../../../../../utils/decryption';
 import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import ProContent from './components/ProContent/ProContent';
 
 interface Props {
   params: {
@@ -54,8 +55,16 @@ function Page({ params: { encrypted } }: Props) {
   const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encrypted)}`;
 
   return (
-    <div className={cn(styles['page'], 'fr-px-2w')}>
-      <div className={cn(styles['container'], 'fr-container--fluid', 'fr-grid-row', 'fr-py-6w')}>
+    <main className={styles['page']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+      <div
+        className={cn(
+          styles['container'],
+          'fr-container--fluid',
+          'fr-grid-row',
+          'fr-py-6w',
+          'fr-px-2w',
+        )}
+      >
         <div className="fr-container fr-col-sm-12 fr-col-md-4 fr-px-md-2 fr-col--middle fr-mb-2w fr-mb-md-0">
           <h1 className="fr-mb-2vw fr-h2">Voici votre pass Sport</h1>
 
@@ -73,12 +82,7 @@ function Page({ params: { encrypted } }: Props) {
           </p>
         </div>
 
-        <main
-          className="fr-col-12 fr-col-md-8"
-          tabIndex={-1}
-          id={SKIP_LINKS_ID.mainContent}
-          role="main"
-        >
+        <div className="fr-col-12 fr-col-md-8">
           <QrCodeCard
             data={{
               firstname,
@@ -89,9 +93,14 @@ function Page({ params: { encrypted } }: Props) {
             }}
             qrCodeValue={qrCodeValue}
           />
-        </main>
+        </div>
       </div>
-    </div>
+
+      {typeof process.env.NEXT_PUBLIC_LCA_APP_URL === 'string' &&
+        process.env.NEXT_PUBLIC_LCA_APP_URL.length > 0 && (
+          <ProContent code={code} redirectionUrl={process.env.NEXT_PUBLIC_LCA_APP_URL} />
+        )}
+    </main>
   );
 }
 
