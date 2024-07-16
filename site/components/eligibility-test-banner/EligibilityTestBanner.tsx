@@ -13,7 +13,7 @@ const EligibilityTestBanner = () => {
   };
 
   return (
-    <div className={`fr-py-6w fr-px-2w fr-p-md-11w fr-mx-auto ${styles.banner}`}>
+    <aside className={`fr-py-6w fr-px-2w fr-p-md-11w fr-mx-auto ${styles.banner}`}>
       <div className={styles['text-container']}>
         <h1 className={styles.text}>Puis-je bénéficier du pass Sport ?</h1>
         <p className={`fr-text--lead fr-px-2w ${styles.text}`}>
@@ -34,7 +34,7 @@ const EligibilityTestBanner = () => {
       >
         Je fais le test
       </Button>
-    </div>
+    </aside>
   );
 };
 
