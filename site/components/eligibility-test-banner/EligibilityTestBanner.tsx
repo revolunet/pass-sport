@@ -2,9 +2,7 @@
 
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
-import Link from 'next/link';
 import { push } from '@socialgouv/matomo-next';
-import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const EligibilityTestBanner = () => {
