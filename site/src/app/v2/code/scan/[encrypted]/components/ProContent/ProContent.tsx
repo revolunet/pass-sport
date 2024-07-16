@@ -8,13 +8,14 @@ import { push } from '@socialgouv/matomo-next';
 
 interface Props {
   code: string;
+  redirectionUrl: string;
 }
 
-const ProContent = ({ code }: Props) => {
-  const redirectionUrl = new URL(process.env.NEXT_PUBLIC_LCA_APP_URL || '');
+const ProContent = ({ code, redirectionUrl }: Props) => {
+  const redirectionUrlWithParams = new URL(redirectionUrl);
   const redirectionUrlSearchParams = new URLSearchParams({ id_psp: code });
 
-  redirectionUrl.search = redirectionUrlSearchParams.toString();
+  redirectionUrlWithParams.search = redirectionUrlSearchParams.toString();
 
   const onRedirectionClick = () => {
     push(['trackEvent', 'LCA redirection', 'Clicked', 'QR Recap page']);
@@ -50,7 +51,7 @@ const ProContent = ({ code }: Props) => {
           priority="secondary"
           size="small"
           linkProps={{
-            href: redirectionUrl,
+            href: redirectionUrlWithParams,
             target: '_blank',
             onClick: onRedirectionClick,
           }}
