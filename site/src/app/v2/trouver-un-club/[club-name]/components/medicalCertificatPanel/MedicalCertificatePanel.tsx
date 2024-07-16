@@ -34,7 +34,7 @@ const MedicalCertificatePanel = () => {
         imageUrl={image.src}
         size="medium"
         title="Besoin d'un certificat médical ?"
-        titleAs="h3"
+        titleAs="h2"
         classes={{
           end: 'fr-hidden',
           title: cn('fr-mb-2w', styles.blue),

@@ -32,7 +32,7 @@ const SocialMediaPanel = ({ isHomePage = false, isProVersion = false }: Props) =
         [styles['container--pro']]: isProVersion,
       })}
     >
-      <h2 className={cn(styles.title, 'fr-h5')}>Suivez-nous sur les réseaux sociaux</h2>
+      <h1 className={cn(styles.title, 'fr-h5')}>Suivez-nous sur les réseaux sociaux</h1>
       <ul className={styles['link-container']}>
         {socialMedia.map((link) => (
           <li key={link.href}>

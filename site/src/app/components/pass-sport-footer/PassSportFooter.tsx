@@ -30,7 +30,7 @@ export default function PassSportFooter() {
 
   useUpdateHeadings({
     parentRef: footerRef,
-    level: 2,
+    level: 1,
     headingSelectors: [FOOTER_CLASSES.partnersTitle],
   });
 

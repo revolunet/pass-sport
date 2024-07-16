@@ -2,6 +2,7 @@ import ClubDetails from '@/app/v2/trouver-un-club/[club-name]/components/clubDet
 import EligibilityTestBanner from '../../../../../components/eligibility-test-banner/EligibilityTestBanner';
 import SocialMediaPanel from '../../../components/social-media-panel/SocialMediaPanel';
 import { Metadata } from 'next';
+import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 interface Props {
   params: { 'club-name': string };
@@ -18,7 +19,10 @@ const ClubPage = ({ params }: { params: { 'club-name': string } }) => {
 
   return (
     <>
-      <ClubDetails clubName={clubName} />
+      <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <ClubDetails clubName={clubName} />
+      </main>
+
       <EligibilityTestBanner />
       <SocialMediaPanel />
     </>

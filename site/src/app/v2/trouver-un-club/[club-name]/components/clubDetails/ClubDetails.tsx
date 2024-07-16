@@ -1,17 +1,16 @@
 'use client';
 
-import styles from '@/app/v2/trouver-un-club/[club-name]/style.module.scss';
-import { Tag } from '@codegouvfr/react-dsfr/Tag';
+import styles from './styles.module.scss';
 import { formatPhoneNumber } from '@/app/v2/trouver-un-club/[club-name]/helpers';
 import MedicalCertificatePanel from '../medicalCertificatPanel/MedicalCertificatePanel';
 import { useCallback, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { useGetClubs } from '@/app/hooks/use-get-clubs';
-import { DisabilityTag } from '../../../components/disability-tag/DisabilityTag';
 import cn from 'classnames';
 import Link from 'next/link';
 import { useGetMapUrl } from '../../hooks/use-get-map-url';
 import { push } from '@socialgouv/matomo-next';
+import ClubTags from '../../../components/club-tags/ClubTags';
 
 interface Props {
   clubName: string;
@@ -38,55 +37,47 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
     <div className="fr-mx-2w fr-mb-10w">
       <div className={`fr-p-3w fr-mt-3w fr-mx-auto fr-mb-12w ${styles.panel}`}>
         <section className={styles.info}>
-          <h2>{club.nom}</h2>
-          <div className={`fr-my-2w ${styles.tags}`}>
-            {Array.isArray(club.activites) && (
-              <Tag small>
-                <p className="fr-text--xs">
-                  {club.activites.length} {club.activites.length > 1 ? 'activités' : 'activité'}
-                </p>
-              </Tag>
-            )}
-
-            <DisabilityTag club={club} small />
-          </div>
+          <h1 className="fr-h2">{club.nom}</h1>
+          <ClubTags club={club} small />
 
           <div className={styles['contact-wrapper']}>
             <section className={styles.contact}>
-              {(club.adresse || club.commune) && (
-                <p className="fr-text--xs fr-m-0">
-                  <span
-                    className={`fr-pr-1w fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
-                    aria-hidden="true"
-                  />
+              <ul className={styles.list}>
+                {(club.adresse || club.commune) && (
+                  <li className="fr-text--xs fr-m-0">
+                    <span
+                      className={`fr-pr-1w fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
+                      aria-hidden="true"
+                    />
 
-                  <span>
-                    {club.adresse && club.adresse}
-                    {club.adresse && club.commune && ', '}
-                    {club.commune && club.commune}
-                  </span>
-                </p>
-              )}
+                    <span>
+                      {club.adresse && club.adresse}
+                      {club.adresse && club.commune && ', '}
+                      {club.commune && club.commune}
+                    </span>
+                  </li>
+                )}
 
-              {club.telephone && (
-                <p className="fr-text--xs fr-m-0">
-                  <span
-                    className={`fr-pr-1w fr-icon-phone-line ${styles['icon-color']} fr-icon--sm`}
-                    aria-hidden="true"
-                  ></span>
-                  {formatPhoneNumber(club.telephone)}
-                </p>
-              )}
+                {club.telephone && (
+                  <li className="fr-text--xs fr-m-0">
+                    <span
+                      className={`fr-pr-1w fr-icon-phone-line ${styles['icon-color']} fr-icon--sm`}
+                      aria-hidden="true"
+                    ></span>
+                    {formatPhoneNumber(club.telephone)}
+                  </li>
+                )}
 
-              {club.courriel && (
-                <p className="fr-text--xs fr-m-0">
-                  <span
-                    className={`fr-pr-1w fr-icon-mail-line ${styles['icon-color']} fr-icon--sm`}
-                    aria-hidden="true"
-                  ></span>
-                  {club.courriel}
-                </p>
-              )}
+                {club.courriel && (
+                  <li className="fr-text--xs fr-m-0">
+                    <span
+                      className={`fr-pr-1w fr-icon-mail-line ${styles['icon-color']} fr-icon--sm`}
+                      aria-hidden="true"
+                    ></span>
+                    {club.courriel}
+                  </li>
+                )}
+              </ul>
             </section>
 
             {mapUrl && (
@@ -109,15 +100,13 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
 
           {Array.isArray(club.activites) && (
             <>
-              <h3>Les activités</h3>
+              <h2 className="fr-h3">Les activités</h2>
               <ul className={styles.activities}>
-                <div className={styles.grid}>
-                  {club.activites?.map((activity) => (
-                    <li key={activity} className="fr-mr-3w fr-p-0">
-                      {activity}
-                    </li>
-                  ))}
-                </div>
+                {club.activites?.map((activity) => (
+                  <li key={activity} className="fr-mr-3w fr-p-0">
+                    {activity}
+                  </li>
+                ))}
               </ul>
 
               <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
@@ -126,7 +115,12 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
         </section>
 
         <section>
-          <h4 className="fr-mb-2w">Où nous trouver</h4>
+          <h2
+            className="fr-h4"
+            aria-label="Où nous trouver. Carte interactive de l'emplacement du club"
+          >
+            Où nous trouver
+          </h2>
           <Map club={club} />
         </section>
       </div>
