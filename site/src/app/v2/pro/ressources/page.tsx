@@ -705,7 +705,7 @@ export default function ToutSavoirSurLePassSport() {
           </div>
 
           <div>
-            <h4 className="fr-mb-3w">Texte de référence</h4>
+            <h2 className="fr-mb-3w fr-h4">Texte de référence</h2>
 
             <Link
               href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047952490?init=true&page=1&query=Pass%E2%80%99Sport&searchField=ALL&tab_selection=all"
