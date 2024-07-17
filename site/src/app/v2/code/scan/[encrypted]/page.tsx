@@ -8,7 +8,7 @@ import { decryptData } from '../../../../../../utils/decryption';
 import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import ProContent from '../components/ProContent/ProContent';
-import InvalidContainer from '../components/InvalidContainer/InvalidContainer';
+import PlaceholderContainer from '../components/PlaceholderContainer/PlaceholderContainer';
 
 interface Props {
   params: {
@@ -36,7 +36,7 @@ function Page({ params: { encrypted } }: Props) {
 
   const decryptedParams = decryptData(encrypted, base64Key);
 
-  if (decryptedParams === null) return <InvalidContainer />;
+  if (decryptedParams === null) return <PlaceholderContainer>Code Invalide</PlaceholderContainer>;
 
   const searchParams = new URLSearchParams(decryptedParams);
   const replaceDoubleQuotes = (input: string | null) => input?.replaceAll(`''`, `'`) || input;
@@ -50,7 +50,7 @@ function Page({ params: { encrypted } }: Props) {
   ];
 
   if (!firstname || !lastname || !gender || !birthDate || !code) {
-    return <InvalidContainer />;
+    return <PlaceholderContainer>Code Invalide</PlaceholderContainer>;
   }
 
   const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encrypted)}`;

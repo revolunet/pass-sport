@@ -33,7 +33,7 @@ export const buildQRCodeUrl = (data: ConfirmResponseBody) => {
 
     const encryptedQuery = encrypt(queryToEncrypt, process.env.BASE_64_KEY);
 
-    return `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encryptedQuery)}`;
+    return `${process.env.QR_CODE_BASE_URL}#${encodeURIComponent(encryptedQuery)}`;
   } catch (e) {
     Sentry.withScope((scope) => {
       scope.captureException(e);

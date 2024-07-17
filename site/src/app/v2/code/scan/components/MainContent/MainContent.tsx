@@ -5,16 +5,15 @@ import cn from 'classnames';
 import ProContent from '../ProContent/ProContent';
 import QrCodeCard from '../QrCodeCard/QrCodeCard';
 import { useGetDecryptedCode } from '@/app/v2/code/scan/hooks/use-get-decrypted-code';
-import InvalidContainer from '../InvalidContainer/InvalidContainer';
-import LoadingContainer from '../LoadingContainer/LoadingContainer';
+import PlaceholderContainer from '../PlaceholderContainer/PlaceholderContainer';
 
 function MainContent() {
   const { error, response, isLoading } = useGetDecryptedCode();
 
-  if (isLoading) return <LoadingContainer />;
+  if (isLoading) return <PlaceholderContainer>En cours de chargement</PlaceholderContainer>;
 
   if (error) {
-    return <InvalidContainer />;
+    return <PlaceholderContainer>Code invalide</PlaceholderContainer>;
   }
 
   return (
