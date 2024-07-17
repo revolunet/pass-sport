@@ -55,7 +55,7 @@ export default async function POST(
     return res.status(500).json({ error: true });
   }
 
-  const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encrypted}`;
+  const qrCodeValue = `${process.env.QR_CODE_BASE_URL}#${encrypted}`;
 
   return res.json({
     firstname,
