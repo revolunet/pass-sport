@@ -34,7 +34,7 @@ const ClubListView = ({ clubs, onSeeMoreClubsClicked }: Props) => {
                 size="medium"
                 start={<ClubTags club={club} />}
                 title={`${club.nom}`}
-                titleAs="h3"
+                titleAs="h2"
                 classes={{ root: styles.card }}
               />
             </li>

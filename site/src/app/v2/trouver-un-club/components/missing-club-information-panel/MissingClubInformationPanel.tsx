@@ -10,7 +10,7 @@ const MissingClubInformationPanel = ({ isProVersion }: Props) => {
     <div
       className={cn('fr-alert', 'fr-alert--info', 'fr-mt-9w', 'fr-mx-auto', styles['alert-sizer'])}
     >
-      <h6 className="fr-alert__title">Information</h6>
+      <p className="fr-alert__title">Information</p>
       <p>
         {isProVersion
           ? `Si votre club n'apparait pas, c'est qu'il n'est pas encore référencé. Dans ce cas là, n'hésitez pas à vous rapprocher de plusieurs interlocuteurs dans votre département en fonction de votre statut`
