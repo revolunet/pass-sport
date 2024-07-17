@@ -6,7 +6,7 @@ import { getClubs, getClubsWithoutLimit, SqlSearchParams } from '../../agent';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ClubFilters from '../club-filters/ClubFilters';
 import { GeoGouvRegion } from 'types/Region';
-import { ActivityResponse, ClubsOnMapProvider, SportGouvJSONRecordsResponse } from 'types/Club';
+import { ActivityResponse, ClubsOnList, ClubsOnMap } from 'types/Club';
 import cn from 'classnames';
 import ClubCount from '../club-count/ClubCount';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
@@ -21,6 +21,7 @@ import { SegmentedControl } from '@codegouvfr/react-dsfr/SegmentedControl';
 import { GeolocationContext } from '@/store/geolocationContext';
 import { DEFAULT_DISTANCE } from 'utils/map';
 import { push } from '@socialgouv/matomo-next';
+import { setFocusOn } from 'utils/dom';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -42,11 +43,13 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
   const geolocationContext = useContext(GeolocationContext);
   const { latitude, longitude, loading } = geolocationContext;
 
-  const [clubsOnList, setClubsOnList] = useState<SportGouvJSONRecordsResponse>({
+  const [clubsOnList, setClubsOnList] = useState<ClubsOnList>({
     results: [],
     total_count: 0,
+    firstRecievedClubIndex: 0,
   });
-  const [clubsOnMap, setClubsOnMap] = useState<ClubsOnMapProvider>({
+
+  const [clubsOnMap, setClubsOnMap] = useState<ClubsOnMap>({
     results: [],
     total_count: 0,
     isFetchingClubsOnMap: true,
@@ -118,11 +121,15 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
       activity,
     };
     if (offset === 0) {
-      getClubs(clubParams).then(setClubsOnList);
+      getClubs(clubParams).then((clubs) => setClubsOnList({ ...clubs, firstRecievedClubIndex: 0 }));
     } else {
       getClubs(clubParams).then((res) =>
         setClubsOnList((clubs) => {
-          return { results: [...clubs.results, ...res.results], total_count: res.total_count };
+          return {
+            results: [...clubs.results, ...res.results],
+            total_count: res.total_count,
+            firstRecievedClubIndex: offset + 1,
+          };
         }),
       );
     }
@@ -179,6 +186,10 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
   useEffect(() => {
     setIsGeolocationFilterActive(!!latitude);
   }, [latitude]);
+
+  useEffect(() => {
+    setFocusOn(`#club-list > li:nth-child(${clubsOnList.firstRecievedClubIndex}) a`);
+  }, [clubsOnList.firstRecievedClubIndex]);
 
   const seeMoreClubsHandler = () => {
     setClubParams((clubParams) => ({ ...clubParams, offset: clubParams.offset + limit }));

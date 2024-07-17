@@ -3,12 +3,16 @@ export interface SportGouvJSONRecordsResponse {
   total_count: number;
 }
 
+export interface ClubsOnList extends SportGouvJSONRecordsResponse {
+  firstRecievedClubIndex: number; // index of the first club received for the last request
+}
+
 export interface SportGouvJSONExportsResponse {
   results: ExportedClub[];
   total_count: number;
 }
 
-export interface ClubsOnMapProvider extends SportGouvJSONExportsResponse {
+export interface ClubsOnMap extends SportGouvJSONExportsResponse {
   isFetchingClubsOnMap: boolean;
 }
 
