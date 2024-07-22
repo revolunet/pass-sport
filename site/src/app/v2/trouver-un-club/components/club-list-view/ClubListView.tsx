@@ -42,7 +42,15 @@ const ClubListView = ({ clubs, onSeeMoreClubsClicked }: Props) => {
 
         {!isLastPage && (
           <div className={cn('fr-mt-9w', styles['more-clubs-wrapper'])}>
-            <Button priority="primary" size="large" onClick={onSeeMoreClubsClicked}>
+            <Button
+              priority="primary"
+              size="large"
+              onClick={onSeeMoreClubsClicked}
+              nativeButtonProps={{
+                'aria-label':
+                  'Voir plus de clubs. La liste des clubs sera augmentée des clubs suivants',
+              }}
+            >
               Voir plus de clubs
             </Button>
           </div>

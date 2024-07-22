@@ -13,10 +13,11 @@ const HandicapFilter = ({ onDisabilityChanged }: Props) => {
 
   return (
     <ToggleSwitch
-      inputTitle="test"
+      inputTitle="Ce filtre permet de réduire la liste des clubs à ceux accueillant uniquement des personnes en situation de handicap. La liste des clubs est rafraichie dès que ce filtre est modifié."
       className={cn('fr-mx-0', 'fr-mb-0')}
       label="Accueil des personnes en situation de handicaps uniquement"
       name="disability"
+      showCheckedHint={false}
       onChange={(isActivated) => {
         onDisabilityChanged(isActivated);
       }}
