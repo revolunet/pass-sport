@@ -3,11 +3,12 @@
 import styles from './styles.module.scss';
 import cn from 'classnames';
 import { URLSearchParams } from 'next/dist/compiled/@edge-runtime/primitives';
-import QrCodeCard from './components/QrCodeCard/QrCodeCard';
+import QrCodeCard from '../components/QrCodeCard/QrCodeCard';
 import { decryptData } from '../../../../../../utils/decryption';
 import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
-import ProContent from './components/ProContent/ProContent';
+import ProContent from '../components/ProContent/ProContent';
+import PlaceholderContainer from '../components/PlaceholderContainer/PlaceholderContainer';
 
 interface Props {
   params: {
@@ -35,7 +36,7 @@ function Page({ params: { encrypted } }: Props) {
 
   const decryptedParams = decryptData(encrypted, base64Key);
 
-  if (decryptedParams === null) return <InvalidContainer />;
+  if (decryptedParams === null) return <PlaceholderContainer>Code Invalide</PlaceholderContainer>;
 
   const searchParams = new URLSearchParams(decryptedParams);
   const replaceDoubleQuotes = (input: string | null) => input?.replaceAll(`''`, `'`) || input;
@@ -49,7 +50,7 @@ function Page({ params: { encrypted } }: Props) {
   ];
 
   if (!firstname || !lastname || !gender || !birthDate || !code) {
-    return <InvalidContainer />;
+    return <PlaceholderContainer>Code Invalide</PlaceholderContainer>;
   }
 
   const qrCodeValue = `${process.env.QR_CODE_BASE_URL}/${encodeURIComponent(encrypted)}`;
@@ -101,16 +102,6 @@ function Page({ params: { encrypted } }: Props) {
           <ProContent code={code} redirectionUrl={process.env.NEXT_PUBLIC_LCA_APP_URL} />
         )}
     </main>
-  );
-}
-
-function InvalidContainer() {
-  return (
-    <div className={cn(styles['page'], 'fr-px-2w')}>
-      <div className={cn(styles['container'], 'fr-container--fluid', 'fr-grid-row', 'fr-py-6w')}>
-        Code invalide
-      </div>
-    </div>
   );
 }
 

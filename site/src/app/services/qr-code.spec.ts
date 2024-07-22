@@ -49,6 +49,7 @@ describe('qr-code units tests', () => {
       process.env.BASE_64_KEY = secret;
 
       const qrCodeUrl = buildQRCodeUrl(eligible);
+      expect(qrCodeUrl).toContain('#');
       expect(qrCodeUrl).not.toEqual(''); // since iV changes all the time, the encrypted segment of the url is unpredicable
 
       delete process.env.BASE_64_KEY;
