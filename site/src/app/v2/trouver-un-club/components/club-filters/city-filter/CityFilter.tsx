@@ -16,24 +16,26 @@ interface Props {
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
 }
 
+const allCitiesOption: Option = { label: 'Toutes les villes', value: '' };
+
 const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
   const searchParams = useSearchParams();
 
   const city = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city);
   const postalCode = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode);
-  const [value, setValue] = useState<Option | null>(null);
+
+  const [value, setValue] = useState<Option>(allCitiesOption);
 
   const cityChangeHandler = (newValue: SingleValue<Option>) => {
     if (!newValue) {
-      /* field was cleared */
-      onCityChanged({});
-      setValue(null);
+      /* would happen if field was cleared, but this feature is disabled, so it nerver happens */
+      return;
     } else {
       const cityOrPostalCode = newValue.value;
 
       if (cityOrPostalCode === '') {
         onCityChanged({});
-        setValue(null);
+        setValue(allCitiesOption);
         return;
       }
 
@@ -64,10 +66,10 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
 
       getFranceCitiesByName(unescapedCity, false).then((cities) => {
         parseCities(cities);
-        setValue(parseCities(cities)[0]);
+        setValue(parseCities(cities)[1]);
       });
     } else {
-      setValue(null);
+      setValue(allCitiesOption);
     }
   }, [city, postalCode]);
 
@@ -83,9 +85,8 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
         key="city-select-with-search-param"
         loadingMessage={() => <p>Chargement des villes</p>}
         noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-        placeholder="Toutes les villes"
         cacheOptions
-        isClearable
+        defaultOptions={[allCitiesOption]}
         loadOptions={fetchCityOptions}
         onChange={cityChangeHandler}
         styles={selectStyles}

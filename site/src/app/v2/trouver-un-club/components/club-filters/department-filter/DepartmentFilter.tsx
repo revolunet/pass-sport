@@ -30,11 +30,14 @@ const DepartmentFilter = ({ departments, isDisabled, onDepartmentChanged }: Prop
 
   const [selectedDepartmentCode, setSelectedDepartmentCode] = useState<string | null>(null);
 
-  const formatOptions = (departments: GeoGouvDepartment[]) =>
-    departments.map((department) => ({
-      label: department.nom,
-      value: department.code,
-    }));
+  const allDepartmentOption: Option = { label: 'Tous les départements', value: '' };
+  const departmentOptions = (departments: GeoGouvDepartment[]) =>
+    [allDepartmentOption].concat(
+      departments.map((department) => ({
+        label: department.nom,
+        value: department.code,
+      })),
+    );
 
   useEffect(() => {
     setAvailableDepartments(
@@ -58,7 +61,7 @@ const DepartmentFilter = ({ departments, isDisabled, onDepartmentChanged }: Prop
         value: geoGouvDepartment.code,
       };
     } else {
-      return null;
+      return allDepartmentOption;
     }
   };
 
@@ -81,11 +84,8 @@ const DepartmentFilter = ({ departments, isDisabled, onDepartmentChanged }: Prop
           isDisabled={isDisabled}
           instanceId="department-select-id"
           className={styles.select}
-          isClearable
-          placeholder="Tout"
-          isSearchable
           name="department"
-          options={formatOptions(availableDepartments)}
+          options={departmentOptions(availableDepartments)}
           onChange={departmentChangeHandler}
           styles={selectStyles}
           value={buildSelectedDepartmentOption()}

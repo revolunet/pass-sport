@@ -19,10 +19,13 @@ const RegionFilter: React.FC<Props> = ({ regions, isDisabled, onRegionChanged })
   const searchParam = useSearchParams();
   const regionCodeSearchParam = searchParam && searchParam.get(SEARCH_QUERY_PARAMS.regionCode);
 
-  const parsedRegions: Option[] = regions.map((region) => ({
-    label: region.nom,
-    value: region.code,
-  }));
+  const allRegionsOption = { label: 'Toutes les régions', value: '' };
+  const regionOptions: Option[] = [allRegionsOption].concat(
+    regions.map((region) => ({
+      label: region.nom,
+      value: region.code,
+    })),
+  );
 
   const [selectedRegionCode, setSelectedRegionCode] = useState<string | null>(null);
 
@@ -39,12 +42,12 @@ const RegionFilter: React.FC<Props> = ({ regions, isDisabled, onRegionChanged })
   };
 
   const buildSelectedRegionOption = () => {
-    const geoGouvRegion = parsedRegions.find((r) => r.value === selectedRegionCode);
+    const geoGouvRegion = regionOptions.find((r) => r.value === selectedRegionCode);
 
     if (geoGouvRegion) {
       return geoGouvRegion;
     } else {
-      return null;
+      return allRegionsOption;
     }
   };
 
@@ -59,11 +62,8 @@ const RegionFilter: React.FC<Props> = ({ regions, isDisabled, onRegionChanged })
           isDisabled={isDisabled}
           instanceId="region-select-id"
           className={styles.select}
-          isClearable
-          placeholder="Toutes les régions"
-          isSearchable
           name="region"
-          options={parsedRegions}
+          options={regionOptions}
           onChange={regionChangeHandler}
           styles={selectStyles}
           value={buildSelectedRegionOption()}
