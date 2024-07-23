@@ -2,7 +2,7 @@
 
 import { getFranceCitiesByName, getFranceCitiesByPostalCode } from '@/app/v2/trouver-un-club/agent';
 import { SingleValue } from 'react-select';
-import { Option, selectStyles } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
+import { Option } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
 import { City } from '../../../../../../../types/City';
 import { useEffect, useState } from 'react';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
@@ -10,6 +10,13 @@ import { useSearchParams } from 'next/navigation';
 import styles from '../styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { unescapeSingleQuotes } from '../../../../../../../utils/string';
+import {
+  customScreenReaderStatus,
+  guidance,
+  onChange,
+  onFilter,
+  selectStyles,
+} from '../custom-select/CustomSelect';
 
 interface Props {
   isDisabled: boolean;
@@ -65,8 +72,8 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
       const unescapedCity = unescapeSingleQuotes(city);
 
       getFranceCitiesByName(unescapedCity, false).then((cities) => {
-        parseCities(cities);
-        setValue(parseCities(cities)[1]);
+        const foundCityOption = parseCities(cities);
+        setValue(foundCityOption[0]);
       });
     } else {
       setValue(allCitiesOption);
@@ -75,13 +82,12 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
 
   return (
     <div className={styles['label-container']}>
-      <label htmlFor="city" className={styles.label}>
-        Ville
+      <label id="city-label" className={styles.label}>
+        Choix d&apos;une ville
       </label>
       <AsyncSelect
         isDisabled={isDisabled}
         instanceId="city-select-id"
-        name="city"
         key="city-select-with-search-param"
         loadingMessage={() => <p>Chargement des villes</p>}
         noOptionsMessage={() => <p>Aucune ville trouvée</p>}
@@ -91,6 +97,9 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
         onChange={cityChangeHandler}
         styles={selectStyles}
         value={value}
+        ariaLiveMessages={{ guidance, onChange, onFilter }}
+        aria-labelledby="city-label"
+        screenReaderStatus={customScreenReaderStatus}
       />
     </div>
   );

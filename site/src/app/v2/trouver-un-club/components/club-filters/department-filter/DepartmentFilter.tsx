@@ -1,12 +1,13 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import Select, { SingleValue } from 'react-select';
-import { Option, selectStyles } from '../ClubFilters';
+import { SingleValue } from 'react-select';
+import { Option } from '../ClubFilters';
 import styles from '../styles.module.scss';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { GeoGouvDepartment } from '../../../../../../../types/Department';
 import { useEffect, useState } from 'react';
+import CustomSelect from '../custom-select/CustomSelect';
 
 interface Props {
   departments: GeoGouvDepartment[];
@@ -76,18 +77,16 @@ const DepartmentFilter = ({ departments, isDisabled, onDepartmentChanged }: Prop
 
   return (
     <div className={styles['label-container']}>
-      <label htmlFor="department" className={styles.label}>
+      <label id="department-label" className={styles.label}>
         Choix d&apos;un département
       </label>
       <div className={styles['input-container']}>
-        <Select
+        <CustomSelect
           isDisabled={isDisabled}
           instanceId="department-select-id"
-          className={styles.select}
-          name="department"
+          aria-labelledby="department-label"
           options={departmentOptions(availableDepartments)}
           onChange={departmentChangeHandler}
-          styles={selectStyles}
           value={buildSelectedDepartmentOption()}
         />
       </div>
