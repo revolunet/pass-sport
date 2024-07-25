@@ -11,7 +11,11 @@ const MissingClubInformationPanel = ({ isProVersion }: Props) => {
     <>
       <p>
         Votre structure n&apos;apparait pas ?{' '}
-        <Link href="/v2/pro/tout-savoir-sur-le-pass-sport#tuto-carto" target="_blank">
+        <Link
+          href="/v2/pro/tout-savoir-sur-le-pass-sport#tuto-carto"
+          target="_blank"
+          aria-label="Ouvrir une nouvelle fenêtre vers la page tout savoir sur le pass sport à la section du tutoriel pour faire apparaitre son club sur la cartographie"
+        >
           voici comment la cartographier.
         </Link>
       </p>
