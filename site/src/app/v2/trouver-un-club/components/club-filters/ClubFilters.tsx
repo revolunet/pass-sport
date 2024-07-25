@@ -65,7 +65,7 @@ const ClubFilters: React.FC<Props> = ({
   };
 
   return (
-    <form className={cn('fr-pt-3w', 'fr-pb-2w', styles.wrapper)}>
+    <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.wrapper)}>
       <fieldset className={styles.fieldset}>
         <legend>Filtrer les clubs</legend>
         <div className="fr-px-2w">
@@ -141,7 +141,7 @@ const ClubFilters: React.FC<Props> = ({
           </div>
         </div>
       </fieldset>
-    </form>
+    </div>
   );
 };
 

@@ -19,109 +19,106 @@ export const metadata: Metadata = {
 export default function Accueil() {
   return (
     <>
-      <main
-        className={cn(styles['main-wrapper'], styles['root'])}
-        tabIndex={-1}
-        id={SKIP_LINKS_ID.mainContent}
-        role="main"
-      >
+      <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
         <PageTitle
           title={<>L&apos;État et le mouvement sportif se mobilisent pour vous accompagner</>}
           classes={{
             container: styles['page-header'],
           }}
         />
-        <Card
-          className={styles['main-card__highlight']}
-          classes={{
-            desc: styles['main-card__desc'],
-            title: styles['main-card__title'],
-            header: styles['main-card__header'],
-            content: styles['main-card__content'],
-            end: styles['main-card__end'],
-          }}
-          title="Clubs et structures sportives"
-          titleAs="h2"
-          imageUrl={mainImage.src}
-          imageAlt="Image principale pour la promotion du pass Sport aux clubs et structures sportives"
-          horizontal
-          border={false}
-          desc={
-            <>
-              <span>
-                Grâce au pass Sport contribuez à accueillir encore plus de jeunes dans vos clubs et
-                offrez leur la possibilité de bénéficier d&apos;une aide à la pratique sportive par
-                une déduction de 50 € à l&apos;inscription qui vous sera intégralement remboursée
-                par l&apos;Etat.
-              </span>
+        <div className={cn(styles['main-wrapper'], styles['root'])}>
+          <Card
+            className={styles['main-card__highlight']}
+            classes={{
+              desc: styles['main-card__desc'],
+              title: styles['main-card__title'],
+              header: styles['main-card__header'],
+              content: styles['main-card__content'],
+              end: styles['main-card__end'],
+            }}
+            title="Clubs et structures sportives"
+            titleAs="h2"
+            imageUrl={mainImage.src}
+            imageAlt="Image principale pour la promotion du pass Sport aux clubs et structures sportives"
+            horizontal
+            border={false}
+            desc={
+              <>
+                <span>
+                  Grâce au pass Sport contribuez à accueillir encore plus de jeunes dans vos clubs
+                  et offrez leur la possibilité de bénéficier d&apos;une aide à la pratique sportive
+                  par une déduction de 50 € à l&apos;inscription qui vous sera intégralement
+                  remboursée par l&apos;Etat.
+                </span>
 
-              <Button
-                priority="primary"
-                className="fr-mt-4w"
-                size="large"
-                linkProps={{
-                  href: 'https://vimeo.com/949861035?share=copy',
-                  'aria-label':
-                    "Ouvrir une nouvelle fenêtre vers une vidéo expliquant comment s'inscrire au Compte Asso",
-                  target: '_blank',
-                }}
-              >
-                S&apos;inscrire au Compte Asso
-              </Button>
-            </>
-          }
-        />
+                <Button
+                  priority="primary"
+                  className="fr-mt-4w"
+                  size="large"
+                  linkProps={{
+                    href: 'https://vimeo.com/949861035?share=copy',
+                    'aria-label':
+                      "Ouvrir une nouvelle fenêtre vers une vidéo expliquant comment s'inscrire au Compte Asso",
+                    target: '_blank',
+                  }}
+                >
+                  S&apos;inscrire au Compte Asso
+                </Button>
+              </>
+            }
+          />
 
-        <section className={cn('fr-container', 'fr-px-0')}>
-          <div className="fr-grid-row fr-grid-row--gutters">
-            {presentationTiles.map((tile) => (
-              <div key={tile.id} className="fr-col-12 fr-col-lg-4">
-                <PresentationTile {...tile} />
-              </div>
-            ))}
-          </div>
-        </section>
+          <section className={cn('fr-container', 'fr-px-0')}>
+            <div className="fr-grid-row fr-grid-row--gutters">
+              {presentationTiles.map((tile) => (
+                <div key={tile.id} className="fr-col-12 fr-col-lg-4">
+                  <PresentationTile {...tile} />
+                </div>
+              ))}
+            </div>
+          </section>
 
-        <Card
-          className={styles['secondary-card']}
-          classes={{
-            desc: styles['secondary-card__desc'],
-            title: styles['secondary-card__title'],
-            header: styles['secondary-card__header'],
-            content: styles['secondary-card__content'],
-            end: styles['secondary-card__end'],
-          }}
-          title="Faire la promotion du pass Sport"
-          titleAs="h2"
-          imageUrl={secondaryImage.src}
-          imageAlt="Image secondaire pour faire la promotion du pass Sport"
-          border={false}
-          horizontal
-          desc={
-            <>
-              <span className="fr-text--md">
-                Grâce au pass Sport contribuez à accueillir encore plus de jeunes dans vos clubs et
-                offrez leur la possibilité de bénéficier d&apos;une aide à la pratique sportive par
-                une déduction de 50 € à l&apos;inscription qui vous sera intégralement remboursée
-                par l&apos;Etat.
-              </span>
+          <Card
+            className={styles['secondary-card']}
+            classes={{
+              desc: styles['secondary-card__desc'],
+              title: styles['secondary-card__title'],
+              header: styles['secondary-card__header'],
+              content: styles['secondary-card__content'],
+              end: styles['secondary-card__end'],
+            }}
+            title="Faire la promotion du pass Sport"
+            titleAs="h2"
+            imageUrl={secondaryImage.src}
+            imageAlt="Image secondaire pour faire la promotion du pass Sport"
+            border={false}
+            horizontal
+            desc={
+              <>
+                <span className="fr-text--md">
+                  Grâce au pass Sport contribuez à accueillir encore plus de jeunes dans vos clubs
+                  et offrez leur la possibilité de bénéficier d&apos;une aide à la pratique sportive
+                  par une déduction de 50 € à l&apos;inscription qui vous sera intégralement
+                  remboursée par l&apos;Etat.
+                </span>
 
-              <Button
-                priority="secondary"
-                size="large"
-                className="fr-btn"
-                iconId="fr-icon-arrow-right-line"
-                iconPosition="right"
-                linkProps={{
-                  href: '/v2/pro/ressources',
-                  'aria-label': 'Visiter la page des ressources',
-                }}
-              >
-                Ressources
-              </Button>
-            </>
-          }
-        />
+                <Button
+                  priority="secondary"
+                  size="large"
+                  className="fr-btn"
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  linkProps={{
+                    href: '/v2/pro/ressources',
+                    'aria-label': 'Visiter la page des ressources',
+                  }}
+                >
+                  Ressources
+                </Button>
+              </>
+            }
+          />
+        </div>
       </main>
 
       <SocialMediaPanel isHomePage isProVersion />

@@ -446,7 +446,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
       <div className={styles.center}>
         <SegmentedControl
           hideLegend={true}
-          legend="Choisissez entre la vue liste et la vue cartographie pour voir les clubs"
+          legend="Choisissez entre la vue liste et la vue cartographie pour voir les clubs; Utiliser les flèches droite et gauche pour changer de vue"
           segments={[
             {
               label: 'Liste',

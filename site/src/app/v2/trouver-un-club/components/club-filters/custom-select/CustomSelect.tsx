@@ -41,7 +41,7 @@ export const guidance = (props: AriaGuidanceProps) => {
   const { isSearchable, isMulti, tabSelectsValue, context, isInitialFocus } = props;
   switch (context) {
     case 'menu':
-      return `Utiliser les flèches Haut et Bas pour choisir une option; Presser la touche entrer pour sélectionner l'option qui a le focus; Presser la touche Echap pour quitter la liste déroulante ${
+      return `Utiliser les flèches Haut et Bas pour choisir une option. La liste des clubs sera mise à jour quand l'option sera sélectionnée; Presser la touche entrer pour sélectionner l'option qui a le focus; Presser la touche Echap pour quitter la liste déroulante ${
         tabSelectsValue
           ? "; Pressez la touche Tab pour sélectionner l'option et quitter la liste déroulante"
           : ''
