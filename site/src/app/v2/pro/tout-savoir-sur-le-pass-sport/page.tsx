@@ -13,6 +13,9 @@ import { Metadata } from 'next';
 import Video from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/Video';
 import TranscriptionVisibilityClub from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionVisibilityClub';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionRefundPassSport';
+import vignetteRefund from '@/images/vignette-video-remboursement.png';
+import vignetteClub from '@/images/vignette-video-structure.png';
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',
@@ -30,7 +33,12 @@ export default function ToutSavoirSurLePassSport() {
         }}
       />
 
-      <main className={styles['main-container']} tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+      <main
+        className={styles['main-container']}
+        tabIndex={-1}
+        id={SKIP_LINKS_ID.mainContent}
+        role="main"
+      >
         <section className={styles['section-container']}>
           <h2 className="fr-h4">Qui se mobilise pour vous accompagner ?</h2>
           <p className="fr-text--bold">
@@ -121,22 +129,22 @@ export default function ToutSavoirSurLePassSport() {
             </li>
           </ul>
 
-          {/* todo: Include this section back when we get the video */}
-          {/*<p>*/}
-          {/*  Vous pouvez consulter notre tutoriel d&apos;accompagnement qui vous guide pour*/}
-          {/*  l&apos;ensemble de la démarche sur LCA :*/}
-          {/*</p>*/}
+          <p>
+            Vous pouvez consulter notre tutoriel d&apos;accompagnement qui vous guide pour
+            l&apos;ensemble de la démarche sur LCA :
+          </p>
 
-          {/*<Link*/}
-          {/*  href="https://www.pass.sports.gouv.fr/app/uploads/2022/09/2022_PassSport_Comment-se-faire-rembourser.pdf"*/}
-          {/*  target="_blank"*/}
-          {/*  className="align-self--baseline"*/}
-          {/*>*/}
-          {/*  2022_PassSport_Comment se faire rembourser*/}
-          {/*</Link>*/}
+          <Video
+            videoId="video-956954295"
+            videoPathUrl="956954295?h=c830d2877e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            videoFullUrl="https://vimeo.com/956954295/c830d2877e"
+            title="Tutoriel : se faire rembourser un pass Sport"
+            transcriptionContent={<TranscriptionRefundPassSport />}
+            vignette={vignetteRefund}
+          />
         </section>
 
-        <section className={styles['section-container']}>
+        <section id="tuto-carto" className={styles['section-container']}>
           <h2 className="fr-h4">
             Comment faire apparaître mon club sur la carte des structures éligibles au pass Sport ?{' '}
           </h2>
@@ -152,9 +160,12 @@ export default function ToutSavoirSurLePassSport() {
           </p>
 
           <Video
-            videoId="949861035"
+            videoId="video-949861035"
+            videoPathUrl="949861035"
+            videoFullUrl="https://vimeo.com/949861035"
             title="Tutoriel : devenez partenaire du pass Sport"
             transcriptionContent={<TranscriptionVisibilityClub />}
+            vignette={vignetteClub}
           />
         </section>
 

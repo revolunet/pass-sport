@@ -64,7 +64,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
         'fr-select-group--error': inputState.state === 'error',
       })}
     >
-      <label className={rootStyles['text--black']} htmlFor="city-select-id">
+      <label className={rootStyles['text--black']} htmlFor={inputName}>
         {legend}
         <p className={cn('fr-text--xs', styles.hint, 'fr-mb-1w', 'fr-mt-1v')}>
           Format attendu : Si le nom de la commune est composé, veillez à saisir un tiret entre deux
@@ -78,7 +78,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
       <AsyncSelect
         aria-labelledby="city-select-id"
         instanceId="city-select-id"
-        inputId="city-select-id"
+        inputId={inputName}
         name={inputName}
         loadingMessage={() => <p>Chargement des villes...</p>}
         noOptionsMessage={() => <p>Aucune ville trouvée</p>}

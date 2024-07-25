@@ -4,11 +4,17 @@ import vignetteImage from '@/images/vignette-video-accueil.png';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAxeptio } from '../../../../hooks/use-axeptio';
+import { useAxeptio } from '@/app/hooks/use-axeptio';
 import styles from './styles.module.scss';
 
-const Video = () => {
-  useAxeptio('https://player.vimeo.com/video/956531127?h=c05ce6ca77&title=0&byline=0&portrait=0');
+interface Props {
+  videoId: string;
+  videoPathUrl: string;
+  videoFullUrl: string;
+}
+
+const Video = ({ videoId, videoPathUrl, videoFullUrl }: Props) => {
+  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
@@ -18,10 +24,12 @@ const Video = () => {
     <div>
       <figure role="group" className="fr-my-2w fr-content-media">
         <iframe
+          id={videoId}
           className={styles.iframe}
           data-requires-vendor-consent="vimeo"
           allow="autoplay; fullscreen; picture-in-picture"
-        ></iframe>
+          aria-label="Vidéo de présentation du dispositif pass Sport du ministère des Sports 2024 sur Viméo"
+        />
         <div data-hide-on-vendor-consent="vimeo" className={styles.videoContainer}>
           <Image src={vignetteImage} alt="Vidéo Viméo" />
           <Button
@@ -33,8 +41,13 @@ const Video = () => {
           </Button>
         </div>
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
-          Présentation du dispositif pass Sport du ministère des Sports
-          <a className={`fr-link ${styles.text}`} href="https://vimeo.com/727000609">
+          Vidéo de présentation du dispositif pass Sport du ministère des Sports
+          <a
+            className={`fr-link ${styles.text}`}
+            href={videoFullUrl}
+            aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viméo"
+            target="_blank"
+          >
             Voir la vidéo sur Viméo
           </a>
         </figcaption>

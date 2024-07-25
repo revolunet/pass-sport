@@ -2,41 +2,21 @@
 
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
-import { useRouter } from 'next/navigation';
 import cn from 'classnames';
 import { push } from '@socialgouv/matomo-next';
-import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const HeroPanel = () => {
-  const router = useRouter();
-
   const eligibilityTestOnClick = () => {
     push(['trackEvent', 'Eligibility Test Button', 'Clicked', 'Home test button']);
-    isUsingJuneEligibilityTest
-      ? router.push('/v2/test-eligibilite')
-      : router.push('/v2/test-eligibilite-mai');
-  };
-
-  const getButtonText = () => {
-    return isUsingJuneEligibilityTest ? 'Obtenir mon pass Sport' : 'Je fais le test';
   };
 
   return (
     <div className={cn('fr-px-3w', styles.background, styles.sizer, styles.padder)}>
       <div className={styles.container}>
-        <h2 className={cn('fr-hidden-lg', styles.title)}>
+        <h1 className={cn(styles.title, 'fr-h2')}>
           50 euros pour aider les 6-30 ans à faire du sport
-        </h2>
-        <h2 className={cn('fr-hidden', 'fr-unhidden-lg', styles.title)}>
-          50 euros
-          <br />
-          pour aider
-          <br />
-          les 6-30 ans à faire
-          <br />
-          du sport
-        </h2>
+        </h1>
       </div>
       <div className={styles['button-wrapper']}>
         <Button
@@ -44,11 +24,14 @@ const HeroPanel = () => {
           className="fr-mt-3w"
           priority="primary"
           size="large"
-          iconId="fr-icon-arrow-right-line"
-          iconPosition="right"
-          onClick={eligibilityTestOnClick}
+          linkProps={{
+            href: '/v2/test-eligibilite',
+            'aria-label': "Je fais le test d'éligibilité pour obtenir mon pass Sport",
+            onClick: eligibilityTestOnClick,
+          }}
         >
-          {getButtonText()}
+          Obtenir mon pass Sport
+          <span className="fr-icon fr-icon-arrow-right-line fr-ml-1w" aria-hidden />
         </Button>
       </div>
     </div>

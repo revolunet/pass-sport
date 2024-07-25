@@ -12,14 +12,15 @@ import AsyncSelect from 'react-select/async';
 import { unescapeSingleQuotes } from '../../../../../../../utils/string';
 
 interface Props {
+  isDisabled: boolean;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
 }
 
-const CityFilter = ({ onCityChanged }: Props) => {
+const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
   const searchParams = useSearchParams();
 
-  const citySearchParams = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city);
-  const postalCodeSearchParams = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode);
+  const city = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city);
+  const postalCode = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode);
   const [value, setValue] = useState<Option | null>(null);
 
   const cityChangeHandler = (newValue: SingleValue<Option>) => {
@@ -47,9 +48,6 @@ const CityFilter = ({ onCityChanged }: Props) => {
   };
 
   useEffect(() => {
-    const city = (searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city)) || '';
-    const postalCode = (searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode)) || '';
-
     if (postalCode) {
       getFranceCitiesByPostalCode(postalCode, false).then((cities) => {
         const formattedCities = parseCities(cities);
@@ -61,16 +59,17 @@ const CityFilter = ({ onCityChanged }: Props) => {
           setValue(matchingCityWithPostalCode);
         }
       });
-    }
-    if (city) {
+    } else if (city) {
       const unescapedCity = unescapeSingleQuotes(city);
 
       getFranceCitiesByName(unescapedCity, false).then((cities) => {
         parseCities(cities);
         setValue(parseCities(cities)[0]);
       });
+    } else {
+      setValue(null);
     }
-  }, [citySearchParams, postalCodeSearchParams, searchParams]);
+  }, [city, postalCode]);
 
   return (
     <div className={styles['label-container']}>
@@ -78,6 +77,7 @@ const CityFilter = ({ onCityChanged }: Props) => {
         Ville
       </label>
       <AsyncSelect
+        isDisabled={isDisabled}
         instanceId="city-select-id"
         name="city"
         key="city-select-with-search-param"

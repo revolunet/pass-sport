@@ -14,6 +14,11 @@ import { mapper } from '../../helpers/helper';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchEligible } from '../../agent';
 
+interface Props {
+  onDataReceived: (data: SearchResponseBody) => void;
+  onEligibilityFailure: () => void;
+}
+
 const initialInputsState: StepOneFormInputsState = {
   beneficiaryLastname: { state: 'default' },
   beneficiaryFirstname: { state: 'default' },
@@ -21,14 +26,8 @@ const initialInputsState: StepOneFormInputsState = {
   recipientResidencePlace: { state: 'default' },
 };
 
-interface Props {
-  onDataReceived: (data: SearchResponseBody) => void;
-  onEligibilityFailure: () => void;
-}
-
 const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
-
   const [inputStates, setInputStates] = useState<StepOneFormInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
   const [error, setError] = useState<string | null>();
@@ -59,9 +58,24 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
 
     const formData = new FormData(formRef.current!);
     const { isValid, states } = isFormValid(formData);
+
     setInputStates({ ...states });
 
     if (!isValid) {
+      // Go through each input, stops at the first one and focuses on it
+      // Transform into map for iteration to preserve the order of the keys
+      for (const [key, value] of new Map(Object.entries(states))) {
+        if (value.state === 'error') {
+          // Need to get the city finder as an id as the name is not transferred through their component
+          const invalidInput: HTMLInputElement | null | undefined = formRef.current?.querySelector(
+            `[name="${key}"], #recipientResidencePlace`,
+          );
+
+          invalidInput?.focus();
+          break;
+        }
+      }
+
       return;
     }
 

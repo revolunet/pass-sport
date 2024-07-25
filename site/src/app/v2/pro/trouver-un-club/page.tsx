@@ -11,6 +11,8 @@ import styles from './styles.module.scss';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import Geolocation from '../../trouver-un-club/components/geolocation/Geolocation';
+import Loading from '@/app/components/loading/Loading';
 
 export const metadata: Metadata = {
   title: 'Carte des structures partenaires - pass Sport',
@@ -35,13 +37,13 @@ const TrouverUnClub = async () => {
         </li>
         <li>
           les associations non affiliées à une fédération sportive mais disposant d’un agrément
-          valide Sport (délivré après 2015) ou Jeunesse Education Populaire (JEP) (délivré après
+          valide Sport (délivré après 2016) ou Jeunesse Education Populaire (JEP) (délivré après
           2018) sur l’ensemble du territoire.
         </li>
 
         <li>
           les structures du loisir sportif marchand ayant signé la Charte d’engagement pass Sport
-          2023.
+          2024.
         </li>
       </ul>
     </div>
@@ -49,7 +51,7 @@ const TrouverUnClub = async () => {
   return (
     <>
       <PageHeader
-        title="Carte des structures partenaire"
+        title="Carte des structures partenaires"
         isProVersion
         subtitle={subtitle}
         classes={{
@@ -57,14 +59,16 @@ const TrouverUnClub = async () => {
         }}
       />
 
-      <Suspense>
-        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
-          <ClubFinder
-            regions={regions}
-            activities={activities}
-            departments={departments}
-            isProVersion
-          />
+      <Suspense fallback={<Loading />}>
+        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+          <Geolocation>
+            <ClubFinder
+              regions={regions}
+              activities={activities}
+              departments={departments}
+              isProVersion
+            />
+          </Geolocation>
         </main>
       </Suspense>
       <SocialMediaPanel isProVersion />

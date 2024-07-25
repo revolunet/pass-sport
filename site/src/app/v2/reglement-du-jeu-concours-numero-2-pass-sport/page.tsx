@@ -25,9 +25,10 @@ export default function Page() {
         className={cn(styles.main, styles.wrapper)}
         tabIndex={-1}
         id={SKIP_LINKS_ID.mainContent}
+        role="main"
       >
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Présentation du jeu-concours pass Sport</h4>
+          <h2 className="fr-mb-2w">Présentation du jeu-concours pass Sport</h2>
 
           <p>
             Le pass Sport est un dispositif porté par l&apos;État et déployé par le ministère des
@@ -46,34 +47,25 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">
+          <h2 className="fr-mb-2w">
             Article 1<sup>er</sup> - Définitions
-          </h4>
+          </h2>
 
           <p>
             Le ministère des Sports et des Jeux Olympiques et Paralympiques, sis 95 avenue de
             France, 75013 – Paris est désigné ci-après comme : « l&apos;Organisateur »
           </p>
           <p>
-            La société DECATHLON, SASU sis 4 boulevard de Mons, 59650 – Villeneuve D&apos;Ascq 59650
-            est désignée ci-après comme : « l&apos;Organisateur ».
-          </p>
-          <p>
-            Le ministère des Sports et des Jeux Olympiques et Paralympiques et la société DECATHLON
-            étant ci-après désignés comme : « l&apos;Organisateur » ou « les sociétés organisatrices
-            ».
-          </p>
-          <p>
             Les participants au jeu-concours sont désignés ci-après comme « le/les Participant(s) »
           </p>
           <p>
             Le présent règlement définit les règles juridiques applicables au jeu-concours « pass
-            Sport x DECATHLON ».
+            Sport ».
           </p>
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 2 – Conditions de participation</h4>
+          <h2 className="fr-mb-2w">Article 2 – Conditions de participation</h2>
           <p>
             Le présent jeu-concours est ouvert à toute personne physique, majeure résidant en France
             à l&apos;exclusion des membres du personnel de l&apos;Organisateur, et d&apos;une façon
@@ -92,7 +84,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 3 – Dates du concours</h4>
+          <h2 className="fr-mb-2w">Article 3 – Dates du concours</h2>
 
           <p>Le jeu-concours se déroulera selon le calendrier suivant:</p>
 
@@ -103,8 +95,8 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 4 – Modalités de participation</h4>
-          <h5 className="fr-mb-2w">4.1 Conditions de participation</h5>
+          <h2 className="fr-mb-2w">Article 4 – Modalités de participation</h2>
+          <h3 className="fr-mb-2w">4.1 Conditions de participation</h3>
 
           <p>
             Afin de participer au présent jeu-concours, le Participant devra se rendre sur la
@@ -213,9 +205,9 @@ export default function Page() {
             la part d&apos;un Participant sera considérée comme une seule et unique participation.
           </p>
 
-          <h5 className="fr-mb-2w">
+          <h4 className="fr-mb-2w">
             4.2) Garantie et responsabilité sur la validité des candidatures
-          </h5>
+          </h4>
 
           <p>
             L&apos;Organisateur se réserve le droit d&apos;annuler, de mettre fin ou modifier cette
@@ -237,7 +229,7 @@ export default function Page() {
             respecterait pas une des conditions du présent règlement.
           </p>
 
-          <h5 className="fr-mb-2w">4.3) Détermination des Gagnants et attribution du lot</h5>
+          <h4 className="fr-mb-2w">4.3) Détermination des Gagnants et attribution du lot</h4>
 
           <p>
             Dans le cadre du présent jeu-concours « pass Sport », l&apos;Organisateur met à
@@ -258,8 +250,8 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 5 – Lots</h4>
-          <h5 className="fr-mb-2w">5.1) Valeur commerciale des dotations</h5>
+          <h2 className="fr-mb-2w">Article 5 – Lots</h2>
+          <h3 className="fr-mb-2w">5.1) Valeur commerciale des dotations</h3>
 
           <p>
             La valeur commerciale du lot correspond à la valeur de marché sur le territoire
@@ -278,7 +270,7 @@ export default function Page() {
             La contrepartie en chèque, en numéraire ou en chèque cadeau ne peut être proposée.
           </p>
 
-          <h5 className="fr-mb-2w">5.2) Modalités de délivrance et d&apos;utilisation du lot</h5>
+          <h3 className="fr-mb-2w">5.2) Modalités de délivrance et d&apos;utilisation du lot</h3>
           <p>
             Tel que le prévoit l&apos;article 4, le Gagnant sera contacté par l&apos;Organisateur
             via le compte Instagram avec lequel le Participant à participer au jeu-concours et ce,
@@ -302,7 +294,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 6 - Données nominatives et personnelles</h4>
+          <h2 className="fr-mb-2w">Article 6 - Données nominatives et personnelles</h2>
 
           <p>
             Pour la prise en compte de la participation au présent jeu-concours, la détermination
@@ -331,7 +323,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 7 - Responsabilités et droits</h4>
+          <h2 className="fr-mb-2w">Article 7 - Responsabilités et droits</h2>
 
           <p>L&apos;Organisateur :</p>
 
@@ -349,7 +341,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 8 - Conditions d&apos;exclusion</h4>
+          <h2 className="fr-mb-2w">Article 8 - Conditions d&apos;exclusion</h2>
           <p>
             La participation à ce jeu-concours implique l&apos;acceptation pleine et entière des
             modalités énoncées dans le présent règlement sans aucune réserve ni condition préalable
@@ -364,7 +356,7 @@ export default function Page() {
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 9 – Règlement du jeu</h4>
+          <h2 className="fr-mb-2w">Article 9 – Règlement du jeu</h2>
 
           <p>
             Le règlement sera tenu à la libre disposition de tout Participant via l&apos;URL suivant
@@ -375,16 +367,16 @@ export default function Page() {
             >
               https://pass.sports.gouv.fr/v2/reglement-du-jeu-concours-numero-2-pass-sport
             </Link>
-            <p>
-              Le présent règlement pourra également être adressé gratuitement sur simple demande de
-              tout participant, formulée à l&apos;adresse indiqué dans l&apos;article 1<sup>er</sup>
-              .
-            </p>
+          </p>
+
+          <p>
+            Le présent règlement pourra également être adressé gratuitement sur simple demande de
+            tout participant, formulée à l&apos;adresse indiqué dans l&apos;article 1<sup>er</sup>.
           </p>
         </section>
 
         <section className="fr-mb-6w">
-          <h4 className="fr-mb-2w">Article 10 - Juridictions compétentes</h4>
+          <h2 className="fr-mb-2w">Article 10 - Juridictions compétentes</h2>
 
           <p>
             Le présent règlement est soumis à la loi française. Les parties s&apos;efforcent de

@@ -1,20 +1,29 @@
 'use client';
 
-import vignetteImage from '@/images/vignette-video-structure.png';
 import Button from '@codegouvfr/react-dsfr/Button';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { ReactNode } from 'react';
-import { useAxeptio } from '../../../../hooks/use-axeptio';
+import { useAxeptio } from '@/app/hooks/use-axeptio';
 import styles from './styles.module.scss';
 
 interface Props {
   videoId: string;
+  videoPathUrl: string;
+  videoFullUrl: string;
   title: string;
   transcriptionContent: ReactNode;
+  vignette: StaticImageData;
 }
 
-const Video = ({ videoId, title, transcriptionContent }: Props) => {
-  useAxeptio(`https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0`);
+const Video = ({
+  videoId,
+  videoPathUrl,
+  videoFullUrl,
+  title,
+  transcriptionContent,
+  vignette,
+}: Props) => {
+  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
@@ -24,13 +33,14 @@ const Video = ({ videoId, title, transcriptionContent }: Props) => {
     <div>
       <figure role="group" className="fr-mt-n2w fr-content-media">
         <iframe
-          src={`https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0`}
+          id={videoId}
+          src={`https://player.vimeo.com/video/${videoPathUrl}`}
           className={styles.iframe}
           data-requires-vendor-consent="vimeo"
           allow="autoplay; fullscreen; picture-in-picture"
         />
         <div data-hide-on-vendor-consent="vimeo" className={styles.videoContainer}>
-          <Image src={vignetteImage} alt="Vidéo Viméo" />
+          <Image src={vignette} alt="Vidéo Viméo" />
           <Button
             onClick={onConsentClick}
             className={styles.consent}
@@ -41,8 +51,13 @@ const Video = ({ videoId, title, transcriptionContent }: Props) => {
         </div>
         <figcaption className="fr-content-media__caption">
           {title}
-          <a className={`fr-link `} href={`https://vimeo.com/${videoId}`}>
-            {`https://vimeo.com/${videoId}`}
+          <a
+            className={`fr-link `}
+            href={videoFullUrl}
+            target="_blank"
+            aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viméo"
+          >
+            {videoFullUrl}
           </a>
         </figcaption>
 

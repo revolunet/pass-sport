@@ -18,6 +18,7 @@ const SocialMediaPanel = ({ isHomePage = false, isProVersion = false }: Props) =
       className={cn('fr-text--lg', 'fr-text--bold', styles.color)}
       href={link.href}
       target="_blank"
+      aria-label={`Ouvrir une nouvelle fenêtre vers la page ${link.label} du dispositif pass Sport`}
     >
       <span className={cn('fr-pr-1w', link.iconClassName)} aria-hidden="true" />
       {link.label}
@@ -31,12 +32,14 @@ const SocialMediaPanel = ({ isHomePage = false, isProVersion = false }: Props) =
         [styles['container--pro']]: isProVersion,
       })}
     >
-      <h2 className={cn(styles.title, 'fr-h5')}>Suivez-nous sur les réseaux sociaux</h2>
-      <div className={styles['link-container']}>
+      <h1 className={cn(styles.title, 'fr-h5')}>Suivez-nous sur les réseaux sociaux</h1>
+      <ul className={styles['link-container']}>
         {socialMedia.map((link) => (
-          <SocialMediaLink key={link.id} link={link} />
+          <li key={link.href}>
+            <SocialMediaLink key={link.id} link={link} />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

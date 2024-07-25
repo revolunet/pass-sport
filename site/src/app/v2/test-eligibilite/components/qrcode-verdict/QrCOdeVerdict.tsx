@@ -96,17 +96,6 @@ const QrCodeVerdict = (props: Props) => {
           Il vous permettra de déduire 50 euros de votre adhésion sportif dans plus de 85 000 clubs
           et associations sportives partenaires dans toute la France.
         </p>
-        <p
-          className={cn(
-            'fr-text--lg',
-            'fr-mb-4w',
-            rootStyles['text--black'],
-            rootStyles['text--medium'],
-          )}
-        >
-          Ci-dessous votre pass Sport qui sera envoyé également par e-mail à l’adresse indiquée
-          précédemment.
-        </p>
 
         <p className={cn('fr-text--lg', 'fr-text--bold', rootStyles['text--black'])}>
           Votre QR Code pass Sport est strictement confidentiel.

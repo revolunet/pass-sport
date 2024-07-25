@@ -52,6 +52,10 @@ server {
     return 301 https://pass.sports.gouv.fr/v2/pro/ressources;
   }
 
+  location /le-passsport-reconduit-pour-la-saison-2023-2024 {
+    return 301 https://pass.sports.gouv.fr/v2/accueil;
+  }
+
   location /v2/ {
     proxy_pass  https://pass-sport-prod.osc-secnum-fr1.scalingo.io;
     proxy_intercept_errors  on;

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function Accueil() {
   return (
-    <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent}>
+    <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
       <section>
         <Hero />
       </section>
@@ -34,7 +34,11 @@ export default function Accueil() {
         </section>
 
         <section className={cn('fr-mx-auto', 'fr-pt-6w', styles['video-section'])}>
-          <Video />
+          <Video
+            videoPathUrl="956531127?h=c05ce6ca77&title=0&byline=0&portrait=0"
+            videoFullUrl="https://vimeo.com/956531127"
+            videoId="video-956531127"
+          />
         </section>
 
         <section className="fr-pt-6w">
