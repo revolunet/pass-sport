@@ -37,13 +37,13 @@ const TrouverUnClub = async () => {
         </li>
         <li>
           les associations non affiliées à une fédération sportive mais disposant d’un agrément
-          valide Sport (délivré après 2015) ou Jeunesse Education Populaire (JEP) (délivré après
+          valide Sport (délivré après 2016) ou Jeunesse Education Populaire (JEP) (délivré après
           2018) sur l’ensemble du territoire.
         </li>
 
         <li>
           les structures du loisir sportif marchand ayant signé la Charte d’engagement pass Sport
-          2023.
+          2024.
         </li>
       </ul>
     </div>

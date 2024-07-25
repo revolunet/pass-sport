@@ -434,28 +434,36 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
           onAroundMeActiveStateChanged={onAroundMeActiveStateChanged}
         />
 
-        <div className={styles.center}>
-          <SegmentedControl
-            hideLegend={true}
-            segments={[
-              {
-                label: 'Liste',
-                iconId: 'fr-icon-settings-5-line',
-                nativeInputProps: {
-                  checked: !showClubListOnMap,
-                  onChange: showClubsOnListTabHandler,
+        <div>
+          {isProVersion && (
+            <div className="fr-mb-9w">
+              <MissingClubInformationPanel isProVersion={true} />
+            </div>
+          )}
+
+          <div className={styles.center}>
+            <SegmentedControl
+              hideLegend={true}
+              segments={[
+                {
+                  label: 'Liste',
+                  iconId: 'fr-icon-settings-5-line',
+                  nativeInputProps: {
+                    checked: !showClubListOnMap,
+                    onChange: showClubsOnListTabHandler,
+                  },
                 },
-              },
-              {
-                label: 'Carte',
-                iconId: 'fr-icon-settings-5-line',
-                nativeInputProps: {
-                  checked: showClubListOnMap,
-                  onChange: showClubsOnMapTabHandler,
+                {
+                  label: 'Carte',
+                  iconId: 'fr-icon-settings-5-line',
+                  nativeInputProps: {
+                    checked: showClubListOnMap,
+                    onChange: showClubsOnMapTabHandler,
+                  },
                 },
-              },
-            ]}
-          />
+              ]}
+            />
+          </div>
         </div>
 
         <div className={cn('fr-mt-9w')}>
@@ -479,7 +487,11 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
           )}
         </div>
 
-        <MissingClubInformationPanel isProVersion={isProVersion} />
+        {!isProVersion && (
+          <div className="fr-mt-9">
+            <MissingClubInformationPanel isProVersion={false} />
+          </div>
+        )}
       </div>
 
       {!isProVersion && <EligibilityTestBanner />}
