@@ -17,7 +17,11 @@ import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-s
 import vignetteRefund from '@/images/vignette-video-remboursement.png';
 import vignetteClub from '@/images/vignette-video-structure.png';
 import Highlight from '@codegouvfr/react-dsfr/Highlight';
+<<<<<<< HEAD
 import PageTitle from '@/components/PageTitle/PageTitle';
+=======
+import CustomHighlight from '@/app/components/custom-highlight/CustomHighlight';
+>>>>>>> 330af0f (chore: refactored highlight component)
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',
@@ -99,11 +103,48 @@ export default function ToutSavoirSurLePassSport() {
               </li>
             </ul>
 
+<<<<<<< HEAD
             <Highlight
               className={cn(styles['about-sub-container__highlight-text'], 'fr-text--bold')}
               size="lg"
               classes={{
                 root: styles['about-sub-container__highlight--override'],
+=======
+          <CustomHighlight>
+            <span className="display--block">
+              Les pass Sport sont valables du 1er juin au 31 décembre 2024. Après cette date, aucun
+              pass Sport saisi ne pourra faire l&apos;objet d&apos;un remboursement. Anticipez vos
+              saisis !
+            </span>
+          </CustomHighlight>
+        </section>
+
+        <section className={styles['section-container']}>
+          <h2 className="fr-h4">Comment me faire rembourser un pass Sport ?</h2>
+
+          <p className="fr-text--bold">
+            Les bénéficiaires du dispositif recevront fin mai (80% des bénéficiaires) ou fin août
+            (les bénéficiaires nouvellement éligibles ainsi que l&apos;intégralité des étudiants
+            boursiers) leur pass Sport individuel qui prend la forme d&apos;un code composé de 10
+            caractères différents de ceux de 2022-2023.
+          </p>
+          <p>
+            Sur présentation du QR code et d&apos;un code, votre structure a consenti une déduction
+            immédiate de 50€ sur l&apos;inscription que vous devez vous faire rembourser le plus
+            rapidement possible via votre espace sur :
+          </p>
+
+          <div className="fr-grid-row fr-grid-row--center">
+            <Button
+              priority="secondary"
+              iconPosition="right"
+              iconId="fr-icon-external-link-line"
+              linkProps={{
+                className: 'fr-btn--icon-right',
+                href: 'https://lecompteasso.associations.gouv.fr/',
+                'aria-label':
+                  'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
+>>>>>>> 330af0f (chore: refactored highlight component)
               }}
             >
               <span
