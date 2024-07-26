@@ -96,10 +96,10 @@ export default function Accueil() {
             desc={
               <>
                 <span className="fr-text--md">
-                  Grâce au pass Sport contribuez à accueillir encore plus de jeunes dans vos clubs
-                  et offrez leur la possibilité de bénéficier d&apos;une aide à la pratique sportive
-                  par une déduction de 50 € à l&apos;inscription qui vous sera intégralement
-                  remboursée par l&apos;Etat.
+                  Le ministère des sports et des jeux Olympiques et Paralympiques a élaboré tout un
+                  ensemble d&apos;outils et supports de communication qui sont mis à dispositif de
+                  l&apos;ensemble des acteurs et peuvent être utilisés pour assurer la promotion du
+                  dispositif.
                 </span>
 
                 <Button
