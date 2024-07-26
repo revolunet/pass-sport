@@ -496,7 +496,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
       </div>
 
       {!isProVersion && (
-        <div className="fr-mt-9">
+        <div className="fr-mt-9w">
           <MissingClubInformationPanel isProVersion={false} />
         </div>
       )}
