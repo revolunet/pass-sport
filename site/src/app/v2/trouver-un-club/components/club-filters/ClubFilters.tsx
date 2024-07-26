@@ -38,37 +38,6 @@ interface Props {
   onAroundMeActiveStateChanged: (isAroundMeFilterActive: boolean) => void;
 }
 
-export const selectStyles = {
-  control: (baseStyles: Record<string, unknown>) => ({
-    ...baseStyles,
-    flexGrow: 1,
-    borderColor: '#ffffff',
-    width: '210px',
-    '@media screen and (max-width: 992px)': {
-      width: '150px',
-    },
-    '@media screen and (max-width: 768px)': {
-      width: '100%',
-    },
-  }),
-  indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
-    ...baseStyles,
-    backgroundColor: '#ffffff',
-  }),
-  valueContainer: (baseStyles: Record<string, unknown>) => ({
-    ...baseStyles,
-    paddingLeft: '0px',
-  }),
-  menu: (baseStyles: Record<string, unknown>) => ({
-    ...baseStyles,
-    zIndex: 999,
-  }),
-  placeholder: (baseStyles: Record<string, unknown>) => ({
-    ...baseStyles,
-    color: 'var(--text-default-grey)',
-  }),
-};
-
 const GeolocationFilter = dynamic(() => import('./geolocation-filter/GeolocationFilter'), {
   ssr: false,
 });
@@ -96,79 +65,82 @@ const ClubFilters: React.FC<Props> = ({
   };
 
   return (
-    <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.container)}>
-      <div className="fr-px-2w">
-        <Search onTextSearch={onTextSearch} />
+    <div className={cn('fr-pt-3w', 'fr-pb-2w', styles.wrapper)}>
+      <fieldset className={styles.fieldset}>
+        <legend>Filtrer les clubs</legend>
+        <div className="fr-px-2w">
+          <Search onTextSearch={onTextSearch} />
 
-        <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
-        <div className={styles.firstLinefiltersContainer}>
-          <div className={cn(styles.flex)}>
-            <RegionFilter
-              regions={regions}
-              isDisabled={isGeolocationFilterActive && isMapVisible}
-              onRegionChanged={onRegionChanged}
-            />
+          <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
+          <div className={styles.firstLinefiltersContainer}>
+            <div className={cn(styles.flex)}>
+              <RegionFilter
+                regions={regions}
+                isDisabled={isGeolocationFilterActive && isMapVisible}
+                onRegionChanged={onRegionChanged}
+              />
+            </div>
+
+            <div className={styles.separator} />
+
+            <div className={cn(styles.flex)}>
+              <DepartmentFilter
+                departments={departments}
+                isDisabled={isGeolocationFilterActive && isMapVisible}
+                onDepartmentChanged={onDepartmentChanged}
+              />
+            </div>
+
+            <div className={styles.separator} />
+
+            <div className={cn(styles.flex)}>
+              <CityFilter
+                isDisabled={isGeolocationFilterActive && isMapVisible}
+                onCityChanged={onCityChanged}
+              />
+            </div>
+
+            <div className={styles.separator} />
+
+            <div className={cn(styles.flex)}>
+              <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
+            </div>
           </div>
 
-          <div className={styles.separator} />
-
-          <div className={cn(styles.flex)}>
-            <DepartmentFilter
-              departments={departments}
-              isDisabled={isGeolocationFilterActive && isMapVisible}
-              onDepartmentChanged={onDepartmentChanged}
-            />
-          </div>
-
-          <div className={styles.separator} />
-
-          <div className={cn(styles.flex)}>
-            <CityFilter
-              isDisabled={isGeolocationFilterActive && isMapVisible}
-              onCityChanged={onCityChanged}
-            />
-          </div>
-
-          <div className={styles.separator} />
-
-          <div className={cn(styles.flex)}>
-            <ActivityFilter onActivityChanged={onActivityChanged} activities={activities} />
-          </div>
-        </div>
-
-        <div className={styles.secondLinefilters}>
-          <div className="fr-pt-2w">
-            <div className={styles.secondLinefilters_separator} />
-          </div>
-          <div className={styles.secondLinefilters_container}>
-            <>
-              {isGeolocationVisible && (
-                <div className={styles['secondLinefilters_geolocation-container']}>
-                  <Checkbox
-                    options={[
-                      {
-                        label: 'Autour de moi',
-                        nativeInputProps: {
-                          name: 'geolocation-checkbox',
-                          checked: isGeolocationFilterActive,
-                          onChange: activeStateAroundMeHandler,
-                          disabled: !isGeolocationCheckboxActive,
+          <div className={styles.secondLinefilters}>
+            <div className="fr-pt-2w">
+              <div className={styles.secondLinefilters_separator} />
+            </div>
+            <div className={styles.secondLinefilters_container}>
+              <>
+                {isGeolocationVisible && (
+                  <div className={styles['secondLinefilters_geolocation-container']}>
+                    <Checkbox
+                      options={[
+                        {
+                          label: 'Autour de moi',
+                          nativeInputProps: {
+                            name: 'geolocation-checkbox',
+                            checked: isGeolocationFilterActive,
+                            onChange: activeStateAroundMeHandler,
+                            disabled: !isGeolocationCheckboxActive,
+                          },
                         },
-                      },
-                    ]}
-                  />
-                  <GeolocationFilter
-                    isDisabled={!isGeolocationFilterActive}
-                    onChanged={onDistanceChanged}
-                  />
-                </div>
-              )}
-            </>
+                      ]}
+                    />
+                    <GeolocationFilter
+                      isDisabled={!isGeolocationFilterActive}
+                      onChanged={onDistanceChanged}
+                    />
+                  </div>
+                )}
+              </>
 
-            <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
+              <HandicapFilter onDisabilityChanged={onDisabilityChanged} />
+            </div>
           </div>
         </div>
-      </div>
+      </fieldset>
     </div>
   );
 };

@@ -4,7 +4,7 @@
   flex-grow: 1;
 }
 
-.container {
+.wrapper {
   position: relative;
   top: -90px;
 
@@ -14,6 +14,15 @@
   max-width: 1200px;
   margin: auto;
   min-height: 154px;
+}
+
+.fieldset {
+  border: none;
+
+  & > legend{
+    height: 0px;
+    visibility: hidden;
+  }
 }
 
 .firstLinefiltersContainer {

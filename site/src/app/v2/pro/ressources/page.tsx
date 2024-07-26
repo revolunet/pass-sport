@@ -1,4 +1,4 @@
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import styles from './styles.module.scss';
 import About from './components/about';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 export default function ToutSavoirSurLePassSport() {
   return (
     <>
-      <PageHeader title="Ressources" subtitle="" isProVersion />
       <main className={styles.container} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle title="Ressources" subtitle="" isProVersion />
         <About />
 
         <div className={styles['section-container']}>
@@ -716,9 +716,9 @@ export default function ToutSavoirSurLePassSport() {
             </Link>
           </div>
         </div>
-
-        <SocialMediaPanel isProVersion />
       </main>
+
+      <SocialMediaPanel isProVersion />
     </>
   );
 }

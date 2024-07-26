@@ -2,12 +2,13 @@
 
 import cn from 'classnames';
 import { useSearchParams } from 'next/navigation';
-import Select, { SingleValue } from 'react-select';
+import { SingleValue } from 'react-select';
 import { GeoGouvRegion } from '../../../../../../../types/Region';
-import { selectStyles, Option } from '../ClubFilters';
+import { Option } from '../ClubFilters';
 import styles from '../styles.module.scss';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { useEffect, useState } from 'react';
+import CustomSelect from '../custom-select/CustomSelect';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -19,10 +20,13 @@ const RegionFilter: React.FC<Props> = ({ regions, isDisabled, onRegionChanged })
   const searchParam = useSearchParams();
   const regionCodeSearchParam = searchParam && searchParam.get(SEARCH_QUERY_PARAMS.regionCode);
 
-  const parsedRegions: Option[] = regions.map((region) => ({
-    label: region.nom,
-    value: region.code,
-  }));
+  const allRegionsOption = { label: 'Toutes les régions', value: '' };
+  const regionOptions: Option[] = [allRegionsOption].concat(
+    regions.map((region) => ({
+      label: region.nom,
+      value: region.code,
+    })),
+  );
 
   const [selectedRegionCode, setSelectedRegionCode] = useState<string | null>(null);
 
@@ -39,33 +43,28 @@ const RegionFilter: React.FC<Props> = ({ regions, isDisabled, onRegionChanged })
   };
 
   const buildSelectedRegionOption = () => {
-    const geoGouvRegion = parsedRegions.find((r) => r.value === selectedRegionCode);
+    const geoGouvRegion = regionOptions.find((r) => r.value === selectedRegionCode);
 
     if (geoGouvRegion) {
       return geoGouvRegion;
     } else {
-      return null;
+      return allRegionsOption;
     }
   };
 
   return (
     <div className={styles['label-container']}>
-      <label htmlFor="region" className={styles.label}>
+      <label id="region-label" className={styles.label}>
         Choix d&apos;une région
       </label>
       <div className={styles['input-container']}>
         <span className={cn('fr-icon-map-pin-2-fill', styles.icon)} aria-hidden="true"></span>
-        <Select
+        <CustomSelect
           isDisabled={isDisabled}
           instanceId="region-select-id"
-          className={styles.select}
-          isClearable
-          placeholder="Toutes les régions"
-          isSearchable
-          name="region"
-          options={parsedRegions}
+          aria-labelledby="region-label"
+          options={regionOptions}
           onChange={regionChangeHandler}
-          styles={selectStyles}
           value={buildSelectedRegionOption()}
         />
       </div>

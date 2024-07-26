@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useGetMapUrl } from '../../hooks/use-get-map-url';
 import { push } from '@socialgouv/matomo-next';
 import ClubTags from '../../../components/club-tags/ClubTags';
+import rootStyles from '@/app/utilities.module.scss';
 
 interface Props {
   clubName: string;
@@ -42,7 +43,7 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
 
           <div className={styles['contact-wrapper']}>
             <section className={styles.contact}>
-              <ul className={styles.list}>
+              <ul className={rootStyles['list--lean']}>
                 {(club.adresse || club.commune) && (
                   <li className="fr-text--xs fr-m-0">
                     <span

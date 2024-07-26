@@ -1,4 +1,4 @@
-import { ClubsOnMapProvider } from 'types/Club';
+import { ClubsOnMap } from 'types/Club';
 import { useContext, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { GeolocationContext } from '@/store/geolocationContext';
@@ -10,7 +10,7 @@ import { getCenter } from 'geolib';
 import styles from './styles.module.scss';
 
 interface Props {
-  clubsProvider: ClubsOnMapProvider;
+  clubsProvider: ClubsOnMap;
   isGeolocationCircleVisible: boolean;
 }
 

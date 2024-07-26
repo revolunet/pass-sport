@@ -1,5 +1,5 @@
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
-import PageHeader from '../../../../components/PageHeader/PageHeader';
+import PageTitle from '../../../../components/PageTitle/PageTitle';
 import styles from './style.module.scss';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import cn from 'classnames';
@@ -13,15 +13,15 @@ export const metadata: Metadata = {
 
 export default function PolitiqueDeConfidentialite() {
   return (
-    <div>
-      <PageHeader
-        title="Politique de confidentialité"
-        subtitle="Politique de confidentialité relative au traitement de données personnelles réalisé dans le cadre de la délivrance du pass Sport 2024"
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
+    <>
       <main className={styles.wrapper} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle
+          title="Politique de confidentialité"
+          subtitle="Politique de confidentialité relative au traitement de données personnelles réalisé dans le cadre de la délivrance du pass Sport 2024"
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <section className="fr-mb-6w">
           <h2 className="fr-mb-2w">Article 1 - Définitions</h2>
           <p className="fr-mb-2w">
@@ -362,6 +362,6 @@ export default function PolitiqueDeConfidentialite() {
 
       <EligibilityTestBanner />
       <SocialMediaPanel />
-    </div>
+    </>
   );
 }

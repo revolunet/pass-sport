@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 import { SocialMediaLinkData, socialMedia } from '@/app/constants/social-media';
 import cn from 'classnames';
+import rootStyles from '@/app/utilities.module.scss';
 
 interface Props {
   isHomePage?: boolean;
@@ -26,21 +27,21 @@ const SocialMediaPanel = ({ isHomePage = false, isProVersion = false }: Props) =
   );
 
   return (
-    <div
+    <aside
       className={cn('fr-pb-1w', 'fr-px-1w', styles.container, {
         [styles['container--home-page-variant']]: isHomePage,
         [styles['container--pro']]: isProVersion,
       })}
     >
       <h1 className={cn(styles.title, 'fr-h5')}>Suivez-nous sur les réseaux sociaux</h1>
-      <ul className={styles['link-container']}>
+      <ul className={cn(styles['link-container'], rootStyles['list--lean'])}>
         {socialMedia.map((link) => (
           <li key={link.href}>
             <SocialMediaLink key={link.id} link={link} />
           </li>
         ))}
       </ul>
-    </div>
+    </aside>
   );
 };
 

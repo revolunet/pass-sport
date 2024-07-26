@@ -2,9 +2,7 @@
 
 import Button from '@codegouvfr/react-dsfr/Button';
 import styles from './styles.module.scss';
-import Link from 'next/link';
 import { push } from '@socialgouv/matomo-next';
-import { isUsingJuneEligibilityTest } from 'utils/eligibility-test';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 const EligibilityTestBanner = () => {
@@ -13,7 +11,10 @@ const EligibilityTestBanner = () => {
   };
 
   return (
-    <div className={`fr-py-6w fr-px-2w fr-p-md-11w fr-mx-auto ${styles.banner}`}>
+    <aside
+      className={`fr-py-6w fr-px-2w fr-p-md-11w fr-mx-auto ${styles.banner}`}
+      id={SKIP_LINKS_ID.eligibilityTestButton}
+    >
       <div className={styles['text-container']}>
         <h1 className={styles.text}>Puis-je bénéficier du pass Sport ?</h1>
         <p className={`fr-text--lead fr-px-2w ${styles.text}`}>
@@ -22,7 +23,6 @@ const EligibilityTestBanner = () => {
       </div>
 
       <Button
-        id={SKIP_LINKS_ID.eligibilityTestButton}
         className="fr-mx-auto"
         priority="primary"
         size="large"
@@ -34,7 +34,7 @@ const EligibilityTestBanner = () => {
       >
         Je fais le test
       </Button>
-    </div>
+    </aside>
   );
 };
 

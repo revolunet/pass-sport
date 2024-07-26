@@ -8,6 +8,7 @@ import Markdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { push } from '@socialgouv/matomo-next';
+import rootStyles from '@/app/utilities.module.scss';
 
 interface Props {
   categoriesWithArticles: CategoryWithArticles[];
@@ -115,7 +116,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
         </nav>
       </div>
 
-      <ul className={cn('fr-ml-0', styles['faq__questions'])}>
+      <ul className={cn('fr-ml-0', styles['faq__questions'], rootStyles['list--lean'])}>
         {selectedCategory?.articles.map((article) => {
           if (selectedArticle !== null && article.id !== selectedArticle.id) return null;
 

@@ -1,4 +1,4 @@
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import styles from './styles.module.scss';
 import About from './components/about';
 import ObtainPassPort from './components/obtain-pass-sport';
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 export default function ToutSavoirSurLePassSport() {
   return (
     <>
-      <PageHeader title="Tout savoir sur le pass Sport" subtitle="" />
       <main className={styles.container} tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle title="Tout savoir sur le pass Sport" subtitle="" />
         <About />
 
         <div className={styles['section-container']}>
@@ -27,10 +27,10 @@ export default function ToutSavoirSurLePassSport() {
           <WhereToUsePassSport />
           <LegalTextReference />
         </div>
-
-        <EligibilityTestBanner />
-        <SocialMediaPanel />
       </main>
+
+      <EligibilityTestBanner />
+      <SocialMediaPanel />
     </>
   );
 }

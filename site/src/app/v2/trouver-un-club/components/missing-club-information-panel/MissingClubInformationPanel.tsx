@@ -25,9 +25,10 @@ const MissingClubInformationPanel = ({ isProVersion }: Props) => {
       </p>
     </>
   );
+
   return (
     <div className={cn('fr-alert', 'fr-alert--info', 'fr-mx-auto', styles['alert-sizer'])}>
-      <h6 className="fr-alert__title">Information</h6>
+      <h2 className="fr-alert__title fr-h6">Information</h2>
 
       {isProVersion ? (
         proContent

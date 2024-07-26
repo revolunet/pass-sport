@@ -1,6 +1,6 @@
 'use server';
 
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
 import SocialMediaPanel from '../../components/social-media-panel/SocialMediaPanel';
 import styles from './styles.module.scss';
@@ -24,19 +24,17 @@ export default async function Questions() {
 
   return (
     <>
-      <PageHeader
-        title="Vous avez une question ?"
-        subtitle="Consultez notre FAQ la réponse à votre question s'y trouve peut-être."
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
-
       <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle
+          title="Vous avez une question ?"
+          subtitle="Consultez notre FAQ la réponse à votre question s'y trouve peut-être."
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <ContentSection categoriesWithArticles={categoriesWithArticles} />
+        <ContactSection />
       </main>
-
-      <ContactSection />
 
       <EligibilityTestBanner />
       <SocialMediaPanel />

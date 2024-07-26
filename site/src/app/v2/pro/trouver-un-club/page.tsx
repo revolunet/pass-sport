@@ -1,4 +1,4 @@
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageTitle from '@/components/PageTitle/PageTitle';
 
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
 import ClubFinder from '@/app/v2/trouver-un-club/components/club-finder/ClubFinder';
@@ -50,17 +50,16 @@ const TrouverUnClub = async () => {
   );
   return (
     <>
-      <PageHeader
-        title="Carte des structures partenaires"
-        isProVersion
-        subtitle={subtitle}
-        classes={{
-          container: styles['page-header'],
-        }}
-      />
-
-      <Suspense fallback={<Loading />}>
-        <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+      <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
+        <PageTitle
+          title="Carte des structures partenaires"
+          isProVersion
+          subtitle={subtitle}
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
+        <Suspense fallback={<Loading />}>
           <Geolocation>
             <ClubFinder
               regions={regions}
@@ -69,8 +68,9 @@ const TrouverUnClub = async () => {
               isProVersion
             />
           </Geolocation>
-        </main>
-      </Suspense>
+        </Suspense>
+      </main>
+
       <SocialMediaPanel isProVersion />
     </>
   );
