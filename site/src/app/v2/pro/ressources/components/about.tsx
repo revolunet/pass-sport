@@ -1,6 +1,7 @@
 import styles from '../styles.module.scss';
 import Image from 'next/image';
 import mainLogo from '@/images/pro/ressources/main-logo.svg';
+import cn from 'classnames';
 
 export default function About() {
   return (
@@ -15,9 +16,9 @@ export default function About() {
         </div>
 
         <div id="découvrir">
-          <h3 className={styles['about-container__highlight-title']}>
+          <h2 className={cn(styles['about-container__highlight-title'], 'fr-h3')}>
             Faire la promotion du pass Sport
-          </h3>
+          </h2>
 
           <div className="fr-highlight fr-ml-0">
             <p>Fédération, collectivité locale, établissement scolaire, journaliste...</p>

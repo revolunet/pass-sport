@@ -443,6 +443,12 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
         onAroundMeActiveStateChanged={onAroundMeActiveStateChanged}
       />
 
+      {isProVersion && (
+        <div className="fr-mb-9w">
+          <MissingClubInformationPanel isProVersion={true} />
+        </div>
+      )}
+
       <div className={styles.center}>
         <SegmentedControl
           hideLegend={true}
@@ -489,7 +495,11 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
         )}
       </div>
 
-      <MissingClubInformationPanel isProVersion={isProVersion} />
+      {!isProVersion && (
+        <div className="fr-mt-9">
+          <MissingClubInformationPanel isProVersion={false} />
+        </div>
+      )}
     </div>
   );
 };

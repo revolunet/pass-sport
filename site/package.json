@@ -15,7 +15,8 @@
     "prebuild": "only-include-used-icons",
     "format:check": "prettier --check --ignore-path .gitignore \"**/*.+(ts|tsx|json|mjs|scss)\"",
     "format:write": "npm run format:check -- --write",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "docker:run:dev": "docker-compose down && docker-compose up"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.9.20",

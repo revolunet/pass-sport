@@ -139,7 +139,7 @@ export default function ToutSavoirSurLePassSport() {
             />
           </section>
 
-          <section className={styles['section-container']}>
+          <section id="tuto-carto" className={styles['section-container']}>
             <h2 className="fr-h4">
               Comment faire apparaître mon club sur la carte des structures éligibles au pass Sport
               ?{' '}

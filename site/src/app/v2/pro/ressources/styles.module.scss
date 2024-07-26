@@ -56,6 +56,11 @@
     gap: 40px;
     background-color: #EEE;
     padding: 16px;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
   }
 
   &__links-container {
