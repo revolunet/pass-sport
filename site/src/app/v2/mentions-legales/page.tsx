@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Mentions légales - pass Sport',
 };
 
-export default function PolitiqueDeConfidentialite() {
+export default function MentionsLegales() {
   return (
     <>
       <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
