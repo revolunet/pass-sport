@@ -3,6 +3,7 @@ import styles from '../styles.module.scss';
 import Image from 'next/image';
 import aboutImage from '@/images/tout-savoir-sur-le-pass-sport/about.png';
 import cn from 'classnames';
+import CustomHighlight from '@/app/components/custom-highlight/CustomHighlight';
 
 export default function About() {
   return (
@@ -46,25 +47,17 @@ export default function About() {
             'fr-mb-9w',
           )}
         >
-          <Highlight
-            className={cn(styles['about-sub-container__highlight-text'], 'fr-text--bold')}
-            size="lg"
-            classes={{
-              root: styles['about-sub-container__highlight--override'],
-            }}
-          >
-            <span
-              className={cn('fr-icon-quote-line', styles['about-sub-container__icon'])}
-              aria-hidden
-            />
-            <span className="fr-mb-1w display--block">
-              Le pass Sport est ouvert du 1er juin au 31 décembre 2024.
-            </span>
+          <CustomHighlight>
+            <>
+              <span className="fr-mb-1w display--block">
+                Le pass Sport est ouvert du 1er juin au 31 décembre 2024.
+              </span>
 
-            <span className="display--block">
-              Pensez-bien à présenter votre pass à votre club avant la fin décembre 2024 !
-            </span>
-          </Highlight>
+              <span className="display--block">
+                Pensez-bien à présenter votre pass à votre club avant la fin décembre 2024 !
+              </span>
+            </>
+          </CustomHighlight>
         </div>
       </section>
     </>

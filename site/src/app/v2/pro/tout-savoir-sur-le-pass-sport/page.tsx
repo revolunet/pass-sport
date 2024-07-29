@@ -1,9 +1,9 @@
-import PageTitle from '@/components/PageTitle/PageTitle';
 import styles from './styles.module.scss';
 import SocialMediaPanel from '../../../components/social-media-panel/SocialMediaPanel';
 import Link from 'next/link';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Accordion from '@codegouvfr/react-dsfr/Accordion';
+import cn from 'classnames';
 import {
   multisportsAndaffinitaires,
   olympiquesAndparalympiques,
@@ -16,6 +16,8 @@ import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionRefundPassSport';
 import vignetteRefund from '@/images/vignette-video-remboursement.png';
 import vignetteClub from '@/images/vignette-video-structure.png';
+import Highlight from '@codegouvfr/react-dsfr/Highlight';
+import PageTitle from '@/components/PageTitle/PageTitle';
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',
@@ -33,7 +35,46 @@ export default function ToutSavoirSurLePassSport() {
             container: styles['page-header'],
           }}
         />
+
         <div className={styles['main-container']}>
+          <section className={styles['section-container']}>
+            <h2 className="fr-h4">
+              Quelles sont les conditions pour devenir partenaire du dispositif pass Sport ?
+            </h2>
+            <p>
+              Pour devenir partenaire du dispositif pass Sport, votre structure doit répondre à
+              l&apos;une des trois conditions suivantes :
+            </p>
+            <ul className={styles['section-container__list--numbering']}>
+              <li className="fr-mb-3w">
+                Affiliation : Être affiliée, quel que soit son statut, pour la saison 2024-2025 à
+                l&apos;une des 114 fédérations sportives agréées par le ministère des Sports et des
+                Jeux Olympiques et Paralympiques.
+              </li>
+              <li className="fr-mb-3w">
+                Agrément : Être une association ayant un agrément Sport ou Jeunesse Éducation
+                Populaire délivré par le préfet du département, en cours de validité.
+              </li>
+              <li>
+                Loisir sportif marchand : Être une structure de loisir sportif marchand éligible
+                ayant signé la charte d&apos;engagement proposée par le ministère des Sports et des
+                Jeux Olympiques et Paralympiques. Les entités doivent proposer ou organiser une
+                activité sportive, de loisir ou non, ayant un but lucratif et relevant de l&apos;un
+                des codes de la nomenclature des activités françaises (NAF) suivants :
+                <ul>
+                  <li>9311Z : gestion d&apos;installations sportives</li>
+                  <li>9312Z : activités des clubs de sports</li>
+                  <li>9329Z : autres activités récréatives et de loisirs</li>
+                  <li>9313Z : activités des centres de culture physique</li>
+                  <li>
+                    8551Z : enseignement de disciplines sportives et d&apos;activités de loisirs
+                  </li>
+                  <li>6420Z : activités des sociétés holding</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+
           <section className={styles['section-container']}>
             <h2 className="fr-h4">Qui se mobilise pour vous accompagner ?</h2>
             <p className="fr-text--bold">
@@ -57,6 +98,24 @@ export default function ToutSavoirSurLePassSport() {
                 toutes les réponses aux questions que vous vous posez.
               </li>
             </ul>
+
+            <Highlight
+              className={cn(styles['about-sub-container__highlight-text'], 'fr-text--bold')}
+              size="lg"
+              classes={{
+                root: styles['about-sub-container__highlight--override'],
+              }}
+            >
+              <span
+                className={cn('fr-icon-quote-line', styles['about-sub-container__icon'])}
+                aria-hidden
+              />
+              <span className="display--block">
+                Les pass Sport sont valables du 1er juin au 31 décembre 2024. Après cette date,
+                aucun pass Sport saisi ne pourra faire l&apos;objet d&apos;un remboursement.
+              </span>
+              <span className="display--block">Anticipez vos saisis !</span>
+            </Highlight>
           </section>
 
           <section className={styles['section-container']}>
@@ -66,7 +125,7 @@ export default function ToutSavoirSurLePassSport() {
               Les bénéficiaires du dispositif recevront fin mai (80% des bénéficiaires) ou fin août
               (les bénéficiaires nouvellement éligibles ainsi que l&apos;intégralité des étudiants
               boursiers) leur pass Sport individuel qui prend la forme d&apos;un code composé de 10
-              caractères différents de ceux de 2022.
+              caractères différents de ceux de 2022-2023.
             </p>
             <p>
               Sur présentation du QR code et d&apos;un code, votre structure a consenti une
@@ -82,8 +141,7 @@ export default function ToutSavoirSurLePassSport() {
                 linkProps={{
                   className: 'fr-btn--icon-right',
                   href: 'https://lecompteasso.associations.gouv.fr/',
-                  'aria-label':
-                    'Lien externe vers Le Compte Asso https://lecompteasso.associations.gouv.fr/',
+                  'aria-label': 'Ouvrir une nouvelle fenêtre vers Compte Asso',
                 }}
               >
                 Le Compte Asso
@@ -94,7 +152,7 @@ export default function ToutSavoirSurLePassSport() {
               Pour cela,{' '}
               <Link
                 href="https://lecompteasso.associations.gouv.fr/"
-                title="Lien vers Le Compte Asso"
+                title="Ouvrir une nouvelle fenêtre vers Compte Asso"
                 target="_blank"
               >
                 connectez vous au Compte Asso
@@ -114,7 +172,7 @@ export default function ToutSavoirSurLePassSport() {
                 si le code a déjà été utilisé par le jeune vous aurez un message qui vous
                 l&apos;indiquera.
               </li>
-              <li>si le code n&apos;existe pas, vous aurez un message le précisant. </li>
+              <li>si le code n&apos;existe pas, vous aurez un message le précisant.</li>
               <li>
                 Si lors de la saisie du code, le nom du jeune qui apparait n&apos;est pas celui de
                 votre adhérent, ne poursuivez pas la saisie et prévenez le jeune que ce code ne lui
@@ -123,6 +181,12 @@ export default function ToutSavoirSurLePassSport() {
                 nom.{' '}
               </li>
             </ul>
+
+            <p>
+              Les remboursements des pass Sport saisis commenceront à partir de fin septembre. En
+              moyenne, les pass vous sont remboursés mensuellement, de 30 à 45 jours à partir du
+              moment de leur saisi.
+            </p>
 
             <p>
               Vous pouvez consulter notre tutoriel d&apos;accompagnement qui vous guide pour
@@ -137,12 +201,34 @@ export default function ToutSavoirSurLePassSport() {
               transcriptionContent={<TranscriptionRefundPassSport />}
               vignette={vignetteRefund}
             />
+
+            <p>
+              <Link
+                href="https://docs.google.com/presentation/d/1ZudiQdP1HmKc_sA1cCsokFPyV3BWEyJV/edit?usp=sharing&ouid=108110003985475869656&rtpof=true&sd=true"
+                target="_blank"
+                aria-label="Ouvrir une nouvelle fenêtre vers le fichier PDF spécifiant comment se faire rembourser un pass Sport quand je suis un club de sport"
+              >
+                Tutoriel PDF : Comment se faire rembourser un pass Sport quand je suis un club de
+                sport
+              </Link>
+            </p>
+            <p>
+              <Link
+                href="https://docs.google.com/presentation/d/1uN1xvqmH95oYDY156sMC4Z4rxUyuNGA8/edit?usp=sharing&ouid=108110003985475869656&rtpof=true&sd=true"
+                target="_blank"
+                aria-label="Ouvrir une nouvelle fenêtre vers le fichier PDF spécifiant comment se faire rembourser un pass Sport quand je suis une structure
+              relevant du Loisir Sportif Marchand"
+              >
+                Tutoriel PDF : Comment se faire rembourser un pass Sport quand je suis une structure
+                relevant du Loisir Sportif Marchand
+              </Link>
+            </p>
           </section>
 
           <section id="tuto-carto" className={styles['section-container']}>
             <h2 className="fr-h4">
               Comment faire apparaître mon club sur la carte des structures éligibles au pass Sport
-              ?{' '}
+              ?
             </h2>
 
             <p className="fr-text--bold">
@@ -153,6 +239,16 @@ export default function ToutSavoirSurLePassSport() {
             <p>
               Retrouvez notre tutoriel d&apos;accompagnement à la création de votre espace sur le
               Compte Asso qui sera ensuite le lieu de demande des remboursements pass Sport :
+            </p>
+
+            <p>
+              <Link
+                href="https://docs.google.com/presentation/d/1SIbTiEp1SjQ-cYRMDQlTAKuIO5agU-zZ/edit?usp=sharing&ouid=108110003985475869656&rtpof=true&sd=true"
+                target="_blank"
+                aria-label="Ouvrir une nouvelle fenêtre vers le fichier PDF spécifiant comment accepter le pass Sport dans mon club"
+              >
+                Tutoriel PDF : comment accepter le pass Sport dans mon club
+              </Link>
             </p>
 
             <Video
@@ -173,7 +269,7 @@ export default function ToutSavoirSurLePassSport() {
 
             <p className="fr-text--bold">
               Si votre club est affilié à l&apos;une des fédérations suivantes pour la saison
-              2023/2024 ou l&apos;année 2023 alors vous pouvez accepter des pass Sport qui vous
+              2024/2025 ou l&apos;année 2024 alors vous pouvez accepter des pass Sport qui vous
               seront intégralement remboursés par l&apos;État !
             </p>
 
@@ -185,6 +281,15 @@ export default function ToutSavoirSurLePassSport() {
                 <FederationList federations={unisport} />
               </Accordion>
               <Accordion label="3. Fédérations multisports et affinitaires">
+                <p className="fr-mb-2w">
+                  <Link
+                    href="https://docs.google.com/document/d/1RZIulzFm9ueCm2lfJQhq6GVnzUkiE14L/edit"
+                    target="_blank"
+                    aria-label="Ouvrir une nouvelle fenêtre vers la charte d'engagement"
+                  >
+                    Charte d&apos;engagement
+                  </Link>
+                </p>
                 <FederationList federations={multisportsAndaffinitaires} />
               </Accordion>
             </section>
@@ -202,7 +307,6 @@ export default function ToutSavoirSurLePassSport() {
           </section>
         </div>
       </main>
-
       <SocialMediaPanel isProVersion />
     </>
   );
