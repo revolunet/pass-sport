@@ -13,6 +13,7 @@ interface Props {
   title: string;
   transcriptionContent: ReactNode;
   vignette: StaticImageData;
+  nonce?: string;
 }
 
 const Video = ({
@@ -22,8 +23,9 @@ const Video = ({
   title,
   transcriptionContent,
   vignette,
+  nonce,
 }: Props) => {
-  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
+  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId, nonce });
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
