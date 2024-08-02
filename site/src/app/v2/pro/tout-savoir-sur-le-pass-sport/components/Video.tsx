@@ -34,7 +34,6 @@ const Video = ({
       <figure role="group" className="fr-mt-n2w fr-content-media">
         <iframe
           id={videoId}
-          src={`https://player.vimeo.com/video/${videoPathUrl}`}
           className={styles.iframe}
           data-requires-vendor-consent="vimeo"
           allow="autoplay; fullscreen; picture-in-picture"
