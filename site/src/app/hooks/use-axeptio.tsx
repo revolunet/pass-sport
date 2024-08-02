@@ -25,6 +25,7 @@ export function useAxeptio({
           const t = d.getElementsByTagName(s)[0];
           const e = d.createElement(s);
           e.async = true;
+          e.src = 'https://static.axept.io/sdk-slim.js';
           e.nonce = nonce;
           if (t.parentNode) {
             t.parentNode.insertBefore(e, t);

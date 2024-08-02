@@ -2,10 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-  // style-src 'report-sample' 'nonce-${nonce}' 'self' https://unpkg.com;
+
+  const scriptSrc =
+    process.env.NODE_ENV === 'production'
+      ? `'self' 'nonce-${nonce}' 'strict-dynamic';`
+      : `'self' 'unsafe-eval' 'unsafe-inline'`;
+
   const cspHeader = `
     default-src 'self';
-    script-src 'report-sample' 'unsafe-eval' 'nonce-${nonce}' 'self' https://static.axept.io/sdk-slim.js https://stats.beta.gouv.fr/matomo.js;
+    script-src 'report-sample' ${scriptSrc} https://static.axept.io/sdk-slim.js https://stats.beta.gouv.fr/matomo.js;
     style-src 'report-sample' 'unsafe-inline' 'self' https://unpkg.com;
     object-src 'none';
     base-uri 'self';
