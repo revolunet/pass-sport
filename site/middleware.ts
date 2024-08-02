@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const scriptSrc =
     process.env.NODE_ENV === 'production'
       ? `'self' 'nonce-${nonce}' 'strict-dynamic'`
-      : `'self' 'unsafe-eval'`;
+      : `'self' 'unsafe-inline' 'unsafe-eval'`;
 
   const cspHeader = `
     default-src 'self';
