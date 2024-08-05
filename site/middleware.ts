@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
     connect-src 'self' https://api.axept.io https://client.axept.io https://sports-sgsocialgouv.opendatasoft.com https://stats.beta.gouv.fr https://geo.api.gouv.fr;
     font-src 'self';
     frame-src 'self' https://player.vimeo.com;
-    img-src 'self' data: https://a.tile.openstreetmap.org https://axeptio.imgix.net https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org https://favicons.axept.io https://i.vimeocdn.com https://unpkg.com;
+    img-src 'self' data: https://storage.crisp.chat/ https://a.tile.openstreetmap.org https://axeptio.imgix.net https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org https://favicons.axept.io https://i.vimeocdn.com https://unpkg.com;
     manifest-src 'self';
     media-src 'self';
     report-uri https://66ab4d8ba05c71ef29160216.endpoint.csper.io/?v=1;
