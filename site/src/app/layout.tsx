@@ -1,19 +1,20 @@
-import './globals.scss';
 import { DsfrHead } from '@codegouvfr/react-dsfr/next-appdir/DsfrHead';
 import { DsfrProvider } from '@codegouvfr/react-dsfr/next-appdir/DsfrProvider';
 import { getHtmlAttributes } from '@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes';
+import Link from 'next/link';
 import { StartDsfr } from './StartDsfr';
 import { defaultColorScheme } from './defaultColorScheme';
-import Link from 'next/link';
+import './globals.scss';
 
-import React from 'react';
-import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
-import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
 import PassSportBreadcrumb from '@/app/components/pass-sport-breadcrumb/PassSportBreadCrumb';
-import Matomo from './Matomo';
 import SkipLinksWrapper from '@/app/components/skip-links-wrapper/SkipLinksWrapper';
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
+import React from 'react';
+import Matomo from './Matomo';
+import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
+import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
+import Crisp from './Crisp';
 
 export const metadata: Metadata = {
   title: 'Accueil - pass Sport',
@@ -33,6 +34,7 @@ export default function RootLayout({
       <head>
         <StartDsfr />
         <DsfrHead Link={Link} nonce={nonce} />
+        <Crisp />
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
