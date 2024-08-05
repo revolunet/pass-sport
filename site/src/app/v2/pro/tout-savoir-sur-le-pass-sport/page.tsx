@@ -18,12 +18,14 @@ import vignetteRefund from '@/images/vignette-video-remboursement.png';
 import vignetteClub from '@/images/vignette-video-structure.png';
 import Highlight from '@codegouvfr/react-dsfr/Highlight';
 import PageTitle from '@/components/PageTitle/PageTitle';
+import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
   title: 'Tout savoir sur le pass Sport - pass Sport',
 };
 
 export default function ToutSavoirSurLePassSport() {
+  const nonce = headers().get('X-Nonce') ?? undefined;
   return (
     <>
       <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
@@ -200,6 +202,7 @@ export default function ToutSavoirSurLePassSport() {
               title="Tutoriel : se faire rembourser un pass Sport"
               transcriptionContent={<TranscriptionRefundPassSport />}
               vignette={vignetteRefund}
+              nonce={nonce}
             />
 
             <p>
@@ -258,6 +261,7 @@ export default function ToutSavoirSurLePassSport() {
               title="Tutoriel : devenez partenaire du pass Sport"
               transcriptionContent={<TranscriptionVisibilityClub />}
               vignette={vignetteClub}
+              nonce={nonce}
             />
           </section>
 

@@ -13,6 +13,7 @@ import PassSportBreadcrumb from '@/app/components/pass-sport-breadcrumb/PassSpor
 import Matomo from './Matomo';
 import SkipLinksWrapper from '@/app/components/skip-links-wrapper/SkipLinksWrapper';
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
   title: 'Accueil - pass Sport',
@@ -26,12 +27,12 @@ export default function RootLayout({
 }>) {
   // NOTE: The lang parameter is optional and defaults to "fr"
   const lang = 'fr';
-
+  const nonce = headers().get('X-Nonce') ?? undefined;
   return (
     <html {...getHtmlAttributes({ defaultColorScheme, lang })}>
       <head>
         <StartDsfr />
-        <DsfrHead Link={Link} />
+        <DsfrHead Link={Link} nonce={nonce} />
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"

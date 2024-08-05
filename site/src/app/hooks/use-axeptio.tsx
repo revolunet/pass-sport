@@ -1,6 +1,16 @@
+'use client';
+
 import { useEffect } from 'react';
 
-export function useAxeptio({ vimeoURL, videoId }: { vimeoURL: string; videoId: string }) {
+export function useAxeptio({
+  vimeoURL,
+  videoId,
+  nonce,
+}: {
+  vimeoURL: string;
+  videoId: string;
+  nonce?: string;
+}) {
   useEffect(() => {
     const initAxeptio = (): void => {
       if (!window.axeptioSettings) {
@@ -16,6 +26,7 @@ export function useAxeptio({ vimeoURL, videoId }: { vimeoURL: string; videoId: s
           const e = d.createElement(s);
           e.async = true;
           e.src = 'https://static.axept.io/sdk-slim.js';
+          e.nonce = nonce;
           if (t.parentNode) {
             t.parentNode.insertBefore(e, t);
           }
