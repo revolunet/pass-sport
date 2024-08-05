@@ -60,7 +60,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     offset: 0,
     ...(searchParams && {
       [SEARCH_QUERY_PARAMS.clubName]: searchParams.get(SEARCH_QUERY_PARAMS.clubName)
-        ? `nom like '%${searchParams.get(SEARCH_QUERY_PARAMS.clubName)!.toUpperCase()}%'`
+        ? `search(nom,"${searchParams.get(SEARCH_QUERY_PARAMS.clubName)!.toUpperCase()}")`
         : undefined,
       [SEARCH_QUERY_PARAMS.regionCode]: searchParams.get(SEARCH_QUERY_PARAMS.regionCode)
         ? `reg_code='${searchParams.get(SEARCH_QUERY_PARAMS.regionCode)}'`
@@ -200,7 +200,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     const escapedText = escapeSingleQuotes(text);
 
     if (text.length !== 0) {
-      params.clubName = `nom like '%${escapedText.toUpperCase()}%'`;
+      params.clubName = `search(nom,"${escapedText.toUpperCase()}")`;
       const queryString = appendQueryString([
         { key: SEARCH_QUERY_PARAMS.clubName, value: escapedText },
       ]);

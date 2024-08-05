@@ -54,7 +54,6 @@ export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRec
 
   const url = new URL(baseUrl);
   url.search = params.toString();
-  url.search = url.search.replace('nom+like+', 'nom%20like%20');
   const response = await fetch(url);
 
   if (!response.ok) {
