@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
     form-action 'self';
     connect-src 'self' https://client.crisp.chat/ wss://client.relay.crisp.chat/ https://api.axept.io https://client.axept.io https://sports-sgsocialgouv.opendatasoft.com https://stats.beta.gouv.fr https://geo.api.gouv.fr;
     font-src 'self' https://client.crisp.chat/;
-    frame-src 'self' https://player.vimeo.com;
+    frame-src 'self' https://player.vimeo.com https://pass-sport.crisp.help/;
     img-src 'self' data: https://image.crisp.chat/ https://client.crisp.chat/ https://storage.crisp.chat/ https://a.tile.openstreetmap.org https://axeptio.imgix.net https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org https://favicons.axept.io https://i.vimeocdn.com https://unpkg.com;
     manifest-src 'self';
     media-src 'self';
