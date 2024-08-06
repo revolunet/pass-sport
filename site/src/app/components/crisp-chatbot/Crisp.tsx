@@ -5,10 +5,24 @@ import styles from './crisp.module.scss';
 
 export const Crisp = () => {
   const openAxeptio = () => {
-    window.axeptioSDK && window.axeptioSDK.requestConsent('crisp');
+    if (window.axeptioSDK) {
+      window.axeptioSDK.requestConsent('crisp');
+      if (!window._axcb) {
+        window._axcb = [];
+      }
+
+      window._axcb.push(function (sdk) {
+        sdk.on('cookies:complete', function (choices) {
+          if (!!choices['crisp']) {
+            window.$crisp?.push(['do', 'chat:open']);
+          }
+        });
+      });
+    }
   };
   return (
     <button
+      id="chatbot"
       data-hide-on-vendor-consent="crisp"
       onClick={openAxeptio}
       className={styles['crisp-image-wrapper']}

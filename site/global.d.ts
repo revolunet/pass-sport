@@ -28,5 +28,5 @@ declare global {
 
 interface AxeptioSDK {
   on(event: string, callback: (choices: Record<string, boolean>) => void): void;
-  requestConsent(vendor: string);
+  requestConsent(vendor: string): Promise<any>;
 }
