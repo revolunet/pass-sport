@@ -1,0 +1,22 @@
+.crisp-image-wrapper {
+    border-radius: 100%;
+    background-color: blue;
+    width: 60px;
+    height: 60px;
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 24px;
+    cursor: pointer;
+    z-index: 10000000;
+}
+
+
+.crisp-img {
+    width: 33px;
+    height: 28px;
+    top: 16px;
+    position: absolute;
+    left: 11px;
+}
+
