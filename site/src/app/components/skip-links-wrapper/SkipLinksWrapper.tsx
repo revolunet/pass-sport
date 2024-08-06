@@ -60,6 +60,23 @@ const SkipLinksWrapper = () => {
           anchor: `#${SKIP_LINKS_ID.footer}`,
         },
       ]}
+      // @ts-ignore
+      onClick={(e) => {
+        if (e.target.href.includes(`#${SKIP_LINKS_ID.chatbot}`)) {
+          const el: HTMLElement | null = document?.querySelector(`#${SKIP_LINKS_ID.chatbot}`);
+
+          el?.click();
+
+          // Putting the focus at the end of the event loop
+          setTimeout(() => {
+            const textarea: HTMLElement | null = document.querySelector(
+              '#crisp-chatbox textarea[name="message"]',
+            );
+
+            textarea?.focus();
+          }, 0);
+        }
+      }}
     />
   );
 };
