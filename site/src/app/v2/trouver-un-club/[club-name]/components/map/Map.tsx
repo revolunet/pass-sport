@@ -7,9 +7,9 @@ interface Props {
   club: Club;
 }
 
-const Map: React.FC<Props> = ({ club }) => {
+const Map = ({ club }: Props) => {
   if (!club.geoloc_finale) {
-    return null;
+    return <p>Coordonnées géographiques non disponibles</p>;
   }
 
   const position: LatLngLiteral = { lat: club.geoloc_finale.lat, lng: club.geoloc_finale.lon };
