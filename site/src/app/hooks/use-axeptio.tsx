@@ -24,15 +24,6 @@ export function useAxeptio({
           t.parentNode.insertBefore(e, t);
         }
       })(document, 'script');
-
-      window.$crisp.push([
-        'on',
-        'session:loaded',
-        function (data) {
-          const element = document.querySelector('[aria-label="Ouvrir le chat"]');
-          element?.setAttribute('id', 'chatbot');
-        },
-      ]);
     };
 
     const initAxeptio = (): void => {

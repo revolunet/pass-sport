@@ -13,16 +13,26 @@ export const Crisp = () => {
 
       window._axcb.push(function (sdk) {
         sdk.on('cookies:complete', function (choices) {
-          if (!!choices['crisp']) {
+          if (choices['crisp']) {
             window.$crisp?.push(['do', 'chat:open']);
           }
+        });
+
+        sdk.on('overlayOpenCookies', function (choices) {
+          setTimeout(() => {
+            document
+              .getElementById('axeptio_overlay')
+              // @ts-ignore
+              ?.firstChild?.shadowRoot.querySelector('#crisp-normal-switch')
+              ?.focus();
+          }, 70);
         });
       });
     }
   };
   return (
     <button
-      id="chatbot"
+      id="crisp-chatbot"
       data-hide-on-vendor-consent="crisp"
       onClick={openAxeptio}
       className={styles['crisp-image-wrapper']}
