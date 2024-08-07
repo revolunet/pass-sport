@@ -54,7 +54,7 @@ const SkipLinksWrapper = () => {
         ...(eligibilityTestSkipLink ? [eligibilityTestSkipLink] : []),
         ...(findAClubSkipLink ? [findAClubSkipLink] : []),
         ...(contactUsLink ? [contactUsLink] : []),
-        { label: 'Ouvrir le chatbot', anchor: `#${SKIP_LINKS_ID.chatbot}` },
+        { label: 'Ouvrir le tchat', anchor: `#${SKIP_LINKS_ID.chatbot}` },
         {
           label: 'Pied de page',
           anchor: `#${SKIP_LINKS_ID.footer}`,

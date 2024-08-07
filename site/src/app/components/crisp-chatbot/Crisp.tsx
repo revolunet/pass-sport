@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { Choice, CookiesCompleteChoice, OverlayOpenCookiesChoice } from '../../../../global';
 import styles from './crisp.module.scss';
+import { SKIP_LINKS_ID } from '../../constants/skip-links';
 
 export const Crisp = () => {
   useEffect(() => {
@@ -55,9 +56,9 @@ export const Crisp = () => {
     })(document, 'script');
 
     window.$crisp.push(
-      onCrispEventUpdateAria('session:loaded', 'Ouvrir le chat', 'Ouvrir le tchat botte'),
-      onCrispEventUpdateAria('chat:opened', 'Fermer le chat', 'Fermer le tchat botte'),
-      onCrispEventUpdateAria('chat:closed', 'Ouvrir le chat', 'Ouvrir le tchat botte'),
+      onCrispEventUpdateAria('session:loaded', 'Ouvrir le chat', 'Ouvrir le tchat'),
+      onCrispEventUpdateAria('chat:opened', 'Fermer le chat', 'Fermer le tchat'),
+      onCrispEventUpdateAria('chat:closed', 'Ouvrir le chat', 'Ouvrir le tchat'),
     );
   };
 
@@ -141,7 +142,7 @@ export const Crisp = () => {
   };
   return (
     <button
-      id="crisp-chatbot"
+      id={`${SKIP_LINKS_ID.chatbot}`}
       data-hide-on-vendor-consent="crisp"
       onClick={requestConsentAndOpenChat}
       className={styles['crisp-image-wrapper']}
