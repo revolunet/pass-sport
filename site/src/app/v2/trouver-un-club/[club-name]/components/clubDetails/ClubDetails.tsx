@@ -44,20 +44,24 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
           <div className={styles['contact-wrapper']}>
             <section className={styles.contact}>
               <ul className={rootStyles['list--lean']}>
-                {(club.adresse || club.commune) && (
-                  <li className="fr-text--xs fr-m-0">
-                    <span
-                      className={`fr-pr-1w fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
-                      aria-hidden="true"
-                    />
+                <li className="fr-text--xs fr-m-0">
+                  <span
+                    className={`fr-pr-1w fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
+                    aria-hidden="true"
+                  />
 
-                    <span>
-                      {club.adresse && club.adresse}
-                      {club.adresse && club.commune && ', '}
-                      {club.commune && club.commune}
-                    </span>
-                  </li>
-                )}
+                  <span>
+                    {club.adresse || club.commune ? (
+                      <>
+                        {club.adresse && club.adresse}
+                        {club.adresse && club.commune && ', '}
+                        {club.commune && club.commune}
+                      </>
+                    ) : (
+                      <>Adresse non disponible</>
+                    )}
+                  </span>
+                </li>
 
                 {club.telephone && (
                   <li className="fr-text--xs fr-m-0">
@@ -99,9 +103,9 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
 
           <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
 
-          {Array.isArray(club.activites) && (
-            <>
-              <h2 className="fr-h3">Les activités</h2>
+          <>
+            <h2 className="fr-h3">Les activités</h2>
+            {Array.isArray(club.activites) ? (
               <ul className={styles.activities}>
                 {club.activites?.map((activity) => (
                   <li key={activity} className="fr-mr-3w fr-p-0">
@@ -109,10 +113,12 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
                   </li>
                 ))}
               </ul>
+            ) : (
+              <p>Activités non disponibles</p>
+            )}
 
-              <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
-            </>
-          )}
+            <hr className={`fr-mt-3w fr-mb-0 fr-mx-0 ${styles.separator}`} />
+          </>
         </section>
 
         <section>
