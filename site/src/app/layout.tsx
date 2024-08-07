@@ -48,9 +48,9 @@ export default function RootLayout({
         <SkipLinksWrapper />
         <PassSportNavigation />
         <PassSportBreadcrumb />
-        <Crisp />
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
         <PassSportFooter />
+        <Crisp />
       </body>
     </html>
   );
