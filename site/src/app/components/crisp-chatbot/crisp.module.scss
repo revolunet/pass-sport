@@ -1,6 +1,6 @@
 .crisp-image-wrapper {
     border-radius: 100%;
-    background-color: blue;
+    background-color: #000091;
     width: 60px;
     height: 60px;
     display: block;
@@ -9,6 +9,10 @@
     right: 24px;
     cursor: pointer;
     z-index: 10000000;
+    &:hover,:active{
+        background-color: #1212ff !important;
+    }
+    
 }
 
 

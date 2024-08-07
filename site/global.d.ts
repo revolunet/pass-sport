@@ -26,7 +26,17 @@ declare global {
   }
 }
 
+export type CookiesCompleteChoice = Record<string, boolean>;
+
+export interface OverlayOpenCookiesChoice {
+  currentStepIndex: number;
+  highlightVendor: 'vimeo' | 'crisp';
+  steps: any[];
+}
+
+export type Choice = CookiesCompleteChoice | OverlayOpenCookiesChoice;
+
 interface AxeptioSDK {
-  on(event: string, callback: (choices: Record<string, boolean>) => void): void;
+  on(event: string, callback: (choices: Choice) => void): void;
   requestConsent(vendor: string): Promise<any>;
 }

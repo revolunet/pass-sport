@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { CookiesCompleteChoice } from '../../../global';
 
 export function useAxeptio({
   vimeoURL,
@@ -53,10 +54,11 @@ export function useAxeptio({
 
       window._axcb.push(function (sdk) {
         sdk.on('cookies:complete', function (choices) {
-          // hide on given vendor consent choices
+          const onCompleteChoice = choices as CookiesCompleteChoice;
+          // hide or reveal on given vendor consent choices
           document.querySelectorAll('[data-hide-on-vendor-consent]').forEach((el) => {
             const vendor = el.getAttribute('data-hide-on-vendor-consent');
-            el.style.display = vendor && choices[vendor] ? 'none' : 'inherit';
+            el.style.display = vendor && onCompleteChoice[vendor] ? 'none' : 'inherit';
           });
 
           // add vimeo iframe src
@@ -64,7 +66,7 @@ export function useAxeptio({
             .querySelectorAll(`iframe#${videoId}[data-requires-vendor-consent]`)
             .forEach((el) => {
               const vendor = el.getAttribute('data-requires-vendor-consent');
-              if (vendor && choices[vendor]) {
+              if (vendor && onCompleteChoice[vendor]) {
                 el.setAttribute('src', vimeoURL);
                 el.style.display = 'block';
               } else {
@@ -73,7 +75,7 @@ export function useAxeptio({
             });
 
           // init crisp on accept
-          if (!!choices['crisp']) {
+          if (!!onCompleteChoice['crisp']) {
             initCrisp();
           }
         });
