@@ -53,6 +53,37 @@ export const Crisp = () => {
         t.parentNode.insertBefore(e, t);
       }
     })(document, 'script');
+
+    window.$crisp.push([
+      'on',
+      'session:loaded',
+      () => {
+        const chatBotButton = document.querySelector('a[aria-label="Ouvrir le chat"]');
+        chatBotButton?.setAttribute('aria-label', 'Ouvrir le tchat botte');
+      },
+    ]);
+
+    window.$crisp.push([
+      'on',
+      'chat:opened',
+      () => {
+        setTimeout(() => {
+          const chatBotButton = document.querySelector('a[aria-label="Fermer le chat"]');
+          chatBotButton?.setAttribute('aria-label', 'Fermer le tchat botte');
+        }, 500);
+      },
+    ]);
+
+    window.$crisp.push([
+      'on',
+      'chat:closed',
+      () => {
+        setTimeout(() => {
+          const chatBotButton = document.querySelector('a[aria-label="Ouvrir le chat"]');
+          chatBotButton?.setAttribute('aria-label', 'Ouvrir le tchat botte');
+        }, 500);
+      },
+    ]);
   };
 
   const focusOnVendorConsentToggle = (onOverlayOpenCookies: OverlayOpenCookiesChoice) => {
