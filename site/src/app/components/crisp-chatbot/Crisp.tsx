@@ -54,36 +54,28 @@ export const Crisp = () => {
       }
     })(document, 'script');
 
-    window.$crisp.push([
-      'on',
-      'session:loaded',
-      () => {
-        const chatBotButton = document.querySelector('a[aria-label="Ouvrir le chat"]');
-        chatBotButton?.setAttribute('aria-label', 'Ouvrir le tchat botte');
-      },
-    ]);
+    window.$crisp.push(
+      onCrispEventUpdateAria('session:loaded', 'Ouvrir le chat', 'Ouvrir le tchat botte'),
+      onCrispEventUpdateAria('chat:opened', 'Fermer le chat', 'Fermer le tchat botte'),
+      onCrispEventUpdateAria('chat:closed', 'Ouvrir le chat', 'Ouvrir le tchat botte'),
+    );
+  };
 
-    window.$crisp.push([
+  const onCrispEventUpdateAria = (
+    event: string,
+    crispAria: string,
+    betterAria: string,
+  ): [string, string, () => void] => {
+    return [
       'on',
-      'chat:opened',
+      event,
       () => {
         setTimeout(() => {
-          const chatBotButton = document.querySelector('a[aria-label="Fermer le chat"]');
-          chatBotButton?.setAttribute('aria-label', 'Fermer le tchat botte');
+          const chatBotButton = document.querySelector(`a[aria-label="${crispAria}"]`);
+          chatBotButton?.setAttribute('aria-label', betterAria);
         }, 500);
       },
-    ]);
-
-    window.$crisp.push([
-      'on',
-      'chat:closed',
-      () => {
-        setTimeout(() => {
-          const chatBotButton = document.querySelector('a[aria-label="Ouvrir le chat"]');
-          chatBotButton?.setAttribute('aria-label', 'Ouvrir le tchat botte');
-        }, 500);
-      },
-    ]);
+    ];
   };
 
   const focusOnVendorConsentToggle = (onOverlayOpenCookies: OverlayOpenCookiesChoice) => {
