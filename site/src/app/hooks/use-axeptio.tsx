@@ -3,15 +3,7 @@
 import { useEffect } from 'react';
 import { CookiesCompleteChoice } from '../../../global';
 
-export function useAxeptio({
-  vimeoURL,
-  videoId,
-  nonce,
-}: {
-  vimeoURL: string;
-  videoId: string;
-  nonce?: string;
-}) {
+export function useAxeptio({ vimeoURL, videoId }: { vimeoURL: string; videoId: string }) {
   const initAxeptio = (): void => {
     if (window.axeptioSettings) {
       return;
@@ -35,7 +27,7 @@ export function useAxeptio({
     })(document, 'script');
   };
 
-  const toggleVimeoIframSrc = (onCompleteChoice: CookiesCompleteChoice) => {
+  const toggleVimeoIframeSrc = (onCompleteChoice: CookiesCompleteChoice) => {
     document.querySelectorAll(`iframe#${videoId}[data-requires-vendor-consent]`).forEach((el) => {
       const vendor = el.getAttribute('data-requires-vendor-consent');
       if (vendor && onCompleteChoice[vendor]) {
@@ -64,7 +56,7 @@ export function useAxeptio({
       sdk.on('cookies:complete', function (choices) {
         const onCompleteChoice = choices as CookiesCompleteChoice;
         toggleVendorConsentButton(onCompleteChoice);
-        toggleVimeoIframSrc(onCompleteChoice);
+        toggleVimeoIframeSrc(onCompleteChoice);
       });
     });
   };

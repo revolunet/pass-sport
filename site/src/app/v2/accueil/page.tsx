@@ -17,8 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default function Accueil() {
-  const nonce = headers().get('X-Nonce') ?? undefined;
-
   return (
     <>
       <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
@@ -42,7 +40,6 @@ export default function Accueil() {
               videoPathUrl="956531127?h=c05ce6ca77&title=0&byline=0&portrait=0"
               videoFullUrl="https://vimeo.com/956531127"
               videoId="video-956531127"
-              nonce={nonce}
             />
           </section>
 

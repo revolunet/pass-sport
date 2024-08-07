@@ -23,9 +23,8 @@ const Video = ({
   title,
   transcriptionContent,
   vignette,
-  nonce,
 }: Props) => {
-  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId, nonce });
+  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
