@@ -12,76 +12,65 @@ export function useAxeptio({
   videoId: string;
   nonce?: string;
 }) {
-  useEffect(() => {
-    const initCrisp = (): void => {
-      window.$crisp = [];
-      window.CRISP_WEBSITE_ID = '4b9daa5d-5805-4ad9-9a8e-4cfc112b11e5';
-      (function (d: Document, s: string) {
-        const t = d.getElementsByTagName(s)[0];
-        const e = d.createElement(s);
-        e.async = true;
-        e.src = 'https://client.crisp.chat/l.js';
-        if (t.parentNode) {
-          t.parentNode.insertBefore(e, t);
-        }
-      })(document, 'script');
+  const initAxeptio = (): void => {
+    if (window.axeptioSettings) {
+      return;
+    }
+
+    // Configuration axeptio
+    window.axeptioSettings = {
+      clientId: '6662b7369f1ba1b27006fc0a',
+      cookiesVersion: 'pass sport-fr-EU_Cp',
     };
 
-    const initAxeptio = (): void => {
-      if (!window.axeptioSettings) {
-        // Définition des paramètres de configuration pour Axeptio
-        window.axeptioSettings = {
-          clientId: '6662b7369f1ba1b27006fc0a',
-          cookiesVersion: 'pass sport-fr-EU_Cp',
-        };
-
-        // Chargement asynchrone du script Axeptio
-        (function (d: Document, s: string) {
-          const t = d.getElementsByTagName(s)[0];
-          const e = d.createElement(s);
-          e.async = true;
-          e.src = 'https://static.axept.io/sdk-slim.js';
-          e.nonce = nonce;
-          if (t.parentNode) {
-            t.parentNode.insertBefore(e, t);
-          }
-        })(document, 'script');
+    // Chargement asynchrone du script Axeptio
+    (function (d: Document, s: string) {
+      const t = d.getElementsByTagName(s)[0];
+      const e = d.createElement(s);
+      e.async = true;
+      e.src = 'https://static.axept.io/sdk-slim.js';
+      if (t.parentNode) {
+        t.parentNode.insertBefore(e, t);
       }
+    })(document, 'script');
+  };
 
-      if (!window._axcb) {
-        window._axcb = [];
+  const toggleVimeoIframSrc = (onCompleteChoice: CookiesCompleteChoice) => {
+    document.querySelectorAll(`iframe#${videoId}[data-requires-vendor-consent]`).forEach((el) => {
+      const vendor = el.getAttribute('data-requires-vendor-consent');
+      if (vendor && onCompleteChoice[vendor]) {
+        el.setAttribute('src', vimeoURL);
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
       }
+    });
+  };
 
-      window._axcb.push(function (sdk) {
-        sdk.on('cookies:complete', function (choices) {
-          const onCompleteChoice = choices as CookiesCompleteChoice;
-          // hide or reveal on given vendor consent choices
-          document.querySelectorAll('[data-hide-on-vendor-consent]').forEach((el) => {
-            const vendor = el.getAttribute('data-hide-on-vendor-consent');
-            el.style.display = vendor && onCompleteChoice[vendor] ? 'none' : 'inherit';
-          });
+  // hide or reveal on given vendor consent choices
+  const toggleVendorConsentButton = (onCompleteChoice: CookiesCompleteChoice) => {
+    document.querySelectorAll('[data-hide-on-vendor-consent]').forEach((el) => {
+      const vendor = el.getAttribute('data-hide-on-vendor-consent');
+      el.style.display = vendor && onCompleteChoice[vendor] ? 'none' : 'inherit';
+    });
+  };
 
-          // add vimeo iframe src
-          document
-            .querySelectorAll(`iframe#${videoId}[data-requires-vendor-consent]`)
-            .forEach((el) => {
-              const vendor = el.getAttribute('data-requires-vendor-consent');
-              if (vendor && onCompleteChoice[vendor]) {
-                el.setAttribute('src', vimeoURL);
-                el.style.display = 'block';
-              } else {
-                el.style.display = 'none';
-              }
-            });
+  const registerAxeptioEvent = () => {
+    if (!window._axcb) {
+      window._axcb = [];
+    }
 
-          // init crisp on accept
-          if (!!onCompleteChoice['crisp']) {
-            initCrisp();
-          }
-        });
+    window._axcb.push(function (sdk) {
+      sdk.on('cookies:complete', function (choices) {
+        const onCompleteChoice = choices as CookiesCompleteChoice;
+        toggleVendorConsentButton(onCompleteChoice);
+        toggleVimeoIframSrc(onCompleteChoice);
       });
-    };
+    });
+  };
 
+  useEffect(() => {
     initAxeptio();
+    registerAxeptioEvent();
   });
 }

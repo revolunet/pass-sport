@@ -38,5 +38,8 @@ export type Choice = CookiesCompleteChoice | OverlayOpenCookiesChoice;
 
 interface AxeptioSDK {
   on(event: string, callback: (choices: Choice) => void): void;
-  requestConsent(vendor: string): Promise<any>;
+  requestConsent(vendor: string): boolean;
+  userPreferencesManager: {
+    choices: CookiesCompleteChoice;
+  };
 }
