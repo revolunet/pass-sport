@@ -42,7 +42,7 @@ const EligibilityTestForms = () => {
 
       {eligibilityData &&
         eligibilityData.length > 0 &&
-        eligibilityData[0].situation === 'jeune' &&
+        eligibilityData[0].situation.toLowerCase() === 'jeune' &&
         eligibilityData[0].organisme === 'CAF' && (
           <YoungCafForm
             eligibilityDataItem={eligibilityData[0]}
@@ -54,7 +54,7 @@ const EligibilityTestForms = () => {
 
       {eligibilityData &&
         eligibilityData.length > 0 &&
-        eligibilityData[0].situation === 'jeune' &&
+        eligibilityData[0].situation.toLowerCase() === 'jeune' &&
         eligibilityData[0].organisme === 'MSA' && (
           <YoungMsaForm
             eligibilityDataItem={eligibilityData[0]}
