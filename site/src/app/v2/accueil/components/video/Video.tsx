@@ -11,11 +11,10 @@ interface Props {
   videoId: string;
   videoPathUrl: string;
   videoFullUrl: string;
-  nonce?: string;
 }
 
-const Video = ({ videoId, videoPathUrl, videoFullUrl, nonce }: Props) => {
-  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId, nonce });
+const Video = ({ videoId, videoPathUrl, videoFullUrl }: Props) => {
+  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
