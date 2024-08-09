@@ -406,6 +406,8 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
   const showClubsOnMapTabHandler = () => {
     let removableQueryStrings = [{ key: SEARCH_QUERY_PARAMS.isShowingMapTab, value: '1' }];
 
+    push(['trackEvent', 'Carte Button', 'Clicked', 'Find a club page']);
+
     if (latitude && isGeolocationFilterActive) {
       removableQueryStrings.push({ key: SEARCH_QUERY_PARAMS.regionCode, value: '' });
       removableQueryStrings.push({ key: SEARCH_QUERY_PARAMS.departmentCode, value: '' });

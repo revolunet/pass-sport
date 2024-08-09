@@ -17,7 +17,7 @@ const ClubCount: React.FC<Props> = ({ displayedClubCount, totalClubCount, isPagi
 
     if (displayedClubCount >= LIMIT) {
       return `Les clubs trouvés sont trop nombreux. Seuls les ${LIMIT} premiers sont affichés. Merci
-      d&apos;affiner votre recherche.`;
+      d'affiner votre recherche.`;
     }
 
     return `${displayedClubCount} ${displayedClubCount > 1 ? 'clubs référencés' : 'club référencé'}`;
