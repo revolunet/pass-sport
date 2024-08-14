@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { decryptData } from '../../utils/decryption';
+import { decryptData } from '@/utils/decryption';
 import { z } from 'zod';
 
 const payloadSchema = z.object({

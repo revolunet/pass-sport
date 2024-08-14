@@ -11,6 +11,7 @@ const config = {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     '^@/types/(.*)$': '<rootDir>/src/types/$1',
+    '^@/utils/(.*)$': '<rootDir>/utils/$1',
     '^src/(.*)$': '<rootDir>/src/$1',
   },
 };

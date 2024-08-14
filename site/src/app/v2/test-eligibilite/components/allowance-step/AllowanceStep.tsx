@@ -6,7 +6,7 @@ import Question, {
 import rootStyles from '@/app/utilities.module.scss';
 import styles from '@/app/v2/test-eligibilite/styles.module.scss';
 import cn from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ALLOWANCE } from '../types/types';
 import EligibilityTestForms from '../eligibility-test-forms/EligibilityTestForms';
 import CrousStep from '../crous-step/CrousStep';
@@ -18,6 +18,13 @@ import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegative
 let CustomButtonsGroupKey = 0;
 
 const AllowanceStep = () => {
+  // Ask for consent for the cookie related to support once on the page
+  useEffect(() => {
+    if (window.axeptioSDK && process.env.NEXT_PUBLIC_COOKIE_SUPPORT_KEY) {
+      window.axeptioSDK.requestConsent(process.env.NEXT_PUBLIC_COOKIE_SUPPORT_KEY);
+    }
+  }, []);
+
   const [allowance, setAllowance] = useState<ALLOWANCE | null>(null);
 
   const restartTest = () => {

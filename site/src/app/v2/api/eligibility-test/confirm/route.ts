@@ -3,6 +3,7 @@ import { ConfirmPayload } from 'types/EligibilityTest';
 import { zfd } from 'zod-form-data';
 import z, { ZodError } from 'zod';
 import * as Sentry from '@sentry/nextjs';
+import { handleSupportCookie } from '@/utils/cookie';
 
 const schema = zfd.formData({
   id: z.string(),
@@ -20,8 +21,13 @@ export async function POST(request: Request): Promise<Response> {
   try {
     const formData = await request.formData();
     const payload: ConfirmPayload = schema.parse(formData);
-
     const data = await fetchQrCode(payload);
+
+    // Means no one was found
+    if (Array.isArray(data) && data.length <= 0) {
+      await handleSupportCookie(payload, 'confirm');
+    }
+
     return Response.json(data);
   } catch (e) {
     if (e instanceof ZodError) {
