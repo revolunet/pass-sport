@@ -39,7 +39,7 @@ export default function Accueil() {
             title="Clubs et structures sportives"
             titleAs="h2"
             imageUrl={mainImage.src}
-            imageAlt="Image principale pour la promotion du pass Sport aux clubs et structures sportives"
+            imageAlt=""
             horizontal
             border={false}
             desc={
@@ -90,7 +90,7 @@ export default function Accueil() {
             title="Faire la promotion du pass Sport"
             titleAs="h2"
             imageUrl={secondaryImage.src}
-            imageAlt="Image secondaire pour faire la promotion du pass Sport"
+            imageAlt=""
             border={false}
             horizontal
             desc={
