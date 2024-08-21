@@ -10,22 +10,28 @@ const contactFormSchema = z.object({
   lastname: z.string(),
   message: z.string(),
   reason: z.string(),
+  isProRequest: z.boolean(),
 });
 
 const MAX_LENGTH_REASON = 80;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const jsonBody = JSON.parse(req.body);
-  const objectBody: ContactRequestBody = contactFormSchema.parse(jsonBody);
+  const { isProRequest, firstname, lastname, email, reason, message }: ContactRequestBody =
+    contactFormSchema.parse(jsonBody);
+
   const conversation = await crispClient.website.createNewConversation(envVars.CRISP_WEBSITE);
+
+  const byWhoSegment = isProRequest ? 'Pro' : 'Particulier';
+
   await crispClient.website.updateConversationMetas(
     envVars.CRISP_WEBSITE,
     conversation.session_id,
     {
-      nickname: `${objectBody.firstname} ${objectBody.lastname}`,
-      email: objectBody.email,
-      data: { email: objectBody.email },
-      segments: [objectBody.reason.slice(0, MAX_LENGTH_REASON)],
+      nickname: `${firstname} ${lastname}`,
+      email,
+      data: { email },
+      segments: [byWhoSegment, reason.slice(0, MAX_LENGTH_REASON)],
     },
   );
 
@@ -36,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       type: 'text',
       from: 'user',
       origin: 'urn:pass-sport',
-      content: objectBody.message,
+      content: message,
     },
   );
 
