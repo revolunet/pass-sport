@@ -24,7 +24,7 @@ const visitorReasons = {
   'aije-droit': 'Ai-je droit au pass Sport ?',
   'eligibility-test-fail': 'Mon test me dit que je ne suis pas éligible',
   'code-pas-reçu': "Je n'ai pas reçu mon code pass Sport",
-  'obtenir-pass': "J'ai supprimé ou perdu mon code par erreur",
+  'obtenir-pass': "J'ai supprimé mon code par erreur",
   'code-fails': 'Mon code ne fonctionne pas',
   'club-pas-trouvé': 'Je ne trouve pas mon club',
   'refus-code-club': 'Mon club refuse de prendre le pass Sport',
@@ -34,15 +34,13 @@ const visitorReasons = {
 
 const proReasons = {
   'what-pass': "Qu'est-ce que le pass Sport ?",
-  'cant-get-refund': 'Je ne parviens pas à me faire rembourser',
+  'devenir-partenaire': 'Comment devenir partenaire ?',
   'club-code-not-working': 'Le code ne fonctionne pas',
+  'cant-get-refund': 'Je ne parviens pas à me faire rembourser',
+  'integrer-supprimer-pass': 'Comment intégrer ou supprimer des pass Sport dans LCA ?',
   'club-problème-lca': 'Je rencontre un problème sur mon compte LCA',
   other: 'Autre',
 };
-
-// TO DO: VALIDER LES LISTES DES RAISONS
-// 'Comment devenir partenaire ?',
-// 'Comment intégrer ou supprimer des pass Sport dans LCA ?',
 
 interface Props {
   closeFn: VoidFunction;
