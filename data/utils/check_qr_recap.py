@@ -21,7 +21,7 @@ async def main():
     # URL must with the format http://<domain>/v2/code/scan#url or http://<domain>/v2/code/scan/url (for old codes)
     with open(codes_path_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
-        urls = [row['url'] for row in reader]
+        urls = [row['url_qr_code'] for row in reader]
 
         for i in range(0, len(urls), chunk_size):
             urls_chunk = urls[i:i + chunk_size]
