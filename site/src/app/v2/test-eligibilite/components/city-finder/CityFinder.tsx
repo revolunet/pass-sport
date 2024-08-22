@@ -4,9 +4,9 @@ import styles from './styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { getFranceCitiesByName } from '@/app/v2/trouver-un-club/agent';
 import { City } from 'types/City';
-import { InputState } from 'types/EligibilityTest';
 import { SingleValue } from 'react-select';
 import { sortCities } from 'utils/city';
+import { InputState } from 'types/form';
 
 interface Option {
   label: string;

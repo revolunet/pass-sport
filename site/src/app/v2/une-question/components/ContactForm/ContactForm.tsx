@@ -5,20 +5,11 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
 import Input from '@codegouvfr/react-dsfr/Input';
 import Select from '@codegouvfr/react-dsfr/Select';
-import React, { FormEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, FormEvent, SyntheticEvent, useRef, useState } from 'react';
 import { InputsState } from '../../../../../../types/Contact';
 import { postContact } from '../../client-agent';
 import styles from './styles.module.scss';
 import { EMAIL_REGEX } from '../../../../../../utils/email';
-
-const initialInputsState: InputsState = {
-  firstname: 'default',
-  lastname: 'default',
-  email: 'default',
-  reason: 'default',
-  message: 'default',
-  consent: 'default',
-};
 
 const visitorReasons = {
   'aije-droit': 'Ai-je droit au pass Sport ?',
@@ -40,6 +31,26 @@ const proReasons = {
   'integrer-supprimer-pass': 'Comment intégrer ou supprimer des pass Sport dans LCA ?',
   'club-problème-lca': 'Je rencontre un problème sur mon compte LCA',
   other: 'Autre',
+};
+
+const initialInputsState: InputsState = {
+  firstname: { state: 'default' },
+  lastname: { state: 'default' },
+  email: { state: 'default' },
+  reason: { state: 'default' },
+  message: { state: 'default' },
+  consent: { state: 'default' },
+  siret: { state: 'default' },
+};
+
+export const mapper: Record<keyof InputsState, string> = {
+  firstname: 'Le prénom est requis',
+  lastname: 'Le nom de famille est requis',
+  email: "L'email est requis",
+  reason: "L'objet du message est requis",
+  message: 'Le message est requis',
+  consent: 'Veuiller cocher cette case',
+  siret: 'Le SIRET est requis',
 };
 
 interface Props {
@@ -64,27 +75,60 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
       'reason',
       'message',
       'consent',
+      'siret',
     ];
+
+    if (isProVersion) {
+      fieldNames.push('siret');
+    }
 
     const states = structuredClone(initialInputsState);
 
     fieldNames.forEach((fieldName) => {
       const value = formData.get(fieldName);
+      console.log(fieldName, value);
 
       if (!value) {
-        states[fieldName] = 'error';
+        states[fieldName].state = 'error';
+        states[fieldName].errorMsg = mapper[fieldName];
         isValid = false;
       }
     });
 
     const emailInput = formData.get('email') as string;
 
-    if (!EMAIL_REGEX.test(emailInput)) {
+    if (states.email.state !== 'error' && !EMAIL_REGEX.test(emailInput)) {
+      states.email.state = 'error';
+      states.email.errorMsg =
+        'Veuillez saisir une adresse e-mail valide. Par exemple : john.doe@access42.net';
       isValid = false;
-      states.email = 'error';
+    }
+
+    if (isProVersion) {
+      const siretInput = formData.get('siret') as string;
+      const regExp = new RegExp('\\d{14}');
+      if (states.siret.state !== 'error' && !regExp.test(siretInput)) {
+        states.siret.state = 'error';
+        states.siret.errorMsg = 'Le SIRET doit contenir 14 chiffres';
+        isValid = false;
+      }
     }
 
     return { isValid, states };
+  };
+
+  const onInputChanged = (text: string | null, field: keyof InputsState) => {
+    if (!text) {
+      setInputStates((inputStates) => ({
+        ...inputStates,
+        [`${field}`]: { state: 'error', errorMsg: mapper[field] },
+      }));
+    } else {
+      setInputStates((inputStates) => ({
+        ...inputStates,
+        [`${field}`]: { state: 'default' },
+      }));
+    }
   };
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -170,12 +214,14 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   label="Prénom*"
                   nativeInputProps={{
                     name: 'firstname',
+                    onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                      onInputChanged(e.target.value, 'firstname'),
                     'aria-label': 'Saisir votre prénom',
                     autoComplete: 'given-name',
                     'aria-autocomplete': 'none',
                   }}
-                  state={inputStates.firstname}
-                  stateRelatedMessage="Le prénom est requis"
+                  state={inputStates.firstname.state}
+                  stateRelatedMessage={inputStates.firstname.errorMsg}
                 />
               </div>
 
@@ -184,26 +230,47 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   label="Nom de famille*"
                   nativeInputProps={{
                     name: 'lastname',
+                    onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                      onInputChanged(e.target.value, 'lastname'),
                     'aria-label': 'Saisir votre nom',
                     autoComplete: 'family-name',
                     'aria-autocomplete': 'none',
                   }}
-                  state={inputStates.lastname}
-                  stateRelatedMessage="Le nom de famille est requis"
+                  state={inputStates.lastname.state}
+                  stateRelatedMessage={inputStates.lastname.errorMsg}
                 />
               </div>
+
+              {isProVersion && (
+                <div>
+                  <Input
+                    label="Siret*"
+                    nativeInputProps={{
+                      name: 'siret',
+                      onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                        onInputChanged(e.target.value, 'siret'),
+                      'aria-label': 'Saisir le SIRET de votre association',
+                      'aria-autocomplete': 'none',
+                    }}
+                    state={inputStates.siret.state}
+                    stateRelatedMessage={inputStates.siret.errorMsg}
+                  />
+                </div>
+              )}
             </div>
             <div>
               <Input
                 label="Adresse e-mail*"
                 nativeInputProps={{
                   name: 'email',
+                  onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                    onInputChanged(e.target.value, 'email'),
                   'aria-label': 'Saisir votre adresse e-mail',
                   autoComplete: 'email',
                   'aria-autocomplete': 'none',
                 }}
-                state={inputStates.email}
-                stateRelatedMessage="Veuillez saisir une adresse e-mail valide. Par exemple : john.doe@access42.net"
+                state={inputStates.email.state}
+                stateRelatedMessage={inputStates.email.errorMsg}
               />
             </div>
             <div>
@@ -211,11 +278,13 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                 label="Objet de la demande*"
                 nativeSelectProps={{
                   name: 'reason',
+                  onChange: (e: SyntheticEvent<HTMLSelectElement>) =>
+                    onInputChanged(e.currentTarget.value, 'reason'),
                   defaultValue: '',
                   'aria-label': "Selectionnez l'objet de votre demande",
                 }}
-                state={inputStates.reason}
-                stateRelatedMessage="L'objet de l'email est requis"
+                state={inputStates.reason.state}
+                stateRelatedMessage={inputStates.reason.errorMsg}
               >
                 <React.Fragment key=".0">
                   <option disabled hidden value="">
@@ -238,10 +307,12 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
               nativeTextAreaProps={{
                 placeholder: 'Message*',
                 name: 'message',
+                onChange: (e: ChangeEvent<HTMLTextAreaElement>) =>
+                  onInputChanged(e.target.value, 'message'),
                 'aria-label': 'Saisir votre message',
               }}
-              state={inputStates.message}
-              stateRelatedMessage="Le message est requis"
+              state={inputStates.message.state}
+              stateRelatedMessage={inputStates.message.errorMsg}
             />
           </div>
         </div>
@@ -253,14 +324,13 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   'En cochant cette case, vous comprenez que les données personnelles entrées, adresse IP comprise, pourront être utilisées afin de vous contacter dans le cadre de votre intérêt légitime.*',
                 nativeInputProps: {
                   name: 'consent',
-                  value: 'yes',
+                  onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                    onInputChanged(e.target.checked ? 'yes' : null, 'consent'),
                 },
               },
             ]}
-            state={inputStates.consent}
-            stateRelatedMessage={
-              inputStates.consent === 'default' ? undefined : 'Veuiller cocher cette case'
-            }
+            state={inputStates.consent.state}
+            stateRelatedMessage={inputStates.consent.errorMsg}
           />
         </div>
         <div className="fr-grid-row fr-grid-row--right">

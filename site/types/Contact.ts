@@ -1,4 +1,4 @@
-type InputState = 'default' | 'success' | 'error';
+import { InputState } from './form';
 
 export interface InputsState {
   firstname: InputState;
@@ -7,6 +7,7 @@ export interface InputsState {
   reason: InputState;
   message: InputState;
   consent: InputState;
+  siret: InputState;
 }
 
 export interface ContactRequestBody {
@@ -16,4 +17,5 @@ export interface ContactRequestBody {
   message: string;
   reason: string;
   isProRequest: boolean;
+  siret?: string;
 }

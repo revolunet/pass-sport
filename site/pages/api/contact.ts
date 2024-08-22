@@ -13,6 +13,7 @@ const contactFormSchema = z.object({
   message: z.string(),
   reason: z.string(),
   isProRequest: z.boolean(),
+  siret: z.string().optional(),
 });
 
 const MAX_LENGTH_REASON = 80;
@@ -41,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const jsonBody = JSON.parse(req.body);
-  const { isProRequest, firstname, lastname, email, reason, message }: ContactRequestBody =
+  const { isProRequest, firstname, lastname, email, reason, message, siret }: ContactRequestBody =
     contactFormSchema.parse(jsonBody);
 
   const conversation = await crispClient.website.createNewConversation(envVars.CRISP_WEBSITE);
@@ -56,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     {
       nickname: `${firstname} ${lastname}`,
       email,
-      data: { email },
+      data: { email, siret },
       segments: [byWhoSegment, reason.slice(0, MAX_LENGTH_REASON), failedAttemptSegment].filter(
         Boolean,
       ),

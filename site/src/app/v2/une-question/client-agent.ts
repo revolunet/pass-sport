@@ -11,6 +11,7 @@ export const postContact = async (request: FormData, isProRequest: boolean): Pro
     message: request.get('message') as string,
     reason: request.get('reason') as string,
     isProRequest,
+    siret: request.get('siret') as string,
   };
 
   return fetch('/api/contact', { method: 'POST', body: JSON.stringify(body) });
