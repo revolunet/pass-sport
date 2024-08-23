@@ -35,7 +35,7 @@ const ProContent = ({ redirectionUrl }: Props) => {
           Je valide le pass Sport de mon adhérent
         </h1>
         <p className="fr-text--sm fr-text-default--grey">
-          Identifiez-vous à votre compte Le Compte Asso pour valider ce pass Sport.
+          Identifiez-vous sur Le Compte Asso pour valider ce pass Sport.
         </p>
 
         <Button
