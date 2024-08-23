@@ -15,4 +15,5 @@ export interface ContactRequestBody {
   lastname: string;
   message: string;
   reason: string;
+  isProRequest: boolean;
 }

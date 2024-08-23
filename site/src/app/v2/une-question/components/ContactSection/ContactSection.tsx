@@ -13,7 +13,11 @@ const contactModal = createModal({
   isOpenedByDefault: false,
 });
 
-const ContactSection = () => {
+interface Props {
+  isProVersion?: boolean;
+}
+
+const ContactSection: React.FC<Props> = ({ isProVersion }) => {
   const [modalIsClosed, setModalIsClosed] = useState(true);
 
   useIsModalOpen(contactModal, {
@@ -33,7 +37,9 @@ const ContactSection = () => {
         iconId="fr-icon-mail-line"
         size="large"
       >
-        {!modalIsClosed && <ContactForm closeFn={contactModal.close} />}
+        {!modalIsClosed && (
+          <ContactForm closeFn={contactModal.close} isProVersion={!!isProVersion} />
+        )}
       </contactModal.Component>
 
       <div className="fr-mb-4w">

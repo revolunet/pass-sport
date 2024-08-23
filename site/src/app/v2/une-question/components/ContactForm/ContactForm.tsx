@@ -20,36 +20,34 @@ const initialInputsState: InputsState = {
   consent: 'default',
 };
 
-const beneficiariesReasons = [
-  'Comment obtenir le pass Sport ?',
-  'Qui reçoit le code ?',
-  'Comment utiliser mon pass ?',
-  'Où utiliser mon pass ?',
-  'Comment trouver une structure partenaire ?',
-  'Mon club refuse de prendre le pass Sport que faire ?',
-  "Mon club refuse de me faire la réduction de 50€ à l’inscription et attend d'être remboursé pour m'appliquer la ristourne que faire ?",
-  'Les inscriptions dans mon club sont avant l’envoi des codes que faire ?',
-];
+const visitorReasons = {
+  'aije-droit': 'Ai-je droit au pass Sport ?',
+  'eligibility-test-fail': 'Mon test me dit que je ne suis pas éligible',
+  'code-pas-reçu': "Je n'ai pas reçu mon code pass Sport",
+  'obtenir-pass': "J'ai supprimé mon code par erreur",
+  'code-fails': 'Mon code ne fonctionne pas',
+  'club-pas-trouvé': 'Je ne trouve pas mon club',
+  'refus-code-club': 'Mon club refuse de prendre le pass Sport',
+  'club-wait-50': "Mon club attend d'être remboursé avant de me faire la déduction de 50 euros",
+  other: 'Autre',
+};
 
-const codeReasons: string[] = [
-  'Je n’ai pas reçu mon code pass Sport',
-  'Je n’arrive à obtenir mon code sur le portail via « obtenir mon code »',
-];
-
-const clubReasons: string[] = [
-  'Le code ne fonctionne pas !',
-  'Quel est le principe du dipositif ?',
-  'Comment rentrer dans le dispositif ?',
-  'Comment demander le remboursement pass Sport ?',
-  'Quand mon club sera-t-il remboursé ?',
-  'J’ai un problème avec mon compte asso',
-];
+const proReasons = {
+  'what-pass': "Qu'est-ce que le pass Sport ?",
+  'devenir-partenaire': 'Comment devenir partenaire ?',
+  'club-code-not-working': 'Le code ne fonctionne pas',
+  'cant-get-refund': 'Je ne parviens pas à me faire rembourser',
+  'integrer-supprimer-pass': 'Comment intégrer ou supprimer des pass Sport dans LCA ?',
+  'club-problème-lca': 'Je rencontre un problème sur mon compte LCA',
+  other: 'Autre',
+};
 
 interface Props {
   closeFn: VoidFunction;
+  isProVersion: boolean;
 }
 
-const ContactForm = ({ closeFn }: Props) => {
+const ContactForm = ({ closeFn, isProVersion }: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputStates, setInputStates] = useState<InputsState>(initialInputsState);
   const [apiError, setApiError] = useState<boolean>(false);
@@ -116,7 +114,7 @@ const ContactForm = ({ closeFn }: Props) => {
     }
 
     try {
-      const response = await postContact(formData);
+      const response = await postContact(formData, isProVersion);
 
       if (!response.ok) {
         setApiError(true);
@@ -135,6 +133,7 @@ const ContactForm = ({ closeFn }: Props) => {
     }
   };
 
+  const reasons = isProVersion ? proReasons : visitorReasons;
   return (
     <>
       <form ref={formRef} onSubmit={onSubmitHandler}>
@@ -220,31 +219,14 @@ const ContactForm = ({ closeFn }: Props) => {
               >
                 <React.Fragment key=".0">
                   <option disabled hidden value="">
-                    Veuillez sélectionnez un objet
+                    Veuillez sélectionner un objet
                   </option>
-                  <optgroup label="Bénéficiaires et familles">
-                    {beneficiariesReasons.map((r) => (
-                      <option value={r} key={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </optgroup>
 
-                  <optgroup label="Code">
-                    {codeReasons.map((r) => (
-                      <option value={r} key={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </optgroup>
-
-                  <optgroup label="Clubs et structures">
-                    {clubReasons.map((r) => (
-                      <option value={r} key={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </optgroup>
+                  {Object.entries(reasons).map(([key, value]) => (
+                    <option value={key} key={`${isProVersion ? 'pro' : 'visitor'}_${key}`}>
+                      {value}
+                    </option>
+                  ))}
                 </React.Fragment>
               </Select>
             </div>
