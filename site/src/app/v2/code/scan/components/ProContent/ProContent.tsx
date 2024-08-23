@@ -35,10 +35,7 @@ const ProContent = ({ redirectionUrl }: Props) => {
           Je valide le pass Sport de mon adhérent
         </h1>
         <p className="fr-text--sm fr-text-default--grey">
-          Identifiez-vous à votre compte Le Compte Asso pour valider ce pass Sport en quelques
-          clics. Les informations de ce pass Sport seront automatiquement préremplies, il vous
-          suffira simplement de sélectionner la fédération à laquelle vous appartenez pour valider
-          le pass Sport et enclencher le paiement sous 30 jours.
+          Identifiez-vous à votre compte Le Compte Asso pour valider ce pass Sport.
         </p>
 
         <Button
