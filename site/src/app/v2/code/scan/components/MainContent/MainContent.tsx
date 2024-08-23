@@ -61,7 +61,7 @@ function MainContent() {
 
         {typeof process.env.NEXT_PUBLIC_LCA_APP_URL === 'string' &&
           process.env.NEXT_PUBLIC_LCA_APP_URL.length > 0 && (
-            <ProContent code={response.code} redirectionUrl={process.env.NEXT_PUBLIC_LCA_APP_URL} />
+            <ProContent redirectionUrl={process.env.NEXT_PUBLIC_LCA_APP_URL} />
           )}
       </>
     )

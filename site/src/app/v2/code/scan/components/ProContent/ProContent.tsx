@@ -7,16 +7,11 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
 
 interface Props {
-  code: string;
   redirectionUrl: string;
 }
 
-const ProContent = ({ code, redirectionUrl }: Props) => {
-  const redirectionUrlWithParams = new URL(redirectionUrl);
-  const redirectionUrlSearchParams = new URLSearchParams({ id_psp: code });
-
-  redirectionUrlWithParams.search = redirectionUrlSearchParams.toString();
-
+const ProContent = ({ redirectionUrl }: Props) => {
+  const _redirectionUrl = new URL(redirectionUrl).toString();
   const onRedirectionClick = () => {
     push(['trackEvent', 'LCA redirection', 'Clicked', 'QR Recap page']);
   };
@@ -51,7 +46,7 @@ const ProContent = ({ code, redirectionUrl }: Props) => {
           priority="secondary"
           size="small"
           linkProps={{
-            href: redirectionUrlWithParams,
+            href: _redirectionUrl,
             target: '_blank',
             onClick: onRedirectionClick,
           }}
