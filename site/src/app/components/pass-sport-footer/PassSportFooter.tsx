@@ -9,6 +9,7 @@ import lcaLogo from '@/images/footer/logo-lca.png';
 import menjLogo from '@/images/footer/menj-logo.svg';
 import passSportLogo from '@/images/pass-sport-logo.svg';
 import decathlonLogo from '@/images/footer/decathlon.svg';
+import intersportLogo from '@/images/footer/intersport-logo.svg';
 import logoCosmos from '@/images/footer/logo-cosmos.svg';
 import paralympiqueLogo from '@/images/footer/france-paralympique.svg';
 import crousLogo from '@/images/footer/crous-logo.png';
@@ -102,6 +103,15 @@ export default function PassSportFooter() {
         },
         imgUrl: decathlonLogo.src,
         alt: 'Decathlon',
+      },
+      {
+        // @ts-ignore
+        linkProps: {
+          'aria-label': 'Ouvrir une nouvelle fenêtre vers Intersport',
+          href: 'https://www.intersport.fr/',
+        },
+        imgUrl: intersportLogo.src,
+        alt: 'Intersport',
       },
       {
         // @ts-ignore
