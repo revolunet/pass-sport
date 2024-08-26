@@ -10,8 +10,8 @@ export function middleware(request: NextRequest) {
 
   const cspHeader = `
     default-src 'self';
-    script-src 'report-sample' ${scriptSrc} https://client.crisp.chat/ https://static.axept.io/sdk-slim.js https://stats.beta.gouv.fr/matomo.js;
-    style-src 'report-sample' 'unsafe-inline' 'self' https://unpkg.com https://client.crisp.chat/;
+    script-src 'report-sample' ${scriptSrc} https://client.crisp.chat/ https://static.axept.io/sdk-slim.js https://stats.beta.gouv.fr/matomo.js https://tarteaucitron.io/load.js https://cdn.tarteaucitron.io/lang/tarteaucitron.fr.min.js https://cdn.tarteaucitron.io/tarteaucitron.services.min.js;
+    style-src 'report-sample' 'unsafe-inline' 'self' https://unpkg.com https://client.crisp.chat/ https://cdn.tarteaucitron.io/css/tarteaucitron.min.css;
     object-src 'none';
     base-uri 'self';
     form-action 'self';

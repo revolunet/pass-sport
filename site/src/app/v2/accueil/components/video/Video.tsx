@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Video = ({ videoId, videoPathUrl, videoFullUrl }: Props) => {
-  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
+  // useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
 
   const onConsentClick = () => {
     window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
