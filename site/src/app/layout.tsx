@@ -43,6 +43,7 @@ export default function RootLayout({
           crossOrigin=""
         />
         <Matomo />
+        <TarteAuCitron />
       </head>
 
       <body>
@@ -51,8 +52,7 @@ export default function RootLayout({
         <PassSportBreadcrumb />
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
         <PassSportFooter />
-        <TarteAuCitron />
-        {/* <Crisp /> */}
+        <Crisp />
       </body>
     </html>
   );

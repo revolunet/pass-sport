@@ -8,32 +8,32 @@ import { SKIP_LINKS_ID } from '../../constants/skip-links';
 
 export const Crisp = () => {
   useEffect(() => {
-    initAxeptio();
-    registerAxeptioEvents();
+    // initAxeptio();
+    // registerAxeptioEvents();
   });
 
-  const initAxeptio = (): void => {
-    if (window.axeptioSettings) {
-      return;
-    }
+  // const initAxeptio = (): void => {
+  //   if (window.axeptioSettings) {
+  //     return;
+  //   }
 
-    // Configuration axeptio
-    window.axeptioSettings = {
-      clientId: '6662b7369f1ba1b27006fc0a',
-      cookiesVersion: 'pass sport-fr-EU_Cp',
-    };
+  //   // Configuration axeptio
+  //   window.axeptioSettings = {
+  //     clientId: '6662b7369f1ba1b27006fc0a',
+  //     cookiesVersion: 'pass sport-fr-EU_Cp',
+  //   };
 
-    // Chargement asynchrone du script axeptio
-    (function (d: Document, s: string) {
-      const t = d.getElementsByTagName(s)[0];
-      const e = d.createElement(s);
-      e.async = true;
-      e.src = 'https://static.axept.io/sdk-slim.js';
-      if (t.parentNode) {
-        t.parentNode.insertBefore(e, t);
-      }
-    })(document, 'script');
-  };
+  //   // Chargement asynchrone du script axeptio
+  //   (function (d: Document, s: string) {
+  //     const t = d.getElementsByTagName(s)[0];
+  //     const e = d.createElement(s);
+  //     e.async = true;
+  //     e.src = 'https://static.axept.io/sdk-slim.js';
+  //     if (t.parentNode) {
+  //       t.parentNode.insertBefore(e, t);
+  //     }
+  //   })(document, 'script');
+  // };
 
   const initCrisp = (): void => {
     if (window.CRISP_WEBSITE_ID) {

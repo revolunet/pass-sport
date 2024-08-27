@@ -23,8 +23,8 @@
   transform: translate(-50%, -50%);
 }
 
-.iframe {
-  display: none;
+.vimeo_player,
+.vimeo_player > iframe {
   width: 100%;
   height: calc(100vh / 4);
 

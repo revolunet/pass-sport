@@ -14,8 +14,6 @@ import Video from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/Video';
 import TranscriptionVisibilityClub from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionVisibilityClub';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionRefundPassSport';
-import vignetteRefund from '@/images/vignette-video-remboursement.png';
-import vignetteClub from '@/images/vignette-video-structure.png';
 import Highlight from '@codegouvfr/react-dsfr/Highlight';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { headers } from 'next/headers';
@@ -201,7 +199,6 @@ export default function ToutSavoirSurLePassSport() {
               videoFullUrl="https://vimeo.com/956954295/c830d2877e"
               title="Tutoriel : se faire rembourser un pass Sport"
               transcriptionContent={<TranscriptionRefundPassSport />}
-              vignette={vignetteRefund}
               nonce={nonce}
             />
 
@@ -260,7 +257,6 @@ export default function ToutSavoirSurLePassSport() {
               videoFullUrl="https://vimeo.com/949861035"
               title="Tutoriel : devenez partenaire du pass Sport"
               transcriptionContent={<TranscriptionVisibilityClub />}
-              vignette={vignetteClub}
               nonce={nonce}
             />
           </section>
