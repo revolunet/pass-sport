@@ -36,4 +36,5 @@ interface TarteAuCitronSDK {
     openPanel: () => {};
   };
   job?: string[];
+  triggerJobsAfterAjaxCall?: VoidFunction;
 }

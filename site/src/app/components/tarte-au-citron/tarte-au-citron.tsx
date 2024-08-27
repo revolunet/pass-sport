@@ -9,8 +9,8 @@ export const TarteAuCitron = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (window.tarteaucitron && Array.isArray(window.tarteaucitron.job)) {
-      window.tarteaucitron.job.push('vimeo');
+    if (window.tarteaucitron && window.tarteaucitron.triggerJobsAfterAjaxCall) {
+      window.tarteaucitron.triggerJobsAfterAjaxCall();
     }
   }, [pathname]);
 
