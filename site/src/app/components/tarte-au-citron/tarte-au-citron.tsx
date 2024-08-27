@@ -9,8 +9,10 @@ export const TarteAuCitron = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (window.tarteaucitron && window.tarteaucitron.triggerJobsAfterAjaxCall) {
-      window.tarteaucitron.triggerJobsAfterAjaxCall();
+    if (window.tarteaucitron) {
+      setTimeout(() => {
+        window?.tarteaucitron?.triggerJobsAfterAjaxCall?.();
+      }, 3000);
     }
   }, [pathname]);
 
