@@ -1,9 +1,19 @@
 'use client';
 
 import Script from 'next/script';
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export const TarteAuCitron = () => {
   const domain = process.env.NEXT_PUBLIC_TARTEAUCITRON_DOMAIN;
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (window.tarteaucitron && Array.isArray(window.tarteaucitron.job)) {
+      window.tarteaucitron.job.push('vimeo');
+    }
+  }, [pathname]);
+
   if (!domain) {
     console.error('Environment variable NEXT_PUBLIC_TARTEAUCITRON_DOMAIN is missing');
     return null;
