@@ -12,7 +12,7 @@ const Video = ({ videoFullUrl }: Props) => {
   return (
     <div>
       <figure role="group" className="fr-my-2w fr-content-media">
-        <div className={cn('vimeo_player', styles['vimeo_player'])} data-videoID="956531127" />
+        <div className={cn('vimeo_player', styles['vimeo_player'])} data-videoid="956531127" />
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
           Vidéo de présentation du dispositif pass Sport du ministère des Sports
           <a

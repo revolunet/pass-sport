@@ -33,9 +33,9 @@ export default function RootLayout({
   return (
     <html {...getHtmlAttributes({ defaultColorScheme, lang })}>
       <head>
+        <TarteAuCitron />
         <StartDsfr />
         <DsfrHead Link={Link} nonce={nonce} />
-
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -43,7 +43,6 @@ export default function RootLayout({
           crossOrigin=""
         />
         <Matomo />
-        <TarteAuCitron />
       </head>
 
       <body>

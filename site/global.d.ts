@@ -35,4 +35,5 @@ interface TarteAuCitronSDK {
   userInterface?: {
     openPanel: () => {};
   };
+  job?: string[];
 }
