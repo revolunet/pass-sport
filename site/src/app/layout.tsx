@@ -33,7 +33,6 @@ export default function RootLayout({
   return (
     <html {...getHtmlAttributes({ defaultColorScheme, lang })}>
       <head>
-        <TarteAuCitron />
         <StartDsfr />
         <DsfrHead Link={Link} nonce={nonce} />
         <link
@@ -43,6 +42,7 @@ export default function RootLayout({
           crossOrigin=""
         />
         <Matomo />
+        <TarteAuCitron />
       </head>
 
       <body>

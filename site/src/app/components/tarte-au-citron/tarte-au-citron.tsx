@@ -9,10 +9,14 @@ export const TarteAuCitron = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (window.tarteaucitron) {
-      setTimeout(() => {
-        window?.tarteaucitron?.triggerJobsAfterAjaxCall?.();
-      }, 3000);
+    const isModalRendered = document.getElementById('tarteaucitron');
+    const tarteaucitron = window.tarteaucitron;
+
+    console.log('tarteaucitron', tarteaucitron);
+    console.log('isModalRendered', isModalRendered);
+
+    if (tarteaucitron && isModalRendered) {
+      tarteaucitron.triggerJobsAfterAjaxCall?.();
     }
   }, [pathname]);
 
@@ -24,7 +28,10 @@ export const TarteAuCitron = () => {
   return (
     <Script
       src={`https://tarteaucitron.io/load.js?domain=${domain}&uuid=19b13211bfb1bd1efd6f804a26674ed864265114`}
-      strategy="beforeInteractive"
+      strategy="afterInteractive"
+      onLoad={() => {
+        window.tarteaucitron?.initEvents.loadEvent(false);
+      }}
     />
   );
 };
