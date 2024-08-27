@@ -10,15 +10,15 @@ export function middleware(request: NextRequest) {
 
   const cspHeader = `
     default-src 'self';
-    script-src 'report-sample' ${scriptSrc} https://client.crisp.chat/ https://static.axept.io/sdk-slim.js https://stats.beta.gouv.fr/matomo.js https://tarteaucitron.io/load.js https://cdn.tarteaucitron.io/lang/tarteaucitron.fr.min.js https://cdn.tarteaucitron.io/tarteaucitron.services.min.js;
+    script-src 'report-sample' ${scriptSrc} https://client.crisp.chat/ https://stats.beta.gouv.fr/matomo.js https://tarteaucitron.io/load.js https://cdn.tarteaucitron.io/lang/tarteaucitron.fr.min.js https://cdn.tarteaucitron.io/tarteaucitron.services.min.js;
     style-src 'report-sample' 'unsafe-inline' 'self' https://unpkg.com https://client.crisp.chat/ https://cdn.tarteaucitron.io/css/tarteaucitron.min.css;
     object-src 'none';
     base-uri 'self';
     form-action 'self';
-    connect-src 'self' https://client.crisp.chat/ wss://client.relay.crisp.chat/ https://api.axept.io https://client.axept.io https://sports-sgsocialgouv.opendatasoft.com https://stats.beta.gouv.fr https://geo.api.gouv.fr;
+    connect-src 'self' https://client.crisp.chat/ wss://client.relay.crisp.chat/ https://sports-sgsocialgouv.opendatasoft.com https://stats.beta.gouv.fr https://geo.api.gouv.fr;
     font-src 'self' https://client.crisp.chat/;
     frame-src 'self' https://player.vimeo.com https://pass-sport.crisp.help/;
-    img-src 'self' data: https://image.crisp.chat/ https://client.crisp.chat/ https://storage.crisp.chat/ https://a.tile.openstreetmap.org https://axeptio.imgix.net https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org https://favicons.axept.io https://i.vimeocdn.com https://unpkg.com;
+    img-src 'self' data: https://image.crisp.chat/ https://client.crisp.chat/ https://storage.crisp.chat/ https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org https://i.vimeocdn.com https://unpkg.com;
     manifest-src 'self';
     media-src 'self';
     report-uri https://66ab4d8ba05c71ef29160216.endpoint.csper.io/?v=1;
@@ -28,7 +28,7 @@ export function middleware(request: NextRequest) {
   /**
    ** TODO : add trusted type policies
     require-trusted-types-for 'script';
-    trusted-types react-dsfr react-dsfr-asap nextjs nextjs#bundler axeptio;
+    trusted-types react-dsfr react-dsfr-asap nextjs nextjs#bundler;
    */
 
   // Replace newline characters and spaces
