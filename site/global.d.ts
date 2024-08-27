@@ -6,12 +6,7 @@ declare global {
   export interface Window {
     $crisp?: any[];
     CRISP_WEBSITE_ID: string;
-    axeptioSDK?: AxeptioSDK;
-    axeptioSettings?: {
-      clientId: string;
-      cookiesVersion: string;
-    };
-    _axcb?: ((sdk: AxeptioSDK) => void)[];
+    tarteaucitron?: TarteAuCitronSDK;
   }
 
   export interface Element {
@@ -36,10 +31,8 @@ export interface OverlayOpenCookiesChoice {
 
 export type Choice = CookiesCompleteChoice | OverlayOpenCookiesChoice;
 
-interface AxeptioSDK {
-  on(event: string, callback: (choices: Choice) => void): void;
-  requestConsent(vendor: string): boolean;
-  userPreferencesManager: {
-    choices: CookiesCompleteChoice;
+interface TarteAuCitronSDK {
+  userInterface?: {
+    openPanel: () => {};
   };
 }
