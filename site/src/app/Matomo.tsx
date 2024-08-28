@@ -14,7 +14,7 @@ export default function Matomo() {
     const urlMatchRegex = regex.test(pathname);
 
     if (urlMatchRegex) {
-      updatedPathName = pathname.replace(regex, `/code/scan/24-xxxx-xxxx`);
+      updatedPathName = pathname.replace(regex, `/code/scan`);
     }
 
     return updatedPathName;
