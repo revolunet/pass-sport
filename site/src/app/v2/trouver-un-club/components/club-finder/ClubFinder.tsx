@@ -212,6 +212,10 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
       router.push(`${pathname}?${queryString}`, { scroll: false });
     }
 
+    if (text) {
+      push(['trackEvent', 'Searching clubs', 'Search Text Change', 'Input', text]);
+    }
+
     setClubParams(params);
   };
 
