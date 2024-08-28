@@ -28,7 +28,7 @@ export const TarteAuCitron = () => {
 
   return (
     <Script
-      src={`https://tarteaucitron.io/load.js?domain=${domain}&uuid=87ec01317bc9206511e49d480f832148b39f59e6`}
+      src={`https://tarteaucitron.io/load.js?domain=${domain}&uuid=19b13211bfb1bd1efd6f804a26674ed864265114`}
       strategy="afterInteractive"
       onLoad={() => {
         const tac = window.tarteaucitron;
