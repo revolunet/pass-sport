@@ -14,13 +14,6 @@ export const TarteAuCitron = () => {
 
     if (tarteaucitron && isModalRendered) {
       tarteaucitron.triggerJobsAfterAjaxCall?.();
-
-      if (tarteaucitron.services && tarteaucitron.services.crisp) {
-        tarteaucitron.services.crisp = {
-          ...tarteaucitron.services.crisp,
-          needConsent: true,
-        };
-      }
     }
   }, [pathname]);
 
