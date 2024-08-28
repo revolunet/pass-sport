@@ -15,6 +15,7 @@ import Matomo from './Matomo';
 import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
 import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
 import Crisp from './components/crisp-chatbot/Crisp';
+import TarteAuCitron from './components/tarte-au-citron/tarte-au-citron';
 
 export const metadata: Metadata = {
   title: 'Accueil - pass Sport',
@@ -34,7 +35,6 @@ export default function RootLayout({
       <head>
         <StartDsfr />
         <DsfrHead Link={Link} nonce={nonce} />
-
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -42,6 +42,7 @@ export default function RootLayout({
           crossOrigin=""
         />
         <Matomo />
+        <TarteAuCitron />
       </head>
 
       <body>

@@ -1,10 +1,8 @@
 'use client';
 
-import Button from '@codegouvfr/react-dsfr/Button';
-import Image, { StaticImageData } from 'next/image';
 import { ReactNode } from 'react';
-import { useAxeptio } from '@/app/hooks/use-axeptio';
 import styles from './styles.module.scss';
+import cn from 'classnames';
 
 interface Props {
   videoId: string;
@@ -12,47 +10,18 @@ interface Props {
   videoFullUrl: string;
   title: string;
   transcriptionContent: ReactNode;
-  vignette: StaticImageData;
   nonce?: string;
 }
 
-const Video = ({
-  videoId,
-  videoPathUrl,
-  videoFullUrl,
-  title,
-  transcriptionContent,
-  vignette,
-}: Props) => {
-  useAxeptio({ vimeoURL: `https://player.vimeo.com/video/${videoPathUrl}`, videoId });
-
-  const onConsentClick = () => {
-    window.axeptioSDK && window.axeptioSDK.requestConsent('vimeo');
-  };
-
+const Video = ({ videoId, videoPathUrl, videoFullUrl, title, transcriptionContent }: Props) => {
   return (
     <div>
       <figure role="group" className="fr-mt-n2w fr-content-media">
-        <iframe
-          id={videoId}
-          className={styles.iframe}
-          data-requires-vendor-consent="vimeo"
-          allow="autoplay; fullscreen; picture-in-picture"
-        />
-        <div data-hide-on-vendor-consent="vimeo" className={styles.videoContainer}>
-          <Image src={vignette} alt="Vidéo Viméo" />
-          <Button
-            onClick={onConsentClick}
-            className={styles.consent}
-            aria-label="Autoriser la vidéo viméo"
-          >
-            Autoriser Viméo
-          </Button>
-        </div>
+        <div className={cn('vimeo_player', styles['vimeo_player'])} data-videoid={videoPathUrl} />
         <figcaption className="fr-content-media__caption">
           {title}
           <a
-            className={`fr-link `}
+            className="fr-link"
             href={videoFullUrl}
             target="_blank"
             aria-label="Ouvrir une nouvelle fenêtre vers la vidéo Viméo"
