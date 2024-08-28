@@ -47,9 +47,15 @@ export default function ToutSavoirSurLePassSport() {
             </p>
 
             <p>
-              Aidez-nous à enrichir cette cartographie en nous faisant remonter l’information via
-              PassSport@sports.gouv.fr et partage ainsi votre action en direction des bénéficiaires
-              ou de leurs familles.
+              Aidez-nous à enrichir cette cartographie en nous faisant remonter l’information via{' '}
+              <Link
+                href="/v2/pro/une-question"
+                target="_blank"
+                aria-label="Ouvrir une nouvelle fenêtre vers la foire aux questions"
+              >
+                le formulaire en bas de la Foire aux questions
+              </Link>{' '}
+              et partagez ainsi votre action en direction des bénéficiaires ou de leurs familles.
             </p>
           </div>
 

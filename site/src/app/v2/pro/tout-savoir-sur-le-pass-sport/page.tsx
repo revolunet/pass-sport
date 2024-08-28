@@ -92,8 +92,14 @@ export default function ToutSavoirSurLePassSport() {
               </li>
               <li className="fr-mb-3w">
                 Si vous êtes bien une association agréée Sport ou JEP (agrément valide), contactez
-                l&apos;assistance passSport@sports.gouv.fr qui vous orientera vers l&apos;assistance
-                de proximité dans votre territoire.
+                l&apos;assistance via{' '}
+                <Link
+                  href="/v2/pro/une-question"
+                  target="_blank"
+                  aria-label="Ouvrir une nouvelle fenêtre vers la foire aux questions"
+                >
+                  le formulaire en bas de la Foire aux questions
+                </Link>
               </li>
               <li>
                 Pour toute question sur le dispositif, la FAQ sur ce portail devrait vous apporter

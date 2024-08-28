@@ -123,7 +123,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
           return (
             <li key={article.id} id={article.id} className="cursor--pointer">
               <div
-                className="fr-callout"
+                className="fr-callout fr-mb-0"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(event) => {
@@ -136,7 +136,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
                   onArticleSelect(article);
                 }}
               >
-                <span className="display--block fr-callout__title fr-h3">{article.title}</span>
+                <span className="display--block fr-callout__title fr-h6">{article.title}</span>
                 {selectedArticle !== null && (
                   <>
                     <div className={cn('fr-callout__text', styles['faq__callout-text'])}>
