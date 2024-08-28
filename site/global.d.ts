@@ -38,4 +38,5 @@ interface TarteAuCitronSDK {
   job?: string[];
   triggerJobsAfterAjaxCall?: VoidFunction;
   initEvents: { loadEvent: (isOldBrowser: boolean) => void };
+  services: []{};
 }
