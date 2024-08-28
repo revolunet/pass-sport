@@ -10,11 +10,13 @@ export default function Matomo() {
     const { pathname } = window.location;
 
     let updatedPathName = pathname;
-    let regex = /\/code\/scan\/.*/;
+    let regex = /\/code\/scan.*/;
+    const urlMatchRegex = regex.test(pathname);
 
-    if (regex.test(pathname)) {
-      updatedPathName = pathname.replace(regex, `/code/scan/24-xxxx-xxxx`);
+    if (urlMatchRegex) {
+      updatedPathName = pathname.replace(regex, `/code/scan`);
     }
+
     return updatedPathName;
   };
 
