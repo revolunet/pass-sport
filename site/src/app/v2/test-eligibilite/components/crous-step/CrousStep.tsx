@@ -58,8 +58,8 @@ const CrousStep = () => {
               rootStyles['text--medium'],
             )}
           >
-            Vous le recevrez à l&apos;adresse mail que vous avez communiqué à votre CROUS fin août,
-            une fois que votre dossier de demande a été accepté.
+            Vous le recevrez à l&apos;adresse mail que vous avez communiqué à votre CROUS à partir
+            de début septembre, une fois que votre dossier de demande a été accepté.
           </p>
           <p
             className={cn(
@@ -80,8 +80,8 @@ const CrousStep = () => {
               rootStyles['text--medium'],
             )}
           >
-            Si après le 1er septembre vous n&apos;avez pas reçu votre pass, vous aurez la
-            possibilité d&apos;en faire la demande sur{' '}
+            Si après le 7 octobre vous n&apos;avez pas reçu votre pass, vous aurez la possibilité
+            d&apos;en faire la demande sur{' '}
             <Link href="https://pass.sports.gouv.fr" target="_blank">
               pass.sports.gouv.fr
             </Link>
