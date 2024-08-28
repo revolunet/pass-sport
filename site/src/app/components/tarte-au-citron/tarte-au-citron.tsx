@@ -12,15 +12,12 @@ export const TarteAuCitron = () => {
     const isModalRendered = document.getElementById('tarteaucitron');
     const tarteaucitron = window.tarteaucitron;
 
-    console.log('tarteaucitron', tarteaucitron);
-    console.log('isModalRendered', isModalRendered);
-
     if (tarteaucitron && isModalRendered) {
       tarteaucitron.triggerJobsAfterAjaxCall?.();
 
       if (tarteaucitron.services && tarteaucitron.services.crisp) {
         tarteaucitron.services.crisp = {
-          ...tarteaucitron?.services.crisp,
+          ...tarteaucitron.services.crisp,
           needConsent: true,
         };
       }

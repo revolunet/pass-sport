@@ -39,6 +39,6 @@ interface TarteAuCitronSDK {
   triggerJobsAfterAjaxCall?: VoidFunction;
   initEvents: { loadEvent: (isOldBrowser: boolean) => void };
   services: {
-    crisp: any;
+    crisp?: any;
   };
 }
