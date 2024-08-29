@@ -363,7 +363,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
   };
 
   const onDistanceChanged = (distance: string) => {
-    push(['trackEvent', 'Searching clubs', 'Change distance', 'Around me filter', distance]);
+    push(['trackEvent', 'Searching clubs', 'Change distance', `Distance: ${distance}`]);
 
     setClubParams((clubParams) => ({
       ...clubParams,
