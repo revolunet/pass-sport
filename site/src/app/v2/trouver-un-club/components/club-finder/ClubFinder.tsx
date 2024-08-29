@@ -215,7 +215,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
     if (text) {
       push([
         'trackEvent',
-        `Searching clubs ${isProVersion ? 'pro' : 'particulier'}`,
+        `Searching clubs has ${isProVersion ? 'pro' : 'particulier'}`,
         'Search Text Change',
         `Search Input: ${text}`,
       ]);
