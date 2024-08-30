@@ -221,7 +221,13 @@ export default function PolitiqueDeConfidentialite() {
                     <td>France</td>
                     <td>Hébergement du site vitrine</td>
                     <td>
-                      https://scalingo.com/fr/contrat-gestion-traitements-donnees-personnelles
+                      <Link
+                        href="https://scalingo.com/fr/contrat-gestion-traitements-donnees-personnelles"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Scalingo sur le traitement des données personnelles"
+                      >
+                        https://scalingo.com/fr/contrat-gestion-traitements-donnees-personnelles
+                      </Link>
                     </td>
                   </tr>
                   <tr>
@@ -229,14 +235,28 @@ export default function PolitiqueDeConfidentialite() {
                     <td>France</td>
                     <td>API pour le support</td>
                     <td>
-                      https://help.crisp.chat/en/article/how-to-sign-my-gdpr-data-processing-agreement-dpa-1wfmngo/
+                      <Link
+                        href="https://help.crisp.chat/en/article/how-to-sign-my-gdpr-data-processing-agreement-dpa-1wfmngo/"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Crisp sur le traitement des données personnelles"
+                      >
+                        https://help.crisp.chat/en/article/how-to-sign-my-gdpr-data-processing-agreement-dpa-1wfmngo/
+                      </Link>
                     </td>
                   </tr>
                   <tr>
                     <td>LinkMobility</td>
                     <td>France</td>
                     <td>Envoi d&apos;e-mails</td>
-                    <td>https://www.linkmobility.com/agreements-popd</td>
+                    <td>
+                      <Link
+                        href="https://www.linkmobility.com/agreements-popd"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Link Mobility sur le traitement des données personnelles"
+                      >
+                        https://www.linkmobility.com/agreements-popd
+                      </Link>
+                    </td>
                   </tr>
                   <tr>
                     <td>Vimeo</td>
@@ -245,7 +265,15 @@ export default function PolitiqueDeConfidentialite() {
                       Vidéo sur la page d&apos;accueil, vidéos sur la page tout savoir sur le pass
                       Sport
                     </td>
-                    <td>https://vimeo.com/enterpriseterms/dpa</td>
+                    <td>
+                      <Link
+                        href="https://vimeo.com/enterpriseterms/dpa"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Vimeo sur le traitement des données personnelles"
+                      >
+                        https://vimeo.com/enterpriseterms/dpa
+                      </Link>
+                    </td>
                   </tr>
                 </tbody>
               </table>
