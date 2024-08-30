@@ -313,11 +313,11 @@ export default function PolitiqueDeConfidentialite() {
               rectification,, de limitation et d&apos;opposition des données qui vous concernent.
             </p>
 
-            <h2 className="fr-mb-2w">
+            <h3 className="fr-mb-2w">
               Quels sont les cookies et autres traceurs pouvant être utilisés ?
-            </h2>
+            </h3>
 
-            <h3 className="fr-mb-2w">1. Qu&apos;est-ce qu&apos;un cookie ?</h3>
+            <h4 className="fr-mb-2w">1. Qu&apos;est-ce qu&apos;un cookie ?</h4>
 
             <p className="fr-mb-2w">
               Un cookie est un fichier déposé sur votre terminal lors de la visite d&apos;un site.
@@ -348,7 +348,7 @@ export default function PolitiqueDeConfidentialite() {
               </li>
             </ul>
 
-            <h3 className="fr-mb-2w">2. Les cookies déposés sur le site</h3>
+            <h4 className="fr-mb-2w">2. Les cookies déposés sur le site</h4>
             <p className="fr-mb-2w">
               Sous réserve du choix de l&apos;utilisateur, plusieurs cookies peuvent être utilisés
               sur le site internet pass.sports.gouv.fr. Les différentes finalités de ces cookies
