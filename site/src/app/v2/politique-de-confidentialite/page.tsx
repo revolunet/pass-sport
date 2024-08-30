@@ -108,14 +108,14 @@ export default function PolitiqueDeConfidentialite() {
             </h2>
             <p>
               Le présent traitement a pour finalité la délivrance du pass Sport 2024 aux
-              bénéficiaires âgés de 6 à 30 ans, dans le but de réduire le montant de l’adhésion ou
-              de la prise de licence proposée par les structures et associations sportives.
+              bénéficiaires âgés de 6 à 30 ans, dans le but de réduire le montant de l&apos;adhésion
+              ou de la prise de licence proposée par les structures et associations sportives.
             </p>
           </section>
 
           <section className="fr-mb-6w">
             <h2 className="fr-mb-2w">
-              Article 4 - Qu’est-ce qui nous autorise à traiter vos données ?
+              Article 4 - Qu&apos;est-ce qui nous autorise à traiter vos données ?
             </h2>
             <p>
               Le présent traitement se fonde sur l&apos;article 6. 1. e) du Règlement européen
@@ -171,7 +171,9 @@ export default function PolitiqueDeConfidentialite() {
           </section>
 
           <section className="fr-mb-6w">
-            <h2 className="fr-mb-2w">Qui est concerné par le traitement des données ?</h2>
+            <h2 className="fr-mb-2w">
+              Article 7 - Qui est concerné par le traitement des données ?
+            </h2>
             <p className="fr-mb-2w">
               Sont concernées par le traitement mentionné à l&apos;article 3 les bénéficiaires, âgés
               de 6 à 30 ans, éligibles au dispositif pass Sport et les exploitants de structures
@@ -199,8 +201,9 @@ export default function PolitiqueDeConfidentialite() {
             </h2>
             <p>
               Certaines données sont envoyées à des “sous-traitants” qui nous aident dans le
-              traitement de vos données à caractère personnel. Le responsable de traitement s’est
-              assuré que les sous-traitants respectent notamment l&apos;article 28 du RGPD.
+              traitement de vos données à caractère personnel. Le responsable de traitement
+              s&apos;est assuré que les sous-traitants respectent notamment l&apos;article 28 du
+              RGPD.
             </p>
             <div className="fr-table">
               <table>
@@ -253,7 +256,183 @@ export default function PolitiqueDeConfidentialite() {
           </section>
 
           <section className="fr-mb-6w">
-            <h2 className="fr-mb-2w">Article 10 - Quels sont vos droits ? Comment les exercer ?</h2>
+            <h2 className="fr-mb-2w">
+              Article 10 - Quelles mesures de sécurité mettons-nous en place ?
+            </h2>
+
+            <p className="fr-mb-2w">
+              Nous mettons en place plusieurs mesures pour sécuriser les donneées :
+            </p>
+
+            <ul className="fr-pl-4w">
+              <li className="fr-text--bold">Stockage des données en base de données ;</li>
+              <li className="fr-text--bold">Minimisation des données ;</li>
+              <li className="fr-text--bold">Cloisonnement des donneées ;</li>
+              <li className="fr-text--bold">Mesures de traçabilité ;</li>
+              <li className="fr-text--bold">Chiffrement ;</li>
+              <li className="fr-text--bold">Surveillance ;</li>
+              <li className="fr-text--bold">Protection des réseaux ;</li>
+              <li className="fr-text--bold">Sauvegarde ;</li>
+              <li className="fr-text--bold">
+                Mesures restrictives limitant l&apos;accès physique aux données à caractère
+                personnel
+              </li>
+            </ul>
+
+            <p className="fr-mb-2w">
+              Conformément à la réglementation applicable, à savoir le RGPD et la loi Informatique
+              et libertés, vous disposez d&apos;un droit d&apos;information, d&apos;accès, de
+              rectification,, de limitation et d&apos;opposition des données qui vous concernent.
+            </p>
+
+            <h2 className="fr-mb-2w">
+              Quels sont les cookies et autres traceurs pouvant être utilisés ?
+            </h2>
+
+            <h3 className="fr-mb-2w">1. Qu&apos;est-ce qu&apos;un cookie ?</h3>
+
+            <p className="fr-mb-2w">
+              Un cookie est un fichier déposé sur votre terminal lors de la visite d&apos;un site.
+              Il a pour but de collecter des informations relatives à votre navigation et de vous
+              adresser des services adaptés à votre terminal (ordinateur, mobile ou tablette).
+            </p>
+
+            <p className="fr-mw-2w">
+              En application de l&apos;article 5(3) de la directive 2002/58/CE modifiée concernant
+              le traitement des données à caractère personnel et la protection de la vie privée dans
+              le secteur des communications électroniques, transposée à l&apos;article 82 de la loi
+              n°78-17 du 6 janvier 1978 relative à l&apos;informatique, aux fichiers et aux
+              libertés, les traceurs ou cookies suivent deux régimes distincts :
+            </p>
+
+            <ul className="fr-pl-4w">
+              <li>
+                Les cookies strictement nécessaires au service ou ayant pour finalité exclusive de
+                faciliter la communication par voie électronique sont dispensés de consentement
+                préalable au titre de l&apos;article 82 de la LIL ;
+              </li>
+              <li>
+                Les cookies n&apos;étant pas strictement nécessaires au service ou n&apos;ayant pas
+                pour finalité exclusive de faciliter la communication par voie électronique doivent
+                être consenti par l&apos;utilisateur. Ce consentement de la personne concernée pour
+                une ou plusieurs finalités spécifiques constitue une base légale au sens du RGPD et
+                doit être entendu au sens de l&apos;article 6-a du RGPD.
+              </li>
+            </ul>
+
+            <h3 className="fr-mb-2w">2. Les cookies déposés sur le site</h3>
+            <p className="fr-mb-2w">
+              Sous réserve du choix de l&apos;utilisateur, plusieurs cookies peuvent être utilisés
+              sur le site internet pass.sports.gouv.fr. Les différentes finalités de ces cookies
+              sont décrites ci-dessous.
+            </p>
+
+            <div className="fr-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cookies</th>
+                    <th>Pays destinataire</th>
+                    <th>Finalités</th>
+                    <th>Durée de vie du cookie</th>
+                    <th>Garanties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>eligibility-form-support-data</td>
+                    <td>France</td>
+                    <td>
+                      Conservation des tentatives infructueuses du formulaire pour le traitement du
+                      support utilisateur
+                    </td>
+                    <td>1 heure</td>
+                    <td>
+                      Ne s&apos;agissant pas d&apos;un cookie tiers, les mesures de sécurité
+                      mentionnées à l&apos;article 10 de la présente politique de confidentialité
+                      s&apos;appliquent
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>cfuvid</td>
+                    <td>USA</td>
+                    <td>Cookie de session</td>
+                    <td>30 minutes</td>
+                    <td>
+                      <Link
+                        href="https://vimeo.com/enterpriseterms/dpa"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Vimeo sur la section des traitement de donneées"
+                      >
+                        https://vimeo.com/enterpriseterms/dpa
+                      </Link>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>cf_bm</td>
+                    <td>USA</td>
+                    <td>
+                      Cloudflare Bot Manager gère le trafic entrant qui correspond aux critères
+                      associés aux bots.
+                    </td>
+                    <td>30 minutes</td>
+                    <td>
+                      <Link
+                        href="https://vimeo.com/enterpriseterms/dpa"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Vimeo sur la section des traitement de donneées"
+                      >
+                        https://vimeo.com/enterpriseterms/dpa
+                      </Link>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Player</td>
+                    <td>USA</td>
+                    <td>
+                      Stocke les préférences pour les commandes du lecteur (c&apo;est-à-dire le
+                      volume, la qualité du flux, les sous-titres)
+                    </td>
+                    <td>12 mois</td>
+                    <td>
+                      <Link
+                        href="https://vimeo.com/enterpriseterms/dpa"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Vimeo sur la section des traitement de donneées"
+                      >
+                        https://vimeo.com/enterpriseterms/dpa
+                      </Link>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>vuid</td>
+                    <td>USA</td>
+                    <td>
+                      ID généré par Vimeo utilisé pour générer des informations d&apo;analyse pour
+                      le propriétaire de la vidéo.
+                    </td>
+                    <td>13 mois</td>
+                    <td>
+                      <Link
+                        href="https://vimeo.com/enterpriseterms/dpa"
+                        target="_blank"
+                        aria-label="Ouvrir une nouvelle fenêtre vers le site Vimeo sur la section des traitement de donneées"
+                      >
+                        https://vimeo.com/enterpriseterms/dpa
+                      </Link>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="fr-mb-6w">
+            <h2 className="fr-mb-2w">Article 11 - Quels sont vos droits ? Comment les exercer ?</h2>
             <p className="fr-mb-2w">
               Conformément à la réglementation applicable, à savoir le RGPD et la loi Informatique
               et libertés, vous disposez d&apos;un droit d&apos;information, d&apos;accès, de
@@ -261,75 +440,52 @@ export default function PolitiqueDeConfidentialite() {
             </p>
 
             <ul className="fr-pl-4w">
-              <li className="fr-text--bold">Exercice de vos droits</li>
+              <li>Exercice de vos droits</li>
             </ul>
 
             <p className="fr-mb-2w">
-              Vous pouvez exercer ces droits en vous adressant aux responsables de traitement :{' '}
-              <br />
-              Par voie postale, à l&apos;adresse suivante :
+              Vous pouvez exercer ces droits en vous adressant aux responsables de traitement : Par
+              voie postale, à l&apos;adresse suivante :
             </p>
 
             <p className={cn(styles['wrapper__text--center'], 'fr-mb-2w')}>
               LA DIRECTION DES SPORTS <br /> 95 avenue de France 75013 PARIS
             </p>
 
-            <p>
-              Par voie électronique à l&apos;adresse suivante :{' '}
-              <Link href="mailto:ds-rgpd@sports.gouv.fr">ds-rgpd@sports.gouv.fr</Link>
-            </p>
-
-            <ul className="fr-pl-4w">
-              <li className="fr-text--bold">Délégué à la protection des données</li>
-            </ul>
-
             <p className="fr-mb-2w">
-              Si vous rencontrez des difficultés dans l&apos;exercice de vos droits, vous pouvez
-              saisir le Délégué à la protection des données du ministère chargé des sports, aux
-              coordonnées suivantes :
-            </p>
-
-            <p className="fr-mb-2w">Par voie postale à l&apos;adresse suivante :</p>
-
-            <p className={cn(styles['wrapper__text--center'], 'fr-mb-2w')}>
-              Ministère de l&apos;éducation nationale et de la jeunesse <br />
-              Délégué à la protection des données(DPD) <br />
-              110, rue de Grenelle <br />
-              75357 Paris Cedex 07
-            </p>
-
-            <p className="fr-mb-2w">
-              Par voie électronique à l&apos;adresse suivante :{' '}
-              <Link href="mailto:dpd@education.gouv.fr">dpd@education.gouv.fr</Link> <br />
-              Ou via le formulaire de saisine en ligne :{' '}
-              <a
+              Par voie électronique à l&apos;adresse suivante : ds-rgpd@sports.gouv.fr ou via le
+              formulaire de saisine en ligne :{' '}
+              <Link
                 href="http://www.education.gouv.fr/pid33441/nous-contacter.html#RGPD"
-                aria-label="Ouvrir une nouvelle fenêtre vers le formulaire de saisine en ligne pour les difficultés rencontrées dans l'exercice de vos droits"
                 target="_blank"
+                aria-label="Ouvrir une nouvelle fenêtre vers le site education.gouv.fr section RGPD"
               >
                 http://www.education.gouv.fr/pid33441/nous-contacter.html#RGPD
-              </a>
+              </Link>
             </p>
 
             <ul className="fr-pl-4w">
-              <li className="fr-text--bold">Réclamation auprès de la CNIL</li>
+              <li>Réclamation auprès de la CNIL</li>
             </ul>
 
-            <p>
+            <p className="fr-mb-2w">
               Si vous estimez après nous avoir contactés que les droits sur vos données n&apos;ont
               pas été respectés, vous pouvez introduire une réclamation auprès de la CNIL.{' '}
-              <a
+              <Link
                 href="https://www.cnil.fr/fr/mes-demarches/les-droits-pour-maitriser-vos-donnees-personnelles"
-                aria-label="Ouvrir une nouvelle fneêtre vers le site de la CNIL pour plus d'informations sur vos droits."
                 target="_blank"
+                aria-label={
+                  "Ouvrir une nouvelle fenêtre vers le site de la CNIL pour plus d'informations sur vos droits"
+                }
               >
                 Voir le site de la CNIL pour plus d&apos;informations sur vos droits.
-              </a>
+              </Link>
             </p>
           </section>
 
           <section className="fr-mb-6w">
-            <h2 className="fr-mb-2w">Article 11 - Indications en cas de violation de données</h2>
+            <h2 className="fr-mb-2w">Article 12 - Indications en cas de violation de données</h2>
+
             <p className="fr-mb-2w">
               La Direction des sports s&apos;engage à mettre en œuvre toutes les mesures techniques
               et organisationnelles appropriées grâce à des moyens de sécurisation physiques et
@@ -340,7 +496,7 @@ export default function PolitiqueDeConfidentialite() {
               modifiée.
             </p>
 
-            <p>
+            <p className="fr-mb-2w">
               Dans l&apos;éventualité où la Direction des sports prendrait connaissance d&apos;un
               accès illégal aux données personnelles vous concernant, stockées sur nos serveurs ou
               ceux de nos prestataires, ou d&apos;un accès non autorisé ayant pour conséquence la
