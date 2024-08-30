@@ -5,7 +5,7 @@ import { getAnHourFromNow } from './date';
 import { decryptData, encrypt } from '@/utils/decryption';
 import { fromBase64ToString } from '@/utils/string';
 import { ConfirmPayload, FormStep, SearchPayload } from '../types/EligibilityTest';
-import { AXEPTIO_AUTHORIZED_VENDORS_KEY } from '@/app/constants/axeptio';
+import { AUTHORIZED_VENDORS_KEY } from '@/app/constants/cookie-manager';
 
 const COOKIE_SUPPORT_KEY = process.env.NEXT_PUBLIC_COOKIE_SUPPORT_KEY as string;
 const BASE_64_KEY_FOR_SUPPORT_COOKIE = process.env.BASE_64_KEY_FOR_SUPPORT_COOKIE as string;
@@ -26,7 +26,7 @@ async function handleSupportCookie(payload: SearchPayload | ConfirmPayload, step
   };
 
   const supportCookiePayload = [
-    ...getDecryptedSupportCookie(),
+    ...(await getDecryptedSupportCookie()),
     { ...payload, step: mappingStep[step] },
   ].filter(Boolean);
 
@@ -46,9 +46,9 @@ async function handleSupportCookie(payload: SearchPayload | ConfirmPayload, step
 }
 
 function hasGivenConsentForSupportCookie() {
-  const consentCookie = cookies().get(AXEPTIO_AUTHORIZED_VENDORS_KEY)?.value;
+  const consentCookie = cookies().get(AUTHORIZED_VENDORS_KEY)?.value;
 
-  return consentCookie?.includes(COOKIE_SUPPORT_KEY);
+  return consentCookie?.includes(`${COOKIE_SUPPORT_KEY}=true`);
 }
 
 function encryptSupportPayload(valueToEncrypt: object) {
@@ -58,7 +58,7 @@ function encryptSupportPayload(valueToEncrypt: object) {
   );
 }
 
-function getDecryptedSupportCookie() {
+async function getDecryptedSupportCookie() {
   const supportCookie = cookies().get(COOKIE_SUPPORT_KEY);
 
   if (typeof supportCookie?.value === 'string') {

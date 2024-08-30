@@ -13,6 +13,7 @@ import CrousStep from '../crous-step/CrousStep';
 import EligibilityTestContext from '@/store/eligibilityTestContext';
 import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
+import { SUPPORT_COOKIE_KEY } from '@/app/constants/cookie-manager';
 
 /* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
@@ -20,9 +21,18 @@ let CustomButtonsGroupKey = 0;
 const AllowanceStep = () => {
   // Ask for consent for the cookie related to support once on the page
   useEffect(() => {
-    if (window.axeptioSDK && process.env.NEXT_PUBLIC_COOKIE_SUPPORT_KEY) {
-      window.axeptioSDK.requestConsent(process.env.NEXT_PUBLIC_COOKIE_SUPPORT_KEY);
-    }
+    // Timeout is necessary to wait for tarteaucitron modal to be rendered properly
+    setTimeout(() => {
+      const tac = window.tarteaucitron;
+
+      // "false" or "true" means the user has given or not given consent
+      // otherwise it means the user didn't explicitly set any consentment
+      const hasYetToGiveConsent = typeof tac?.state?.[SUPPORT_COOKIE_KEY] !== 'boolean';
+
+      if (tac && hasYetToGiveConsent) {
+        tac?.userInterface?.openAlert();
+      }
+    }, 2000);
   }, []);
 
   const [allowance, setAllowance] = useState<ALLOWANCE | null>(null);

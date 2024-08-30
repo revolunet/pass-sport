@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { ContactRequestBody } from '../../types/Contact';
 import { initCrispClient } from 'utils/crisp';
 import { decryptData } from '@/utils/decryption';
-import { AXEPTIO_AUTHORIZED_VENDORS_KEY } from '@/app/constants/axeptio';
+import { AUTHORIZED_VENDORS_KEY } from '@/app/constants/cookie-manager';
 
 const { crispClient, envVars } = initCrispClient();
 const contactFormSchema = z.object({
@@ -94,7 +94,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 function hasGivenConsentForSupportCookie(cookies: NextApiRequest['cookies']) {
-  return cookies[AXEPTIO_AUTHORIZED_VENDORS_KEY]?.includes(SUPPORT_COOKIE_KEY);
+  return cookies[AUTHORIZED_VENDORS_KEY]?.includes(`${SUPPORT_COOKIE_KEY}=true`);
 }
 
 function formatNote(attempts: object[]) {
