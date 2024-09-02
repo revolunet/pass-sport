@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import cn from 'classnames';
 import { URLSearchParams } from 'next/dist/compiled/@edge-runtime/primitives';
 import QrCodeCard from '../components/QrCodeCard/QrCodeCard';
-import { decryptData } from '../../../../../../utils/decryption';
+import { decryptData } from '@/utils/decryption';
 import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import ProContent from '../components/ProContent/ProContent';

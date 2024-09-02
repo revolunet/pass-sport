@@ -10,3 +10,7 @@ export const formatDate = (inputDate: string) => {
 
   return `${day}/${month}/${year}`;
 };
+
+export const getAnHourFromNow = () => {
+  return new Date(Date.now() + 60 * 60 * 1000);
+};

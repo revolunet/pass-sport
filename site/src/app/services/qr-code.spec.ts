@@ -1,7 +1,7 @@
 import { ConfirmResponseBody } from 'types/EligibilityTest';
-import { buildQRCodeUrl, buildQuery, encrypt } from './qr-code';
+import { buildQRCodeUrl, buildQuery } from './qr-code';
 
-import { decryptData } from '../../../utils/decryption';
+import { decryptData, encrypt } from '@/utils/decryption';
 import { buildConfirmResponseBody } from '../../../tests/helpers/builders/confirm-response-body';
 
 describe('qr-code units tests', () => {

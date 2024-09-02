@@ -3,9 +3,9 @@ import {
   EnhancedConfirmResponseBody,
   EnhancedConfirmResponseBodyItem,
 } from 'types/EligibilityTest';
-import crypto from 'crypto';
-import { formatDate } from '../../../utils/date';
 import * as Sentry from '@sentry/nextjs';
+import { encrypt } from '@/utils/decryption';
+import { formatDate } from '@/utils/date';
 
 export const addQrCodeToConfirmResponse = (
   responseBody: ConfirmResponseBody,
@@ -61,18 +61,4 @@ export const buildQuery = (data: ConfirmResponseBody) => {
   query.append('c', id_psp);
 
   return query.toString();
-};
-
-export const encrypt = (dataToEncrypt: string, secret: string): string => {
-  const algorithm = 'aes-256-cbc';
-  const secretBuffer = Buffer.from(secret, 'base64');
-
-  const iv = crypto.randomBytes(16);
-  const cipher = crypto.createCipheriv(algorithm, secretBuffer, iv);
-  let encrypted = cipher.update(dataToEncrypt, 'utf8');
-  const final = cipher.final();
-
-  let result = Buffer.concat([iv, encrypted, final]);
-
-  return result.toString('base64');
 };
