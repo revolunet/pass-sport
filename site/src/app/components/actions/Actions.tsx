@@ -15,7 +15,11 @@ const Actions = () => {
           children: `Retour à l'accueil`,
           onClick: () => router.push('accueil'),
           priority: 'secondary',
+          nativeButtonProps: {
+            'aria-label': "Retoruner à l'accueil",
+          },
         },
+
         {
           children: 'Refaire le test',
           onClick: () => {
@@ -24,6 +28,9 @@ const Actions = () => {
           },
           priority: 'tertiary no outline',
           iconId: 'fr-icon-arrow-left-line',
+          nativeButtonProps: {
+            'aria-label': 'Refaire le formulaire de test',
+          },
         },
       ]}
       inlineLayoutWhen="sm and up"
