@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { ContactRequestBody } from '../../types/Contact';
 import { initCrispClient } from 'utils/crisp';
 import { decryptData } from '@/utils/decryption';
-import { AUTHORIZED_VENDORS_KEY, SUPPORT_COOKIE_KEY } from '@/app/constants/cookie-manager';
+import { AUTHORIZED_VENDORS_KEY } from '@/app/constants/cookie-manager';
 
 const { crispClient, envVars } = initCrispClient();
 const contactFormSchema = z.object({
@@ -16,6 +16,7 @@ const contactFormSchema = z.object({
 });
 
 const MAX_LENGTH_REASON = 80;
+const SUPPORT_COOKIE_KEY = process.env.NEXT_PUBLIC_COOKIE_SUPPORT_KEY as string;
 const BASE_64_KEY_FOR_SUPPORT_COOKIE = process.env.BASE_64_KEY_FOR_SUPPORT_COOKIE as string;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
