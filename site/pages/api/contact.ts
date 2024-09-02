@@ -6,15 +6,19 @@ import { decryptData } from '@/utils/decryption';
 import { AUTHORIZED_VENDORS_KEY, SUPPORT_COOKIE_KEY } from '@/app/constants/cookie-manager';
 
 const { crispClient, envVars } = initCrispClient();
-const contactFormSchema = z.object({
-  email: z.string(),
-  firstname: z.string(),
-  lastname: z.string(),
-  message: z.string(),
-  reason: z.string(),
-  isProRequest: z.boolean(),
-  siret: z.string().optional(),
-});
+const contactFormSchema = z
+  .object({
+    email: z.string(),
+    firstname: z.string(),
+    lastname: z.string(),
+    message: z.string(),
+    reason: z.string(),
+    isProRequest: z.boolean(),
+    siret: z.string().optional(),
+  })
+  .refine((schema) => !schema.isProRequest || schema.siret, {
+    message: 'siret is mandatory for a pro request',
+  });
 
 const MAX_LENGTH_REASON = 80;
 const BASE_64_KEY_FOR_SUPPORT_COOKIE = process.env.BASE_64_KEY_FOR_SUPPORT_COOKIE as string;
@@ -42,8 +46,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const jsonBody = JSON.parse(req.body);
-  const { isProRequest, firstname, lastname, email, reason, message, siret }: ContactRequestBody =
-    contactFormSchema.parse(jsonBody);
+
+  let body: ContactRequestBody;
+
+  try {
+    body = contactFormSchema.parse(jsonBody);
+  } catch (e) {
+    return res.status(400).send((e as Error).message);
+  }
+
+  const { isProRequest, firstname, lastname, email, reason, message, siret } = body;
 
   const conversation = await crispClient.website.createNewConversation(envVars.CRISP_WEBSITE);
 
