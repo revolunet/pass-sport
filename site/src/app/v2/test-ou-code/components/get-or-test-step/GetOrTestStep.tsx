@@ -5,11 +5,14 @@ import Question, {
   QUESTION_STYLES,
 } from '../../../test-eligibilite-mai/components/Question/Question';
 
+import MissionCards from '../../../../components/mission-cards/MissionCards';
+
+import ButtonChoiceGroup from '../button-choice-group/ButtonChoiceGroup';
+
 interface Props {}
 const GetOrTestChoice = ({}: Props) => {
   return (
     <>
-      <p className={cn('fr-pb-2w', styles.paragraph)}>Les champs ci-dessous sont obligatoires*</p>
       <Question
         question={
           <>
@@ -21,8 +24,13 @@ const GetOrTestChoice = ({}: Props) => {
         }
         style={QUESTION_STYLES.JUNE_STYLE}
       >
-        <div></div>
+        <div>
+          <p className={cn('fr-pb-2w', styles.paragraph)}>Choisissez une option : </p>
+          <ButtonChoiceGroup />
+        </div>
       </Question>
+
+      <MissionCards isUsingSuccessUrls={true} />
     </>
   );
 };
