@@ -47,9 +47,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const conversation = await crispClient.website.createNewConversation(envVars.CRISP_WEBSITE);
 
   const byWhoSegment = isProRequest ? 'Pro' : 'Particulier';
-  const failedAttemptSegment = hasGivenConsentForSupportCookie(req.cookies)
-    ? 'tentative-code'
-    : null;
+  const failedAttemptSegment =
+    hasGivenConsentForSupportCookie(req.cookies) && attempts !== null ? 'tentative-code' : null;
 
   await crispClient.website.updateConversationMetas(
     envVars.CRISP_WEBSITE,
