@@ -18,6 +18,7 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
     'Règlement du jeu concours numéro 1 - pass Sport',
   '/v2/reglement-du-jeu-concours-numero-2-pass-sport':
     'Règlement du jeu concours numéro 2 - pass Sport',
+  '/v2/test-ou-code': 'Bénéficier du pass Sport',
 };
 
 export default function PassSportBreadcrumbStandard() {
