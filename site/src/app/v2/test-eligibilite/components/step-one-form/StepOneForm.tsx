@@ -13,6 +13,7 @@ import CityFinder from '../city-finder/CityFinder';
 import { mapper } from '../../helpers/helper';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchEligible } from '../../agent';
+import { push } from '@socialgouv/matomo-next';
 
 interface Props {
   onDataReceived: (data: SearchResponseBody) => void;
@@ -94,6 +95,12 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           onEligibilityFailure();
         } else {
           setIsFormDisabled(true);
+          push([
+            'trackEvent',
+            'Eligibility Test',
+            'Eligibility test step 1',
+            `Eligibility test step 1 successful`,
+          ]);
         }
       }
     });
