@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
-import { ContactRequestBody } from '../../types/Contact';
 import { initCrispClient } from 'utils/crisp';
 import { decryptData } from '@/utils/decryption';
 import { AUTHORIZED_VENDORS_KEY, SUPPORT_COOKIE_KEY } from '@/app/constants/cookie-manager';
@@ -19,6 +18,8 @@ const contactFormSchema = z
   .refine((schema) => !schema.isProRequest || schema.siret, {
     message: 'siret is mandatory for a pro request',
   });
+
+export type ContactRequestBody = z.infer<typeof contactFormSchema>;
 
 const MAX_LENGTH_REASON = 80;
 const BASE_64_KEY_FOR_SUPPORT_COOKIE = process.env.BASE_64_KEY_FOR_SUPPORT_COOKIE as string;

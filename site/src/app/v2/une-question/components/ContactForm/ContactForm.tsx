@@ -75,7 +75,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
       'reason',
       'message',
       'consent',
-      'siret',
     ];
 
     if (isProVersion) {
@@ -86,7 +85,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
 
     fieldNames.forEach((fieldName) => {
       const value = formData.get(fieldName);
-      console.log(fieldName, value);
 
       if (!value) {
         states[fieldName].state = 'error';
@@ -132,12 +130,14 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
   };
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
+    console.log('coucou');
     e.preventDefault();
 
     const formData = new FormData(formRef.current!);
 
     const { isValid, states } = isFormValid(formData);
 
+    console.log('isvalid', isValid);
     setInputStates({ ...states });
 
     if (!isValid) {
