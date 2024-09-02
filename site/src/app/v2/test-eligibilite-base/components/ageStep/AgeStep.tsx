@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Question from '../Question/Question';
 import AgeStep2 from '../ageStep2/AgeStep2';
-import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 import { AGE_RANGE } from '../types/types';
 import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 
 const AgeStep = () => {
   const [ageRange, setAgeRange] = useState<AGE_RANGE | null>(null);
@@ -13,20 +13,27 @@ const AgeStep = () => {
   return (
     <div>
       <Question question="Quel âge avez-vous ?">
-        <RadioButtonsGroup
-          fieldsetId="ageStep"
+        <RadioButtons
+          name="ageStep"
+          legend="Choississez une option:"
           options={[
             {
               label: 'Entre 6 et 19 ans',
-              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_6_19),
+              nativeInputProps: {
+                onChange: () => setAgeRange(AGE_RANGE.BETWEEN_6_19),
+              },
             },
             {
               label: 'Entre 19 et 30 ans',
-              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_19_30),
+              nativeInputProps: {
+                onChange: () => setAgeRange(AGE_RANGE.BETWEEN_19_30),
+              },
             },
             {
               label: 'Plus de 30 ans',
-              onChange: () => setAgeRange(AGE_RANGE.GREATER_THAN_30),
+              nativeInputProps: {
+                onChange: () => setAgeRange(AGE_RANGE.GREATER_THAN_30),
+              },
             },
           ]}
         />

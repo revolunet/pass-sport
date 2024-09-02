@@ -5,7 +5,10 @@ import AgeStep from '../ageStep/AgeStep';
 import Question from '../Question/Question';
 import EligibilityContext from '../../../../../store/eligibilityTestContext';
 import ChildAgeStep from '../childAgeStep/ChildAgeStep';
-import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
+import cn from 'classnames';
+import rootStyles from '@/app/utilities.module.scss';
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import styles from '@/app/v2/test-eligibilite/styles.module.scss';
 
 /* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
@@ -21,21 +24,37 @@ const ForWhoStep = () => {
   return (
     <EligibilityContext.Provider value={{ performNewTest: restartTest }}>
       <div>
+        <p className={cn('fr-pb-2w', styles.paragraph)}>Les champs ci-dessous sont obligatoires*</p>
+
         <Question
-          question="Bonjour, vous souhaitez vérifier si vous pouvez bénéficier du pass Sport. Vous faites le
-        test :"
+          question={
+            <>
+              <div className={cn(rootStyles['text--medium'], rootStyles['text--black'])}>
+                <p className="fr-text--lg fr-mb-0">Bonjour,</p>
+                <p className="fr-text--lg fr-mb-0">
+                  Vous souhaitez savoir si vous avez droit au pass Sport.
+                </p>
+                <p className="fr-text--lg fr-mb-0">Faites le test :</p>
+              </div>
+            </>
+          }
         >
-          <RadioButtonsGroup
+          <RadioButtons
             key={CustomButtonsGroupKey}
-            fieldsetId="forWhoStep"
+            legend="Choisissez une option:"
+            name="forWhoStep"
             options={[
               {
                 label: 'Pour moi même',
-                onChange: () => setIsForMyself(true),
+                nativeInputProps: {
+                  onChange: () => setIsForMyself(true),
+                },
               },
               {
                 label: 'Pour mon enfant ou petit enfant',
-                onChange: () => setIsForMyself(false),
+                nativeInputProps: {
+                  onChange: () => setIsForMyself(false),
+                },
               },
             ]}
           />
