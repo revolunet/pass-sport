@@ -1,5 +1,8 @@
 import { InputState } from './form';
 
+// Form step, search being the first step & confirm being the final step
+export type FormStep = 'search' | 'confirm';
+
 export interface StepOneFormInputsState {
   beneficiaryLastname: InputState;
   beneficiaryFirstname: InputState;
