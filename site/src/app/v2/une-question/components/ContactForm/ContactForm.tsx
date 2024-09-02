@@ -130,14 +130,12 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
   };
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    console.log('coucou');
     e.preventDefault();
 
     const formData = new FormData(formRef.current!);
 
     const { isValid, states } = isFormValid(formData);
 
-    console.log('isvalid', isValid);
     setInputStates({ ...states });
 
     if (!isValid) {
