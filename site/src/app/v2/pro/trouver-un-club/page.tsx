@@ -37,7 +37,7 @@ const TrouverUnClub = async () => {
         </li>
         <li>
           les associations non affiliées à une fédération sportive mais disposant d’un agrément
-          valide Sport (délivré après 2015) ou Jeunesse Education Populaire (JEP) (délivré après
+          valide Sport (délivré après 2016) ou Jeunesse Education Populaire (JEP) (délivré après
           2019) sur l’ensemble du territoire.
         </li>
 
