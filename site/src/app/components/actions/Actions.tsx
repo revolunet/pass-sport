@@ -16,7 +16,7 @@ const Actions = () => {
           onClick: () => router.push('accueil'),
           priority: 'secondary',
           nativeButtonProps: {
-            'aria-label': "Retoruner à l'accueil",
+            'aria-label': "Naviguer à l'accueil du site",
           },
         },
 
