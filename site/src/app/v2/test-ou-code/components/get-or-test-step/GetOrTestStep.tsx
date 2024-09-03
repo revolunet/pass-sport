@@ -21,7 +21,7 @@ const GetOrTestChoice = ({}: Props) => {
           </>
         }
       >
-        <div>
+        <div className="fr-pb-7w">
           <p className={cn('fr-pb-2w', styles.paragraph)}>Choisissez une option : </p>
           <ButtonChoiceGroup />
         </div>
