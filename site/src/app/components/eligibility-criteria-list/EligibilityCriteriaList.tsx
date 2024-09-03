@@ -12,43 +12,8 @@ const EligibilityCriteriaList = () => {
           rootStyles['text--medium'],
         )}
       >
-        personnes nées entre le 16 septembre 2006 et le 31 décembre 2018 bénéficiant de
-        l&apos;allocation de rentrée scolaire (ARS) (6 à 17 ans révolus)
-      </li>
-      <li
-        className={cn(
-          'fr-mb-3w',
-          'fr-text--lg',
-          rootStyles['text--black'],
-          rootStyles['text--medium'],
-        )}
-      >
-        personnes nées entre le 1er juin 2004 et le 31 décembre 2018 bénéficiant de
-        l&apos;allocation d&apos;éducation de l&apos;enfant handicapé (AEEH) (6 à 19 ans révolus)
-      </li>
-      <li
-        className={cn(
-          'fr-mb-3w',
-          'fr-text--lg',
-          rootStyles['text--black'],
-          rootStyles['text--medium'],
-        )}
-      >
-        personnes nées entre le 16 septembre 1993 et le 31 décembre 2008 bénéficiant de
-        l&apos;allocation aux adultes handicapés (AAH) (16 à 30 ans)
-      </li>
-      <li
-        className={cn(
-          'fr-text--lg',
-          'fr-mb-4w',
-          rootStyles['text--black'],
-          rootStyles['text--medium'],
-        )}
-      >
-        étudiants, âgés de 28 ans révolus au plus, et bénéficient au plus tard le 15 octobre 2024,
-        d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
-        ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour les
-        formations sanitaires et sociales pour l&apos;année universitaire 2024 - 2025.
+        Si vous êtes éligible mais que vous ne parvenez pas à obtenir votre code, vérifiez que les
+        informations que vous avez renseignées sont les bonnes, des erreurs peuvent s&apos;y glisser
       </li>
     </ul>
   );

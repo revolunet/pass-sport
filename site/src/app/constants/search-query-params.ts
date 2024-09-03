@@ -12,3 +12,7 @@ export const SEARCH_QUERY_PARAMS = {
   zoom: 'zoom',
   isShowingMapTab: 'map',
 };
+
+export const CONTACT_PAGE_QUERYPARAMS = {
+  modalOpened: 'modalOpened',
+};
