@@ -1,13 +1,11 @@
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
 import styles from './../../styles.module.scss';
-import Question, {
-  QUESTION_STYLES,
-} from '../../../test-eligibilite-mai/components/Question/Question';
 
 import MissionCards from '../../../../components/mission-cards/MissionCards';
 
 import ButtonChoiceGroup from '../button-choice-group/ButtonChoiceGroup';
+import Question from '@/app/v2/test-eligibilite-base/components/Question/Question';
 
 interface Props {}
 const GetOrTestChoice = ({}: Props) => {
@@ -22,7 +20,6 @@ const GetOrTestChoice = ({}: Props) => {
             </div>
           </>
         }
-        style={QUESTION_STYLES.JUNE_STYLE}
       >
         <div>
           <p className={cn('fr-pb-2w', styles.paragraph)}>Choisissez une option : </p>

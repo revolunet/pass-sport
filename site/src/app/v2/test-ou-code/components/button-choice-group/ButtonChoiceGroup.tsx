@@ -10,7 +10,7 @@ const ButtonChoiceGroup = () => {
       buttons={[
         {
           children: `Je souhaite savoir si j'ai le droit au pass Sport`,
-          onClick: () => router.push('test-eligibilite-mai'),
+          onClick: () => router.push('test-eligibilite-base'),
           priority: 'secondary',
           nativeButtonProps: {
             'aria-label': 'Visiter la page pour vérifier votre éligibilité',
