@@ -1,12 +1,12 @@
 import Question from '../Question/Question';
 import { useState } from 'react';
 import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
-import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import rootStyles from '@/app/utilities.module.scss';
 import EligibilityCriteriaList from '@/app/components/eligibility-criteria-list/EligibilityCriteriaList';
 import cn from 'classnames';
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
 
 interface Props {
   isForChild: boolean;
@@ -22,29 +22,19 @@ const AllowancesStep = ({ isForChild }: Props) => {
         title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous êtes éligible au pass Sport."
         isSuccess
         buttonProps={{
-          children: 'Trouver un club partenaire',
+          children: "Accéder au formulaire d'obtention du pass Sport",
+          nativeButtonProps: {
+            'aria-label': 'Visiter la page pour obtenir votre pass Sport',
+          },
           onClick: () => {
-            router.push('trouver-un-club');
+            trackRedirectionToPassSportForm();
+            router.push('test-eligibilite');
           },
         }}
       >
         <p className={cn('fr-text--lg', rootStyles['text--medium'], rootStyles['text--black'])}>
-          Vous devriez le recevoir soit entre le 30 mai et le 1er juin, soit le 29 et le 31 août
-          2024 sur l&apos;adresse e-mail que vous avez communiquée à votre CAF, Mutualité sociale
-          agricole ou votre CROUS.
-        </p>
-        <br />
-        <p className={cn('fr-text--lg', rootStyles['text--medium'], rootStyles['text--black'])}>
           Il vous permettra de déduire 50 euros de votre adhésion sportif dans plus de 85 000 clubs
           et associations sportives partenaires dans toute la France.
-        </p>
-        <br />
-        <p className={cn('fr-text--lg', rootStyles['text--medium'], rootStyles['text--black'])}>
-          Si après le 1er septembre vous ne l&apos;avez pas reçu, vous aurez la possibilité
-          d&apos;en faire la demande sur{' '}
-          <Link href="https://pass.sports.gouv.fr" target="_blank">
-            pass.sports.gouv.fr
-          </Link>
         </p>
       </VerdictPanel>
     </div>
@@ -110,16 +100,21 @@ const AllowancesStep = ({ isForChild }: Props) => {
           </>
         }
       >
-        <RadioButtonsGroup
-          fieldsetId="allowanceStep"
+        <RadioButtons
+          name="allowanceStep"
+          legend="Choisissez une option:"
           options={[
             {
               label: 'Oui',
-              onChange: () => setHasAllowances(true),
+              nativeInputProps: {
+                onChange: () => setHasAllowances(true),
+              },
             },
             {
               label: 'Non',
-              onChange: () => setHasAllowances(false),
+              nativeInputProps: {
+                onChange: () => setHasAllowances(false),
+              },
             },
           ]}
         />

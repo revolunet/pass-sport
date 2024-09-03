@@ -24,7 +24,7 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
 export default function PassSportBreadcrumbStandard() {
   const paths = usePathname();
 
-  const internalRoutes = ['/', '/v2/accueil', '/v2/test-eligibilite-mai', '/v2/test-eligibilite'];
+  const internalRoutes = ['/', '/v2/accueil', '/v2/test-eligibilite-base', '/v2/test-eligibilite'];
 
   // Quick & dirty for now, because /v2/code/scan contains a path parameter
   const isOnQRPage = paths && paths.startsWith('/v2/code/scan');

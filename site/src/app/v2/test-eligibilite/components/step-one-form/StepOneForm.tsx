@@ -1,6 +1,4 @@
-import Question, {
-  QUESTION_STYLES,
-} from '@/app/v2/test-eligibilite-mai/components/Question/Question';
+import Question from '@/app/v2/test-eligibilite-base/components/Question/Question';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Input from '@codegouvfr/react-dsfr/Input';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
@@ -13,6 +11,7 @@ import CityFinder from '../city-finder/CityFinder';
 import { mapper } from '../../helpers/helper';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchEligible } from '../../agent';
+import { push } from '@socialgouv/matomo-next';
 
 interface Props {
   onDataReceived: (data: SearchResponseBody) => void;
@@ -94,6 +93,12 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           onEligibilityFailure();
         } else {
           setIsFormDisabled(true);
+          push([
+            'trackEvent',
+            'Eligibility Test',
+            'Eligibility test step 1',
+            `Eligibility test step 1 successful`,
+          ]);
         }
       }
     });
@@ -140,10 +145,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
 
   return (
     <>
-      <Question
-        question="Veuillez rentrer les informations ci-dessous sur vous ou sur votre enfant :"
-        style={QUESTION_STYLES.JUNE_STYLE}
-      >
+      <Question question="Veuillez rentrer les informations ci-dessous sur vous ou sur votre enfant :">
         <form ref={formRef} onSubmit={onSubmitHandler}>
           <Input
             label="Nom du bénéficiaire*"

@@ -1,6 +1,4 @@
-import Question, {
-  QUESTION_STYLES,
-} from '@/app/v2/test-eligibilite-mai/components/Question/Question';
+import Question from '@/app/v2/test-eligibilite-base/components/Question/Question';
 import { useState } from 'react';
 import { CROUS_AGE_RANGE } from '../types/types';
 import VerdictPanel from '@/app/components/verdictPanel/VerdictPanel';
@@ -18,7 +16,7 @@ const CrousStep = () => {
 
   return (
     <>
-      <Question question="Quel âge avez-vous ?" style={QUESTION_STYLES.JUNE_STYLE}>
+      <Question question="Quel âge avez-vous ?">
         <RadioButtons
           legend="Choississez une option:"
           options={[
