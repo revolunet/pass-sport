@@ -12,17 +12,11 @@ const ButtonChoiceGroup = () => {
           children: `Je souhaite savoir si j'ai le droit au pass Sport`,
           onClick: () => router.push('test-eligibilite-base'),
           priority: 'secondary',
-          nativeButtonProps: {
-            'aria-label': 'Visiter la page pour vérifier votre éligibilité',
-          },
         },
         {
           children: 'Je souhaite récupérer mon pass Sport',
           onClick: () => router.push('test-eligibilite'),
           priority: 'secondary',
-          nativeButtonProps: {
-            'aria-label': 'Visiter la page pour obtenir votre pass Sport',
-          },
         },
       ]}
       inlineLayoutWhen="sm and up"

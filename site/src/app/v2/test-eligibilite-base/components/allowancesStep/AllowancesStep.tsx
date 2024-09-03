@@ -23,9 +23,6 @@ const AllowancesStep = ({ isForChild }: Props) => {
         isSuccess
         buttonProps={{
           children: "Accéder au formulaire d'obtention du pass Sport",
-          nativeButtonProps: {
-            'aria-label': 'Visiter la page pour obtenir votre pass Sport',
-          },
           onClick: () => {
             trackRedirectionToPassSportForm();
             router.push('test-eligibilite');
