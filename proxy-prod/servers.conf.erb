@@ -56,6 +56,10 @@ server {
     return 301 https://pass.sports.gouv.fr/v2/accueil;
   }
 
+  location /v2/test-eligibilite-mai {
+    return 301 https://pass.sports.gouv.fr/v2/test-eligibilite-base;
+  }
+
   location /v2/ {
     proxy_pass  https://pass-sport-prod.osc-secnum-fr1.scalingo.io;
     proxy_intercept_errors  on;
