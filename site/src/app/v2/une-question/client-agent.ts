@@ -14,10 +14,14 @@ export const postContact = async (request: FormData, isProRequest: boolean): Pro
   };
 
   const siret = request.get('siret') as string;
+  const rna = request.get('rna') as string;
 
   if (siret) {
     body.siret = siret;
   }
 
+  if (rna) {
+    body.rna = rna;
+  }
   return fetch('/api/contact', { method: 'POST', body: JSON.stringify(body) });
 };

@@ -41,6 +41,7 @@ const initialInputsState: InputsState = {
   message: { state: 'default' },
   consent: { state: 'default' },
   siret: { state: 'default' },
+  rna: { state: 'default' },
 };
 
 export const mapper: Record<keyof InputsState, string> = {
@@ -51,6 +52,7 @@ export const mapper: Record<keyof InputsState, string> = {
   message: 'Le message est requis',
   consent: 'Veuiller cocher cette case',
   siret: 'Le SIRET est requis',
+  rna: '',
 };
 
 interface Props {
@@ -68,27 +70,29 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
   const isFormValid = (formData: FormData): { isValid: boolean; states: InputsState } => {
     let isValid = true;
 
-    const fieldNames: (keyof InputsState)[] = [
-      'firstname',
-      'lastname',
-      'email',
-      'reason',
-      'message',
-      'consent',
+    const fieldNames: { name: keyof InputsState; isMandatory: boolean }[] = [
+      { name: 'firstname', isMandatory: true },
+      { name: 'lastname', isMandatory: true },
+      { name: 'email', isMandatory: true },
+      { name: 'reason', isMandatory: true },
+      { name: 'message', isMandatory: true },
+      { name: 'consent', isMandatory: true },
+      { name: 'rna', isMandatory: false },
     ];
 
     if (isProVersion) {
-      fieldNames.push('siret');
+      fieldNames.push({ name: 'siret', isMandatory: true });
+      fieldNames.push({ name: 'rna', isMandatory: false });
     }
 
     const states = structuredClone(initialInputsState);
 
     fieldNames.forEach((fieldName) => {
-      const value = formData.get(fieldName);
+      const value = formData.get(fieldName.name);
 
-      if (!value) {
-        states[fieldName].state = 'error';
-        states[fieldName].errorMsg = mapper[fieldName];
+      if (fieldName.isMandatory && !value) {
+        states[fieldName.name].state = 'error';
+        states[fieldName.name].errorMsg = mapper[fieldName.name];
         isValid = false;
       }
     });
@@ -112,10 +116,22 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
       }
     }
 
+    if (isProVersion) {
+      const rnaInput = formData.get('rna') as string;
+      const regExp = new RegExp('W\\d{9}');
+      if (rnaInput && states.rna.state !== 'error' && !regExp.test(rnaInput)) {
+        states.rna.state = 'error';
+        states.rna.errorMsg = "Le RNA doit être composé d'un W suivi de 9 chiffres";
+        isValid = false;
+      }
+    }
+
     return { isValid, states };
   };
 
   const onInputChanged = (text: string | null, field: keyof InputsState) => {
+    const form = formRef.current!;
+
     if (!text) {
       setInputStates((inputStates) => ({
         ...inputStates,
@@ -240,21 +256,40 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
               </div>
             </div>
             {isProVersion && (
-              <div>
-                <Input
-                  label="Siret*"
-                  nativeInputProps={{
-                    name: 'siret',
-                    onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                      onInputChanged(e.target.value, 'siret'),
-                    'aria-label': 'Saisir le SIRET de votre association',
-                    'aria-autocomplete': 'none',
-                  }}
-                  state={inputStates.siret.state}
-                  stateRelatedMessage={inputStates.siret.errorMsg}
-                />
-              </div>
+              <>
+                <div>
+                  <Input
+                    label="Siret*"
+                    nativeInputProps={{
+                      name: 'siret',
+                      onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                        onInputChanged(e.target.value, 'siret'),
+                      'aria-label': 'Saisir le SIRET de votre association',
+                      'aria-autocomplete': 'none',
+                    }}
+                    state={inputStates.siret.state}
+                    stateRelatedMessage={inputStates.siret.errorMsg}
+                  />
+                </div>
+
+                <div>
+                  <Input
+                    label="RNA"
+                    hintText="Le numéro RNA est le numéro d'identification du Répertoire National des Associations"
+                    nativeInputProps={{
+                      name: 'rna',
+                      onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                        onInputChanged(e.target.value, 'rna'),
+                      'aria-label': 'Saisir le numéro RNA de votre association',
+                      'aria-autocomplete': 'none',
+                    }}
+                    state={inputStates.rna.state}
+                    stateRelatedMessage={inputStates.rna.errorMsg}
+                  />
+                </div>
+              </>
             )}
+
             <div>
               <Input
                 label="Adresse e-mail*"
