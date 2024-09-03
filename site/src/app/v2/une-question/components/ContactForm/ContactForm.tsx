@@ -238,24 +238,23 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   stateRelatedMessage={inputStates.lastname.errorMsg}
                 />
               </div>
-
-              {isProVersion && (
-                <div>
-                  <Input
-                    label="Siret*"
-                    nativeInputProps={{
-                      name: 'siret',
-                      onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                        onInputChanged(e.target.value, 'siret'),
-                      'aria-label': 'Saisir le SIRET de votre association',
-                      'aria-autocomplete': 'none',
-                    }}
-                    state={inputStates.siret.state}
-                    stateRelatedMessage={inputStates.siret.errorMsg}
-                  />
-                </div>
-              )}
             </div>
+            {isProVersion && (
+              <div>
+                <Input
+                  label="Siret*"
+                  nativeInputProps={{
+                    name: 'siret',
+                    onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                      onInputChanged(e.target.value, 'siret'),
+                    'aria-label': 'Saisir le SIRET de votre association',
+                    'aria-autocomplete': 'none',
+                  }}
+                  state={inputStates.siret.state}
+                  stateRelatedMessage={inputStates.siret.errorMsg}
+                />
+              </div>
+            )}
             <div>
               <Input
                 label="Adresse e-mail*"
