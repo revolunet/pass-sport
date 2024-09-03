@@ -44,7 +44,7 @@ export default function ObtainPassPort() {
         iconId="fr-icon-arrow-right-line"
         iconPosition="right"
         linkProps={{
-          href: '/v2/test-eligibilite',
+          href: '/v2/test-eligibilite-base',
           'aria-label': "Visiter la page pour effectuer le test d'éligibilité",
           onClick: eligibilityTestOnClick,
         }}

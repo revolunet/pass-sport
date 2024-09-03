@@ -18,13 +18,18 @@ export const NAVIGATION_ITEM_MAP: { [key: string]: string } = {
     'Règlement du jeu concours numéro 1 - pass Sport',
   '/v2/reglement-du-jeu-concours-numero-2-pass-sport':
     'Règlement du jeu concours numéro 2 - pass Sport',
-  '/v2/test-ou-code': 'Bénéficier du pass Sport',
 };
 
 export default function PassSportBreadcrumbStandard() {
   const paths = usePathname();
 
-  const internalRoutes = ['/', '/v2/accueil', '/v2/test-eligibilite-base', '/v2/test-eligibilite'];
+  const internalRoutes = [
+    '/',
+    '/v2/accueil',
+    '/v2/test-eligibilite-base',
+    '/v2/test-eligibilite',
+    '/v2/test-ou-code',
+  ];
 
   // Quick & dirty for now, because /v2/code/scan contains a path parameter
   const isOnQRPage = paths && paths.startsWith('/v2/code/scan');
