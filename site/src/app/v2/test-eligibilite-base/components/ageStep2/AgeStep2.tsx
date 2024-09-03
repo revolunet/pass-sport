@@ -1,13 +1,13 @@
 import Question from '../Question/Question';
 import { useState } from 'react';
-import RadioButtonsGroup from '../radioButtonsGroup/RadioButtonsGroup';
 import { AGE_RANGE } from '../types/types';
-import Link from 'next/link';
 import AeehStep from '../aeehStep/AeehStep';
 import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
 import { useRouter } from 'next/navigation';
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
+import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
 
 interface AgeStep2Props {
   ageRange: AGE_RANGE;
@@ -54,17 +54,23 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
 
   return (
     <div>
-      <Question question={question} description={questionDescription}>
-        <RadioButtonsGroup
-          fieldsetId="ageStep2"
+      <Question question={question}>
+        <RadioButtons
+          name="ageStep2"
+          hintText={questionDescription}
+          legend="Choisissez une option:"
           options={[
             {
               label: 'Oui',
-              onChange: () => setConfirmed(true),
+              nativeInputProps: {
+                onChange: () => setConfirmed(true),
+              },
             },
             {
               label: 'Non',
-              onChange: () => setConfirmed(false),
+              nativeInputProps: {
+                onChange: () => setConfirmed(false),
+              },
             },
           ]}
         />
@@ -75,30 +81,17 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
           title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous
           êtes éligible au pass Sport."
           buttonProps={{
-            children: 'Trouver un club partenaire',
+            children: "Accéder au formulaire d'obtention du pass Sport",
             onClick: () => {
-              router.push('trouver-un-club');
+              trackRedirectionToPassSportForm();
+              router.push('test-eligibilite');
             },
           }}
           isSuccess
         >
           <p className={cn('fr-text--lg', rootStyles['text--medium'], rootStyles['text--black'])}>
-            Vous devriez le recevoir soit entre le 30 mai et le 1er juin, soit le 29 et le 31 août
-            2024 sur l&apos;adresse e-mail que vous avez communiquée à votre CAF, Mutualité sociale
-            agricole ou votre CROUS.
-          </p>
-          <br />
-          <p className={cn('fr-text--lg', rootStyles['text--medium'], rootStyles['text--black'])}>
             Il vous permettra de déduire 50 euros de votre adhésion sportif dans plus de 85 000
             clubs et associations sportives partenaires dans toute la France.
-          </p>
-          <br />
-          <p className={cn('fr-text--lg', rootStyles['text--medium'], rootStyles['text--black'])}>
-            Si après le 1er septembre vous ne l&apos;avez pas reçu, vous aurez la possibilité
-            d&apos;en faire la demande sur{' '}
-            <Link href="https://pass.sports.gouv.fr" target="_blank">
-              pass.sports.gouv.fr
-            </Link>
           </p>
         </VerdictPanel>
       )}

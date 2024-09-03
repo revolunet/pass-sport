@@ -27,7 +27,7 @@ const EligibilityTestBanner = () => {
         priority="primary"
         size="large"
         linkProps={{
-          href: '/v2/test-eligibilite',
+          href: '/v2/test-eligibilite-base',
           'aria-label': "Visiter la page pour effectuer le test d'éligibilité",
           onClick: eligibilityTestOnClick,
         }}

@@ -5,8 +5,10 @@ import { createModal } from '@codegouvfr/react-dsfr/Modal';
 import cn from 'classnames';
 import styles from '@/app/v2/une-question/styles.module.scss';
 import { useIsModalOpen } from '@codegouvfr/react-dsfr/Modal/useIsModalOpen';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import { useSearchParams } from 'next/navigation';
+import { CONTACT_PAGE_QUERYPARAMS } from '@/app/constants/search-query-params';
 
 const contactModal = createModal({
   id: 'contact-modal',
@@ -18,7 +20,18 @@ interface Props {
 }
 
 const ContactSection: React.FC<Props> = ({ isProVersion }) => {
+  const searchParams = useSearchParams();
   const [modalIsClosed, setModalIsClosed] = useState(true);
+
+  // Open contact modal if query parameter is present
+  useEffect(() => {
+    if (searchParams?.get(CONTACT_PAGE_QUERYPARAMS.modalOpened) === '1' && contactModal?.open) {
+      setTimeout(() => {
+        contactModal.open();
+        setModalIsClosed(false);
+      }, 100);
+    }
+  }, [searchParams]);
 
   useIsModalOpen(contactModal, {
     onConceal: () => {

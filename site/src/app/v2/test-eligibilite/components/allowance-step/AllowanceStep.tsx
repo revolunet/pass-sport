@@ -1,8 +1,6 @@
 'use client';
 
-import Question, {
-  QUESTION_STYLES,
-} from '@/app/v2/test-eligibilite-mai/components/Question/Question';
+import Question from '@/app/v2/test-eligibilite-base/components/Question/Question';
 import rootStyles from '@/app/utilities.module.scss';
 import styles from '@/app/v2/test-eligibilite/styles.module.scss';
 import cn from 'classnames';
@@ -55,7 +53,6 @@ const AllowanceStep = () => {
             </div>
           </>
         }
-        style={QUESTION_STYLES.JUNE_STYLE}
       >
         <RadioButtons
           key={CustomButtonsGroupKey}

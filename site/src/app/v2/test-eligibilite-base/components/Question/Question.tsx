@@ -1,33 +1,17 @@
 import styles from './styles.module.scss';
 import cn from 'classnames';
-
-export enum QUESTION_STYLES {
-  MAY_STYLE = 'MAY_STYLE',
-  JUNE_STYLE = 'JUNE_STYLE',
-}
+import { ReactNode } from 'react';
 
 interface Props {
-  question: string | JSX.Element;
-  description?: string | JSX.Element;
-  children: JSX.Element;
-  style?: QUESTION_STYLES;
+  question: string | ReactNode;
+  description?: string | ReactNode;
+  children: ReactNode;
 }
 
-const Question = ({
-  question,
-  description,
-  children,
-  style = QUESTION_STYLES.MAY_STYLE,
-}: Props) => {
+const Question = ({ question, description, children }: Props) => {
   return (
     <>
-      <div
-        role="alert"
-        className={cn('fr-p-2w', 'fr-mb-1w', styles.panel, styles.fit, {
-          [`${styles['panel_may']}`]: style === QUESTION_STYLES.MAY_STYLE,
-          [`${styles['panel_june']}`]: style === QUESTION_STYLES.JUNE_STYLE,
-        })}
-      >
+      <div role="alert" className={cn('fr-p-2w', 'fr-mb-1w', styles.panel, styles.fit)}>
         {typeof question === 'string' ? (
           <p className={`fr-text--lg fr-mb-0 ${styles.paragraph}`}>{question}</p>
         ) : (

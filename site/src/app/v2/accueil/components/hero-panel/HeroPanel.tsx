@@ -18,19 +18,19 @@ const HeroPanel = () => {
           50 euros pour aider les 6-30 ans à faire du sport
         </h1>
       </div>
-      <div className={styles['button-wrapper']}>
+      <div className={styles.button}>
         <Button
           id={SKIP_LINKS_ID.eligibilityTestButton}
           className="fr-mt-3w"
           priority="primary"
           size="large"
           linkProps={{
-            href: '/v2/test-eligibilite',
-            'aria-label': "Je fais le test d'éligibilité pour obtenir mon pass Sport",
+            href: '/v2/test-ou-code',
+            'aria-label': "Je fais le test d'éligibilité ou je récupère mon pass Sport",
             onClick: eligibilityTestOnClick,
           }}
         >
-          Obtenir mon pass Sport
+          Je fais le test
           <span className="fr-icon fr-icon-arrow-right-line fr-ml-1w" aria-hidden />
         </Button>
       </div>
