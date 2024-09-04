@@ -65,8 +65,10 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
       [SEARCH_QUERY_PARAMS.regionCode]: searchParams.get(SEARCH_QUERY_PARAMS.regionCode)
         ? `reg_code='${searchParams.get(SEARCH_QUERY_PARAMS.regionCode)}'`
         : undefined,
+      // We add a wildcard at the end because the dataset isn't clean
+      // For instance for PARIS (75002), we should have PARIS but we somtimes have PARIS 2 or PARIS 2E etc.'
       [SEARCH_QUERY_PARAMS.city]: searchParams.get(SEARCH_QUERY_PARAMS.city)
-        ? `commune='${searchParams.get(SEARCH_QUERY_PARAMS.city)!.toUpperCase()}'`
+        ? `commune LIKE '${searchParams.get(SEARCH_QUERY_PARAMS.city)!.toUpperCase()}%'`
         : undefined,
       [SEARCH_QUERY_PARAMS.postalCode]: searchParams.get(SEARCH_QUERY_PARAMS.postalCode)
         ? `cp='${searchParams.get(SEARCH_QUERY_PARAMS.postalCode)}'`
@@ -290,38 +292,34 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
       }));
     }
 
-    if (postalCode) {
-      setClubParams((clubParams) => ({
-        ...clubParams,
-        offset: 0,
-        postalCode: `cp='${postalCode}'`,
-        city: undefined,
-      }));
-    }
-
-    if (city) {
+    if (postalCode && city) {
       const escapedSingleQuotesCity = escapeSingleQuotes(city);
 
       setClubParams((clubParams) => ({
         ...clubParams,
         offset: 0,
-        city: `commune='${escapedSingleQuotesCity.toUpperCase()}'`,
-        postalCode: undefined,
+        postalCode: `cp='${postalCode}'`,
+        // We add a wildcard at the end because the dataset isn't clean
+        // For instance for PARIS (75002), we should have PARIS but we somtimes have PARIS 2 or PARIS 2E etc.
+        city: `commune LIKE '${escapedSingleQuotesCity.toUpperCase()}%'`,
       }));
 
       queryParams.push({
         key: SEARCH_QUERY_PARAMS.city,
         value: escapedSingleQuotesCity.toUpperCase(),
       });
-      queryParams.push({ key: SEARCH_QUERY_PARAMS.postalCode, value: '' });
+
+      queryParams.push({ key: SEARCH_QUERY_PARAMS.postalCode, value: postalCode });
     } else {
       queryParams.push({ key: SEARCH_QUERY_PARAMS.city, value: '' });
       queryParams.push({
         key: SEARCH_QUERY_PARAMS.postalCode,
-        value: postalCode?.toUpperCase() || '',
+        value: '',
       });
     }
+
     const queryString = appendQueryString(queryParams);
+
     router.push(`${pathname}?${queryString}`, { scroll: false });
   };
 

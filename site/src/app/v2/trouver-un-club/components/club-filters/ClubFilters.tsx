@@ -20,6 +20,14 @@ export interface Option {
   value: string;
 }
 
+export interface CityOption {
+  label: string;
+  value: {
+    cityName: string;
+    postalCode: string;
+  } | null;
+}
+
 interface Props {
   regions: GeoGouvRegion[];
   departments: GeoGouvDepartment[];
