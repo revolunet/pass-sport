@@ -1,6 +1,6 @@
 'use client';
 
-import { ContactRequestBody } from '../../../../types/Contact';
+import { ContactRequestBody } from 'pages/api/contact';
 
 export const postContact = async (request: FormData, isProRequest: boolean): Promise<Response> => {
   // type casting because at this point no value are null
@@ -12,6 +12,12 @@ export const postContact = async (request: FormData, isProRequest: boolean): Pro
     reason: request.get('reason') as string,
     isProRequest,
   };
+
+  const siret = request.get('siret') as string;
+
+  if (siret) {
+    body.siret = siret;
+  }
 
   return fetch('/api/contact', { method: 'POST', body: JSON.stringify(body) });
 };

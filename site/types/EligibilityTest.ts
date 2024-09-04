@@ -1,12 +1,7 @@
-type DsfrInputState = 'default' | 'success' | 'error';
+import { InputState } from './form';
 
 // Form step, search being the first step & confirm being the final step
 export type FormStep = 'search' | 'confirm';
-
-export interface InputState {
-  state: DsfrInputState;
-  errorMsg?: string;
-}
 
 export interface StepOneFormInputsState {
   beneficiaryLastname: InputState;
