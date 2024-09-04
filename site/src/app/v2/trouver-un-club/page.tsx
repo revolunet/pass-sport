@@ -1,5 +1,5 @@
 import PageTitle from '@/components/PageTitle/PageTitle';
-import { getAllClubActivities, getFranceRegions, getFranceDepartments } from './agent';
+import { getAllClubActivities } from './agent';
 
 import ClubFinder from './components/club-finder/ClubFinder';
 import SocialMediaPanel from '@/app/components/social-media-panel/SocialMediaPanel';
@@ -15,9 +15,7 @@ export const metadata: Metadata = {
 };
 
 const TrouverUnClub = async () => {
-  const regions = await getFranceRegions();
   const activities = await getAllClubActivities();
-  const departments = await getFranceDepartments();
 
   return (
     <>
@@ -25,7 +23,7 @@ const TrouverUnClub = async () => {
         <PageTitle title="Trouver un club" />
         <Suspense fallback={<Loading />}>
           <Geolocation>
-            <ClubFinder regions={regions} activities={activities} departments={departments} />
+            <ClubFinder activities={activities} />
           </Geolocation>
         </Suspense>
       </main>

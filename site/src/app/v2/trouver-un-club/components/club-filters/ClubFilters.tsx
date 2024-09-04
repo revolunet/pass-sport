@@ -3,15 +3,10 @@
 import dynamic from 'next/dynamic';
 import cn from 'classnames';
 import { ActivityResponse } from 'types/Club';
-import { GeoGouvRegion } from 'types/Region';
-import Search from '../search/Search';
-import RegionFilter from './region-filter/RegionFilter';
 import styles from './styles.module.scss';
 import CityFilter from '@/app/v2/trouver-un-club/components/club-filters/city-filter/CityFilter';
 import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/activity-filter/ActivityFilter';
 import HandicapFilter from '@/app/v2/trouver-un-club/components/club-filters/handicap-filter/HandicapFilter';
-import { GeoGouvDepartment } from '../../../../../../types/Department';
-import DepartmentFilter from '@/app/v2/trouver-un-club/components/club-filters/department-filter/DepartmentFilter';
 import { ChangeEvent } from 'react';
 import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
 
@@ -21,16 +16,11 @@ export interface Option {
 }
 
 interface Props {
-  regions: GeoGouvRegion[];
-  departments: GeoGouvDepartment[];
   activities: ActivityResponse;
   isMapVisible: boolean;
   isGeolocationVisible: boolean;
   isGeolocationCheckboxActive: boolean;
   isGeolocationFilterActive: boolean;
-  onTextSearch: (text: string) => void;
-  onRegionChanged: (region?: string) => void;
-  onDepartmentChanged: (department?: string) => void;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
   onActivityChanged: (activity?: string) => void;
   onDisabilityChanged: (isActivated: boolean) => void;
@@ -43,17 +33,12 @@ const GeolocationFilter = dynamic(() => import('./geolocation-filter/Geolocation
 });
 
 const ClubFilters: React.FC<Props> = ({
-  regions,
   activities,
-  departments,
   isGeolocationCheckboxActive,
   isGeolocationFilterActive,
   isGeolocationVisible,
   isMapVisible,
 
-  onTextSearch,
-  onRegionChanged,
-  onDepartmentChanged,
   onCityChanged,
   onActivityChanged,
   onDisabilityChanged,
@@ -69,27 +54,13 @@ const ClubFilters: React.FC<Props> = ({
       <fieldset className={styles.fieldset}>
         <legend>Filtrer les clubs</legend>
         <div className="fr-px-2w">
-          <Search onTextSearch={onTextSearch} />
-
           <p className={cn('fr-text--sm', 'fr-py-2w', 'fr-mb-0', styles.title)}>Filtrer par :</p>
           <div className={styles.firstLinefiltersContainer}>
-            <div className={cn(styles.flex)}>
-              <RegionFilter
-                regions={regions}
-                isDisabled={isGeolocationFilterActive && isMapVisible}
-                onRegionChanged={onRegionChanged}
-              />
-            </div>
+            <div className={cn(styles.flex)}></div>
 
             <div className={styles.separator} />
 
-            <div className={cn(styles.flex)}>
-              <DepartmentFilter
-                departments={departments}
-                isDisabled={isGeolocationFilterActive && isMapVisible}
-                onDepartmentChanged={onDepartmentChanged}
-              />
-            </div>
+            <div className={cn(styles.flex)}></div>
 
             <div className={styles.separator} />
 
