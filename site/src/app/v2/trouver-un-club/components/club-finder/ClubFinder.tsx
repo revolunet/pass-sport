@@ -22,6 +22,8 @@ import { GeolocationContext } from '@/store/geolocationContext';
 import { DEFAULT_DISTANCE } from 'utils/map';
 import { push } from '@socialgouv/matomo-next';
 import { setFocusOn } from 'utils/dom';
+import useGetApiStatus from '@/app/hooks/use-get-api-status';
+import UnexpectedError from '@/app/components/unexpected-error/UnexpectedError';
 
 interface Props {
   regions: GeoGouvRegion[];
@@ -42,6 +44,11 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
 
   const geolocationContext = useContext(GeolocationContext);
   const { latitude, longitude, loading } = geolocationContext;
+
+  const geoApiUrlPollingUrl = 'https://geo.api.gouv.fr/communes?codePostal=999';
+  const { error: geoApiIsDown } = useGetApiStatus({
+    url: geoApiUrlPollingUrl,
+  });
 
   const [clubsOnList, setClubsOnList] = useState<ClubsOnList>({
     results: [],
@@ -148,7 +155,7 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
         disability,
         distance,
         offset,
-      }).then((response) => setClubsOnMap({ ...response, isFetchingClubsOnMap: false }));
+      }).then(({ data }) => setClubsOnMap({ ...data, isFetchingClubsOnMap: false }));
     }
   }, [
     offset,
@@ -436,80 +443,86 @@ const ClubFinder = ({ regions, activities, departments, isProVersion }: Props) =
 
   return (
     <div className={cn('fr-mb-10w', styles.spacer)}>
-      <ClubFilters
-        regions={regions}
-        activities={activities}
-        departments={departments}
-        isGeolocationVisible={showClubListOnMap}
-        isGeolocationCheckboxActive={!!latitude}
-        isGeolocationFilterActive={isGeolocationFilterActive}
-        isMapVisible={showClubListOnMap}
-        onTextSearch={searchClubByTextHandler}
-        onRegionChanged={onRegionChanged}
-        onDepartmentChanged={onDepartmentChanged}
-        onCityChanged={onCityChanged}
-        onActivityChanged={onActivityChanged}
-        onDisabilityChanged={onDisabilityChanged}
-        onDistanceChanged={onDistanceChanged}
-        onAroundMeActiveStateChanged={onAroundMeActiveStateChanged}
-      />
-
-      {isProVersion && (
-        <div className="fr-mb-9w">
-          <MissingClubInformationPanel isProVersion={true} />
-        </div>
-      )}
-
-      <div className={styles.center}>
-        <SegmentedControl
-          hideLegend={true}
-          legend="Choisissez entre la vue liste et la vue cartographie pour voir les clubs; Utiliser les flèches droite et gauche pour changer de vue"
-          segments={[
-            {
-              label: 'Liste',
-              iconId: 'fr-icon-settings-5-line',
-              nativeInputProps: {
-                checked: !showClubListOnMap,
-                onChange: showClubsOnListTabHandler,
-              },
-            },
-            {
-              label: 'Carte',
-              iconId: 'fr-icon-settings-5-line',
-              nativeInputProps: {
-                checked: showClubListOnMap,
-                onChange: showClubsOnMapTabHandler,
-              },
-            },
-          ]}
-        />
-      </div>
-
-      <div className={cn('fr-mt-9w')}>
-        <ClubCount
-          displayedClubCount={
-            showClubListOnMap ? clubsOnMap.total_count : clubsOnList.results.length
-          }
-          totalClubCount={clubsOnList.total_count}
-          isPaginating={!showClubListOnMap}
-        />
-      </div>
-
-      <div className="fr-pt-3w">
-        {showClubListOnMap ? (
-          <ClubMapView
-            clubsProvider={clubsOnMap}
-            isGeolocationCircleVisible={isGeolocationFilterActive}
+      {geoApiIsDown ? (
+        <UnexpectedError />
+      ) : (
+        <>
+          <ClubFilters
+            regions={regions}
+            activities={activities}
+            departments={departments}
+            isGeolocationVisible={showClubListOnMap}
+            isGeolocationCheckboxActive={!!latitude}
+            isGeolocationFilterActive={isGeolocationFilterActive}
+            isMapVisible={showClubListOnMap}
+            onTextSearch={searchClubByTextHandler}
+            onRegionChanged={onRegionChanged}
+            onDepartmentChanged={onDepartmentChanged}
+            onCityChanged={onCityChanged}
+            onActivityChanged={onActivityChanged}
+            onDisabilityChanged={onDisabilityChanged}
+            onDistanceChanged={onDistanceChanged}
+            onAroundMeActiveStateChanged={onAroundMeActiveStateChanged}
           />
-        ) : (
-          <ClubListView clubs={clubsOnList} onSeeMoreClubsClicked={seeMoreClubsHandler} />
-        )}
-      </div>
 
-      {!isProVersion && (
-        <div className="fr-mt-9w">
-          <MissingClubInformationPanel isProVersion={false} />
-        </div>
+          {isProVersion && (
+            <div className="fr-mb-9w">
+              <MissingClubInformationPanel isProVersion={true} />
+            </div>
+          )}
+
+          <div className={styles.center}>
+            <SegmentedControl
+              hideLegend={true}
+              legend="Choisissez entre la vue liste et la vue cartographie pour voir les clubs; Utiliser les flèches droite et gauche pour changer de vue"
+              segments={[
+                {
+                  label: 'Liste',
+                  iconId: 'fr-icon-settings-5-line',
+                  nativeInputProps: {
+                    checked: !showClubListOnMap,
+                    onChange: showClubsOnListTabHandler,
+                  },
+                },
+                {
+                  label: 'Carte',
+                  iconId: 'fr-icon-settings-5-line',
+                  nativeInputProps: {
+                    checked: showClubListOnMap,
+                    onChange: showClubsOnMapTabHandler,
+                  },
+                },
+              ]}
+            />
+          </div>
+
+          <div className={cn('fr-mt-9w')}>
+            <ClubCount
+              displayedClubCount={
+                showClubListOnMap ? clubsOnMap.total_count : clubsOnList.results.length
+              }
+              totalClubCount={clubsOnList.total_count}
+              isPaginating={!showClubListOnMap}
+            />
+          </div>
+
+          <div className="fr-pt-3w">
+            {showClubListOnMap ? (
+              <ClubMapView
+                clubsProvider={clubsOnMap}
+                isGeolocationCircleVisible={isGeolocationFilterActive}
+              />
+            ) : (
+              <ClubListView clubs={clubsOnList} onSeeMoreClubsClicked={seeMoreClubsHandler} />
+            )}
+          </div>
+
+          {!isProVersion && (
+            <div className="fr-mt-9w">
+              <MissingClubInformationPanel isProVersion={false} />
+            </div>
+          )}
+        </>
       )}
     </div>
   );

@@ -30,7 +30,6 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
 
   const city = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city);
   const postalCode = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode);
-
   const [value, setValue] = useState<Option>(allCitiesOption);
 
   const cityChangeHandler = (newValue: SingleValue<Option>) => {
@@ -58,7 +57,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
 
   useEffect(() => {
     if (postalCode) {
-      getFranceCitiesByPostalCode(postalCode, false).then((cities) => {
+      getFranceCitiesByPostalCode(postalCode, false).then(({ data: cities, error }) => {
         const formattedCities = parseCities(cities);
         const matchingCityWithPostalCode = formattedCities.find(
           ({ value, label }) => value === postalCode,
@@ -71,7 +70,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
     } else if (city) {
       const unescapedCity = unescapeSingleQuotes(city);
 
-      getFranceCitiesByName(unescapedCity, false).then((cities) => {
+      getFranceCitiesByName(unescapedCity, false).then(({ data: cities, error }) => {
         const foundCityOption = parseCities(cities);
         setValue(foundCityOption[0]);
       });
@@ -125,7 +124,7 @@ function parseCities(cities: City[]): Option[] {
 }
 
 function fetchCityOptions(inputValue: string) {
-  return getFranceCitiesByName(inputValue, false).then((cities) => parseCities(cities));
+  return getFranceCitiesByName(inputValue, false).then(({ data: cities }) => parseCities(cities));
 }
 
 export default CityFilter;

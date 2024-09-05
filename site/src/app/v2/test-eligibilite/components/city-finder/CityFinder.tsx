@@ -50,7 +50,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
   };
 
   const fetchCityOptions = (inputValue: string) =>
-    getFranceCitiesByName(inputValue, true).then((cities) =>
+    getFranceCitiesByName(inputValue, true).then(({ data: cities }) =>
       parseCities(sortCities(cities, inputValue)),
     );
 
