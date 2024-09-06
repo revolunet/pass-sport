@@ -23,7 +23,7 @@ interface Props {
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
 }
 
-const allCitiesOption: Option = { label: 'Toutes les villes', value: '' };
+const allCitiesOption: Option = { label: 'Toutes', value: '' };
 
 const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
   const searchParams = useSearchParams();
@@ -83,7 +83,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
   return (
     <div className={styles['label-container']}>
       <label id="city-label" className={styles.label}>
-        Choix d&apos;une ville
+        Ville
       </label>
       <AsyncSelect
         isDisabled={isDisabled}

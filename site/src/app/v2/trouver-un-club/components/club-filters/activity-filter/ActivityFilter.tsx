@@ -1,7 +1,7 @@
-import cn from 'classnames';
 import { SingleValue } from 'react-select';
 import { Option } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
 import styles from '../styles.module.scss';
+
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { ActivityResponse } from '../../../../../../../types/Club';
 import { useSearchParams } from 'next/navigation';
@@ -35,7 +35,7 @@ const ActivityFilter = ({ onActivityChanged, activities }: Props) => {
     }
   };
 
-  const allActivitiesOption: Option = { label: 'Toutes les activités', value: '' };
+  const allActivitiesOption: Option = { label: 'Toutes', value: '' };
 
   const activityOptions = [allActivitiesOption].concat(parsedActivities);
 
@@ -50,18 +50,14 @@ const ActivityFilter = ({ onActivityChanged, activities }: Props) => {
       <label id="activity-label" className={styles.label}>
         Activités
       </label>
-      <div className={styles['input-container']}>
-        <span className={cn('ri-basketball-line', styles.icon)} />
-
-        <CustomSelect
-          defaultValue={defaultActivityOption()}
-          instanceId="activities-select-id"
-          placeholder="Toutes les activités"
-          options={activityOptions}
-          onChange={activityChangeHandler}
-          aria-labelledby="activity-label"
-        />
-      </div>
+      <CustomSelect
+        defaultValue={defaultActivityOption()}
+        instanceId="activities-select-id"
+        placeholder="Toutes les activités"
+        options={activityOptions}
+        onChange={activityChangeHandler}
+        aria-labelledby="activity-label"
+      />
     </div>
   );
 };

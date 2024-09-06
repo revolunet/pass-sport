@@ -38,9 +38,13 @@
   &--lean {
     padding-inline-start: unset;
     list-style: none;
+    margin-block-start: unset;
+    -webkit-margin-before: unset;
 
     & li::before {
       content: '\200B'; // workaround for voiceover, see https://developer.mozilla.org/fr/docs/Web/CSS/list-style-type#accessibilit%C3%A9
+      display: block;
+      height: 0px;
     }
   }
 }

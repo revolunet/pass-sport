@@ -4,7 +4,6 @@ export const SEARCH_QUERY_PARAMS = {
   postalCode: 'postalCode',
   activity: 'activity',
   handicap: 'disability',
-  distance: 'distance',
   centerLat: 'centerLat',
   centerLng: 'centerLng',
   zoom: 'zoom',

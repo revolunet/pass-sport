@@ -1,8 +1,5 @@
 @import '../../../../sassVariables.module';
 
-.sizer {
-  max-width: $xl;
-}
 
 .container {
   display: flex;
@@ -14,7 +11,7 @@
 .item {
   width: 100%;
   @media (min-width: $sm) {
-    width: 306px;
+    width: 282px;
   }
 }
 

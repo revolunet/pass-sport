@@ -1,67 +1,30 @@
 @import '../../../../sassVariables.module.scss';
 
-.flex {
-  flex-grow: 1;
-}
-
-.wrapper {
-  position: relative;
-  top: -90px;
-
-  box-shadow: 0px 6px 18px 0px #00001229;
-  background-color: white;
-
-  max-width: 1200px;
-  margin: auto;
-  min-height: 154px;
-}
-
 .fieldset {
   border: none;
 
-  & > legend{
+  & > legend {
     height: 0px;
     visibility: hidden;
   }
 }
 
-.firstLinefiltersContainer {
+.container {
   display: flex;
   flex-direction: column;
+  }
+
+.separator {
+  background-color: var(--border-default-grey);
+  height: 1px;
   width: 100%;
-  gap: 16px;
+}
 
-  @media (min-width: $md) {
-    flex-direction: row;
-  }
-
-  .separator {
-    background-color: var(--border-default-grey);
-    height: 1px;
-
-    @media (min-width: $md) {
-      width: 1px;
-      height: auto;
-    }
-  }
-
-  .label-container {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex-grow: 1;
-  }
-
-  .input-container {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-
-    .select {
-      display: flex;
-      flex-grow: 1;
-    }
-  }
+.label-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
 }
 
 .secondLinefilters {
@@ -104,9 +67,4 @@
 
 .label {
   color: var(--text-title-grey);
-}
-
-.icon {
-  color: var(--text-mention-grey);
-  padding-top: 6px;
 }

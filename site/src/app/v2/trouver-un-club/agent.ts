@@ -42,7 +42,7 @@ export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRec
   params.append('limit', param.limit ? param.limit.toString() : '20');
   params.append('offset', param.offset.toString());
 
-  let whereClause = buildWhereClause(param, ['distance']);
+  let whereClause = buildWhereClause(param, []);
   params.append('where', whereClause);
 
   const url = new URL(baseUrl);

@@ -11,13 +11,6 @@ export const selectStyles = {
     ...baseStyles,
     flexGrow: 1,
     borderColor: '#ffffff',
-    width: '210px',
-    '@media screen and (max-width: 992px)': {
-      width: '150px',
-    },
-    '@media screen and (max-width: 768px)': {
-      width: '100%',
-    },
   }),
   indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,

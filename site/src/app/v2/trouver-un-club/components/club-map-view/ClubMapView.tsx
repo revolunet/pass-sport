@@ -1,31 +1,43 @@
-import { ClubsOnMap } from 'types/Club';
+import { ClubsOnMap, ExportedClub } from 'types/Club';
 import { useContext, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { GeolocationContext } from '@/store/geolocationContext';
 import { useSearchParams } from 'next/navigation';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
-import { DEFAULT_DISTANCE } from 'utils/map';
+import { DEFAULT_DISTANCE, LIMIT } from 'utils/map';
 import { LatLngLiteral } from 'leaflet';
 import { getCenter } from 'geolib';
 import styles from './styles.module.scss';
+import cn from 'classnames';
 
 interface Props {
   clubsProvider: ClubsOnMap;
   isGeolocationCircleVisible: boolean;
 }
 
-const Loading = () => {
-  return (
-    <div className={styles['loading-box']}>
-      <div className="fr-mx-auto">
-        <p>Chargement des clubs</p>
-      </div>
+const Loading = () => (
+  <div className={styles['loading-box']}>
+    <div className="fr-mx-auto">
+      <p>Chargement des clubs</p>
     </div>
-  );
-};
+  </div>
+);
+
+const TooManyClubsMessage = () => (
+  <p
+    role="status"
+    aria-live="polite"
+    aria-atomic={true}
+    className={cn('fr-text--lead', 'fr-py-1w', styles['too-many-club'])}
+  >
+    <span>Il y a trop de clubs correspondant à votre recherche.</span> Merci de l&apos;affiner pour
+    les voir apparaitre sur la carte
+  </p>
+);
 
 const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisible }) => {
   const isFetching = clubsProvider.isFetchingClubsOnMap;
+  const areThereTooManyClubs = clubsProvider.total_count === LIMIT;
 
   const ClubsMap = useMemo(
     () =>
@@ -41,13 +53,7 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisibl
   const { longitude, latitude } = useContext(GeolocationContext);
 
   const getDistance = (): number => {
-    const distanceParams = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.distance);
-
-    if (!distanceParams || isNaN(Number(distanceParams))) {
-      return DEFAULT_DISTANCE * 1000;
-    }
-
-    return parseInt(distanceParams) * 1000;
+    return DEFAULT_DISTANCE * 1000;
   };
 
   const buildMapCenterPosition = (): LatLngLiteral | undefined => {
@@ -81,6 +87,10 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisibl
       return undefined;
     }
 
+    if (areThereTooManyClubs) {
+      return undefined;
+    }
+
     if (longitude && latitude) {
       return { lat: latitude, lng: longitude };
     }
@@ -93,6 +103,9 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisibl
       return Number(zoom);
     }
 
+    if (areThereTooManyClubs) {
+      return 5;
+    }
     if (longitude && latitude) {
       return 7;
     }
@@ -100,18 +113,29 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisibl
     return 3;
   };
 
+  const buildClubs = (): ExportedClub[] => {
+    if (areThereTooManyClubs) {
+      return [];
+    }
+
+    return clubsProvider.results;
+  };
+
   return (
     <div className={styles.main}>
       {isFetching ? (
         <Loading />
       ) : (
-        <ClubsMap
-          clubs={clubsProvider.results}
-          centerPosition={buildMapCenterPosition()}
-          userPosition={buildUserPosition()}
-          distance={getDistance()}
-          zoom={buildZoomValue()}
-        />
+        <>
+          {areThereTooManyClubs && <TooManyClubsMessage />}
+          <ClubsMap
+            clubs={buildClubs()}
+            centerPosition={buildMapCenterPosition()}
+            userPosition={buildUserPosition()}
+            distance={getDistance()}
+            zoom={buildZoomValue()}
+          />
+        </>
       )}
     </div>
   );

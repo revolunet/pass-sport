@@ -9,6 +9,7 @@ import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import Geolocation from './components/geolocation/Geolocation';
 import Loading from '@/app/components/loading/Loading';
 import EligibilityTestBanner from '@/components/eligibility-test-banner/EligibilityTestBanner';
+import styles from './styles.module.scss';
 
 export const metadata: Metadata = {
   title: 'Trouver un club partenaire - pass Sport',
@@ -20,7 +21,12 @@ const TrouverUnClub = async () => {
   return (
     <>
       <main tabIndex={-1} id={SKIP_LINKS_ID.mainContent} role="main">
-        <PageTitle title="Trouver un club" />
+        <PageTitle
+          title="Trouver un club"
+          classes={{
+            container: styles['page-header'],
+          }}
+        />
         <Suspense fallback={<Loading />}>
           <Geolocation>
             <ClubFinder activities={activities} />

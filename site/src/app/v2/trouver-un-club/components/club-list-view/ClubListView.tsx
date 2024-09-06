@@ -17,8 +17,8 @@ const ClubListView = ({ clubs, onSeeMoreClubsClicked }: Props) => {
 
   return (
     <>
-      <div className={cn('fr-mx-auto', 'fr-mt-6w', 'fr-mb-10w', styles.sizer)}>
-        <ul className={cn('fr-mt-6w', styles.container, rootStyles['list--lean'])} id="club-list">
+      <div className={cn('fr-mx-auto')}>
+        <ul className={cn(styles.container, rootStyles['list--lean'])} id="club-list">
           {clubs.results.map((club) => (
             <li key={club.nom + club.adresse + club.commune} className={styles.item}>
               <Card
