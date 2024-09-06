@@ -35,6 +35,8 @@ const TooManyClubsMessage = () => (
   </p>
 );
 
+const ZOOM_LEVEL = { COUNTRY: 5, CITY: 7 };
+
 const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisible }) => {
   const isFetching = clubsProvider.isFetchingClubsOnMap;
   const areThereTooManyClubs = clubsProvider.total_count === LIMIT;
@@ -104,13 +106,13 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisibl
     }
 
     if (areThereTooManyClubs) {
-      return 5;
+      return ZOOM_LEVEL.COUNTRY;
     }
     if (longitude && latitude) {
-      return 7;
+      return ZOOM_LEVEL.CITY;
     }
 
-    return 5;
+    return ZOOM_LEVEL.COUNTRY;
   };
 
   const buildClubs = (): ExportedClub[] => {

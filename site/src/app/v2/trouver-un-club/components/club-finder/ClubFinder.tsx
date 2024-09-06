@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './style.module.scss';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { getClubs, getClubsWithoutLimit, SqlSearchParams } from '../../agent';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ActivityResponse, ClubsOnList, ClubsOnMap } from 'types/Club';
@@ -31,9 +31,10 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const ClubFiltersInAccordion = dynamic(
-    () => import('../club-filters-in-accordion/ClubFiltersInAccordion'),
-    { ssr: false },
+  const ClubFiltersInAccordion = useMemo(
+    () =>
+      dynamic(() => import('../club-filters-in-accordion/ClubFiltersInAccordion'), { ssr: false }),
+    [],
   );
   const appendQueryString = useAppendQueryString();
   const removeQueryString = useRemoveQueryString();
@@ -92,28 +93,32 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
   const { clubName, city, postalCode, activity, disability, offset, distance } = clubParams;
 
   useEffect(() => {
-    const clubParams = {
-      limit,
-      offset,
-      clubName,
-      city,
-      postalCode,
-      disability,
-      activity,
-      distance,
-    };
-    if (offset === 0) {
-      getClubs(clubParams).then((clubs) => setClubsOnList({ ...clubs, firstRecievedClubIndex: 0 }));
-    } else {
-      getClubs(clubParams).then((res) =>
-        setClubsOnList((clubs) => {
-          return {
-            results: [...clubs.results, ...res.results],
-            total_count: res.total_count,
-            firstRecievedClubIndex: offset + 1,
-          };
-        }),
-      );
+    if (distance !== undefined) {
+      const clubParams = {
+        limit,
+        offset,
+        clubName,
+        city,
+        postalCode,
+        disability,
+        activity,
+        distance,
+      };
+      if (offset === 0) {
+        getClubs(clubParams).then((clubs) =>
+          setClubsOnList({ ...clubs, firstRecievedClubIndex: 0 }),
+        );
+      } else {
+        getClubs(clubParams).then((res) =>
+          setClubsOnList((clubs) => {
+            return {
+              results: [...clubs.results, ...res.results],
+              total_count: res.total_count,
+              firstRecievedClubIndex: offset + 1,
+            };
+          }),
+        );
+      }
     }
   }, [clubName, city, postalCode, activity, disability, offset, limit, distance]);
 
