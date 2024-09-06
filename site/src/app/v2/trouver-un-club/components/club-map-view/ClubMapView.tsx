@@ -110,7 +110,7 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisibl
       return 7;
     }
 
-    return 3;
+    return 5;
   };
 
   const buildClubs = (): ExportedClub[] => {
