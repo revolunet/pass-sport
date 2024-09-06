@@ -8,6 +8,7 @@ export const SEARCH_QUERY_PARAMS = {
   centerLng: 'centerLng',
   zoom: 'zoom',
   isShowingMapTab: 'map',
+  aroundMe: 'aroundme',
 };
 
 export const CONTACT_PAGE_QUERYPARAMS = {

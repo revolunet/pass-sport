@@ -13,6 +13,7 @@ import cn from 'classnames';
 interface Props {
   clubsProvider: ClubsOnMap;
   isGeolocationCircleVisible: boolean;
+  isSearchingAroundMe: boolean;
 }
 
 const Loading = () => (
@@ -37,7 +38,11 @@ const TooManyClubsMessage = () => (
 
 const ZOOM_LEVEL = { COUNTRY: 5, CITY: 7 };
 
-const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisible }) => {
+const ClubMapView: React.FC<Props> = ({
+  clubsProvider,
+  isGeolocationCircleVisible,
+  isSearchingAroundMe,
+}) => {
   const isFetching = clubsProvider.isFetchingClubsOnMap;
   const areThereTooManyClubs = clubsProvider.total_count === LIMIT;
 
@@ -66,7 +71,7 @@ const ClubMapView: React.FC<Props> = ({ clubsProvider, isGeolocationCircleVisibl
       return { lat: Number(centerLat), lng: Number(centerLng) };
     }
 
-    if (longitude && latitude) {
+    if (longitude && latitude && isSearchingAroundMe) {
       return { lat: latitude, lng: longitude };
     }
 

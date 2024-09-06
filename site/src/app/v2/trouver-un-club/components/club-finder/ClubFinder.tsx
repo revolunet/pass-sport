@@ -78,7 +78,7 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
     }),
   });
 
-  const [isAroundMeChecked, setIsAroundMeChecked] = useState(true);
+  const [isAroundMeChecked, setIsAroundMeChecked] = useState<boolean | undefined>(undefined);
 
   const parseParameterFromQuery = (searchQueryParam: keyof typeof SEARCH_QUERY_PARAMS) => {
     const param = searchParams && searchParams.get(SEARCH_QUERY_PARAMS[searchQueryParam]);
@@ -86,9 +86,14 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
     if (searchQueryParam === 'isShowingMapTab') {
       return Number(param) === 1 ? param : undefined;
     }
+
+    if (searchQueryParam === 'aroundMe') {
+      return Number(param) === 1 ? param : undefined;
+    }
   };
 
   const showClubListOnMap = parseParameterFromQuery('isShowingMapTab') === '1';
+  const isAroundMeCheckedParam = parseParameterFromQuery('aroundMe') === '1';
 
   const { clubName, city, postalCode, activity, disability, offset, distance } = clubParams;
 
@@ -127,35 +132,33 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
       setClubsOnMap((provider) => ({ ...provider, isFetchingClubsOnMap: true }));
       getClubsWithoutLimit({
         clubName,
-        city: isAroundMeChecked ? undefined : city,
-        postalCode: isAroundMeChecked ? undefined : postalCode,
+        city,
+        postalCode,
         activity,
         disability,
         distance,
         offset,
       }).then((response) => setClubsOnMap({ ...response, isFetchingClubsOnMap: false }));
     }
-  }, [
-    offset,
-    clubName,
-    city,
-    postalCode,
-    activity,
-    disability,
-    distance,
-    isGeolocationLoading,
-    isAroundMeChecked,
-  ]);
+  }, [offset, clubName, city, postalCode, activity, disability, distance, isGeolocationLoading]);
 
-  const buildDistanceExpression = useCallback((): string | null => {
+  const buildDistanceExpression = useCallback((): string | null | undefined => {
     const distance = DEFAULT_DISTANCE.toString();
 
     if (!latitude && !longitude) {
       return null;
     }
 
+    if (isAroundMeChecked === undefined) {
+      return undefined;
+    }
+
+    if (!isAroundMeChecked) {
+      return null;
+    }
+
     return `within_distance(geoloc_finale, GEOM'POINT(${longitude} ${latitude} )',${distance}km)`;
-  }, [latitude, longitude]);
+  }, [latitude, longitude, isAroundMeChecked]);
 
   useEffect(() => {
     if (!isGeolocationLoading) {
@@ -169,8 +172,12 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
   }, [isGeolocationLoading, buildDistanceExpression]);
 
   useEffect(() => {
-    setIsAroundMeChecked(!!latitude);
-  }, [latitude]);
+    if (!latitude) {
+      setIsAroundMeChecked(false);
+    } else {
+      setIsAroundMeChecked(isAroundMeCheckedParam);
+    }
+  }, [latitude, isAroundMeCheckedParam]);
 
   useEffect(() => {
     setFocusOn(`#club-list > li:nth-child(${clubsOnList.firstRecievedClubIndex}) a`);
@@ -269,30 +276,30 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
   };
 
   const onAroundMeActiveStateChanged = (isAroundMeChecked: boolean) => {
-    setIsAroundMeChecked(isAroundMeChecked);
-
     let queryString: String;
     if (isAroundMeChecked) {
       setClubParams((previousState) => ({
         ...previousState,
         city: undefined,
         postalCode: undefined,
-        distance: buildDistanceExpression(),
+        distance: undefined,
       }));
 
       queryString = appendQueryString([
         { key: SEARCH_QUERY_PARAMS.city, value: '' },
         { key: SEARCH_QUERY_PARAMS.postalCode, value: '' },
+        { key: SEARCH_QUERY_PARAMS.aroundMe, value: '1' },
       ]);
     } else {
       setClubParams((previousState) => ({
         ...previousState,
-        distance: null,
+        distance: undefined,
       }));
       queryString = appendQueryString([
         { key: SEARCH_QUERY_PARAMS.centerLat, value: '' },
         { key: SEARCH_QUERY_PARAMS.centerLng, value: '' },
         { key: SEARCH_QUERY_PARAMS.zoom, value: '' },
+        { key: SEARCH_QUERY_PARAMS.aroundMe, value: '0' },
       ]);
     }
     router.push(`${pathname}?${queryString}`, { scroll: false });
@@ -372,7 +379,7 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
           <div>
             <ClubFiltersInAccordion
               activities={activities}
-              isAroundMeChecked={isAroundMeChecked}
+              isAroundMeChecked={isAroundMeChecked || false}
               isAroundMeDisabled={!latitude}
               isMapVisible={showClubListOnMap}
               onCityChanged={onCityChanged}
@@ -386,7 +393,8 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
             {showClubListOnMap ? (
               <ClubMapView
                 clubsProvider={clubsOnMap}
-                isGeolocationCircleVisible={isAroundMeChecked}
+                isGeolocationCircleVisible={isAroundMeChecked || false}
+                isSearchingAroundMe={isAroundMeChecked || false}
               />
             ) : (
               <ClubListView clubs={clubsOnList} onSeeMoreClubsClicked={seeMoreClubsHandler} />
