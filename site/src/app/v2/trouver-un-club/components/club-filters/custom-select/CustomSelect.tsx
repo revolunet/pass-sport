@@ -11,6 +11,9 @@ export const selectStyles = {
     ...baseStyles,
     flexGrow: 1,
     borderColor: '#ffffff',
+    backgroundColor: '#eeeeee',
+    padding: '0px 12px',
+    borderBottom: '2px solid #3A3A3A',
   }),
   indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,
