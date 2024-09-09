@@ -305,6 +305,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                 stateRelatedMessage={inputStates.email.errorMsg}
               />
             </div>
+
             <div>
               <Select
                 label="Objet de la demande*"
@@ -395,6 +396,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
           title="Votre demande à bien été envoyée"
           description="Votre message nous a bien été transmis."
           closable
+          onClose={() => setIsOk(false)}
         />
       )}
     </>
