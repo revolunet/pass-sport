@@ -181,7 +181,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <div>
           <h2 className="fr-text--bold fr-my-2w fr-h6">
-            Avez-vous d&apos;abord consulté notre FAQ ?
+            Avez-vous d&apos;abord consulté notre foire aux questions ?
           </h2>
           <p className="fr-mb-2w">
             La réponse à votre question s&apos;y trouve peut-être. Si tel est le cas, vous gagnerez
@@ -197,14 +197,14 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
               }}
               priority="secondary"
             >
-              Lire la FAQ
+              Lire les questions fréquentes
             </Button>
           </p>
         </div>
         <div>
           <div className={styles.form}>
             <div>
-              <p className={styles.paragraph}>Les champs ci-dessous sont obligatoires*</p>
+              <p className={styles.paragraph}>Tous les champs ci-dessous sont obligatoires*</p>
             </div>
             <div className={styles['names-input-container']}>
               <div>
