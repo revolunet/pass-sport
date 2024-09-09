@@ -158,7 +158,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
       // Go through each input, stops at the first one and focuses on it
       // Transform into map for iteration to preserve the order of the keys
       for (const [key, value] of new Map(Object.entries(states))) {
-        if (value === 'error') {
+        if (value.state === 'error') {
           const invalidInput: HTMLInputElement | null | undefined = formRef.current?.querySelector(
             `[name="${key}"]`,
           );
