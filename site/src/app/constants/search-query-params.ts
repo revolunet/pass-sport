@@ -1,5 +1,4 @@
 export const SEARCH_QUERY_PARAMS = {
-  clubName: 'clubName',
   city: 'city',
   postalCode: 'postalCode',
   activity: 'activity',
