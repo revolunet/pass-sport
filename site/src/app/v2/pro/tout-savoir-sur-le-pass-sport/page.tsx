@@ -71,6 +71,10 @@ export default function ToutSavoirSurLePassSport() {
                   </li>
                   <li>6420Z : activités des sociétés holding</li>
                 </ul>
+                Télécharger la{' '}
+                <Link href="/assets/ressources/charte-lsm-pour-non-adherentes-2024.docx">
+                  charte d’engagement loisir sportif marchand
+                </Link>
               </li>
             </ul>
           </section>
