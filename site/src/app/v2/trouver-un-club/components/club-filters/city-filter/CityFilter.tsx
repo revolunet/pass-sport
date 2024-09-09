@@ -17,6 +17,8 @@ import {
   onFilter,
   selectStyles,
 } from '../custom-select/CustomSelect';
+import localStyles from './styles.module.scss';
+import cn from 'classnames';
 
 interface Props {
   isDisabled: boolean;
@@ -85,22 +87,24 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
       <label id="city-label" className={styles.label}>
         Ville
       </label>
-      <AsyncSelect
-        isDisabled={isDisabled}
-        instanceId="city-select-id"
-        key="city-select-with-search-param"
-        loadingMessage={() => <p>Chargement des villes</p>}
-        noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-        cacheOptions
-        defaultOptions={[allCitiesOption]}
-        loadOptions={fetchCityOptions}
-        onChange={cityChangeHandler}
-        styles={selectStyles}
-        value={value}
-        ariaLiveMessages={{ guidance, onChange, onFilter }}
-        aria-labelledby="city-label"
-        screenReaderStatus={customScreenReaderStatus}
-      />
+      <div className={cn({ [`${localStyles['disabled-cursor']}`]: isDisabled })}>
+        <AsyncSelect
+          isDisabled={isDisabled}
+          instanceId="city-select-id"
+          key="city-select-with-search-param"
+          loadingMessage={() => <p>Chargement des villes</p>}
+          noOptionsMessage={() => <p>Aucune ville trouvée</p>}
+          cacheOptions
+          defaultOptions={[allCitiesOption]}
+          loadOptions={fetchCityOptions}
+          onChange={cityChangeHandler}
+          styles={selectStyles}
+          value={value}
+          ariaLiveMessages={{ guidance, onChange, onFilter }}
+          aria-labelledby="city-label"
+          screenReaderStatus={customScreenReaderStatus}
+        />
+      </div>
     </div>
   );
 };
