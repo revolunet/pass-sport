@@ -28,7 +28,7 @@ const SocialMediaPanel = ({ isHomePage = false, isProVersion = false }: Props) =
 
   return (
     <aside
-      className={cn('fr-pb-1w', 'fr-px-1w', styles.container, {
+      className={cn('fr-pb-2w', 'fr-px-1w', 'fr-pt-4w', styles.container, {
         [styles['container--home-page-variant']]: isHomePage,
         [styles['container--pro']]: isProVersion,
       })}

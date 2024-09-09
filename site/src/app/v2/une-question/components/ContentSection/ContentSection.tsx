@@ -121,7 +121,7 @@ export default function ContentSection({ categoriesWithArticles }: Props) {
           if (selectedArticle !== null && article.id !== selectedArticle.id) return null;
 
           return (
-            <li key={article.id} id={article.id} className="cursor--pointer">
+            <li key={article.id} id={article.id} className={cn('fr-pt-3w', 'cursor--pointer')}>
               <div
                 className="fr-callout fr-mb-0"
                 role="button"
