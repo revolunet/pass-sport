@@ -121,7 +121,7 @@ export default function Accueil() {
         </div>
       </main>
 
-      <SocialMediaPanel isHomePage isProVersion />
+      <SocialMediaPanel isProVersion />
     </>
   );
 }
