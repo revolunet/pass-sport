@@ -7,8 +7,11 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ActivityResponse, ClubsOnList, ClubsOnMap } from 'types/Club';
 import cn from 'classnames';
 import ClubCount from '../club-count/ClubCount';
-import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
-import { useAppendQueryString } from '@/app/hooks/use-append-query-string';
+import { SEARCH_QUERY_PARAMS, UrlQueryParameters } from '@/app/constants/search-query-params';
+import {
+  UseAppendQueryStringPairs,
+  useAppendQueryString,
+} from '@/app/hooks/use-append-query-string';
 import { useRemoveQueryString } from '@/app/hooks/use-remove-query-string';
 import { escapeSingleQuotes } from '../../../../../../utils/string';
 import ClubMapView from '../club-map-view/ClubMapView';
@@ -77,20 +80,20 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
 
   const [isAroundMeChecked, setIsAroundMeChecked] = useState<boolean | undefined>(undefined);
 
-  const parseParameterFromQuery = (searchQueryParam: keyof typeof SEARCH_QUERY_PARAMS) => {
-    const param = searchParams && searchParams.get(SEARCH_QUERY_PARAMS[searchQueryParam]);
+  const parseParameterFromQuery = (searchQueryParam: UrlQueryParameters) => {
+    const param = searchParams && searchParams.get(searchQueryParam);
 
-    if (searchQueryParam === 'isShowingMapTab') {
+    if (param === SEARCH_QUERY_PARAMS.isShowingMapTab || param === SEARCH_QUERY_PARAMS.aroundMe) {
       return Number(param) === 1 ? param : undefined;
     }
 
-    if (searchQueryParam === 'aroundMe') {
-      return Number(param) === 1 ? param : undefined;
-    }
+    return param !== null ? param : undefined;
   };
 
-  const showClubListOnMap = parseParameterFromQuery('isShowingMapTab') === '1';
-  const isAroundMeCheckedParam = parseParameterFromQuery('aroundMe') === '1';
+  const showClubListOnMap = parseParameterFromQuery(SEARCH_QUERY_PARAMS.isShowingMapTab) === '1';
+  const isAroundMeCheckedParam = parseParameterFromQuery(SEARCH_QUERY_PARAMS.aroundMe) === '1';
+  const cityParam = parseParameterFromQuery(SEARCH_QUERY_PARAMS.city);
+  const postalCodeParam = parseParameterFromQuery(SEARCH_QUERY_PARAMS.postalCode);
 
   const { clubName, city, postalCode, activity, disability, offset, distance } = clubParams;
 
@@ -180,12 +183,25 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
     setFocusOn(`#club-list > li:nth-child(${clubsOnList.firstRecievedClubIndex}) a`);
   }, [clubsOnList.firstRecievedClubIndex]);
 
+  useEffect(() => {
+    if ((cityParam && !postalCodeParam) || (!cityParam && postalCodeParam)) {
+      const queryString = removeQueryString(
+        cityParam ? SEARCH_QUERY_PARAMS.city : SEARCH_QUERY_PARAMS.postalCode,
+      );
+
+      setClubParams((prevState) => {
+        return { ...prevState, city: undefined, postalCode: undefined };
+      });
+      router.push(`${pathname}?${queryString}`, { scroll: false });
+    }
+  }, [cityParam, postalCodeParam, router, pathname, removeQueryString]);
+
   const seeMoreClubsHandler = () => {
     setClubParams((clubParams) => ({ ...clubParams, offset: clubParams.offset + limit }));
   };
 
   const onCityChanged = ({ city, postalCode }: { city?: string; postalCode?: string }) => {
-    const queryParams = [
+    const queryParams: UseAppendQueryStringPairs = [
       { key: SEARCH_QUERY_PARAMS.centerLat, value: '' },
       { key: SEARCH_QUERY_PARAMS.centerLng, value: '' },
       { key: SEARCH_QUERY_PARAMS.zoom, value: '' },
@@ -307,7 +323,9 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
   };
 
   const showClubsOnMapTabHandler = () => {
-    let removableQueryStrings = [{ key: SEARCH_QUERY_PARAMS.isShowingMapTab, value: '1' }];
+    let removableQueryStrings: UseAppendQueryStringPairs = [
+      { key: SEARCH_QUERY_PARAMS.isShowingMapTab, value: '1' },
+    ];
 
     push(['trackEvent', 'Carte Button', 'Clicked', 'Find a club page']);
 
