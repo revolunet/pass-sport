@@ -11,8 +11,7 @@
     height: 440px;
     width: 100%;
     @media (min-width: $xl) {
-      height: 670px;
-      max-width: 1200px;
+      height: 724px;
     }
 
     display: flex;
@@ -23,5 +22,13 @@
     & > p {
       font-size: 20px;
     }
+  }
+}
+
+.too-many-club {
+  text-align: center;
+  & > span:first-child::after {
+    content: '\a';
+    white-space: pre;
   }
 }

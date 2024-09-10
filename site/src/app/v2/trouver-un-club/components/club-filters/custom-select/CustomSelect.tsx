@@ -11,13 +11,9 @@ export const selectStyles = {
     ...baseStyles,
     flexGrow: 1,
     borderColor: '#ffffff',
-    width: '210px',
-    '@media screen and (max-width: 992px)': {
-      width: '150px',
-    },
-    '@media screen and (max-width: 768px)': {
-      width: '100%',
-    },
+    backgroundColor: '#eeeeee',
+    padding: '0px 12px',
+    borderBottom: '2px solid #3A3A3A',
   }),
   indicatorSeparator: (baseStyles: Record<string, unknown>) => ({
     ...baseStyles,

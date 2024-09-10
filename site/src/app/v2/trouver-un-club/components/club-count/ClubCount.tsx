@@ -1,35 +1,28 @@
 import cn from 'classnames';
 import styles from './styles.module.scss';
-import { LIMIT } from 'utils/map';
 
 interface Props {
-  displayedClubCount: number;
   totalClubCount: number;
-  isPaginating: boolean;
 }
 
-const ClubCount: React.FC<Props> = ({ displayedClubCount, totalClubCount, isPaginating }) => {
+const ClubCount: React.FC<Props> = ({ totalClubCount }) => {
   const buildContent = () => {
-    if (isPaginating) {
-      return `${displayedClubCount} ${displayedClubCount > 1 ? 'clubs affichés' : 'club affiché'} sur 
-    ${totalClubCount} ${totalClubCount > 1 ? 'clubs référencés' : 'club référencé'}`;
+    if (totalClubCount > 80000) {
+      return 'Parmi plus de 80 000 clubs référencés';
     }
 
-    if (displayedClubCount >= LIMIT) {
-      return `Les clubs trouvés sont trop nombreux. Seuls les ${LIMIT} premiers sont affichés. Merci
-      d'affiner votre recherche.`;
-    }
-
-    return `${displayedClubCount} ${displayedClubCount > 1 ? 'clubs référencés' : 'club référencé'}`;
+    return (
+      <>
+        <span>
+          {totalClubCount} {totalClubCount === 1 ? 'club' : 'clubs'} près de chez vous
+        </span>{' '}
+        sur 80 000 clubs référencés
+      </>
+    );
   };
 
   return (
-    <p
-      role="status"
-      aria-live="polite"
-      aria-atomic={true}
-      className={cn('fr-text--lead', 'fr-mb-0', styles.paragraph)}
-    >
+    <p role="status" aria-live="polite" aria-atomic={true} className={cn(styles.text)}>
       {buildContent()}
     </p>
   );
