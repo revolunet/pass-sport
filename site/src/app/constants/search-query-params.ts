@@ -1,5 +1,4 @@
 export const SEARCH_QUERY_PARAMS = {
-  clubName: 'clubName',
   city: 'city',
   postalCode: 'postalCode',
   activity: 'activity',
@@ -9,7 +8,9 @@ export const SEARCH_QUERY_PARAMS = {
   zoom: 'zoom',
   isShowingMapTab: 'map',
   aroundMe: 'aroundme',
-};
+} as const;
+
+export type UrlQueryParameters = (typeof SEARCH_QUERY_PARAMS)[keyof typeof SEARCH_QUERY_PARAMS];
 
 export const CONTACT_PAGE_QUERYPARAMS = {
   modalOpened: 'modalOpened',

@@ -108,8 +108,9 @@ export const getClubsWithoutLimit = async (
   };
 };
 
-export const getFranceCitiesByPostalCode = async (
+export const getFranceCitiesByPostalCodeAndCityName = async (
   postalCode: string,
+  cityName: string,
   includeDistricts: boolean,
 ): Promise<City[]> => {
   const baseUrl = 'https://geo.api.gouv.fr/communes';
@@ -118,6 +119,7 @@ export const getFranceCitiesByPostalCode = async (
   params.append('limit', '20');
   params.append('boost', 'population');
   params.append('codePostal', postalCode);
+  params.append('nom', cityName);
   params.append(
     'type',
     includeDistricts ? 'arrondissement-municipal,commune-actuelle' : 'commune-actuelle',

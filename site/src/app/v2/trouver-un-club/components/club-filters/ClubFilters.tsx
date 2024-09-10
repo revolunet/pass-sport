@@ -14,6 +14,14 @@ export interface Option {
   value: string;
 }
 
+export interface CityOption {
+  label: string;
+  value: {
+    cityName: string;
+    postalCode: string;
+  } | null;
+}
+
 export interface ClubFiltersProps {
   activities: ActivityResponse;
   isMapVisible: boolean;
