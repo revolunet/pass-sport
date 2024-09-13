@@ -63,7 +63,7 @@ const Video = ({ videoFullUrl }: Props) => {
                 </button>
               </div>
             </div>
-            <div
+            <dialog
               id="fr-transcription-modal-transcription-2160"
               className="fr-modal"
               aria-labelledby="fr-transcription-modal-transcription-2160-title"
@@ -126,7 +126,7 @@ const Video = ({ videoFullUrl }: Props) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </dialog>
           </div>
         </div>
       </figure>

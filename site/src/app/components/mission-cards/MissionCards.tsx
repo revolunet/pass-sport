@@ -45,10 +45,9 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         imageUrl={jeVeuxAiderImage.src}
         linkProps={{
           href: jeVeuxAiderUrl,
-          'aria-label': 'Ouvrir une nouvelle fenêtre vers le site Je veux aider.gouv.fr',
         }}
         size="medium"
-        title="Ouvrir une nouvelle fenêtre vers le site Je veux aider.gouv.fr"
+        title="Je veux aider.gouv.fr"
         titleAs="h3"
         classes={{
           end: styles.end,
@@ -75,11 +74,9 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         imageUrl={snuImage.src}
         linkProps={{
           href: snuUrl,
-          'aria-label':
-            'Ouvrir une nouvelle fenêtre vers le site Le SNU, pour moi, pour les autres, et pour la France.',
         }}
         size="medium"
-        title="Ouvrir une nouvelle fenêtre vers le site Le SNU, pour moi, pour les autres, et pour la France."
+        title="Le SNU, pour moi, pour les autres, et pour la France."
         titleAs="h3"
         classes={{
           end: styles.end,
@@ -104,11 +101,9 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
         imageUrl={serviceCiviqueImage.src}
         linkProps={{
           href: serviceCiviqueUrl,
-          'aria-label':
-            'Ouvrir une nouvelle fenêtre vers le site le Service Civique, une mission pour chacun au service de tous',
         }}
         size="medium"
-        title="Ouvrir une nouvelle fenêtre vers le site le Service Civique, une mission pour chacun au service de tous"
+        title="Service Civique, une mission pour chacun au service de tous"
         titleAs="h3"
         classes={{
           end: styles.end,

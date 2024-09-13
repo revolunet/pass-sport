@@ -12,12 +12,14 @@ import {
   SUPPORT_COOKIE_READ_MORE_URL,
   WAITING_STATE,
 } from '@/app/constants/cookie-manager';
+import { useEnhanceCookieManagerAccessibility } from '@/app/hooks/accessibility/use-enhance-cookie-manager-accessibility';
 
 export const TarteAuCitron = () => {
   const domain = process.env.NEXT_PUBLIC_TARTEAUCITRON_DOMAIN;
   const pathname = usePathname();
 
   useHandleCrispPlaceholderButton();
+  useEnhanceCookieManagerAccessibility();
 
   useEffect(() => {
     const isModalRendered = document.getElementById('tarteaucitron');

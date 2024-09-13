@@ -66,7 +66,7 @@ const Video = ({ videoId, videoPathUrl, videoFullUrl, title, transcriptionConten
                 </button>
               </div>
             </div>
-            <div
+            <dialog
               id={`fr-transcription-modal-transcription-${videoId}`}
               className="fr-modal"
               aria-labelledby={`fr-transcription-modal-transcription-${videoId}-title`}
@@ -100,7 +100,7 @@ const Video = ({ videoId, videoPathUrl, videoFullUrl, title, transcriptionConten
                   </div>
                 </div>
               </div>
-            </div>
+            </dialog>
           </div>
         </div>
       </figure>
