@@ -20,6 +20,8 @@ const visitorReasons = {
   'club-pas-trouvé': 'Je ne trouve pas mon club',
   'refus-code-club': 'Mon club refuse de prendre le pass Sport',
   'club-wait-50': "Mon club attend d'être remboursé avant de me faire la déduction de 50 euros",
+  'deja-paye-comment-rembourse':
+    "j'ai déjà payé mon adhésion, comment me faire rembourser mon pass Sport ?",
   other: 'Autre',
 };
 
