@@ -6,22 +6,40 @@ import { ReactNode } from 'react';
 interface Props {
   children: ReactNode;
   withIcon?: boolean;
+  classes?: string[];
+  size?: 'lg' | 'md' | 'sm';
+  boldText?: boolean;
+  originalLeftBorder?: boolean;
 }
 
-const CustomHighlight = ({ withIcon = true, children }: Props) => {
+const CustomHighlight = ({
+  children,
+  classes,
+  size = 'md',
+  withIcon = true,
+  boldText = true,
+  originalLeftBorder = true,
+}: Props) => {
   return (
-    <Highlight
-      className={cn(styles['container__highlight-text'], 'fr-text--bold')}
-      size="lg"
-      classes={{
-        root: styles['container__highlight--override'],
-      }}
+    <div
+      className={cn('fr-highlight', styles['highlight--override'], ...(classes || []), {
+        [styles['highlight--left-border']]: !originalLeftBorder,
+      })}
     >
       {withIcon && (
-        <span className={cn('fr-icon-quote-line', styles['container__icon'])} aria-hidden />
+        <span className={cn('fr-icon-quote-line', styles['highlight__icon'])} aria-hidden />
       )}
-      {children}
-    </Highlight>
+      <div
+        className={cn({
+          'fr-text--sm': size === 'sm',
+          'fr-text--md': size === 'md',
+          'fr-text--lg': size === 'lg',
+          'fr-text--bold': boldText,
+        })}
+      >
+        {children}
+      </div>
+    </div>
   );
 };
 

@@ -9,6 +9,8 @@ import { useUpdateList } from '@/app/hooks/accessibility/use-update-list';
 import { useRef } from 'react';
 import { HEADER_CLASSES } from '@/app/constants/dsfr-classes';
 import { useReplaceTitlesByAriaLabels } from '@/app/hooks/accessibility/use-replace-titles-by-aria-labels';
+import { useRemoveHeaderAttributes } from '@/app/hooks/accessibility/use-remove-header-attributes';
+import { useRemoveHeaderThemeControls } from '@/app/hooks/accessibility/use-remove-header-theme-controls';
 
 export default function PassSportNavigation() {
   const paths: string | null = usePathname();
@@ -17,7 +19,8 @@ export default function PassSportNavigation() {
     return !!(paths && paths.includes(path));
   };
 
-  const headerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const headerContainerRef = useRef<HTMLDivElement | null>(null);
 
   useUpdateList({
     parentRef: headerRef,
@@ -39,8 +42,11 @@ export default function PassSportNavigation() {
     ],
   });
 
+  useRemoveHeaderAttributes(headerRef);
+  useRemoveHeaderThemeControls(headerContainerRef);
+
   return (
-    <div>
+    <div ref={headerContainerRef}>
       <Header
         ref={headerRef}
         className={styles.header}

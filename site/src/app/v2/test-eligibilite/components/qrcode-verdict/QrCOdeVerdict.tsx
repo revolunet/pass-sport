@@ -45,10 +45,10 @@ const QrCodePanel = ({ data }: Props) => {
           />
         </div>
         <div className={styles.center}>
-          <p className={cn('fr-mb-1w', 'fr-h6', styles.blue)}>
+          <h3 className={cn('fr-mb-1w', 'fr-h6', styles.blue)}>
             <span className={styles['text-casing']}>{prenom}</span>{' '}
             <span className={styles['text-casing']}>{nom}</span>
-          </p>
+          </h3>
 
           <p className={cn('fr-mb-3w', rootStyles['text--medium'])}>
             {formatBirthDate(date_naissance, genre)}
@@ -64,13 +64,12 @@ const QrCodePanel = ({ data }: Props) => {
           size="large"
           iconPosition="right"
           iconId="fr-icon-external-link-line"
-          aria-label="Ouvrir une nouvelle fenêtre vers la page récapitulatif du QR code afin de pouvoir l'imprimer au format PDF"
           linkProps={{
             href: qrcodeUrl,
             target: '_blank',
           }}
         >
-          Télécharger mon QR Code pass Sport au format pdf
+          Accéder à la page d&apos;impression du QR Code
         </Button>
       </div>
     </>

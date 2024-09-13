@@ -61,10 +61,10 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
         </div>
 
         <div>
-          <p className={cn('fr-mb-1w', 'fr-h6', styles.fullname)}>
+          <h2 className={cn('fr-mb-1w', 'fr-h6', styles.fullname)}>
             <span className={styles['text-casing']}>{firstname}</span>{' '}
             <span className={styles['text-casing']}>{lastname}</span>
-          </p>
+          </h2>
 
           <p className="fr-mb-2w fr-text--md">{formatBirthDate(birthDate, gender)}</p>
           <p className="fr-text--md fr-text--bold fr-mb-0">Code:</p>
@@ -77,18 +77,13 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
             onClick={onCopyCallback}
             size="small"
           >
-            Copier
+            Copier le code
           </Button>
         </div>
       </div>
 
       <div className="fr-grid-row fr-grid-row--center fr-mt-3w">
-        <Button
-          id="print-button"
-          size="large"
-          onClick={printQRCode}
-          aria-label="Bouton pour imprimer la page contenant le QR Code"
-        >
+        <Button id="print-button" size="large" onClick={printQRCode}>
           Imprimer mon pass Sport au format PDF
         </Button>
       </div>

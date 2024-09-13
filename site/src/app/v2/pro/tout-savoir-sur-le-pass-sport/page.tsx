@@ -17,9 +17,10 @@ import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-s
 import Highlight from '@codegouvfr/react-dsfr/Highlight';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { headers } from 'next/headers';
+import CustomHighlight from '@/app/components/custom-highlight/CustomHighlight';
 
 export const metadata: Metadata = {
-  title: 'Tout savoir sur le pass Sport - pass Sport',
+  title: 'Structure partenaire - Tout savoir sur le pass Sport - pass Sport',
 };
 
 export default function ToutSavoirSurLePassSport() {
@@ -61,7 +62,7 @@ export default function ToutSavoirSurLePassSport() {
                 Jeux Olympiques et Paralympiques. Les entités doivent proposer ou organiser une
                 activité sportive, de loisir ou non, ayant un but lucratif et relevant de l&apos;un
                 des codes de la nomenclature des activités françaises (NAF) suivants :
-                <ul>
+                <ol>
                   <li>9311Z : gestion d&apos;installations sportives</li>
                   <li>9312Z : activités des clubs de sports</li>
                   <li>9329Z : autres activités récréatives et de loisirs</li>
@@ -70,7 +71,7 @@ export default function ToutSavoirSurLePassSport() {
                     8551Z : enseignement de disciplines sportives et d&apos;activités de loisirs
                   </li>
                   <li>6420Z : activités des sociétés holding</li>
-                </ul>
+                </ol>
                 Télécharger la{' '}
                 <Link
                   href="/assets/ressources/charte-lsm-pour-non-adherentes-2024.docx"
@@ -113,23 +114,13 @@ export default function ToutSavoirSurLePassSport() {
               </li>
             </ul>
 
-            <Highlight
-              className={cn(styles['about-sub-container__highlight-text'], 'fr-text--bold')}
-              size="lg"
-              classes={{
-                root: styles['about-sub-container__highlight--override'],
-              }}
-            >
-              <span
-                className={cn('fr-icon-quote-line', styles['about-sub-container__icon'])}
-                aria-hidden
-              />
-              <span className="display--block">
+            <CustomHighlight size="lg">
+              <p className="display--block">
                 Les pass Sport sont valables du 1er juin au 31 décembre 2024. Après cette date,
                 aucun pass Sport saisi ne pourra faire l&apos;objet d&apos;un remboursement.
-              </span>
-              <span className="display--block">Anticipez vos saisis !</span>
-            </Highlight>
+              </p>
+              <p className="display--block">Anticipez vos saisis !</p>
+            </CustomHighlight>
           </section>
 
           <section className={styles['section-container']}>
@@ -288,13 +279,13 @@ export default function ToutSavoirSurLePassSport() {
             </p>
 
             <section>
-              <Accordion label="1. Fédérations olympiques et paralympiques">
+              <Accordion label="Fédérations olympiques et paralympiques">
                 <FederationList federations={olympiquesAndparalympiques} />
               </Accordion>
-              <Accordion label="2. Fédérations unisport">
+              <Accordion label="Fédérations unisport">
                 <FederationList federations={unisport} />
               </Accordion>
-              <Accordion label="3. Fédérations multisports et affinitaires">
+              <Accordion label="Fédérations multisports et affinitaires">
                 <p className="fr-mb-2w">
                   <Link
                     href="https://docs.google.com/document/d/1RZIulzFm9ueCm2lfJQhq6GVnzUkiE14L/edit"
@@ -331,9 +322,11 @@ interface FederationListProps {
 }
 
 function FederationList({ federations }: FederationListProps) {
-  return federations.map((fed) => (
-    <>
-      <span className="display--block">{fed}</span>
-    </>
-  ));
+  return (
+    <ul>
+      {federations.map((fed) => (
+        <li key={fed}>{fed}</li>
+      ))}
+    </ul>
+  );
 }

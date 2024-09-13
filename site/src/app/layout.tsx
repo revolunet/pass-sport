@@ -30,6 +30,7 @@ export default function RootLayout({
   // NOTE: The lang parameter is optional and defaults to "fr"
   const lang = 'fr';
   const nonce = headers().get('X-Nonce') ?? undefined;
+
   return (
     <html {...getHtmlAttributes({ defaultColorScheme, lang })}>
       <head>

@@ -11,7 +11,7 @@ import { Metadata } from 'next';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 
 export const metadata: Metadata = {
-  title: 'Tout savoir sur le pass Sport - pass Sport',
+  title: 'Particulier - Tout savoir sur le pass Sport - pass Sport',
 };
 
 export default function ToutSavoirSurLePassSport() {

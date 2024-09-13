@@ -19,21 +19,21 @@ export default function About() {
               Qu&apos;est-ce que le pass Sport ?
             </h2>
 
-            <Highlight className={styles['about-container__highlight-text']}>
-              <span className="fr-mb-3w display--block">
+            <CustomHighlight classes={[styles['about-container__highlight-text']]}>
+              <p className="fr-mb-3w display--block">
                 Le pass Sport est une aide de 50 euros qui permet de financer une partie de
                 l&apos;inscription sportive à plus de 6,5 millions de jeunes. Il est valable dans
                 plus de 85 000 clubs et salles de sport partenaires.
-              </span>
+              </p>
 
-              <span className="fr-mb-3w display--block">
+              <p className="fr-mb-3w display--block">
                 Le dispositif est porté par l&apos;État et déployé par le ministère des Sports et
                 des Jeux Olympiques et Paralympiques et permet de soutenir la pratique sportive de
                 jeunes pendant l&apos;année sportive.
-              </span>
+              </p>
 
               <span className="display--block">Il est ouvert du 1er juin au 31 décembre 2024.</span>
-            </Highlight>
+            </CustomHighlight>
           </div>
         </div>
       </section>
@@ -47,15 +47,15 @@ export default function About() {
             'fr-mb-9w',
           )}
         >
-          <CustomHighlight>
+          <CustomHighlight originalLeftBorder={false}>
             <>
-              <span className="fr-mb-1w display--block">
+              <p className="fr-mb-1w display--block">
                 Le pass Sport est ouvert du 1er juin au 31 décembre 2024.
-              </span>
+              </p>
 
-              <span className="display--block">
+              <p className="display--block">
                 Pensez-bien à présenter votre pass à votre club avant la fin décembre 2024 !
-              </span>
+              </p>
             </>
           </CustomHighlight>
         </div>

@@ -40,7 +40,6 @@ export default function ObtainPassPort() {
       </ul>
 
       <Button
-        id={SKIP_LINKS_ID.eligibilityTestButton}
         iconId="fr-icon-arrow-right-line"
         iconPosition="right"
         linkProps={{

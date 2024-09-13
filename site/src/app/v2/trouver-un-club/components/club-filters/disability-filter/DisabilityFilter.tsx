@@ -22,8 +22,6 @@ const DisabilityFilter = ({ onDisabilityChanged }: Props) => {
           label: 'Accueil des personnes en situation de handicaps',
           nativeInputProps: {
             name: 'disability-checkbox',
-            'aria-label':
-              'Ce filtre permet de réduire la liste des clubs à ceux accueillant uniquement des personnes en situation de handicap. La liste des clubs est rafraichie dès que ce filtre est modifié.',
             checked: isChecked,
             onChange: disabilityChangeHandler,
           },

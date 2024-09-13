@@ -3,18 +3,29 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import cn from 'classnames';
+import { useUpdateTitleIframe } from '@/app/hooks/accessibility/use-update-title-iframe';
+import { useRef } from 'react';
 
 interface Props {
   videoFullUrl: string;
 }
 
 const Video = ({ videoFullUrl }: Props) => {
+  const title = 'Vidéo de présentation du dispositif pass Sport du ministère des Sports';
+  const parentRef = useRef<HTMLDivElement | null>(null);
+
+  useUpdateTitleIframe({
+    parentRef,
+    title,
+    targetSelector: 'iframe',
+  });
+
   return (
-    <div>
-      <figure role="group" className="fr-my-2w fr-content-media">
+    <div ref={parentRef}>
+      <figure className="fr-my-2w fr-content-media">
         <div className={cn('vimeo_player', styles['vimeo_player'])} data-videoid="956531127" />
         <figcaption className={`fr-content-media__caption ${styles.text}`}>
-          Vidéo de présentation du dispositif pass Sport du ministère des Sports
+          {title}
           <a
             className={`fr-link ${styles.text}`}
             href={videoFullUrl}

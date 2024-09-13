@@ -30,7 +30,7 @@ export default function HowToUsePassSport() {
         <Card
           background
           title="Nicolas Dupont"
-          titleAs="h2"
+          titleAs="h3"
           horizontal
           imageAlt="Image du QR code"
           aria-label="Image de votre QR Code - votre pass Sport, à montrer à un club partenaire lors de votre inscription"
