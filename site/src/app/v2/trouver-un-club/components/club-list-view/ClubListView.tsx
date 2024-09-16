@@ -28,7 +28,6 @@ const ClubListView = ({ clubs, onSeeMoreClubsClicked }: Props) => {
                 enlargeLink
                 linkProps={{
                   href: `${pathname}/${encodeURIComponent(club.nom)}`,
-                  'aria-label': `Voir la fiche du club ${club.nom}`,
                 }}
                 size="medium"
                 start={<ClubTags club={club} />}
