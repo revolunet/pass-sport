@@ -3,8 +3,10 @@ import crispChatBotSVG from '@/images/crisp-chatbot.svg';
 import Image from 'next/image';
 import styles from './crisp.module.scss';
 import { SKIP_LINKS_ID } from '../../constants/skip-links';
+import { useEnhanceCrispChatBox } from '../../hooks/accessibility/use-enhance-crisp-chat-box';
 
 export const Crisp = () => {
+  useEnhanceCrispChatBox();
   return (
     <button
       id={`${SKIP_LINKS_ID.chatbot}`}
