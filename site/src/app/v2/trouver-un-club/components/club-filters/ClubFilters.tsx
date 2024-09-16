@@ -7,7 +7,7 @@ import CityFilter from '@/app/v2/trouver-un-club/components/club-filters/city-fi
 import ActivityFilter from '@/app/v2/trouver-un-club/components/club-filters/activity-filter/ActivityFilter';
 import DisabilityFilter from '@/app/v2/trouver-un-club/components/club-filters/disability-filter/DisabilityFilter';
 import { ChangeEvent } from 'react';
-import Checkbox from '@codegouvfr/react-dsfr/Checkbox';
+import AroundMeFilter from './around-me-filter/AroundMeFilter';
 
 export interface Option {
   label: string;
@@ -24,7 +24,6 @@ export interface CityOption {
 
 export interface ClubFiltersProps {
   activities: ActivityResponse;
-  isMapVisible: boolean;
   isAroundMeChecked: boolean;
   isAroundMeDisabled: boolean;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
@@ -36,7 +35,6 @@ export interface ClubFiltersProps {
 const ClubFilters: React.FC<ClubFiltersProps> = ({
   activities,
   isAroundMeChecked,
-  isMapVisible,
   isAroundMeDisabled,
   onCityChanged,
   onActivityChanged,
@@ -56,21 +54,10 @@ const ClubFilters: React.FC<ClubFiltersProps> = ({
             <CityFilter isDisabled={isAroundMeChecked} onCityChanged={onCityChanged} />
 
             <div className="fr-pt-7v">
-              <Checkbox
-                disabled={isAroundMeDisabled}
-                options={[
-                  {
-                    label: 'Autour de chez vous',
-                    hintText:
-                      isAroundMeDisabled &&
-                      'Vous devez authoriser la geolocalisation pour utiliser ce filtre',
-                    nativeInputProps: {
-                      name: 'geolocation-checkbox',
-                      checked: isAroundMeChecked,
-                      onChange: activeStateAroundMeHandler,
-                    },
-                  },
-                ]}
+              <AroundMeFilter
+                isAroundMeDisabled={isAroundMeDisabled}
+                isChecked={isAroundMeChecked}
+                onChange={activeStateAroundMeHandler}
               />
             </div>
 

@@ -392,7 +392,6 @@ const ClubFinder = ({ activities, isProVersion }: Props) => {
               activities={activities}
               isAroundMeChecked={isAroundMeChecked || false}
               isAroundMeDisabled={!latitude}
-              isMapVisible={showClubListOnMap}
               onCityChanged={onCityChanged}
               onActivityChanged={onActivityChanged}
               onDisabilityChanged={onDisabilityChanged}
