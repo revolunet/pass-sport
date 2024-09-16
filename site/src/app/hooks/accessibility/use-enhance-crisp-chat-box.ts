@@ -32,6 +32,14 @@ export function useEnhanceCrispChatBox() {
         'span.cc-dvx9d', // "Comment puis-je vous aider à propos de pass Sport ?"
       ];
       spanElements.forEach((e) => replaceSpanByPElement(document, body.querySelector(e)));
+
+      const helpdeskFormElement = document.querySelector(
+        'form[name="form_helpdesk"] input[name="helpdesk_search"]',
+      );
+
+      if (helpdeskFormElement) {
+        helpdeskFormElement.setAttribute('aria-label', "Trouver un article d'aide");
+      }
     });
 
     if (document.body) {
