@@ -9,7 +9,6 @@ export const Crisp = () => {
     <button
       id={`${SKIP_LINKS_ID.chatbot}`}
       className={styles['crisp-image-wrapper']}
-      aria-label="Accepter les cookies Crisp et tchater avec une personne du support utilisateur"
       onClick={() => {
         if (window.tarteaucitron && window.tarteaucitron.userInterface) {
           window.tarteaucitron.userInterface.openPanel();
@@ -17,9 +16,9 @@ export const Crisp = () => {
       }}
     >
       <Image
+        alt="Accepter les cookies Crisp chat et échanger avec une personne du support utilisateur"
         className={styles['crisp-img']}
         src={crispChatBotSVG}
-        alt="Tchater avec une personne du support"
       />
     </button>
   );
