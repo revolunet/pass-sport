@@ -227,17 +227,17 @@ const getClubsActivitiesBatch = async (
   limit: number,
   offset: number,
 ): Promise<ActivityResponse> => {
+  const API_KEY = process.env.OPENDATASOFT_API_KEY;
+
+  if (!API_KEY) {
+    console.error(
+      'OpenDatasoft api key is missing. Please provide it in OPENDATASOFT_API_KEY environment variable',
+    );
+
+    throw new Error('api key not provided');
+  }
+
   try {
-    const API_KEY = process.env.OPENDATASOFT_API_KEY;
-
-    if (!API_KEY) {
-      console.error(
-        'OpenDatasoft api key is missing. Please provide it in OPENDATASOFT_API_KEY environment variable',
-      );
-
-      throw new Error('api key not provided');
-    }
-
     const baseUrl =
       'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records';
     const params = new URLSearchParams();
