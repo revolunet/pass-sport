@@ -70,9 +70,7 @@ export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRec
   } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.captureMessage(
-        'Unexpected response from sports-sgsocialgouv.opendatasoft.com; endpoint: records',
-      );
+      scope.captureMessage('Open datasoft API is down');
     });
 
     return {
@@ -126,9 +124,7 @@ export const getClubsWithoutLimit = async (
   } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.captureMessage(
-        'Unexpected response from sports-sgsocialgouv.opendatasoft.com; endpoint: exports',
-      );
+      scope.captureMessage('Open datasoft API is down');
     });
 
     return {
@@ -174,7 +170,7 @@ export const getFranceCitiesByPostalCodeAndCityName = async (
   } catch (e) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+      scope.captureMessage('geo.api.gouv.fr api is down');
     });
 
     return [];
@@ -216,7 +212,7 @@ export const getFranceCitiesByName = async (
   } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+      scope.captureMessage('geo.api.gouv.fr api is down');
     });
 
     return [];
@@ -273,9 +269,7 @@ const getClubsActivitiesBatch = async (
   } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.captureMessage(
-        'Unexpected response from sports-sgsocialgouv.opendatasoft.com for activities',
-      );
+      scope.captureMessage('Open datasoft API is down');
     });
 
     return {
