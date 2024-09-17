@@ -170,7 +170,7 @@ export const getFranceCitiesByPostalCodeAndCityName = async (
   } catch (e) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.captureMessage('geo.api.gouv.fr api is down');
+      scope.captureMessage('geo.api.gouv.fr API is down');
     });
 
     return [];
@@ -212,7 +212,7 @@ export const getFranceCitiesByName = async (
   } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.captureMessage('geo.api.gouv.fr api is down');
+      scope.captureMessage('geo.api.gouv.fr API is down');
     });
 
     return [];
