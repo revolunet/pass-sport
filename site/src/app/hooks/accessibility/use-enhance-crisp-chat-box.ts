@@ -67,6 +67,14 @@ export function useEnhanceCrispChatBox() {
     }
   };
 
+  const preciseAriaLabelOnSend = (crisp: Element) => {
+    const sendElement = crisp.querySelector('span[aria-label="Envoyer"]');
+    // @ts-ignore
+    if (sendElement) {
+      sendElement.setAttribute('aria-label', 'Envoyer mon message');
+    }
+  };
+
   const addMissingAriaHiddenOnIcons = (crisp: Element) => {
     const chatIconElement = crisp.querySelector('a[data-mode="chat"]')?.childNodes[0];
     chatIconElement?.setAttribute('aria-hidden', true);
@@ -87,6 +95,7 @@ export function useEnhanceCrispChatBox() {
       showInvisbleCloseButton(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
       addMissingAriaHiddenOnIcons(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80c08fabd9ab4743f14c&pm=s
       altTextToConnectedIcon(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=8c7385434e564946ac9e76bf86ef3f68&pm=s
+      preciseAriaLabelOnSend(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
     });
 
     if (document.body) {
