@@ -13,6 +13,7 @@ declare global {
 
   export interface Element {
     style: {
+      [x: string]: any;
       display: 'none' | 'inherit' | 'block';
     };
   }
