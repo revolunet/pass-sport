@@ -83,6 +83,15 @@ export function useEnhanceCrispChatBox() {
     helpdeskIconElement?.setAttribute('aria-hidden', true);
   };
 
+  const removeUnecessaryAria = (crisp: Element) => {
+    const continuByEmailElement = crisp.querySelector(
+      'a[aria-label="email"][data-channel="email"][target="_parent"]',
+    );
+    if (continuByEmailElement) {
+      continuByEmailElement.removeAttribute('aria-label');
+    }
+  };
+
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
       const crispElement = document.querySelector('#crisp-chatbox');
@@ -96,6 +105,7 @@ export function useEnhanceCrispChatBox() {
       addMissingAriaHiddenOnIcons(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80c08fabd9ab4743f14c&pm=s
       altTextToConnectedIcon(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=8c7385434e564946ac9e76bf86ef3f68&pm=s
       preciseAriaLabelOnSend(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
+      removeUnecessaryAria(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=d1ce0c6e2f4241b89ad2811f90f4c463&pm=s
     });
 
     if (document.body) {
