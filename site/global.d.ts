@@ -11,6 +11,10 @@ declare global {
     tarteaucitron?: TarteAuCitronSDK;
   }
 
+  export interface ChildNode {
+    setAttribute: (string, any) => void;
+  }
+
   export interface Element {
     style: {
       [x: string]: any;
