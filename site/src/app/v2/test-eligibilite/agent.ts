@@ -3,8 +3,7 @@ import {
   EnhancedConfirmResponseBody,
   SearchResponseBody,
   SearchResponseErrorBody,
-  AahMsaInputsState
-
+  AahMsaInputsState,
 } from 'types/EligibilityTest';
 
 export const fetchEligible = (
