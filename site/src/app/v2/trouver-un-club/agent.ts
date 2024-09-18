@@ -35,77 +35,103 @@ const buildWhereClause = (param: SqlSearchParams, excludedParams: (keyof SqlSear
 };
 
 export const getClubs = async (param: SqlSearchParams): Promise<SportGouvJSONRecordsResponse> => {
-  const baseUrl =
-    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records';
+  try {
+    const baseUrl =
+      'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records';
 
-  const params: URLSearchParams = new URLSearchParams();
-  params.append('limit', param.limit ? param.limit.toString() : '20');
-  params.append('offset', param.offset.toString());
+    const params: URLSearchParams = new URLSearchParams();
+    params.append('limit', param.limit ? param.limit.toString() : '20');
+    params.append('offset', param.offset.toString());
 
-  let whereClause = buildWhereClause(param, []);
-  params.append('where', whereClause);
+    let whereClause = buildWhereClause(param, []);
+    params.append('where', whereClause);
 
-  const url = new URL(baseUrl);
-  url.search = params.toString();
-  const response = await fetch(url);
+    const url = new URL(baseUrl);
+    url.search = params.toString();
+    const response = await fetch(url);
 
-  if (!response.ok) {
+    if (!response.ok) {
+      Sentry.withScope((scope) => {
+        scope.setLevel('warning');
+        scope.setExtra('responseBody', response.body);
+        scope.setExtra('responseStatus', response.status);
+        scope.captureMessage(
+          'Unexpected response from sports-sgsocialgouv.opendatasoft.com; endpoint: records',
+        );
+      });
+
+      return {
+        results: [],
+        total_count: 0,
+      };
+    }
+
+    return response.json();
+  } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.setExtra('responseBody', response.body);
-      scope.setExtra('responseStatus', response.status);
-      scope.captureMessage(
-        'Unexpected response from sports-sgsocialgouv.opendatasoft.com; endpoint: records',
-      );
+      scope.captureMessage('Open datasoft API is down');
     });
+
     return {
       results: [],
       total_count: 0,
     };
   }
-
-  return response.json();
 };
 
 export const getClubsWithoutLimit = async (
   param: SqlSearchParams,
 ): Promise<SportGouvJSONExportsResponse> => {
-  const baseUrl =
-    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/exports/json';
+  try {
+    const baseUrl =
+      'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/exports/json';
 
-  const params: URLSearchParams = new URLSearchParams();
+    const params: URLSearchParams = new URLSearchParams();
 
-  params.append('select', 'nom,geoloc_finale');
-  params.append('limit', LIMIT.toString());
+    params.append('select', 'nom,geoloc_finale');
+    params.append('limit', LIMIT.toString());
 
-  let whereClause = buildWhereClause(param, []);
-  params.append('where', whereClause);
+    let whereClause = buildWhereClause(param, []);
+    params.append('where', whereClause);
 
-  const url = new URL(baseUrl);
-  url.search = params.toString();
-  const response = await fetch(url);
+    const url = new URL(baseUrl);
+    url.search = params.toString();
+    const response = await fetch(url);
 
-  if (!response.ok) {
+    if (!response.ok) {
+      Sentry.withScope((scope) => {
+        scope.setLevel('warning');
+        scope.setExtra('responseBody', response.body);
+        scope.setExtra('responseStatus', response.status);
+        scope.captureMessage(
+          'Unexpected response from sports-sgsocialgouv.opendatasoft.com; endpoint: exports',
+        );
+      });
+
+      return {
+        results: [],
+        total_count: 0,
+      };
+    }
+
+    const results = await response.json();
+
+    return {
+      results,
+      total_count: results.length,
+    };
+  } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.setExtra('responseBody', response.body);
-      scope.setExtra('responseStatus', response.status);
-      scope.captureMessage(
-        'Unexpected response from sports-sgsocialgouv.opendatasoft.com; endpoint: exports',
-      );
+      scope.captureMessage('Open datasoft API is down');
     });
+
     return {
       results: [],
       total_count: 0,
     };
   }
-
-  const results = await response.json();
-
-  return {
-    results,
-    total_count: results.length,
-  };
 };
 
 export const getFranceCitiesByPostalCodeAndCityName = async (
@@ -113,65 +139,84 @@ export const getFranceCitiesByPostalCodeAndCityName = async (
   cityName: string,
   includeDistricts: boolean,
 ): Promise<City[]> => {
-  const baseUrl = 'https://geo.api.gouv.fr/communes';
+  try {
+    const baseUrl = 'https://geo.api.gouv.fr/communes';
 
-  const params = new URLSearchParams();
-  params.append('limit', '20');
-  params.append('boost', 'population');
-  params.append('codePostal', postalCode);
-  params.append('nom', cityName);
-  params.append(
-    'type',
-    includeDistricts ? 'arrondissement-municipal,commune-actuelle' : 'commune-actuelle',
-  );
+    const params = new URLSearchParams();
+    params.append('limit', '20');
+    params.append('boost', 'population');
+    params.append('codePostal', postalCode);
+    params.append('nom', cityName);
+    params.append(
+      'type',
+      includeDistricts ? 'arrondissement-municipal,commune-actuelle' : 'commune-actuelle',
+    );
 
-  const url = new URL(baseUrl);
-  url.search = params.toString();
-  const response = await fetch(url);
+    const url = new URL(baseUrl);
+    url.search = params.toString();
+    const response = await fetch(url);
 
-  if (!response.ok) {
+    if (!response.ok) {
+      Sentry.withScope((scope) => {
+        scope.setLevel('warning');
+        scope.setExtra('responseBody', response.body);
+        scope.setExtra('responseStatus', response.status);
+        scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+      });
+      return [];
+    }
+
+    return response.json();
+  } catch (e) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.setExtra('responseBody', response.body);
-      scope.setExtra('responseStatus', response.status);
-      scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+      scope.captureMessage('geo.api.gouv.fr API is down');
     });
+
     return [];
   }
-
-  return response.json();
 };
 
 export const getFranceCitiesByName = async (
   cityName: string,
   includeDistricts: boolean,
 ): Promise<City[]> => {
-  const baseUrl = 'https://geo.api.gouv.fr/communes';
+  try {
+    const baseUrl = 'https://geo.api.gouv.fr/communes';
 
-  const params = new URLSearchParams();
-  params.append('limit', '30');
-  params.append('boost', 'population');
-  params.append('nom', cityName);
-  params.append(
-    'type',
-    includeDistricts ? 'arrondissement-municipal,commune-actuelle' : 'commune-actuelle',
-  );
+    const params = new URLSearchParams();
+    params.append('limit', '30');
+    params.append('boost', 'population');
+    params.append('nom', cityName);
+    params.append(
+      'type',
+      includeDistricts ? 'arrondissement-municipal,commune-actuelle' : 'commune-actuelle',
+    );
 
-  const url = new URL(baseUrl);
-  url.search = params.toString();
-  const response = await fetch(url);
+    const url = new URL(baseUrl);
+    url.search = params.toString();
+    const response = await fetch(url);
 
-  if (!response.ok) {
+    if (!response.ok) {
+      Sentry.withScope((scope) => {
+        scope.setLevel('warning');
+        scope.setExtra('responseBody', response.body);
+        scope.setExtra('responseStatus', response.status);
+        scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+      });
+
+      return [];
+    }
+
+    return response.json();
+  } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.setExtra('responseBody', response.body);
-      scope.setExtra('responseStatus', response.status);
-      scope.captureMessage('Unexpected response from geo.api.gouv.fr for cities');
+      scope.captureMessage('geo.api.gouv.fr API is down');
     });
+
     return [];
   }
-
-  return response.json();
 };
 
 const getClubsActivitiesBatch = async (
@@ -184,38 +229,53 @@ const getClubsActivitiesBatch = async (
     console.error(
       'OpenDatasoft api key is missing. Please provide it in OPENDATASOFT_API_KEY environment variable',
     );
+
     throw new Error('api key not provided');
   }
 
-  const baseUrl =
-    'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records';
-  const params = new URLSearchParams();
-  params.append('limit', limit.toString());
-  params.append('offset', offset.toString());
-  params.append('group_by', 'activites');
-  params.append('order_by', 'activites ASC');
+  try {
+    const baseUrl =
+      'https://sports-sgsocialgouv.opendatasoft.com/api/explore/v2.1/catalog/datasets/passsports-asso_volontaires/records';
+    const params = new URLSearchParams();
+    params.append('limit', limit.toString());
+    params.append('offset', offset.toString());
+    params.append('group_by', 'activites');
+    params.append('order_by', 'activites ASC');
 
-  const url = new URL(baseUrl);
-  url.search = params.toString();
+    const url = new URL(baseUrl);
+    url.search = params.toString();
 
-  const headers = new Headers();
-  headers.append('Authorization', `Apikey ${API_KEY}`);
+    const headers = new Headers();
+    headers.append('Authorization', `Apikey ${API_KEY}`);
 
-  const response = await fetch(url, { next: { revalidate: 300 }, headers });
+    const response = await fetch(url, { next: { revalidate: 300 }, headers });
 
-  if (!response.ok) {
+    if (!response.ok) {
+      Sentry.withScope((scope) => {
+        scope.setLevel('warning');
+        scope.setExtra('responseBody', response.body);
+        scope.setExtra('responseStatus', response.status);
+        scope.captureMessage(
+          'Unexpected response from sports-sgsocialgouv.opendatasoft.com for activities',
+        );
+      });
+
+      return {
+        results: [],
+      };
+    }
+
+    return response.json();
+  } catch (err) {
     Sentry.withScope((scope) => {
       scope.setLevel('warning');
-      scope.setExtra('responseBody', response.body);
-      scope.setExtra('responseStatus', response.status);
-      scope.captureMessage(
-        'Unexpected response from sports-sgsocialgouv.opendatasoft.com for activities',
-      );
+      scope.captureMessage('Open datasoft API is down');
     });
-    throw new Error('Error fetching activities');
-  }
 
-  return response.json();
+    return {
+      results: [],
+    };
+  }
 };
 
 export const getAllClubActivities = async (): Promise<ActivityResponse> => {
