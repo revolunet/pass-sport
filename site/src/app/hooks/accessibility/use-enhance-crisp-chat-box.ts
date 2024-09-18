@@ -31,6 +31,40 @@ export function useEnhanceCrispChatBox() {
     }
   };
 
+  const getTextNodesRecursively = (parentNode: Element): Array<Element> => {
+    const result: Array<Element> = [];
+
+    function traverse(node: Node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        // Check if the text node is not empty
+        if (node.nodeValue && node.nodeValue.trim() !== '' && node.parentNode) {
+          result.push(node.parentNode as Element);
+        }
+      } else if (node.childNodes.length > 0) {
+        for (let child of node.childNodes) {
+          traverse(child); // Recursively traverse child nodes
+        }
+      }
+    }
+
+    traverse(parentNode);
+    return result;
+  };
+
+  const replaceConversationTextNodeWithParagraph = (crisp: Element) => {
+    const parentElements: NodeListOf<Element> = crisp.querySelectorAll(
+      'div[data-from="operator"][data-type="picker"][data-first-of-group="false"][data-last-of-group="true"][data-last-of-thread="true"]',
+    );
+    if (!parentElements || parentElements.length == 0) {
+      return;
+    }
+    const textNodes = Array.from(parentElements)
+      .map((element: Element) => getTextNodesRecursively(element))
+      .reduce((acc: Element[], nodes: Element[]) => acc.concat(nodes), []);
+
+    textNodes.forEach((e) => replaceSpanByPElement(document, e));
+  };
+
   const replaceSpansWithParagraph = (body: Element) => {
     const spans = body.querySelectorAll('span');
 
@@ -43,12 +77,10 @@ export function useEnhanceCrispChatBox() {
     );
 
     const spanElementsToReplace = [
-      'Comment pouvons-nous vous aider ?',
       'Des questions ? Discutons !',
       "Temps d'attente",
       'Réseau hors-ligne. Reconnexion',
       'Aucun message ne peut être échangé pour le moment',
-      'Articles fréquemment lus',
     ];
     spanElementsToReplace.forEach((spanText) =>
       leafSpans.forEach((span) => {
@@ -98,14 +130,15 @@ export function useEnhanceCrispChatBox() {
       if (!crispElement) {
         return;
       }
+      replaceConversationTextNodeWithParagraph(crispElement);
 
-      replaceSpansWithParagraph(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
-      addMissingAriaLabel(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
-      showInvisbleCloseButton(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
-      addMissingAriaHiddenOnIcons(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80c08fabd9ab4743f14c&pm=s
-      altTextToConnectedIcon(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=8c7385434e564946ac9e76bf86ef3f68&pm=s
-      preciseAriaLabelOnSend(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
-      removeUnecessaryAria(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=d1ce0c6e2f4241b89ad2811f90f4c463&pm=s
+      // replaceSpansWithParagraph(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
+      // addMissingAriaLabel(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
+      // showInvisbleCloseButton(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
+      // addMissingAriaHiddenOnIcons(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80c08fabd9ab4743f14c&pm=s
+      // altTextToConnectedIcon(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=8c7385434e564946ac9e76bf86ef3f68&pm=s
+      // preciseAriaLabelOnSend(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
+      // removeUnecessaryAria(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=d1ce0c6e2f4241b89ad2811f90f4c463&pm=s
     });
 
     if (document.body) {
