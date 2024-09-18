@@ -1,43 +1,40 @@
 import { useState } from 'react';
-import Question from '../Question/Question';
 import AgeStep2 from '../ageStep2/AgeStep2';
 import { AGE_RANGE } from '../types/types';
 import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
 
 const AgeStep = () => {
   const [ageRange, setAgeRange] = useState<AGE_RANGE | null>(null);
 
   return (
     <div>
-      <Question question="Quel âge avez-vous ?">
-        <RadioButtons
-          name="ageStep"
-          legend="Choississez une option:"
-          options={[
-            {
-              label: 'Entre 6 et 19 ans',
-              nativeInputProps: {
-                onChange: () => setAgeRange(AGE_RANGE.BETWEEN_6_19),
-              },
+      <CustomRadioButtons
+        name="ageStep"
+        legendLine1="Quel âge avez-vous ?"
+        options={[
+          {
+            label: 'Entre 6 et 19 ans',
+            nativeInputProps: {
+              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_6_19),
             },
-            {
-              label: 'Entre 19 et 30 ans',
-              nativeInputProps: {
-                onChange: () => setAgeRange(AGE_RANGE.BETWEEN_19_30),
-              },
+          },
+          {
+            label: 'Entre 19 et 30 ans',
+            nativeInputProps: {
+              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_19_30),
             },
-            {
-              label: 'Plus de 30 ans',
-              nativeInputProps: {
-                onChange: () => setAgeRange(AGE_RANGE.GREATER_THAN_30),
-              },
+          },
+          {
+            label: 'Plus de 30 ans',
+            nativeInputProps: {
+              onChange: () => setAgeRange(AGE_RANGE.GREATER_THAN_30),
             },
-          ]}
-        />
-      </Question>
+          },
+        ]}
+      />
 
       {ageRange === AGE_RANGE.GREATER_THAN_30 && (
         <VerdictPanel

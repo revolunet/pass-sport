@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import Question from '../Question/Question';
 import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
 import AllowancesStep from '../allowancesStep/AllowancesStep';
 import { CHILD_AGE } from '../types/types';
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
+import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
 
 const ChildAgeStep = () => {
   const [childAge, setChildAge] = useState<CHILD_AGE | null>(null);
@@ -41,34 +40,30 @@ const ChildAgeStep = () => {
 
   return (
     <>
-      <Question question="Quel âge a votre enfant ?">
-        <div>
-          <RadioButtons
-            name="childAgeStep"
-            legend="Choisissez une option:"
-            options={[
-              {
-                label: 'Moins de 6 ans',
-                nativeInputProps: {
-                  onChange: () => setChildAge(CHILD_AGE.LESS_THAN_SIX),
-                },
-              },
-              {
-                label: 'Entre 6 et 30 ans',
-                nativeInputProps: {
-                  onChange: () => setChildAge(CHILD_AGE.BTW_SIX_AND_THIRTY),
-                },
-              },
-              {
-                label: 'Plus de 30 ans',
-                nativeInputProps: {
-                  onChange: () => setChildAge(CHILD_AGE.MORE_THAN_THIRTY),
-                },
-              },
-            ]}
-          />
-        </div>
-      </Question>
+      <CustomRadioButtons
+        name="childAgeStep"
+        legendLine1="Quel âge a votre enfant ?"
+        options={[
+          {
+            label: 'Moins de 6 ans',
+            nativeInputProps: {
+              onChange: () => setChildAge(CHILD_AGE.LESS_THAN_SIX),
+            },
+          },
+          {
+            label: 'Entre 6 et 30 ans',
+            nativeInputProps: {
+              onChange: () => setChildAge(CHILD_AGE.BTW_SIX_AND_THIRTY),
+            },
+          },
+          {
+            label: 'Plus de 30 ans',
+            nativeInputProps: {
+              onChange: () => setChildAge(CHILD_AGE.MORE_THAN_THIRTY),
+            },
+          },
+        ]}
+      />
 
       {childAge === CHILD_AGE.LESS_THAN_SIX && failureCallOut}
       {childAge === CHILD_AGE.BTW_SIX_AND_THIRTY && <AllowancesStep isForChild />}
