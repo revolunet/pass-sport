@@ -2,14 +2,16 @@ import { useEffect } from 'react';
 
 export function useEnhanceCrispChatBox() {
   const replaceSpanByPElement = (document: Document, element: Element | null) => {
-    if (!element || element.tagName === 'p') {
+    if (!element || element.tagName.toLowerCase() !== 'span') {
       return;
     }
 
     const pElement = document.createElement('p');
     pElement.className = element.className;
     pElement.innerHTML = element.innerHTML;
-    pElement.style.setProperty('margin', '0', 'important');
+    if (!element.textContent?.startsWith('pass Sport')) {
+      pElement.style.setProperty('margin', '0', 'important');
+    }
     element.replaceWith(pElement);
   };
 
@@ -37,7 +39,17 @@ export function useEnhanceCrispChatBox() {
     function traverse(node: Node) {
       if (node.nodeType === Node.TEXT_NODE) {
         // Check if the text node is not empty
-        if (node.nodeValue && node.nodeValue.trim() !== '' && node.parentNode) {
+        if (
+          node.nodeValue &&
+          node.nodeValue.trim() !== '' &&
+          node.parentNode &&
+          // @ts-ignore
+          node.parentNode.tagName.toLowerCase() === 'span' &&
+          node.textContent !== 'Bot' &&
+          node.textContent !== '(' &&
+          node.textContent !== 'Édité' &&
+          node.textContent !== ')'
+        ) {
           result.push(node.parentNode as Element);
         }
       } else if (node.childNodes.length > 0) {
@@ -53,7 +65,7 @@ export function useEnhanceCrispChatBox() {
 
   const replaceConversationTextNodeWithParagraph = (crisp: Element) => {
     const parentElements: NodeListOf<Element> = crisp.querySelectorAll(
-      'div[data-from="operator"][data-type="picker"][data-first-of-group="false"][data-last-of-group="true"][data-last-of-thread="true"]',
+      'div[tabindex="-1"][aria-live="polite"][aria-relevant="additions"]',
     );
     if (!parentElements || parentElements.length == 0) {
       return;
@@ -130,15 +142,14 @@ export function useEnhanceCrispChatBox() {
       if (!crispElement) {
         return;
       }
-      replaceConversationTextNodeWithParagraph(crispElement);
-
-      // replaceSpansWithParagraph(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
-      // addMissingAriaLabel(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
-      // showInvisbleCloseButton(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
-      // addMissingAriaHiddenOnIcons(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80c08fabd9ab4743f14c&pm=s
-      // altTextToConnectedIcon(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=8c7385434e564946ac9e76bf86ef3f68&pm=s
-      // preciseAriaLabelOnSend(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
-      // removeUnecessaryAria(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=d1ce0c6e2f4241b89ad2811f90f4c463&pm=s
+      replaceConversationTextNodeWithParagraph(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
+      replaceSpansWithParagraph(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
+      addMissingAriaLabel(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
+      showInvisbleCloseButton(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80489d28e2f132d6390d&pm=s
+      addMissingAriaHiddenOnIcons(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a80c08fabd9ab4743f14c&pm=s
+      altTextToConnectedIcon(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=8c7385434e564946ac9e76bf86ef3f68&pm=s
+      preciseAriaLabelOnSend(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
+      removeUnecessaryAria(crispElement); // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=d1ce0c6e2f4241b89ad2811f90f4c463&pm=s
     });
 
     if (document.body) {
