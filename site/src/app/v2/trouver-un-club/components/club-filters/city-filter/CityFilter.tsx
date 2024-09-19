@@ -4,10 +4,10 @@ import {
   getFranceCitiesByName,
   getFranceCitiesByPostalCodeAndCityName,
 } from '@/app/v2/trouver-un-club/agent';
-import { SingleValue } from 'react-select';
+import { components, Props as ReactSelectProps } from 'react-select';
 import { CityOption } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
 import { City } from '../../../../../../../types/City';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { useSearchParams } from 'next/navigation';
 import styles from '../styles.module.scss';
@@ -33,16 +33,30 @@ const allCitiesOption: CityOption = {
   value: null,
 };
 
+const CustomInput: typeof components.Input = (props) => (
+  // isHidden property set to false is important, it is to display the input value (it is initially hidden with opacity: 0)
+  <components.Input {...props} isHidden={false} />
+);
+
 const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
   const searchParams = useSearchParams();
+  const [inputValue, setInputValue] = useState('');
 
   const city = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city);
   const postalCode = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode);
 
   const [value, setValue] = useState<CityOption>(allCitiesOption);
 
-  const cityChangeHandler = (newValue: SingleValue<CityOption>) => {
+  const onInputChange: ReactSelectProps['onInputChange'] = (inputValue, { action }) => {
+    if (action === 'input-change') {
+      setInputValue(inputValue);
+    }
+  };
+
+  const cityChangeHandler: ReactSelectProps<CityOption, false>['onChange'] = (newValue) => {
     if (!newValue) {
+      setInputValue('');
+      onCityChanged({});
       /* would happen if field was cleared, but this feature is disabled, so it nerver happens */
       return;
     } else {
@@ -51,6 +65,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
       if (cityOrPostalCode === null) {
         onCityChanged({});
         setValue(allCitiesOption);
+        setInputValue('');
 
         return;
       }
@@ -60,6 +75,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
       }
 
       setValue({ value: newValue.value, label: newValue.label });
+      setInputValue(newValue.label);
     }
   };
 
@@ -78,10 +94,12 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
 
         if (matchingCity !== undefined) {
           setValue(matchingCity);
+          setInputValue(matchingCity.label);
         }
       });
     } else {
       setValue(allCitiesOption);
+      setInputValue('');
     }
   }, [city, postalCode]);
 
@@ -91,7 +109,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
         Ville
       </label>
       <div className={cn({ [`${localStyles['disabled-cursor']}`]: isDisabled })}>
-        <AsyncSelect
+        <AsyncSelect<CityOption, false>
           isDisabled={isDisabled}
           instanceId="city-select-id"
           key="city-select-with-search-param"
@@ -101,8 +119,10 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
           defaultOptions={[allCitiesOption]}
           loadOptions={fetchCityOptions}
           onChange={cityChangeHandler}
+          onInputChange={onInputChange}
           styles={selectStyles}
           value={value}
+          inputValue={inputValue}
           ariaLiveMessages={{ guidance, onChange, onFilter }}
           aria-labelledby="city-label"
           screenReaderStatus={customScreenReaderStatus}
@@ -112,6 +132,11 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
             // react-select checks for reference equality, so to fix that we are giving a unique string for each option
             return `${option.value?.cityName}|${option.value?.postalCode}`;
           }}
+          components={{
+            Input: CustomInput,
+          }}
+          isClearable
+          placeholder="Toutes"
         />
       </div>
     </div>
