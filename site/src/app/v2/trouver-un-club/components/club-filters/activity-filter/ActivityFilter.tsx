@@ -6,7 +6,7 @@ import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { ActivityResponse } from '../../../../../../../types/Club';
 import { useSearchParams } from 'next/navigation';
 import { unescapeSingleQuotes } from '@/utils/string';
-import CustomSelect, { CustomInput, CustomPlaceholder } from '../custom-select/CustomSelect';
+import CustomSelect, { createCustomInput, CustomPlaceholder } from '../custom-select/CustomSelect';
 import React, { useState } from 'react';
 
 interface Props {
@@ -18,6 +18,8 @@ const defaultOption: Option = {
   label: 'Toutes',
   value: '',
 };
+
+const CustomInput = createCustomInput('Toutes');
 
 const ActivityFilter = ({ onActivityChanged, activities }: Props) => {
   const [value, setValue] = useState<Option>(defaultOption);

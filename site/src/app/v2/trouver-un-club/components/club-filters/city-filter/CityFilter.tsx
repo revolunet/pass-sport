@@ -14,7 +14,7 @@ import styles from '../styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { unescapeSingleQuotes } from '@/utils/string';
 import {
-  CustomInput,
+  createCustomInput,
   CustomPlaceholder,
   customScreenReaderStatus,
   guidance,
@@ -30,6 +30,8 @@ interface Props {
   isDisabled: boolean;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
 }
+
+const CustomInput = createCustomInput('Toutes');
 
 const allCitiesOption: CityOption = {
   label: 'Toutes',

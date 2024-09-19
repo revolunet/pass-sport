@@ -121,10 +121,14 @@ export const onFocus = <Option, Group extends GroupBase<Option>>(
 export const customScreenReaderStatus = ({ count }: { count: number }) =>
   `${count} résultat${count !== 1 ? 's' : ''} disponible${count !== 1 ? 's' : ''}`;
 
-// Override the Input component to fix the cursor issue in order to select the input's value
-export const CustomInput: typeof components.Input = (props) => {
-  // isHidden property set to false is important, it is to display the input value (it is initially hidden with opacity: 0)
-  return <components.Input {...props} isHidden={false} placeholder="Toutes" />;
+// Create Input component to override & fix the cursor issue in order to select the input's value
+export const createCustomInput = (placeholder: string) => {
+  const CustomInput: typeof components.Input = (props) => {
+    // isHidden property set to false is important, it is to display the input value (it is initially hidden with opacity: 0)
+    return <components.Input {...props} isHidden={false} placeholder={placeholder} />;
+  };
+
+  return CustomInput;
 };
 
 // Override the built-in Placeholder, it was used as a placeholder in a div instead of inside the input[placeholder]
