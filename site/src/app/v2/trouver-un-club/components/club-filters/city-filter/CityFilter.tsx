@@ -18,6 +18,7 @@ import {
   guidance,
   onChange,
   onFilter,
+  onFocus,
   selectStyles,
 } from '../custom-select/CustomSelect';
 import localStyles from './styles.module.scss';
@@ -123,7 +124,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
           styles={selectStyles}
           value={value}
           inputValue={inputValue}
-          ariaLiveMessages={{ guidance, onChange, onFilter }}
+          ariaLiveMessages={{ guidance, onChange, onFilter, onFocus }}
           aria-labelledby="city-label"
           screenReaderStatus={customScreenReaderStatus}
           getOptionValue={(option) => {
