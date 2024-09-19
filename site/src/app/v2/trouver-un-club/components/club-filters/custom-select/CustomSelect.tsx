@@ -32,6 +32,7 @@ export const selectStyles = {
     zIndex: 999,
   }),
   input: () => {
+    // We don't need the base style otherwise it messes up the placeholder visuals
     return {
       maxWidth: '140px',
       width: '140px',
@@ -86,6 +87,7 @@ export const onFilter = (props: AriaOnFilterProps) => {
   return `${resultsMessage}${inputValue ? ' pour le terme recherché ' + inputValue : ''}.`;
 };
 
+// Needed to override text translation "of" to "sur"
 export const onFocus = <Option, Group extends GroupBase<Option>>(
   props: AriaOnFocusProps<Option, Group>,
 ) => {
@@ -119,11 +121,13 @@ export const onFocus = <Option, Group extends GroupBase<Option>>(
 export const customScreenReaderStatus = ({ count }: { count: number }) =>
   `${count} résultat${count !== 1 ? 's' : ''} disponible${count !== 1 ? 's' : ''}`;
 
+// Override the Input component to fix the cursor issue in order to select the input's value
 export const CustomInput: typeof components.Input = (props) => {
   // isHidden property set to false is important, it is to display the input value (it is initially hidden with opacity: 0)
   return <components.Input {...props} isHidden={false} placeholder="Toutes" />;
 };
 
+// Override the built-in Placeholder, it was used as a placeholder in a div instead of inside the input[placeholder]
 export const CustomPlaceholder: typeof components.Placeholder = (props) => {
   return <></>;
 };
