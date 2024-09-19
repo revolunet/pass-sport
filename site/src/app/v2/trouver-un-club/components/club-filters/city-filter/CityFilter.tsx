@@ -4,7 +4,7 @@ import {
   getFranceCitiesByName,
   getFranceCitiesByPostalCodeAndCityName,
 } from '@/app/v2/trouver-un-club/agent';
-import { components, Props as ReactSelectProps } from 'react-select';
+import { Props as ReactSelectProps } from 'react-select';
 import { CityOption } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
 import { City } from '../../../../../../../types/City';
 import React, { useEffect, useState } from 'react';
@@ -14,6 +14,8 @@ import styles from '../styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { unescapeSingleQuotes } from '@/utils/string';
 import {
+  CustomInput,
+  CustomPlaceholder,
   customScreenReaderStatus,
   guidance,
   onChange,
@@ -33,11 +35,6 @@ const allCitiesOption: CityOption = {
   label: 'Toutes',
   value: null,
 };
-
-const CustomInput: typeof components.Input = (props) => (
-  // isHidden property set to false is important, it is to display the input value (it is initially hidden with opacity: 0)
-  <components.Input {...props} isHidden={false} />
-);
 
 const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
   const searchParams = useSearchParams();
@@ -135,9 +132,11 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
           }}
           components={{
             Input: CustomInput,
+            Placeholder: CustomPlaceholder,
           }}
           isClearable
-          placeholder="Toutes"
+          // To control the placeholder (we do not want the placeholder to appear in a div, but in the input instead
+          controlShouldRenderValue={false}
         />
       </div>
     </div>

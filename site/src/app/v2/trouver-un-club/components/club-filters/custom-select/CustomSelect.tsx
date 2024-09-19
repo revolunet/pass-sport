@@ -3,10 +3,12 @@ import Select, {
   AriaOnChangeProps,
   AriaOnFilterProps,
   AriaOnFocusProps,
+  components,
   GroupBase,
   OptionsOrGroups,
   Props as ReactSelectProps,
 } from 'react-select';
+import React from 'react';
 
 export const selectStyles = {
   control: (baseStyles: Record<string, unknown>) => ({
@@ -29,10 +31,12 @@ export const selectStyles = {
     ...baseStyles,
     zIndex: 999,
   }),
-  placeholder: (baseStyles: Record<string, unknown>) => ({
-    ...baseStyles,
-    color: 'var(--text-default-grey)',
-  }),
+  input: () => {
+    return {
+      maxWidth: '140px',
+      width: '140px',
+    };
+  },
 };
 
 export const guidance = (props: AriaGuidanceProps) => {
@@ -85,7 +89,6 @@ export const onFilter = (props: AriaOnFilterProps) => {
 export const onFocus = <Option, Group extends GroupBase<Option>>(
   props: AriaOnFocusProps<Option, Group>,
 ) => {
-  console.log({ props });
   const {
     context,
     focused,
@@ -115,6 +118,15 @@ export const onFocus = <Option, Group extends GroupBase<Option>>(
 
 export const customScreenReaderStatus = ({ count }: { count: number }) =>
   `${count} résultat${count !== 1 ? 's' : ''} disponible${count !== 1 ? 's' : ''}`;
+
+export const CustomInput: typeof components.Input = (props) => {
+  // isHidden property set to false is important, it is to display the input value (it is initially hidden with opacity: 0)
+  return <components.Input {...props} isHidden={false} placeholder="Toutes" />;
+};
+
+export const CustomPlaceholder: typeof components.Placeholder = (props) => {
+  return <></>;
+};
 
 function CustomSelect<
   Option,
