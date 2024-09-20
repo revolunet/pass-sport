@@ -43,46 +43,45 @@ function ClubDetails({ clubName, isProVersion = false }: Props) {
 
           <div className={styles['contact-wrapper']}>
             <section className={styles.contact}>
-              <ul className={rootStyles['list--lean']}>
-                <li className="fr-text--xs fr-m-0">
-                  <span
-                    className={`fr-pr-1w fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
-                    aria-hidden="true"
-                  />
-
+              <address className={cn(rootStyles['list--lean'], 'fr-text--xs')}>
+                {club.adresse || club.commune ? (
                   <span>
-                    {club.adresse || club.commune ? (
-                      <>
-                        {club.adresse && club.adresse}
-                        {club.adresse && club.commune && ', '}
-                        {club.commune && club.commune}
-                      </>
-                    ) : (
-                      <>Adresse non disponible</>
-                    )}
+                    <span
+                      className={`fr-pr-1w fr-icon-map-pin-2-line ${styles['icon-color']} fr-icon--sm`}
+                      aria-hidden="true"
+                    />
+                    <span>
+                      {club.adresse && club.adresse}
+                      {club.adresse && club.commune && ', '}
+                      {club.commune && club.commune}
+                    </span>
                   </span>
-                </li>
+                ) : (
+                  <span>Adresse non disponible</span>
+                )}
 
                 {club.telephone && (
-                  <li className="fr-text--xs fr-m-0">
+                  <span>
+                    <br />
                     <span
                       className={`fr-pr-1w fr-icon-phone-line ${styles['icon-color']} fr-icon--sm`}
                       aria-hidden="true"
-                    ></span>
-                    {formatPhoneNumber(club.telephone)}
-                  </li>
+                    />
+                    <span>{formatPhoneNumber(club.telephone)}</span>
+                  </span>
                 )}
 
                 {club.courriel && (
-                  <li className="fr-text--xs fr-m-0">
+                  <span>
+                    <br />
                     <span
                       className={`fr-pr-1w fr-icon-mail-line ${styles['icon-color']} fr-icon--sm`}
                       aria-hidden="true"
-                    ></span>
-                    {club.courriel}
-                  </li>
+                    />
+                    <span>{club.courriel}</span>
+                  </span>
                 )}
-              </ul>
+              </address>
             </section>
 
             {mapUrl && (

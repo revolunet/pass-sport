@@ -6,7 +6,8 @@ import styles from './styles.module.scss';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
 import { useCopyToClipboard } from '@uidotdev/usehooks';
-import { useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { Alert } from '@codegouvfr/react-dsfr/Alert';
 
 interface Props {
   data: {
@@ -21,6 +22,8 @@ interface Props {
 
 const QrCodeCard = ({ data, qrCodeValue }: Props) => {
   const { firstname, lastname, gender, code, birthDate } = data;
+  const notifRef = useRef<HTMLDivElement | null>(null);
+  const [isNotificationDisplayed, setIsNotificationDisplayed] = useState(false);
 
   const formatBirthDate = (rawDate: string | undefined, gender: string | undefined) => {
     if (!rawDate) {
@@ -45,6 +48,9 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
 
   const onCopyCallback = useCallback(() => {
     push(['trackEvent', 'Copy Code', 'Clicked', 'QR Recap page']);
+
+    setIsNotificationDisplayed(true);
+    notifRef.current?.focus();
 
     return copyToClipboard(data.code);
   }, [copyToClipboard, data.code]);
@@ -79,6 +85,18 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
           >
             Copier le code
           </Button>
+
+          <Alert
+            className="fr-mt-2w"
+            ref={notifRef}
+            severity="success"
+            title="Code copié"
+            description=""
+            closable
+            small
+            isClosed={!isNotificationDisplayed}
+            onClose={() => setIsNotificationDisplayed(false)}
+          />
         </div>
       </div>
 
