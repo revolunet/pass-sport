@@ -138,6 +138,17 @@ export function useEnhanceCrispChatBox() {
     }
   };
 
+  const addAriaLabelOnEmailInput = (crisp: Element) => {
+    const emailInput = crisp.querySelector('input[name="message_field_identity-email"]');
+    if (!emailInput) {
+      return;
+    }
+    const validateButton = emailInput?.parentNode?.childNodes[1];
+    if (validateButton && (validateButton as Element).tagName.toLowerCase() === 'a') {
+      validateButton.setAttribute('aria-label', 'Valider votre adresse email');
+    }
+  };
+
   const mutators = [
     replaceConversationTextNodeWithParagraph, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
     replaceSpansWithParagraph, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
@@ -147,6 +158,7 @@ export function useEnhanceCrispChatBox() {
     altTextToConnectedIcon, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=8c7385434e564946ac9e76bf86ef3f68&pm=s
     preciseAriaLabelOnSend, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
     removeUnecessaryAria, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=d1ce0c6e2f4241b89ad2811f90f4c463&pm=s
+    addAriaLabelOnEmailInput, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=7b2db07ce2ad4360b664be87b444064f&pm=s
   ];
 
   useEffect(() => {
