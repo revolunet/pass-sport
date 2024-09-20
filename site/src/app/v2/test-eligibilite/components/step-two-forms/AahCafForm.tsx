@@ -50,12 +50,12 @@ const AahCafForm = ({
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (!/^\d{6,7}$/.test(value)) {
+            if (!/^\d{7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
                 errorMsg: (
                   <>
-                    Le numéro&nbsp; <CAF /> &nbsp;doit être composé de 6, 7 chiffres
+                    Le numéro&nbsp; <CAF /> &nbsp;doit être composé de 7 chiffres
                   </>
                 ),
               };
@@ -152,7 +152,7 @@ const AahCafForm = ({
                 Numéro de l’allocataire <CAF />*
               </>
             ),
-            hintText: 'Format attendu : 6, 7 chiffres',
+            hintText: 'Format attendu : 7 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
               placeholder: 'ex: 0000000',
