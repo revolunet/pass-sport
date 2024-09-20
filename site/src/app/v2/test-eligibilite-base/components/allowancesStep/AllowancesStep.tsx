@@ -7,6 +7,7 @@ import cn from 'classnames';
 import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
 import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
 import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
+import { CROUS } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 interface Props {
   isForChild: boolean;
@@ -60,19 +61,19 @@ const AllowancesStep = ({ isForChild }: Props) => {
       <ul className="fr-ml-2w">
         <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
           bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de ressources, aide
-          annuelle du CROUS ou bourse régionale pour les formations sanitaires et sociales pour
+          annuelle du <CROUS /> ou bourse régionale pour les formations sanitaires et sociales pour
           l&apos;année universitaire 2023-2024 ou 2024-2025
         </li>
         <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-          allocation aux adultes handicapées (AAH)
+          allocation aux adultes handicapées (<abbr>AAH</abbr>)
         </li>
 
         <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-          allocation de rentrée scolaire (ARS)
+          allocation de rentrée scolaire (<abbr>ARS</abbr>)
         </li>
 
         <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-          allocation d&apos;éducation de l&apos;enfant handicapé (AEEH)
+          allocation d&apos;éducation de l&apos;enfant handicapé (<abbr>AEEH</abbr>)
         </li>
       </ul>
       <CustomRadioButtons

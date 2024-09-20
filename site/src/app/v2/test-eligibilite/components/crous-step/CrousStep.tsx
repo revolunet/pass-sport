@@ -9,6 +9,7 @@ import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegative
 import { useRouter } from 'next/navigation';
 import CustomRadioButtons from '@/app/v2/test-eligibilite-base/components/customRadioButtons/CustomRadioButtons';
 import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
+import { CROUS } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 const CrousStep = () => {
   const [ageRange, setAgeRange] = useState<CROUS_AGE_RANGE | null>(null);
@@ -58,8 +59,8 @@ const CrousStep = () => {
               rootStyles['text--medium'],
             )}
           >
-            Vous le recevrez à l&apos;adresse mail que vous avez communiqué à votre CROUS à partir
-            de début septembre, une fois que votre dossier de demande a été accepté.
+            Vous le recevrez à l&apos;adresse mail que vous avez communiqué à votre <CROUS /> à
+            partir de début septembre, une fois que votre dossier de demande a été accepté.
           </p>
           <p
             className={cn(

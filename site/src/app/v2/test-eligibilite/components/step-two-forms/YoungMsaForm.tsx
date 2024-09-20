@@ -11,6 +11,7 @@ import FormButton from './FormButton';
 import CommonMsaInputs from './common-msa-inputs/CommonMsaInputs';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
+import { MSA } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 const initialInputsState: YoungMsaInputsState = {
   recipientLastname: { state: 'default' },
@@ -173,7 +174,12 @@ const YoungMsaForm = ({
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
           disabled={isFormDisabled}
-          hintText="Format attendu : Nom de l'allocataire tel qu’il est écrit sur les papiers de la MSA"
+          hintText={
+            <>
+              Format attendu : Nom de l&apos;allocataire tel qu&apos;il est écrit sur les papiers de
+              la <MSA />
+            </>
+          }
         />
 
         <Input
@@ -186,7 +192,12 @@ const YoungMsaForm = ({
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}
           disabled={isFormDisabled}
-          hintText="Format attendu : Prénom de l'allocataire tel qu’il est écrit sur les papiers de la MSA"
+          hintText={
+            <>
+              Format attendu : Prénom de l&apos;allocataire tel qu&apos;il est écrit sur les papiers
+              de la <MSA />
+            </>
+          }
         />
 
         <Input

@@ -8,6 +8,7 @@ import cn from 'classnames';
 import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
 import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
 import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
+import { CAF, CROUS } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 interface AgeStep2Props {
   ageRange: AGE_RANGE;
@@ -39,11 +40,15 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
         <ul className={`fr-text--lg fr-ml-2w ${rootStyles['text--medium']}`}>
           <li>
             bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de ressources,
-            aide annuelle du CROUS ou bourse régionale pour les formations sanitaires et sociales
-            pour l&apos;année universitaire 2023-2024 ou 2024-2025
+            aide annuelle du <CROUS /> ou bourse régionale pour les formations sanitaires et
+            sociales pour l&apos;année universitaire 2023-2024 ou 2024-2025
           </li>
-          <li>allocation aux adultes handicapées (AAH) </li>
-          <li>allocation d&apos;éducation de l&apos;enfant handicapé (AEEH)</li>
+          <li>
+            allocation aux adultes handicapées (<abbr>AAH</abbr>)
+          </li>
+          <li>
+            allocation d&apos;éducation de l&apos;enfant handicapé (<abbr>AEEH</abbr>)
+          </li>
         </ul>
       </div>
     ) : (
@@ -51,12 +56,17 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
     );
 
   const questionDescription =
-    ageRange === AGE_RANGE.BETWEEN_6_19
-      ? `L'allocation de rentrée scolaire est une aide versée par votre caisse d'allocation
-    familiale (CAF) ou votre Mutualité sociale agricole (MSA) pour vous aider à couvrir les
-    frais de rentrée scolaire. Elle est générale, versée dans le mois d'août. Si vous ne le
-    savez pas, rapprochez-vous de votre CAF ou de votre Mutualité sociale agricole.`
-      : '';
+    ageRange === AGE_RANGE.BETWEEN_6_19 ? (
+      <>
+        L&apos;allocation de rentrée scolaire est une aide versée par votre caisse
+        d&apos;allocations familiales (<abbr>CAF</abbr>) ou votre Mutualité sociale agricole (
+        <abbr>MSA</abbr>) pour vous aider à couvrir les frais de rentrée scolaire. Elle est
+        généralement versée dans le mois d&apos;août. Si vous ne le savez pas, rapprochez-vous de
+        votre <CAF /> ou de votre Mutualité sociale agricole.
+      </>
+    ) : (
+      ''
+    );
 
   return (
     <div>

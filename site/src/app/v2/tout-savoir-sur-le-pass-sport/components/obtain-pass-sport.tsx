@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import Button from '@codegouvfr/react-dsfr/Button';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import { CROUS } from '../../accueil/components/acronymes/Acronymes';
 
 export default function ObtainPassPort() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function ObtainPassPort() {
         <li>
           étudiants, âgés de 28 ans révolus au plus, et bénéficient au plus tard le 15 octobre 2024,
           d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
-          ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour les
+          ressources, d&apos;une aide annuelle du <CROUS /> ou d&apos;une bourse régionale pour les
           formations sanitaires et sociales pour l&apos;année universitaire 2024 - 2025.
         </li>
       </ul>
