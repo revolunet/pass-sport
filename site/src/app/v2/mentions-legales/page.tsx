@@ -48,7 +48,7 @@ export default function MentionsLegales() {
               </Link>
             </p>
             <p>
-              Contact: <Link href="mailto:passsport@sports.gouv.fr">passsport@sports.gouv.fr</Link>
+              Contact : <Link href="mailto:passsport@sports.gouv.fr">passsport@sports.gouv.fr</Link>
             </p>
           </section>
 
