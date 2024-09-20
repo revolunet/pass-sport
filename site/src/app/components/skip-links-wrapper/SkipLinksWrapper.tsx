@@ -44,6 +44,46 @@ const SkipLinksWrapper = () => {
         }
       : null;
 
+  const handleSkipLinkClick = (e: MouseEvent) => {
+    if (!e.target?.href.includes(`#${SKIP_LINKS_ID.chatbot}`)) {
+      return;
+    }
+
+    if (window.tarteaucitron?.state?.crisp) {
+      // Crisp cookies already accepted
+      focusOnCrispMessageTextBox();
+    } else {
+      // Crisp cookies not accepted
+      focusOnTacAcceptCrispCookies();
+    }
+
+    function focusOnTacAcceptCrispCookies() {
+      // retrieve fake image
+      const el: HTMLElement | null = document?.querySelector(`#${SKIP_LINKS_ID.chatbot}`);
+
+      // click on crisp fake image to open cookie managment
+      el?.click();
+    }
+
+    function focusOnCrispMessageTextBox() {
+      // open chatbox
+      const crispChatBox: HTMLElement | null = document.querySelector(
+        'a[aria-label="Ouvrir le chat"]',
+      );
+      if (crispChatBox) {
+        crispChatBox.click();
+      }
+
+      // putting the focus at the end of the event loop
+      setTimeout(() => {
+        const textarea: HTMLElement | null = document.querySelector(
+          '#crisp-chatbox textarea[name="message"]',
+        );
+        textarea?.focus();
+      }, 0);
+    }
+  };
+
   return (
     <SkipLinks
       links={[
@@ -61,22 +101,7 @@ const SkipLinksWrapper = () => {
         },
       ]}
       // @ts-ignore
-      onClick={(e) => {
-        if (e.target.href.includes(`#${SKIP_LINKS_ID.chatbot}`)) {
-          const el: HTMLElement | null = document?.querySelector(`#${SKIP_LINKS_ID.chatbot}`);
-
-          el?.click();
-
-          // Putting the focus at the end of the event loop
-          setTimeout(() => {
-            const textarea: HTMLElement | null = document.querySelector(
-              '#crisp-chatbox textarea[name="message"]',
-            );
-
-            textarea?.focus();
-          }, 0);
-        }
-      }}
+      onClick={(e: MouseEvent) => handleSkipLinkClick(e)}
     />
   );
 };

@@ -14,6 +14,12 @@ export const Crisp = () => {
       onClick={() => {
         if (window.tarteaucitron && window.tarteaucitron.userInterface) {
           window.tarteaucitron.userInterface.openPanel();
+
+          // putting the focus on crisp accept cookie
+          setTimeout(() => {
+            const acceptCrispButton: HTMLElement | null = document.querySelector('#crispAllowed');
+            acceptCrispButton?.focus();
+          }, 0);
         }
       }}
     >
