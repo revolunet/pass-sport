@@ -107,7 +107,10 @@ export function useEnhanceCrispChatBox() {
     const iconElement = crisp.querySelector('[style*="https://image.crisp.chat/avatar/website"]');
     // @ts-ignore
     if (iconElement) {
-      iconElement.setAttribute('aria-label', 'Une personne du support est en ligne');
+      iconElement.parentNode?.children[1].setAttribute(
+        'aria-label',
+        'Une personne du support est en ligne',
+      );
     }
   };
 
