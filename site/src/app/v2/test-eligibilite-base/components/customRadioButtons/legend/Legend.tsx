@@ -43,14 +43,12 @@ const Legend: React.FC<Props> = (props) => {
           <p className={wrapperStyle}>
             <Lines {...props} />
           </p>
-          <p className={styles['choose-option']}>Choisissez une option :</p>
         </>
       ) : (
         <>
           <span className={wrapperStyle}>
             <Lines {...props} />
           </span>
-          <span className={styles['choose-option']}>Choisissez une option :</span>
         </>
       )}
     </>
