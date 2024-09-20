@@ -7,6 +7,7 @@ import cn from 'classnames';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
 import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
 import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 interface Props {
   ageRange: AGE_RANGE;
@@ -15,6 +16,9 @@ interface Props {
 const AeehStep = ({ ageRange }: Props) => {
   const [hasAeehAllocation, setHasAeehAllocation] = useState<boolean | null>(null);
   const router = useRouter();
+
+  const fieldsetId = 'aeehStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
 
   const displaySuccess = hasAeehAllocation;
   const displayFailure =
@@ -25,6 +29,7 @@ const AeehStep = ({ ageRange }: Props) => {
     <>
       {ageRange !== AGE_RANGE.BETWEEN_19_30 && (
         <CustomRadioButtons
+          id={fieldsetId}
           name="aeehStep"
           legendLine1="Vos parent bénéficient-ils de l'allocation d'éducation de l'enfant
                 handicapé (AEEH) ?"

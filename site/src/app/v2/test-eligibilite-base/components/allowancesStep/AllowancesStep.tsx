@@ -6,6 +6,7 @@ import EligibilityCriteriaList from '@/app/components/eligibility-criteria-list/
 import cn from 'classnames';
 import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
 import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 interface Props {
   isForChild: boolean;
@@ -14,6 +15,9 @@ interface Props {
 const AllowancesStep = ({ isForChild }: Props) => {
   const [hasAllowances, setHasAllowances] = useState<boolean | null>(null);
   const router = useRouter();
+
+  const fieldsetId = 'allowancesStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
 
   const successCallout = (
     <div>
@@ -72,6 +76,7 @@ const AllowancesStep = ({ isForChild }: Props) => {
         </li>
       </ul>
       <CustomRadioButtons
+        id={fieldsetId}
         name="allowanceStep"
         legendLine1="Votre enfant (ou petit enfant) bénéficie-t-il d'une de ces aides ?"
         options={[

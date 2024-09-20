@@ -7,6 +7,7 @@ import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
 import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
 import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 interface AgeStep2Props {
   ageRange: AGE_RANGE;
@@ -15,6 +16,9 @@ interface AgeStep2Props {
 const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
   const [confirmed, setConfirmed] = useState<boolean | null>(null);
   const router = useRouter();
+
+  const fieldsetId = 'ageStep2-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
 
   if (ageRange === AGE_RANGE.GREATER_THAN_30) return null;
 
@@ -58,6 +62,7 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
     <div>
       {ageRange === AGE_RANGE.BETWEEN_19_30 && beforeQuestionText}
       <CustomRadioButtons
+        id={fieldsetId}
         name="ageStep2"
         hintText={questionDescription}
         legendLine1={legendLine1}

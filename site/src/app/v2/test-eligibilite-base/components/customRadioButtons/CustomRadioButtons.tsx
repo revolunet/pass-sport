@@ -8,9 +8,11 @@ type Props = Omit<RadioButtonsProps, 'legend'> & {
   legendLine3?: string;
 };
 const CustomRadioButtons: React.FC<Props> = (props) => {
+  const { legendLine1, legendLine2, legendLine3, ...onlyRadioButtonsProps } = props;
+
   return (
     <RadioButtons
-      {...props}
+      {...onlyRadioButtonsProps}
       classes={{ legend: styles.legend }}
       legend={
         <Legend line1={props.legendLine1} line2={props.legendLine2} line3={props.legendLine3} />

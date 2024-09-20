@@ -5,9 +5,13 @@ import { CHILD_AGE } from '../types/types';
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
 import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 const ChildAgeStep = () => {
   const [childAge, setChildAge] = useState<CHILD_AGE | null>(null);
+
+  const fieldsetId = 'childAgeStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
 
   const failureCallOut = (
     <VerdictPanel
@@ -41,6 +45,7 @@ const ChildAgeStep = () => {
   return (
     <>
       <CustomRadioButtons
+        id={fieldsetId}
         name="childAgeStep"
         legendLine1="Quel âge a votre enfant ?"
         options={[

@@ -10,11 +10,15 @@ import EligibilityTestContext from '@/store/eligibilityTestContext';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
 import { SUPPORT_COOKIE_KEY } from '@/app/constants/cookie-manager';
 import CustomRadioButtons from '@/app/v2/test-eligibilite-base/components/customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 /* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
 
 const AllowanceStep = () => {
+  const fieldsetId = 'allowanceStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
   // Ask for consent for the cookie related to support once on the page
   useEffect(() => {
     // Timeout is necessary to wait for tarteaucitron modal to be rendered properly
@@ -43,6 +47,7 @@ const AllowanceStep = () => {
       <p className={cn('fr-pb-2w', styles.paragraph)}>Les champs ci-dessous sont obligatoires*</p>
 
       <CustomRadioButtons
+        id={fieldsetId}
         key={CustomButtonsGroupKey}
         legendLine1="Bonjour,"
         legendLine2="Bénéficiez-vous d’une de ces allocations ?"
@@ -83,11 +88,7 @@ const AllowanceStep = () => {
         }
       />
 
-      <fieldset
-        id="second-step-form"
-        className="fr-fieldset"
-        aria-labelledby="second-step-form-legend"
-      >
+      <fieldset id="second-step-form" className="fr-fieldset">
         {[ALLOWANCE.ARS_AEEH_AAH, ALLOWANCE.CROUS].includes(allowance as ALLOWANCE) && (
           <legend
             className="fr-fieldset__legend--regular fr-fieldset__legend fr-pt-1w fr-pb-2w"

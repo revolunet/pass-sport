@@ -5,13 +5,17 @@ import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
 import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 const AgeStep = () => {
   const [ageRange, setAgeRange] = useState<AGE_RANGE | null>(null);
+  const fieldsetId = 'ageStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
 
   return (
     <div>
       <CustomRadioButtons
+        id={fieldsetId}
         name="ageStep"
         legendLine1="Quel âge avez-vous ?"
         options={[

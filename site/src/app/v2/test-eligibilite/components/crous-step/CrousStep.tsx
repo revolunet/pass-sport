@@ -8,14 +8,19 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
 import { useRouter } from 'next/navigation';
 import CustomRadioButtons from '@/app/v2/test-eligibilite-base/components/customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 const CrousStep = () => {
   const [ageRange, setAgeRange] = useState<CROUS_AGE_RANGE | null>(null);
   const router = useRouter();
 
+  const fieldsetId = 'crousStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
   return (
     <>
       <CustomRadioButtons
+        id={fieldsetId}
         legendLine1="Quel âge avez-vous ?"
         options={[
           {
