@@ -106,7 +106,7 @@ export function useEnhanceCrispChatBox() {
   const altTextToConnectedIcon = (crisp: Element) => {
     const iconElement = crisp.querySelector('[style*="https://image.crisp.chat/avatar/website"]');
     // @ts-ignore
-    if (iconElement) {
+    if (iconElement && iconElement.parentNode?.children[1]) {
       iconElement.parentNode?.children[1].setAttribute(
         'aria-label',
         'Une personne du support est en ligne',
