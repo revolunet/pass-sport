@@ -124,10 +124,9 @@ export function useEnhanceCrispChatBox() {
 
   const addMissingAriaHiddenOnIcons = (crisp: Element) => {
     const chatIconElement = crisp.querySelector('a[data-mode="chat"]')?.childNodes[0];
-    chatIconElement?.setAttribute('aria-hidden', true);
-
-    const helpdeskIconElement = crisp.querySelector('a[data-mode="helpdesk"]')?.childNodes[0];
-    helpdeskIconElement?.setAttribute('aria-hidden', true);
+    if (chatIconElement?.textContent === '') {
+      chatIconElement?.setAttribute('aria-hidden', true);
+    }
   };
 
   const removeUnecessaryAria = (crisp: Element) => {
