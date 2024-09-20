@@ -45,7 +45,7 @@ const SkipLinksWrapper = () => {
       : null;
 
   const handleSkipLinkClick = (e: MouseEvent) => {
-    if (!e.target?.href.includes(`#${SKIP_LINKS_ID.chatbot}`)) {
+    if (!(e.target as HTMLAnchorElement)?.href.includes(`#${SKIP_LINKS_ID.chatbot}`)) {
       return;
     }
 
