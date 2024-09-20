@@ -12,6 +12,7 @@ import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchEligible } from '../../agent';
 import { push } from '@socialgouv/matomo-next';
 import Legend from '@/app/v2/test-eligibilite-base/components/customRadioButtons/legend/Legend';
+import { CAF, MSA } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 interface Props {
   onDataReceived: (data: SearchResponseBody) => void;
@@ -163,7 +164,12 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           state={inputStates.beneficiaryLastname.state}
           stateRelatedMessage={inputStates.beneficiaryLastname.errorMsg}
           disabled={isFormDisabled}
-          hintText="Format attendu : Votre nom tel qu’il est écrit sur vos papiers de la CAF ou la MSA"
+          hintText={
+            <>
+              Format attendu : Votre nom tel qu’il est écrit sur vos papiers de la <CAF /> ou la{' '}
+              <MSA />
+            </>
+          }
         />
 
         <Input
@@ -179,7 +185,12 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           state={inputStates.beneficiaryFirstname.state}
           stateRelatedMessage={inputStates.beneficiaryFirstname.errorMsg}
           disabled={isFormDisabled}
-          hintText="Format attendu : Votre prénom tel qu’il est écrit sur vos papiers de la CAF ou la MSA"
+          hintText={
+            <>
+              Format attendu : Votre prénom tel qu’il est écrit sur vos papiers de la <CAF /> ou la{' '}
+              <MSA />
+            </>
+          }
         />
 
         <Input

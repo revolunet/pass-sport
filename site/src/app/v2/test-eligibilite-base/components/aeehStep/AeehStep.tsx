@@ -31,8 +31,12 @@ const AeehStep = ({ ageRange }: Props) => {
         <CustomRadioButtons
           id={fieldsetId}
           name="aeehStep"
-          legendLine1="Vos parent bénéficient-ils de l'allocation d'éducation de l'enfant
-                handicapé (AEEH) ?"
+          legendLine1={
+            <>
+              Vos parents bénéficient-ils de l&apos;allocation d&apos;éducation de l&apos;enfant
+              handicapé (<abbr>AEEH</abbr>) ?
+            </>
+          }
           legendLine2="Si vous ne le savez pas, rapprochez vous de vos parents, ils sauront vous répondre."
           options={[
             {

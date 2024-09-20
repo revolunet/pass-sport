@@ -11,6 +11,7 @@ import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegative
 import { SUPPORT_COOKIE_KEY } from '@/app/constants/cookie-manager';
 import CustomRadioButtons from '@/app/v2/test-eligibilite-base/components/customRadioButtons/CustomRadioButtons';
 import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
+import { AAH, AEEH, ARS, CROUS } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 /* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
@@ -54,13 +55,17 @@ const AllowanceStep = () => {
         name="radio"
         options={[
           {
-            label: 'AEEH, ARS, AAH',
+            label: (
+              <span>
+                <AEEH />, <ARS />, <AAH />
+              </span>
+            ),
             nativeInputProps: {
               onChange: () => setAllowance(ALLOWANCE.ARS_AEEH_AAH),
             },
           },
           {
-            label: 'CROUS',
+            label: <CROUS />,
             nativeInputProps: {
               onChange: () => setAllowance(ALLOWANCE.CROUS),
             },
@@ -75,13 +80,18 @@ const AllowanceStep = () => {
         hintText={
           <>
             <div>
-              <p className={cn('fr-text--xs', 'fr-mb-0')}>ARS : Allocation de rentrée scolaire</p>
               <p className={cn('fr-text--xs', 'fr-mb-0')}>
-                AEEH : Allocation d’éducation de l’enfant handicapé
+                <abbr>ARS</abbr> : Allocation de rentrée scolaire
               </p>
-              <p className={cn('fr-text--xs', 'fr-mb-0')}>AAH : Allocation adulte handicapé</p>
               <p className={cn('fr-text--xs', 'fr-mb-0')}>
-                CROUS : Étudiant boursier. Centre régional des œuvres universitaires et scolaires
+                <abbr>AEEH</abbr> : Allocation d’éducation de l’enfant handicapé
+              </p>
+              <p className={cn('fr-text--xs', 'fr-mb-0')}>
+                <abbr>AAH</abbr> : Allocation adulte handicapé
+              </p>
+              <p className={cn('fr-text--xs', 'fr-mb-0')}>
+                <abbr>CROUS</abbr> : Étudiant boursier. Centre régional des œuvres universitaires et
+                scolaires
               </p>
             </div>
           </>

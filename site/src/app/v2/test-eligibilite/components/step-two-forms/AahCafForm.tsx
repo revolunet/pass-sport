@@ -10,6 +10,7 @@ import FormButton from './FormButton';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
 import CustomInput from '@/app/v2/test-eligibilite/components/custom-input/CustomInput';
+import { CAF } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 const initialInputsState: AahCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -52,7 +53,11 @@ const AahCafForm = ({
             if (!/^\d{6,7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 6, 7 chiffres',
+                errorMsg: (
+                  <>
+                    Le numéro&nbsp; <CAF /> &nbsp;doit être composé de 6, 7 chiffres
+                  </>
+                ),
               };
 
               isValid = false;
@@ -142,7 +147,11 @@ const AahCafForm = ({
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <CustomInput
           inputProps={{
-            label: 'Numéro de l’allocataire CAF*',
+            label: (
+              <>
+                Numéro de l’allocataire <CAF />*
+              </>
+            ),
             hintText: 'Format attendu : 6, 7 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
@@ -156,9 +165,13 @@ const AahCafForm = ({
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
             disabled: isFormDisabled,
           }}
-          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
-          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
-          espace personnel."
+          secondHint={
+            <>
+              Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers
+              émis par la <CAF /> ainsi que sur toutes les attestations que vous pouvez télécharger
+              depuis votre espace personnel.
+            </>
+          }
         />
 
         <FormButton isDisabled={isFormDisabled} />

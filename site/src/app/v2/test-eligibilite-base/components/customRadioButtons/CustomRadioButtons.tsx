@@ -1,9 +1,10 @@
 import RadioButtons, { RadioButtonsProps } from '@codegouvfr/react-dsfr/RadioButtons';
 import styles from './styles.module.scss';
 import Legend from './legend/Legend';
+import { ReactNode } from 'react';
 
 type Props = Omit<RadioButtonsProps, 'legend'> & {
-  legendLine1: string;
+  legendLine1: string | ReactNode;
   legendLine2?: string;
   legendLine3?: string;
 };

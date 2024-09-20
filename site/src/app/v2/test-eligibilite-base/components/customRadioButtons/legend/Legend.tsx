@@ -1,9 +1,10 @@
 import cn from 'classnames';
 import rootStyles from '@/app/utilities.module.scss';
 import styles from './styles.module.scss';
+import { ReactNode } from 'react';
 
 interface Props {
-  line1: string;
+  line1: string | ReactNode;
   line2?: string;
   line3?: string;
   wrapInParagraph?: boolean;
