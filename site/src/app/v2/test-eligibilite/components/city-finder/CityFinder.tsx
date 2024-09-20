@@ -17,7 +17,8 @@ import {
   onFocus,
   selectStyles,
 } from '@/app/v2/trouver-un-club/components/club-filters/custom-select/CustomSelect';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Button from '@codegouvfr/react-dsfr/Button';
 
 interface Option {
   label: string;
@@ -73,38 +74,56 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
         </p>
       </label>
 
-      <AsyncSelect<Option, false>
-        aria-labelledby="city-select-id"
-        instanceId="city-select-id"
-        inputId={inputName}
-        name={inputName}
-        loadingMessage={() => <p>Chargement des villes...</p>}
-        noOptionsMessage={() => <p>Aucune ville trouvée</p>}
-        cacheOptions
-        isClearable
-        isDisabled={isDisabled}
-        ariaLiveMessages={{ guidance, onChange, onFilter, onFocus }}
-        screenReaderStatus={customScreenReaderStatus}
-        value={value}
-        inputValue={inputValue}
-        loadOptions={fetchCityOptions}
-        onChange={birthPlaceChangedHandler}
-        onInputChange={onInputChange}
-        styles={{
-          ...selectStyles,
-          input: () => {
-            return {
-              ...selectStyles.input,
-              width: '100%',
-            };
-          },
-        }}
-        controlShouldRenderValue={false}
-        components={{
-          Input: CustomInput,
-          Placeholder: CustomPlaceholder,
-        }}
-      />
+      <div className={cn('fr-grid-row', styles['city-finder__container'])}>
+        <AsyncSelect<Option, false>
+          aria-labelledby="city-select-id"
+          instanceId="city-select-id"
+          inputId={inputName}
+          name={inputName}
+          loadingMessage={() => <p>Chargement des communes...</p>}
+          noOptionsMessage={() => <p>Aucune commune trouvée</p>}
+          cacheOptions
+          isDisabled={isDisabled}
+          ariaLiveMessages={{ guidance, onChange, onFilter, onFocus }}
+          screenReaderStatus={customScreenReaderStatus}
+          value={value}
+          inputValue={inputValue}
+          loadOptions={fetchCityOptions}
+          onChange={birthPlaceChangedHandler}
+          onInputChange={onInputChange}
+          styles={{
+            ...selectStyles,
+            input: (_, state) => {
+              return {
+                color: state.isDisabled ? 'rgb(153, 153, 153)' : 'initial',
+                width: '100%',
+              };
+            },
+          }}
+          controlShouldRenderValue={false}
+          components={{
+            Input: CustomInput,
+            Placeholder: CustomPlaceholder,
+          }}
+        />
+
+        <Button
+          type="button"
+          className="fr-col--bottom"
+          priority="tertiary no outline"
+          disabled={isDisabled}
+          onClick={() => {
+            birthPlaceChangedHandler({ value: '', label: '' });
+            setInputValue('');
+            setValue({
+              value: '',
+              label: '',
+            });
+          }}
+        >
+          Effacer la commune
+        </Button>
+      </div>
 
       <div className={cn('fr-mt-2w', styles.secondHintBlock)}>
         <span className={cn('fr-icon--sm', 'fr-icon-info-fill')} aria-hidden="true" />

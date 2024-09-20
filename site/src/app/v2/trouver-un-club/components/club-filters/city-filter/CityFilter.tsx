@@ -25,6 +25,7 @@ import {
 } from '../custom-select/CustomSelect';
 import localStyles from './styles.module.scss';
 import cn from 'classnames';
+import Button from '@codegouvfr/react-dsfr/Button';
 
 interface Props {
   isDisabled: boolean;
@@ -136,11 +137,22 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
             Input: CustomInput,
             Placeholder: CustomPlaceholder,
           }}
-          isClearable
           // To control the placeholder (we do not want the placeholder to appear in a div, but in the input instead
           controlShouldRenderValue={false}
         />
       </div>
+
+      <Button
+        className="fr-col--bottom"
+        priority="tertiary no outline"
+        onClick={() => {
+          setInputValue('');
+          setValue(allCitiesOption);
+          onCityChanged({});
+        }}
+      >
+        Effacer la ville
+      </Button>
     </div>
   );
 };

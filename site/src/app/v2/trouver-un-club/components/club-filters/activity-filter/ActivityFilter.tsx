@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation';
 import { unescapeSingleQuotes } from '@/utils/string';
 import CustomSelect, { createCustomInput, CustomPlaceholder } from '../custom-select/CustomSelect';
 import React, { useState } from 'react';
+import Button from '@codegouvfr/react-dsfr/Button';
 
 interface Props {
   onActivityChanged: (activity?: string) => void;
@@ -45,9 +46,11 @@ const ActivityFilter = ({ onActivityChanged, activities }: Props) => {
     if (!newValue) {
       onActivityChanged();
       setInputValue('');
+      setValue({ label: '', value: '' });
     } else {
       onActivityChanged(newValue.value);
       setInputValue(newValue.value);
+      setValue({ label: newValue.label, value: newValue.value });
     }
   };
 
@@ -88,8 +91,20 @@ const ActivityFilter = ({ onActivityChanged, activities }: Props) => {
         }}
         // To control the placeholder (we do not want the placeholder to appear in a div, but in the input instead
         controlShouldRenderValue={false}
-        isClearable
       />
+
+      <Button
+        type="button"
+        className="fr-col--bottom"
+        priority="tertiary no outline"
+        onClick={() => {
+          setInputValue('');
+          setValue({ label: '', value: '' });
+          onActivityChanged();
+        }}
+      >
+        Effacer l&apos;activité
+      </Button>
     </div>
   );
 };

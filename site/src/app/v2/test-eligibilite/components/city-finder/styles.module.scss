@@ -2,6 +2,13 @@
   color: var(--text-mention-grey);
 }
 
+.city-finder {
+  &__container {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: row;
