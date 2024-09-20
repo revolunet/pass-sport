@@ -1,4 +1,3 @@
-import Question from '@/app/v2/test-eligibilite-base/components/Question/Question';
 import { useState } from 'react';
 import { CROUS_AGE_RANGE } from '../types/types';
 import VerdictPanel from '@/app/components/verdictPanel/VerdictPanel';
@@ -6,41 +5,44 @@ import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
 import Link from 'next/link';
 import Button from '@codegouvfr/react-dsfr/Button';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
 import { useRouter } from 'next/navigation';
+import CustomRadioButtons from '@/app/v2/test-eligibilite-base/components/customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 const CrousStep = () => {
   const [ageRange, setAgeRange] = useState<CROUS_AGE_RANGE | null>(null);
   const router = useRouter();
 
+  const fieldsetId = 'crousStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
   return (
     <>
-      <Question question="Quel âge avez-vous ?">
-        <RadioButtons
-          legend="Choississez une option:"
-          options={[
-            {
-              label: 'Moins de 28 ans',
-              nativeInputProps: {
-                onChange: () => setAgeRange(CROUS_AGE_RANGE.LESS_THAN_28),
-              },
+      <CustomRadioButtons
+        id={fieldsetId}
+        legendLine1="Quel âge avez-vous ?"
+        options={[
+          {
+            label: 'Moins de 28 ans',
+            nativeInputProps: {
+              onChange: () => setAgeRange(CROUS_AGE_RANGE.LESS_THAN_28),
             },
-            {
-              label: '28 ans révolus (au plus tard le 15 octobre 2024)',
-              nativeInputProps: {
-                onChange: () => setAgeRange(CROUS_AGE_RANGE.MORE_THAN_28),
-              },
+          },
+          {
+            label: '28 ans révolus (au plus tard le 15 octobre 2024)',
+            nativeInputProps: {
+              onChange: () => setAgeRange(CROUS_AGE_RANGE.MORE_THAN_28),
             },
-            {
-              label: 'Plus de 29 ans',
-              nativeInputProps: {
-                onChange: () => setAgeRange(CROUS_AGE_RANGE.MORE_THAN_29),
-              },
+          },
+          {
+            label: 'Plus de 29 ans',
+            nativeInputProps: {
+              onChange: () => setAgeRange(CROUS_AGE_RANGE.MORE_THAN_29),
             },
-          ]}
-        />
-      </Question>
+          },
+        ]}
+      />
 
       {ageRange === CROUS_AGE_RANGE.LESS_THAN_28 && (
         <VerdictPanel

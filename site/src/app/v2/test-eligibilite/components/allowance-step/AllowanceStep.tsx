@@ -1,7 +1,5 @@
 'use client';
 
-import Question from '@/app/v2/test-eligibilite-base/components/Question/Question';
-import rootStyles from '@/app/utilities.module.scss';
 import styles from '@/app/v2/test-eligibilite/styles.module.scss';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
@@ -9,14 +7,18 @@ import { ALLOWANCE } from '../types/types';
 import EligibilityTestForms from '../eligibility-test-forms/EligibilityTestForms';
 import CrousStep from '../crous-step/CrousStep';
 import EligibilityTestContext from '@/store/eligibilityTestContext';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
 import { SUPPORT_COOKIE_KEY } from '@/app/constants/cookie-manager';
+import CustomRadioButtons from '@/app/v2/test-eligibilite-base/components/customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 /* This is a trick to force the RadioButtonsGroup to reload */
 let CustomButtonsGroupKey = 0;
 
 const AllowanceStep = () => {
+  const fieldsetId = 'allowanceStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
   // Ask for consent for the cookie related to support once on the page
   useEffect(() => {
     // Timeout is necessary to wait for tarteaucitron modal to be rendered properly
@@ -44,62 +46,49 @@ const AllowanceStep = () => {
     <EligibilityTestContext.Provider value={{ performNewTest: restartTest }}>
       <p className={cn('fr-pb-2w', styles.paragraph)}>Les champs ci-dessous sont obligatoires*</p>
 
-      <Question
-        question={
+      <CustomRadioButtons
+        id={fieldsetId}
+        key={CustomButtonsGroupKey}
+        legendLine1="Bonjour,"
+        legendLine2="Bénéficiez-vous d’une de ces allocations ?"
+        name="radio"
+        options={[
+          {
+            label: 'AEEH, ARS, AAH',
+            nativeInputProps: {
+              onChange: () => setAllowance(ALLOWANCE.ARS_AEEH_AAH),
+            },
+          },
+          {
+            label: 'CROUS',
+            nativeInputProps: {
+              onChange: () => setAllowance(ALLOWANCE.CROUS),
+            },
+          },
+          {
+            label: 'Aucune',
+            nativeInputProps: {
+              onChange: () => setAllowance(ALLOWANCE.NONE),
+            },
+          },
+        ]}
+        hintText={
           <>
-            <div className={cn(rootStyles['text--medium'], rootStyles['text--black'])}>
-              <p className="fr-text--lg fr-mb-0">Bonjour,</p>
-              <p className="fr-text--lg fr-mb-0">Bénéficiez-vous d’une de ces allocations ?</p>
+            <div>
+              <p className={cn('fr-text--xs', 'fr-mb-0')}>ARS : Allocation de rentrée scolaire</p>
+              <p className={cn('fr-text--xs', 'fr-mb-0')}>
+                AEEH : Allocation d’éducation de l’enfant handicapé
+              </p>
+              <p className={cn('fr-text--xs', 'fr-mb-0')}>AAH : Allocation adulte handicapé</p>
+              <p className={cn('fr-text--xs', 'fr-mb-0')}>
+                CROUS : Étudiant boursier. Centre régional des œuvres universitaires et scolaires
+              </p>
             </div>
           </>
         }
-      >
-        <RadioButtons
-          key={CustomButtonsGroupKey}
-          legend="Choisissez une option:"
-          name="radio"
-          options={[
-            {
-              label: 'AEEH, ARS, AAH',
-              nativeInputProps: {
-                onChange: () => setAllowance(ALLOWANCE.ARS_AEEH_AAH),
-              },
-            },
-            {
-              label: 'CROUS',
-              nativeInputProps: {
-                onChange: () => setAllowance(ALLOWANCE.CROUS),
-              },
-            },
-            {
-              label: 'Aucune',
-              nativeInputProps: {
-                onChange: () => setAllowance(ALLOWANCE.NONE),
-              },
-            },
-          ]}
-          hintText={
-            <>
-              <div>
-                <p className={cn('fr-text--xs', 'fr-mb-0')}>ARS : Allocation de rentrée scolaire</p>
-                <p className={cn('fr-text--xs', 'fr-mb-0')}>
-                  AEEH : Allocation d’éducation de l’enfant handicapé
-                </p>
-                <p className={cn('fr-text--xs', 'fr-mb-0')}>AAH : Allocation adulte handicapé</p>
-                <p className={cn('fr-text--xs', 'fr-mb-0')}>
-                  CROUS : Étudiant boursier. Centre régional des œuvres universitaires et scolaires
-                </p>
-              </div>
-            </>
-          }
-        />
-      </Question>
+      />
 
-      <fieldset
-        id="second-step-form"
-        className="fr-fieldset"
-        aria-labelledby="second-step-form-legend"
-      >
+      <fieldset id="second-step-form" className="fr-fieldset">
         {[ALLOWANCE.ARS_AEEH_AAH, ALLOWANCE.CROUS].includes(allowance as ALLOWANCE) && (
           <legend
             className="fr-fieldset__legend--regular fr-fieldset__legend fr-pt-1w fr-pb-2w"

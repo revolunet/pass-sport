@@ -1,12 +1,12 @@
-import Question from '../Question/Question';
 import { useState } from 'react';
 import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
 import { useRouter } from 'next/navigation';
 import rootStyles from '@/app/utilities.module.scss';
 import EligibilityCriteriaList from '@/app/components/eligibility-criteria-list/EligibilityCriteriaList';
 import cn from 'classnames';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
+import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 interface Props {
   isForChild: boolean;
@@ -15,6 +15,9 @@ interface Props {
 const AllowancesStep = ({ isForChild }: Props) => {
   const [hasAllowances, setHasAllowances] = useState<boolean | null>(null);
   const router = useRouter();
+
+  const fieldsetId = 'allowancesStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
 
   const successCallout = (
     <div>
@@ -51,72 +54,46 @@ const AllowancesStep = ({ isForChild }: Props) => {
 
   return (
     <>
-      <Question
-        question={
-          <>
-            {isForChild ? (
-              <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                Votre enfant (ou petit enfant) bénéficie-t-il :
-              </p>
-            ) : (
-              <>
-                <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                  Vous avez entre 16 et 30 ans.
-                </p>
-                <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                  Bénéficiez-vous :
-                </p>
-              </>
-            )}
-            <ul className="fr-ml-2w fr-mt-4w">
-              <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                d&apos;une bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de
-                ressources, d&apos;une aide annuelle du CROUS ou d&apos;une bourse régionale pour
-                les formations sanitaires et sociales pour l&apos;année universitaire 2023-2024 ou
-                2024-2025?
-              </li>
-            </ul>
-            ou
-            <ul className="fr-ml-2w">
-              <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                de l&apos;allocation aux adultes handicapées (AAH)?
-              </li>
-            </ul>
-            ou
-            <ul className="fr-ml-2w">
-              <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                de l&apos;allocation de rentrée scolaire (ARS)?
-              </li>
-            </ul>
-            ou
-            <ul className="fr-ml-2w">
-              <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                ou de l&apos;allocation d&apos;éducation de l&apos;enfant handicapé (AEEH)?
-              </li>
-            </ul>
-          </>
-        }
-      >
-        <RadioButtons
-          name="allowanceStep"
-          legend="Choisissez une option:"
-          options={[
-            {
-              label: 'Oui',
-              nativeInputProps: {
-                onChange: () => setHasAllowances(true),
-              },
-            },
-            {
-              label: 'Non',
-              nativeInputProps: {
-                onChange: () => setHasAllowances(false),
-              },
-            },
-          ]}
-        />
-      </Question>
+      <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
+        L&apos;attribution du pass sport est conditionnée aux aides suivantes&nbsp;:
+      </p>
+      <ul className="fr-ml-2w">
+        <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
+          bourse de l&apos;état de l&apos;enseignement supérieur sous conditions de ressources, aide
+          annuelle du CROUS ou bourse régionale pour les formations sanitaires et sociales pour
+          l&apos;année universitaire 2023-2024 ou 2024-2025
+        </li>
+        <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
+          allocation aux adultes handicapées (AAH)
+        </li>
 
+        <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
+          allocation de rentrée scolaire (ARS)
+        </li>
+
+        <li className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
+          allocation d&apos;éducation de l&apos;enfant handicapé (AEEH)
+        </li>
+      </ul>
+      <CustomRadioButtons
+        id={fieldsetId}
+        name="allowanceStep"
+        legendLine1="Votre enfant (ou petit enfant) bénéficie-t-il d'une de ces aides ?"
+        options={[
+          {
+            label: 'Oui',
+            nativeInputProps: {
+              onChange: () => setHasAllowances(true),
+            },
+          },
+          {
+            label: 'Non',
+            nativeInputProps: {
+              onChange: () => setHasAllowances(false),
+            },
+          },
+        ]}
+      />
       {hasAllowances && successCallout}
       {hasAllowances === false && failureCallOut}
     </>

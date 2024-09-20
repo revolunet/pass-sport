@@ -1,5 +1,3 @@
-import Question from '../Question/Question';
-
 import { useState } from 'react';
 import { AGE_RANGE } from '../types/types';
 import VerdictPanel from '../../../../components/verdictPanel/VerdictPanel';
@@ -7,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import rootStyles from '@/app/utilities.module.scss';
 import cn from 'classnames';
 import FullNegativeVerdictPanel from '@/app/components/verdictPanel/FullNegativeVerdictPanel';
-import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons';
 import { trackRedirectionToPassSportForm } from '@/app/v2/test-eligibilite-base/helpers/helpers';
+import CustomRadioButtons from '../customRadioButtons/CustomRadioButtons';
+import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 interface Props {
   ageRange: AGE_RANGE;
@@ -18,6 +17,9 @@ const AeehStep = ({ ageRange }: Props) => {
   const [hasAeehAllocation, setHasAeehAllocation] = useState<boolean | null>(null);
   const router = useRouter();
 
+  const fieldsetId = 'aeehStep-fieldset';
+  useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
   const displaySuccess = hasAeehAllocation;
   const displayFailure =
     ageRange === AGE_RANGE.BETWEEN_19_30 ||
@@ -26,38 +28,27 @@ const AeehStep = ({ ageRange }: Props) => {
   return (
     <>
       {ageRange !== AGE_RANGE.BETWEEN_19_30 && (
-        <Question
-          question={
-            <>
-              <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                Vos parent bénéficient-ils de l&apos;allocation d&apos;éducation de l&apos;enfant
-                handicapé (AEEH) ?
-              </p>
-              <p className={`fr-text--lg fr-mb-0 ${rootStyles['text--medium']}`}>
-                Si vous ne le savez pas, rapprochez de vos parents, ils sauront vous répondre.
-              </p>
-            </>
-          }
-        >
-          <RadioButtons
-            name="aeehStep"
-            legend="Choisissez une option:"
-            options={[
-              {
-                label: 'Oui',
-                nativeInputProps: {
-                  onChange: () => setHasAeehAllocation(true),
-                },
+        <CustomRadioButtons
+          id={fieldsetId}
+          name="aeehStep"
+          legendLine1="Vos parent bénéficient-ils de l'allocation d'éducation de l'enfant
+                handicapé (AEEH) ?"
+          legendLine2="Si vous ne le savez pas, rapprochez vous de vos parents, ils sauront vous répondre."
+          options={[
+            {
+              label: 'Oui',
+              nativeInputProps: {
+                onChange: () => setHasAeehAllocation(true),
               },
-              {
-                label: 'Non',
-                nativeInputProps: {
-                  onChange: () => setHasAeehAllocation(false),
-                },
+            },
+            {
+              label: 'Non',
+              nativeInputProps: {
+                onChange: () => setHasAeehAllocation(false),
               },
-            ]}
-          />
-        </Question>
+            },
+          ]}
+        />
       )}
 
       {displaySuccess && (
