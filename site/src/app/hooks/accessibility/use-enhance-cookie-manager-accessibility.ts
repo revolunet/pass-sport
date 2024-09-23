@@ -67,9 +67,14 @@ export function useEnhanceCookieManagerAccessibility() {
 
         if (contentDetails && sibling) {
           contentDetails.removeAttribute('class');
-          contentDetails.setAttribute('role', 'heading');
-          contentDetails.setAttribute('aria-level', '4');
-          sibling.insertAdjacentElement('afterend', contentDetails);
+
+          const paragraph = document.createElement('p');
+
+          paragraph.setAttribute('id', contentDetails.id);
+          paragraph.textContent = contentDetails.textContent;
+          sibling.insertAdjacentElement('afterend', paragraph);
+
+          contentDetails.remove();
         }
       }
 
@@ -86,9 +91,14 @@ export function useEnhanceCookieManagerAccessibility() {
 
         if (contentDetails && sibling) {
           contentDetails.removeAttribute('class');
-          contentDetails.setAttribute('role', 'heading');
-          contentDetails.setAttribute('aria-level', '4');
-          sibling.insertAdjacentElement('afterend', contentDetails);
+
+          const paragraph = document.createElement('p');
+
+          paragraph.setAttribute('id', contentDetails.id);
+          paragraph.textContent = contentDetails.textContent;
+          sibling.insertAdjacentElement('afterend', paragraph);
+
+          contentDetails.remove();
         }
       }
     });
