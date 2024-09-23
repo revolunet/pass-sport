@@ -9,7 +9,7 @@ import React, { ChangeEvent, FormEvent, SyntheticEvent, useRef, useState } from 
 import { InputsState } from '../../../../../../types/Contact';
 import { postContact } from '../../client-agent';
 import styles from './styles.module.scss';
-import { EMAIL_REGEX } from '../../../../../../utils/email';
+import { EMAIL_REGEX } from '@/utils/email';
 
 const visitorReasons = {
   'aije-droit': 'Ai-je droit au pass Sport ?',
@@ -339,26 +339,29 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
           </Button>
         </div>
       </form>
-      {apiError && (
-        <Alert
-          className="fr-mt-2w"
-          severity="error"
-          isClosed={!isError}
-          onClose={() => setIsError(false)}
-          title="Un problème est survenu"
-          description="Veuillez réessayer plus tard"
-          closable
-        />
-      )}
-      {isOk && (
-        <Alert
-          className="fr-mt-2w"
-          severity="success"
-          title="Votre demande à bien été envoyée"
-          description="Votre message nous a bien été transmis."
-          closable
-        />
-      )}
+
+      <div role="status">
+        {apiError && (
+          <Alert
+            className="fr-mt-2w"
+            severity="error"
+            isClosed={!isError}
+            onClose={() => setIsError(false)}
+            title="Un problème est survenu"
+            description="Veuillez réessayer plus tard"
+            closable
+          />
+        )}
+        {isOk && (
+          <Alert
+            className="fr-mt-2w"
+            severity="success"
+            title="Votre demande à bien été envoyée"
+            description="Votre message nous a bien été transmis."
+            closable
+          />
+        )}
+      </div>
     </>
   );
 };
