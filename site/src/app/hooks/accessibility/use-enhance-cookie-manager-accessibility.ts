@@ -15,7 +15,6 @@ export function useEnhanceCookieManagerAccessibility() {
       );
 
       const duplicatedPanelCookie = body.querySelector('div#tac_title.tac_visually-hidden');
-      const duplicatedDialog = body.querySelector('div.tarteaucitronAlertBigTop[role="dialog"]');
       const crispButtonInfo = body.querySelector('button[data-cat="tarteaucitronDetailssupport"]');
       const vimeoButtonInfo = body.querySelector('button[data-cat="tarteaucitronDetailsvideo"]');
 
@@ -47,11 +46,6 @@ export function useEnhanceCookieManagerAccessibility() {
 
       if (duplicatedPanelCookie) {
         duplicatedPanelCookie.remove();
-      }
-
-      // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=0ffd86210f7a808699cedc8ef0a8b4e9&pm=s
-      if (duplicatedDialog) {
-        duplicatedDialog.remove();
       }
 
       // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=fede5d6d662849379b84f6ef0ab4111f&pm=s
