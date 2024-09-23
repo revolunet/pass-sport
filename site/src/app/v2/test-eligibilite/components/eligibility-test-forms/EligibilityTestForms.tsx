@@ -32,68 +32,72 @@ const EligibilityTestForms = () => {
 
   return (
     <>
-      <StepOneForm
-        onDataReceived={(data: SearchResponseBody) => {
-          setEligibilityData(data);
-          setpspCodeData(null);
-        }}
-        onEligibilityFailure={() => onEligibilityFailure('first step')}
-      />
+      <fieldset id="second-step-form" className="fr-fieldset">
+        <StepOneForm
+          onDataReceived={(data: SearchResponseBody) => {
+            setEligibilityData(data);
+            setpspCodeData(null);
+          }}
+          onEligibilityFailure={() => onEligibilityFailure('first step')}
+        />
+      </fieldset>
 
-      {eligibilityData &&
-        eligibilityData.length > 0 &&
-        eligibilityData[0].situation.toLowerCase() === 'jeune' &&
-        eligibilityData[0].organisme === 'CAF' && (
-          <YoungCafForm
-            eligibilityDataItem={eligibilityData[0]}
-            onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
-            onEligibilitySuccess={onEligibilitySuccess}
-            onEligibilityFailure={onEligibilityFailure}
-          />
+      <fieldset id="third-step-form" className="fr-fieldset">
+        {eligibilityData &&
+          eligibilityData.length > 0 &&
+          eligibilityData[0].situation.toLowerCase() === 'jeune' &&
+          eligibilityData[0].organisme === 'CAF' && (
+            <YoungCafForm
+              eligibilityDataItem={eligibilityData[0]}
+              onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+              onEligibilitySuccess={onEligibilitySuccess}
+              onEligibilityFailure={onEligibilityFailure}
+            />
+          )}
+
+        {eligibilityData &&
+          eligibilityData.length > 0 &&
+          eligibilityData[0].situation.toLowerCase() === 'jeune' &&
+          eligibilityData[0].organisme === 'MSA' && (
+            <YoungMsaForm
+              eligibilityDataItem={eligibilityData[0]}
+              onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+              onEligibilitySuccess={onEligibilitySuccess}
+              onEligibilityFailure={onEligibilityFailure}
+            />
+          )}
+
+        {eligibilityData &&
+          eligibilityData.length > 0 &&
+          eligibilityData[0].situation === 'AAH' &&
+          eligibilityData[0].organisme === 'CAF' && (
+            <AahCafForm
+              eligibilityDataItem={eligibilityData[0]}
+              onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+              onEligibilitySuccess={onEligibilitySuccess}
+              onEligibilityFailure={onEligibilityFailure}
+            />
+          )}
+
+        {eligibilityData &&
+          eligibilityData.length > 0 &&
+          eligibilityData[0].situation === 'AAH' &&
+          eligibilityData[0].organisme === 'MSA' && (
+            <AahMsaForm
+              eligibilityDataItem={eligibilityData[0]}
+              onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
+              onEligibilitySuccess={onEligibilitySuccess}
+              onEligibilityFailure={onEligibilityFailure}
+            />
+          )}
+
+        {((eligibilityData && eligibilityData.length === 0) ||
+          (pspCodeData && pspCodeData.length === 0)) && (
+          <div className="fr-mt-6w">
+            <FullNegativeVerdictPanel isLean />
+          </div>
         )}
-
-      {eligibilityData &&
-        eligibilityData.length > 0 &&
-        eligibilityData[0].situation.toLowerCase() === 'jeune' &&
-        eligibilityData[0].organisme === 'MSA' && (
-          <YoungMsaForm
-            eligibilityDataItem={eligibilityData[0]}
-            onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
-            onEligibilitySuccess={onEligibilitySuccess}
-            onEligibilityFailure={onEligibilityFailure}
-          />
-        )}
-
-      {eligibilityData &&
-        eligibilityData.length > 0 &&
-        eligibilityData[0].situation === 'AAH' &&
-        eligibilityData[0].organisme === 'CAF' && (
-          <AahCafForm
-            eligibilityDataItem={eligibilityData[0]}
-            onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
-            onEligibilitySuccess={onEligibilitySuccess}
-            onEligibilityFailure={onEligibilityFailure}
-          />
-        )}
-
-      {eligibilityData &&
-        eligibilityData.length > 0 &&
-        eligibilityData[0].situation === 'AAH' &&
-        eligibilityData[0].organisme === 'MSA' && (
-          <AahMsaForm
-            eligibilityDataItem={eligibilityData[0]}
-            onDataReceived={(data: EnhancedConfirmResponseBody) => setpspCodeData(data)}
-            onEligibilitySuccess={onEligibilitySuccess}
-            onEligibilityFailure={onEligibilityFailure}
-          />
-        )}
-
-      {((eligibilityData && eligibilityData.length === 0) ||
-        (pspCodeData && pspCodeData.length === 0)) && (
-        <div className="fr-mt-6w">
-          <FullNegativeVerdictPanel isLean />
-        </div>
-      )}
+      </fieldset>
 
       {pspCodeData && pspCodeData.length > 0 && (
         <div className="fr-mt-6w">
