@@ -4,29 +4,35 @@ import {
   getFranceCitiesByName,
   getFranceCitiesByPostalCodeAndCityName,
 } from '@/app/v2/trouver-un-club/agent';
-import { SingleValue } from 'react-select';
+import { Props as ReactSelectProps } from 'react-select';
 import { CityOption } from '@/app/v2/trouver-un-club/components/club-filters/ClubFilters';
 import { City } from '../../../../../../../types/City';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SEARCH_QUERY_PARAMS } from '@/app/constants/search-query-params';
 import { useSearchParams } from 'next/navigation';
 import styles from '../styles.module.scss';
 import AsyncSelect from 'react-select/async';
 import { unescapeSingleQuotes } from '@/utils/string';
 import {
+  createCustomInput,
+  CustomPlaceholder,
   customScreenReaderStatus,
   guidance,
   onChange,
   onFilter,
+  onFocus,
   selectStyles,
 } from '../custom-select/CustomSelect';
 import localStyles from './styles.module.scss';
 import cn from 'classnames';
+import Button from '@codegouvfr/react-dsfr/Button';
 
 interface Props {
   isDisabled: boolean;
   onCityChanged: (cityOrPostalCode: { city?: string; postalCode?: string }) => void;
 }
+
+const CustomInput = createCustomInput('Toutes');
 
 const allCitiesOption: CityOption = {
   label: 'Toutes',
@@ -35,14 +41,23 @@ const allCitiesOption: CityOption = {
 
 const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
   const searchParams = useSearchParams();
+  const [inputValue, setInputValue] = useState('');
 
   const city = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.city);
   const postalCode = searchParams && searchParams.get(SEARCH_QUERY_PARAMS.postalCode);
 
   const [value, setValue] = useState<CityOption>(allCitiesOption);
 
-  const cityChangeHandler = (newValue: SingleValue<CityOption>) => {
+  const onInputChange: ReactSelectProps['onInputChange'] = (inputValue, { action }) => {
+    if (action === 'input-change') {
+      setInputValue(inputValue);
+    }
+  };
+
+  const cityChangeHandler: ReactSelectProps<CityOption, false>['onChange'] = (newValue) => {
     if (!newValue) {
+      setInputValue('');
+      onCityChanged({});
       /* would happen if field was cleared, but this feature is disabled, so it nerver happens */
       return;
     } else {
@@ -51,6 +66,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
       if (cityOrPostalCode === null) {
         onCityChanged({});
         setValue(allCitiesOption);
+        setInputValue('');
 
         return;
       }
@@ -60,6 +76,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
       }
 
       setValue({ value: newValue.value, label: newValue.label });
+      setInputValue(newValue.label);
     }
   };
 
@@ -78,10 +95,12 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
 
         if (matchingCity !== undefined) {
           setValue(matchingCity);
+          setInputValue(matchingCity.label);
         }
       });
     } else {
       setValue(allCitiesOption);
+      setInputValue('');
     }
   }, [city, postalCode]);
 
@@ -91,7 +110,7 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
         Ville
       </label>
       <div className={cn({ [`${localStyles['disabled-cursor']}`]: isDisabled })}>
-        <AsyncSelect
+        <AsyncSelect<CityOption, false>
           isDisabled={isDisabled}
           instanceId="city-select-id"
           key="city-select-with-search-param"
@@ -101,9 +120,11 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
           defaultOptions={[allCitiesOption]}
           loadOptions={fetchCityOptions}
           onChange={cityChangeHandler}
+          onInputChange={onInputChange}
           styles={selectStyles}
           value={value}
-          ariaLiveMessages={{ guidance, onChange, onFilter }}
+          inputValue={inputValue}
+          ariaLiveMessages={{ guidance, onChange, onFilter, onFocus }}
           aria-labelledby="city-label"
           screenReaderStatus={customScreenReaderStatus}
           getOptionValue={(option) => {
@@ -112,8 +133,26 @@ const CityFilter = ({ isDisabled, onCityChanged }: Props) => {
             // react-select checks for reference equality, so to fix that we are giving a unique string for each option
             return `${option.value?.cityName}|${option.value?.postalCode}`;
           }}
+          components={{
+            Input: CustomInput,
+            Placeholder: CustomPlaceholder,
+          }}
+          // To control the placeholder (we do not want the placeholder to appear in a div, but in the input instead
+          controlShouldRenderValue={false}
         />
       </div>
+
+      <Button
+        className="fr-col--bottom"
+        priority="tertiary no outline"
+        onClick={() => {
+          setInputValue('');
+          setValue(allCitiesOption);
+          onCityChanged({});
+        }}
+      >
+        Effacer la ville
+      </Button>
     </div>
   );
 };
