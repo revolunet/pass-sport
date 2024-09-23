@@ -22,6 +22,8 @@ export function useEnhanceCrispChatBox() {
 
     if (invisbleCloseButton) {
       invisbleCloseButton.style.setProperty('display', 'inherit', 'important');
+
+      invisbleCloseButton.childNodes[0].setAttribute('aria-hidden', true);
     }
   };
 
