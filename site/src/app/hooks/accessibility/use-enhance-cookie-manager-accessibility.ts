@@ -8,13 +8,15 @@ export function useEnhanceCookieManagerAccessibility() {
 
       const img = body.querySelector('img[title="Cookies (fenêtre modale)"]');
       const button = body.querySelector('button[id="tarteaucitronManager"]');
-      const button2 = body.querySelector('button[id="tarteaucitronBack"]');
+      const backButton = body.querySelector('button[id="tarteaucitronBack"]');
       const info = body.querySelector('div[id="tarteaucitronInfo"]');
       const othersSection = body.querySelector(
         'li[id="tarteaucitronServicesTitle_other"] > div[class="tarteaucitronTitle"]',
       );
 
       const duplicatedPanelCookie = body.querySelector('div#tac_title.tac_visually-hidden');
+      const crispButtonInfo = body.querySelector('button[data-cat="tarteaucitronDetailssupport"]');
+      const vimeoButtonInfo = body.querySelector('button[data-cat="tarteaucitronDetailsvideo"]');
 
       if (img) {
         img.removeAttribute('title');
@@ -25,9 +27,9 @@ export function useEnhanceCookieManagerAccessibility() {
         button.removeAttribute('title');
       }
 
-      if (button2) {
-        button2.removeAttribute('title');
-        button2.setAttribute('aria-label', 'Fermer la modale');
+      if (backButton) {
+        backButton.removeAttribute('title');
+        backButton.setAttribute('aria-label', 'Fermer la modale');
       }
 
       if (info) {
@@ -44,6 +46,54 @@ export function useEnhanceCookieManagerAccessibility() {
 
       if (duplicatedPanelCookie) {
         duplicatedPanelCookie.remove();
+      }
+
+      // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=fede5d6d662849379b84f6ef0ab4111f&pm=s
+      if (crispButtonInfo) {
+        crispButtonInfo.parentElement?.remove();
+
+        const contentDetails = body.querySelector('div#tarteaucitronDetailssupport');
+
+        // Content details need to be placed right after the sibling
+        const sibling = body.querySelector(
+          'li#tarteaucitronServicesTitle_support .tarteaucitronName span[aria-level="3"]',
+        );
+
+        if (contentDetails && sibling) {
+          contentDetails.removeAttribute('class');
+
+          const paragraph = document.createElement('p');
+
+          paragraph.setAttribute('id', contentDetails.id);
+          paragraph.textContent = contentDetails.textContent;
+          sibling.insertAdjacentElement('afterend', paragraph);
+
+          contentDetails.remove();
+        }
+      }
+
+      // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=fede5d6d662849379b84f6ef0ab4111f&pm=s
+      if (vimeoButtonInfo) {
+        vimeoButtonInfo.parentElement?.remove();
+
+        const contentDetails = body.querySelector('div#tarteaucitronDetailsvideo');
+
+        // Content details need to be placed right after the sibling
+        const sibling = body.querySelector(
+          'li#tarteaucitronServicesTitle_video .tarteaucitronName span[aria-level="3"]',
+        );
+
+        if (contentDetails && sibling) {
+          contentDetails.removeAttribute('class');
+
+          const paragraph = document.createElement('p');
+
+          paragraph.setAttribute('id', contentDetails.id);
+          paragraph.textContent = contentDetails.textContent;
+          sibling.insertAdjacentElement('afterend', paragraph);
+
+          contentDetails.remove();
+        }
       }
     });
 
