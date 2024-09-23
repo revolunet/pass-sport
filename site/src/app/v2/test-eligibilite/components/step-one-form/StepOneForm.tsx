@@ -160,6 +160,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
               onInputChanged(e.target.value, 'beneficiaryLastname'),
             autoComplete: 'family-name',
             'aria-autocomplete': 'none',
+            required: true,
           }}
           state={inputStates.beneficiaryLastname.state}
           stateRelatedMessage={inputStates.beneficiaryLastname.errorMsg}
@@ -181,6 +182,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
               onInputChanged(e.target.value, 'beneficiaryFirstname'),
             autoComplete: 'given-name',
             'aria-autocomplete': 'none',
+            required: true,
           }}
           state={inputStates.beneficiaryFirstname.state}
           stateRelatedMessage={inputStates.beneficiaryFirstname.errorMsg}
@@ -200,6 +202,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
             name: 'beneficiaryBirthDate',
             'aria-label': 'Saisir la date de naissance du bénéficiaire',
             type: 'date',
+            required: true,
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'beneficiaryBirthDate'),
           }}
