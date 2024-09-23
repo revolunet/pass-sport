@@ -153,6 +153,14 @@ export function useEnhanceCrispChatBox() {
     }
   };
 
+  const removeWarnMessage = (crisp: Element) => {
+    const warnText = crisp.querySelector('a[data-type="warn_prompt"][tabindex="0"][role="alert"]');
+    if (!warnText) {
+      return;
+    }
+    warnText.remove();
+  };
+
   const mutators = [
     replaceConversationTextNodeWithParagraph, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
     replaceSpansWithParagraph, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=100d86210f7a8080b2f0eb52f62dd987&pm=s
@@ -163,6 +171,7 @@ export function useEnhanceCrispChatBox() {
     preciseAriaLabelOnSend, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=10559c9edecc4eac81f340d6f691bb39&pm=s
     removeUnecessaryAria, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=d1ce0c6e2f4241b89ad2811f90f4c463&pm=s
     addAriaLabelOnEmailInput, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=7b2db07ce2ad4360b664be87b444064f&pm=s
+    removeWarnMessage, // https://www.notion.so/Audit-avec-tickets-notion-526ecd6d84764c0c84844c2e41071fe2?p=dabdf168d0cd4016876e9c142bc77a28&pm=s
   ];
 
   useEffect(() => {
