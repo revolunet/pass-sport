@@ -18,7 +18,6 @@ import {
   selectStyles,
 } from '@/app/v2/trouver-un-club/components/club-filters/custom-select/CustomSelect';
 import React, { useState } from 'react';
-import Button from '@codegouvfr/react-dsfr/Button';
 
 interface Option {
   label: string;
@@ -106,23 +105,6 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
             Placeholder: CustomPlaceholder,
           }}
         />
-
-        <Button
-          type="button"
-          className="fr-col--bottom"
-          priority="tertiary no outline"
-          disabled={isDisabled}
-          onClick={() => {
-            birthPlaceChangedHandler({ value: '', label: '' });
-            setInputValue('');
-            setValue({
-              value: '',
-              label: '',
-            });
-          }}
-        >
-          Effacer la commune
-        </Button>
       </div>
 
       <div className={cn('fr-mt-2w', styles.secondHintBlock)}>
