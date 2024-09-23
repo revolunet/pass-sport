@@ -11,6 +11,8 @@ export function useEnhanceCrispChatBox() {
     pElement.innerHTML = element.innerHTML;
     if (!element.textContent?.startsWith('pass Sport')) {
       pElement.style.setProperty('margin', '0', 'important');
+    } else {
+      pElement.style.setProperty('color', 'black', 'important');
     }
     element.replaceWith(pElement);
   };
