@@ -317,6 +317,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   'En cochant cette case, vous comprenez que les données personnelles entrées, adresse IP comprise, pourront être utilisées afin de vous contacter dans le cadre de votre intérêt légitime.*',
                 nativeInputProps: {
                   name: 'consent',
+                  required: true,
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
                     onInputChanged(e.target.checked ? 'yes' : null, 'consent'),
                 },
