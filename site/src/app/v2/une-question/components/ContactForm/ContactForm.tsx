@@ -217,6 +217,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     'aria-label': 'Saisir votre prénom',
                     autoComplete: 'given-name',
                     'aria-autocomplete': 'none',
+                    required: true,
                   }}
                   state={inputStates.firstname.state}
                   stateRelatedMessage={inputStates.firstname.errorMsg}
@@ -233,6 +234,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     'aria-label': 'Saisir votre nom',
                     autoComplete: 'family-name',
                     'aria-autocomplete': 'none',
+                    required: true,
                   }}
                   state={inputStates.lastname.state}
                   stateRelatedMessage={inputStates.lastname.errorMsg}
@@ -249,6 +251,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                       onInputChanged(e.target.value, 'siret'),
                     'aria-label': 'Saisir le SIRET de votre association',
                     'aria-autocomplete': 'none',
+                    required: true,
                   }}
                   state={inputStates.siret.state}
                   stateRelatedMessage={inputStates.siret.errorMsg}
@@ -265,6 +268,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   'aria-label': 'Saisir votre adresse e-mail',
                   autoComplete: 'email',
                   'aria-autocomplete': 'none',
+                  required: true,
                 }}
                 state={inputStates.email.state}
                 stateRelatedMessage={inputStates.email.errorMsg}
@@ -279,6 +283,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     onInputChanged(e.currentTarget.value, 'reason'),
                   defaultValue: '',
                   'aria-label': "Selectionnez l'objet de votre demande",
+                  required: true,
                 }}
                 state={inputStates.reason.state}
                 stateRelatedMessage={inputStates.reason.errorMsg}
@@ -307,6 +312,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                 onChange: (e: ChangeEvent<HTMLTextAreaElement>) =>
                   onInputChanged(e.target.value, 'message'),
                 'aria-label': 'Saisir votre message',
+                required: true,
               }}
               state={inputStates.message.state}
               stateRelatedMessage={inputStates.message.errorMsg}
@@ -320,6 +326,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                 label:
                   'En cochant cette case, vous comprenez que les données personnelles entrées, adresse IP comprise, pourront être utilisées afin de vous contacter dans le cadre de votre intérêt légitime.*',
                 nativeInputProps: {
+                  required: true,
                   name: 'consent',
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
                     onInputChanged(e.target.checked ? 'yes' : null, 'consent'),

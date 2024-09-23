@@ -157,6 +157,7 @@ const AahCafForm = ({
               name: 'recipientCafNumber',
               placeholder: 'ex: 0000000',
               type: 'text',
+              required: true,
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
               'aria-label': "Saisir le numéro de l'allocataire CAF",

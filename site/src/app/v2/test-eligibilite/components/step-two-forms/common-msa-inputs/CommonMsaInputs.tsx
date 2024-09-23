@@ -48,6 +48,7 @@ const CommonMsaInputs = ({
         nativeSelectProps={{
           name: birthCountryInputName,
           onChange: onCountryChanged,
+          required: true,
           'aria-label': "Saisir le pays de naissance de l'allocataire",
         }}
         state={inputStates.recipientBirthCountry.state}
@@ -69,6 +70,7 @@ const CommonMsaInputs = ({
           legend="Commune de naissance de l'allocataire*"
           isDisabled={areInputsDisabled}
           onChanged={onBirthPlaceChanged}
+          required={isBirthInputRequired}
         />
       )}
     </>

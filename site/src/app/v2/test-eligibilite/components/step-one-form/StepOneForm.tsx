@@ -217,6 +217,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           inputName="recipientResidencePlace"
           inputState={inputStates.recipientResidencePlace}
           onChanged={(text) => onInputChanged(text, 'recipientResidencePlace')}
+          required={true}
         />
 
         <Button

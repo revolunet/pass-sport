@@ -170,6 +170,7 @@ const YoungMsaForm = ({
             name: 'recipientLastname',
             placeholder: 'ex: Dupont',
             'aria-label': "Saisir le nom de l'allocataire",
+            required: true,
           }}
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
@@ -188,6 +189,7 @@ const YoungMsaForm = ({
             name: 'recipientFirstname',
             placeholder: 'ex: Marie',
             'aria-label': "Saisir le prénom de l'allocataire",
+            required: true,
           }}
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}
@@ -207,6 +209,7 @@ const YoungMsaForm = ({
             name: 'recipientBirthDate',
             type: 'date',
             'aria-label': "Saisir la date de naissance de l'allocataire",
+            required: true,
           }}
           state={inputStates.recipientBirthDate.state}
           stateRelatedMessage={inputStates.recipientBirthDate.errorMsg}
