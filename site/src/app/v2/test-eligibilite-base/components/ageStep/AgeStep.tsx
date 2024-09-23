@@ -9,8 +9,14 @@ import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 const AgeStep = () => {
   const [ageRange, setAgeRange] = useState<AGE_RANGE | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
+
   const fieldsetId = 'ageStep-fieldset';
   useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
+  const buttonClickedHandler = () => {
+    setIsValidated(true);
+  };
 
   return (
     <div>
@@ -18,29 +24,39 @@ const AgeStep = () => {
         id={fieldsetId}
         name="ageStep"
         legendLine1="Quel âge avez-vous ?"
+        isOkButtonDisabled={isValidated}
+        onOkButtonClicked={buttonClickedHandler}
         options={[
           {
             label: 'Entre 6 et 19 ans',
             nativeInputProps: {
-              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_6_19),
+              onChange: () => {
+                setAgeRange(AGE_RANGE.BETWEEN_6_19);
+                setIsValidated(false);
+              },
             },
           },
           {
             label: 'Entre 19 et 30 ans',
             nativeInputProps: {
-              onChange: () => setAgeRange(AGE_RANGE.BETWEEN_19_30),
+              onChange: () => {
+                setAgeRange(AGE_RANGE.BETWEEN_19_30), setIsValidated(false);
+              },
             },
           },
           {
             label: 'Plus de 30 ans',
             nativeInputProps: {
-              onChange: () => setAgeRange(AGE_RANGE.GREATER_THAN_30),
+              onChange: () => {
+                setAgeRange(AGE_RANGE.GREATER_THAN_30);
+                setIsValidated(false);
+              },
             },
           },
         ]}
       />
 
-      {ageRange === AGE_RANGE.GREATER_THAN_30 && (
+      {isValidated && ageRange === AGE_RANGE.GREATER_THAN_30 && (
         <VerdictPanel
           title="Nous sommes désolés, d'après les informations que vous nous avez transmises, vous n'êtes
         pas éligible au pass Sport"
@@ -77,7 +93,7 @@ const AgeStep = () => {
 
       {/* "key" property here is crucial, it allows to "reset" the subsequent components */}
       {/* more info at https://react.dev/learn/preserving-and-resetting-state */}
-      {ageRange !== null && <AgeStep2 ageRange={ageRange} key={ageRange} />}
+      {isValidated && ageRange !== null && <AgeStep2 ageRange={ageRange} key={ageRange} />}
     </div>
   );
 };

@@ -13,39 +13,56 @@ import { CROUS } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 const CrousStep = () => {
   const [ageRange, setAgeRange] = useState<CROUS_AGE_RANGE | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
+
   const router = useRouter();
 
   const fieldsetId = 'crousStep-fieldset';
   useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
+  const buttonClickedHandler = () => {
+    setIsValidated(true);
+  };
 
   return (
     <>
       <CustomRadioButtons
         id={fieldsetId}
         legendLine1="Quel âge avez-vous ?"
+        isOkButtonDisabled={isValidated}
+        onOkButtonClicked={buttonClickedHandler}
         options={[
           {
             label: 'Moins de 28 ans',
             nativeInputProps: {
-              onChange: () => setAgeRange(CROUS_AGE_RANGE.LESS_THAN_28),
+              onChange: () => {
+                setIsValidated(false);
+                setAgeRange(CROUS_AGE_RANGE.LESS_THAN_28);
+              },
             },
           },
           {
             label: '28 ans révolus (au plus tard le 15 octobre 2024)',
             nativeInputProps: {
-              onChange: () => setAgeRange(CROUS_AGE_RANGE.MORE_THAN_28),
+              onChange: () => {
+                setIsValidated(false);
+                setAgeRange(CROUS_AGE_RANGE.MORE_THAN_28);
+              },
             },
           },
           {
             label: 'Plus de 29 ans',
             nativeInputProps: {
-              onChange: () => setAgeRange(CROUS_AGE_RANGE.MORE_THAN_29),
+              onChange: () => {
+                setIsValidated(false);
+                setAgeRange(CROUS_AGE_RANGE.MORE_THAN_29);
+              },
             },
           },
         ]}
       />
 
-      {ageRange === CROUS_AGE_RANGE.LESS_THAN_28 && (
+      {isValidated && ageRange === CROUS_AGE_RANGE.LESS_THAN_28 && (
         <VerdictPanel
           title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous êtes éligible au pass Sport."
           isSuccess
@@ -94,9 +111,9 @@ const CrousStep = () => {
         </VerdictPanel>
       )}
 
-      {(ageRange === CROUS_AGE_RANGE.MORE_THAN_29 || ageRange === CROUS_AGE_RANGE.MORE_THAN_28) && (
-        <FullNegativeVerdictPanel isLean />
-      )}
+      {isValidated &&
+        (ageRange === CROUS_AGE_RANGE.MORE_THAN_29 ||
+          ageRange === CROUS_AGE_RANGE.MORE_THAN_28) && <FullNegativeVerdictPanel isLean />}
     </>
   );
 };
