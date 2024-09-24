@@ -80,14 +80,13 @@ export default function PassSportNavigationPro() {
         // @ts-ignore
         homeLinkProps={{
           href: '/v2/pro/accueil',
-          'aria-label': `Visiter la page d'accueil du pass Sport`,
         }}
         navigation={navigationItemPro.map((item) => ({
           isActive: isActive(item.link),
           linkProps: {
             href: item.link,
             target: !!item.isExternal ? '_blank' : '_self',
-            'aria-label': item.ariaLabel,
+            ...(item.ariaLabel && { 'aria-label': item.ariaLabel }),
             ...(item.title && { title: item.title }),
           },
           text: item.text,
