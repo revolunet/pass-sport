@@ -7,7 +7,7 @@ import { handleSupportCookie } from '@/utils/cookie';
 
 const schema = zfd.formData({
   id: z.string(),
-  situation: z.enum(['AAH', 'jeune']),
+  situation: z.enum(['AAH', 'jeune', 'Jeune']),
   organisme: z.enum(['CAF', 'MSA']),
   recipientLastname: z.string().optional(),
   recipientFirstname: z.string().optional(),
@@ -21,6 +21,11 @@ export async function POST(request: Request): Promise<Response> {
   try {
     const formData = await request.formData();
     const payload: ConfirmPayload = schema.parse(formData);
+
+    if (payload.situation.toLowerCase() === 'jeune') {
+      payload.situation = 'jeune';
+    }
+
     const data = await fetchQrCode(payload);
 
     // Means no one was found
