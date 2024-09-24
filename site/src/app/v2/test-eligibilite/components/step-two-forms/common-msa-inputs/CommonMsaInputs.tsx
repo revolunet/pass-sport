@@ -49,6 +49,7 @@ const CommonMsaInputs = ({
           name: birthCountryInputName,
           onChange: onCountryChanged,
           'aria-label': "Saisir le pays de naissance de l'allocataire",
+          autoFocus: true,
         }}
         state={inputStates.recipientBirthCountry.state}
         stateRelatedMessage={inputStates.recipientBirthCountry.errorMsg}

@@ -170,6 +170,7 @@ const YoungMsaForm = ({
             name: 'recipientLastname',
             placeholder: 'ex: Dupont',
             'aria-label': "Saisir le nom de l'allocataire",
+            autoFocus: true,
           }}
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
