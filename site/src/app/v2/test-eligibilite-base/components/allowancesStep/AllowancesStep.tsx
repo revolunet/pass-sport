@@ -15,10 +15,16 @@ interface Props {
 
 const AllowancesStep = ({ isForChild }: Props) => {
   const [hasAllowances, setHasAllowances] = useState<boolean | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
+
   const router = useRouter();
 
   const fieldsetId = 'allowancesStep-fieldset';
   useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
+  const buttonClickedHandler = () => {
+    setIsValidated(true);
+  };
 
   const successCallout = (
     <div>
@@ -80,23 +86,31 @@ const AllowancesStep = ({ isForChild }: Props) => {
         id={fieldsetId}
         name="allowanceStep"
         legendLine1="Votre enfant (ou petit enfant) bénéficie-t-il d'une de ces aides ?"
+        isOkButtonDisabled={isValidated}
+        onOkButtonClicked={buttonClickedHandler}
         options={[
           {
             label: 'Oui',
             nativeInputProps: {
-              onChange: () => setHasAllowances(true),
+              onChange: () => {
+                setIsValidated(false);
+                setHasAllowances(true);
+              },
             },
           },
           {
             label: 'Non',
             nativeInputProps: {
-              onChange: () => setHasAllowances(false),
+              onChange: () => {
+                setIsValidated(false);
+                setHasAllowances(false);
+              },
             },
           },
         ]}
       />
-      {hasAllowances && successCallout}
-      {hasAllowances === false && failureCallOut}
+      {isValidated && hasAllowances && successCallout}
+      {isValidated && hasAllowances === false && failureCallOut}
     </>
   );
 };

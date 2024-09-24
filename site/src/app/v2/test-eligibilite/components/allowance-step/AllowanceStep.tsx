@@ -37,10 +37,15 @@ const AllowanceStep = () => {
   }, []);
 
   const [allowance, setAllowance] = useState<ALLOWANCE | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
 
   const restartTest = () => {
     CustomButtonsGroupKey = Math.round(Math.random() * 1000);
     setAllowance(null);
+  };
+
+  const buttonClickedHandler = () => {
+    setIsValidated(true);
   };
 
   return (
@@ -49,10 +54,12 @@ const AllowanceStep = () => {
 
       <CustomRadioButtons
         id={fieldsetId}
+        name="radio"
         key={CustomButtonsGroupKey}
         legendLine1="Bonjour,"
         legendLine2="Bénéficiez-vous d’une de ces allocations ?"
-        name="radio"
+        isOkButtonDisabled={isValidated}
+        onOkButtonClicked={buttonClickedHandler}
         options={[
           {
             label: (
@@ -61,19 +68,28 @@ const AllowanceStep = () => {
               </span>
             ),
             nativeInputProps: {
-              onChange: () => setAllowance(ALLOWANCE.ARS_AEEH_AAH),
+              onChange: () => {
+                setIsValidated(false);
+                setAllowance(ALLOWANCE.ARS_AEEH_AAH);
+              },
             },
           },
           {
             label: <CROUS />,
             nativeInputProps: {
-              onChange: () => setAllowance(ALLOWANCE.CROUS),
+              onChange: () => {
+                setIsValidated(false);
+                setAllowance(ALLOWANCE.CROUS);
+              },
             },
           },
           {
             label: 'Aucune',
             nativeInputProps: {
-              onChange: () => setAllowance(ALLOWANCE.NONE),
+              onChange: () => {
+                setIsValidated(false);
+                setAllowance(ALLOWANCE.NONE);
+              },
             },
           },
         ]}
@@ -98,20 +114,22 @@ const AllowanceStep = () => {
         }
       />
 
-      <fieldset id="second-step-form" className="fr-fieldset">
-        {[ALLOWANCE.ARS_AEEH_AAH, ALLOWANCE.CROUS].includes(allowance as ALLOWANCE) && (
-          <legend
-            className="fr-fieldset__legend--regular fr-fieldset__legend fr-pt-1w fr-pb-2w"
-            id="second-step-form-legend"
-          >
-            Deuxième étape du formulaire
-          </legend>
-        )}
+      {isValidated && (
+        <fieldset id="second-step-form" className="fr-fieldset">
+          {[ALLOWANCE.ARS_AEEH_AAH, ALLOWANCE.CROUS].includes(allowance as ALLOWANCE) && (
+            <legend
+              className="fr-fieldset__legend--regular fr-fieldset__legend fr-pt-1w fr-pb-2w"
+              id="second-step-form-legend"
+            >
+              Deuxième étape du formulaire
+            </legend>
+          )}
 
-        {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
-        {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
-        {allowance === ALLOWANCE.CROUS && <CrousStep />}
-      </fieldset>
+          {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
+          {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
+          {allowance === ALLOWANCE.CROUS && <CrousStep />}
+        </fieldset>
+      )}
     </EligibilityTestContext.Provider>
   );
 };

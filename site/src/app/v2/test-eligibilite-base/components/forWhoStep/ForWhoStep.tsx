@@ -14,6 +14,7 @@ let CustomButtonsGroupKey = 0;
 
 const ForWhoStep = () => {
   const [isForMyself, setIsForMyself] = useState<boolean | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
 
   const fieldsetId = 'forWhoStep-fieldset';
   useRemoveAttributeById(fieldsetId, 'aria-labelledby');
@@ -23,6 +24,9 @@ const ForWhoStep = () => {
     setIsForMyself(null);
   };
 
+  const onButtonClickedHandler = () => {
+    setIsValidated(true);
+  };
   return (
     <EligibilityContext.Provider value={{ performNewTest: restartTest }}>
       <>
@@ -34,25 +38,33 @@ const ForWhoStep = () => {
           legendLine1="Bonjour,"
           legendLine2="Vous souhaitez savoir si vous avez droit au pass Sport."
           legendLine3="Faites le test :"
+          isOkButtonDisabled={isValidated}
+          onOkButtonClicked={onButtonClickedHandler}
           name="forWhoStep"
           options={[
             {
               label: 'Pour moi même',
               nativeInputProps: {
-                onChange: () => setIsForMyself(true),
+                onChange: () => {
+                  setIsForMyself(true);
+                  setIsValidated(false);
+                },
               },
             },
             {
               label: 'Pour mon enfant ou petit enfant',
               nativeInputProps: {
-                onChange: () => setIsForMyself(false),
+                onChange: () => {
+                  setIsForMyself(false);
+                  setIsValidated(false);
+                },
               },
             },
           ]}
         />
 
-        {isForMyself === true && <AgeStep />}
-        {isForMyself === false && <ChildAgeStep />}
+        {isForMyself && isValidated && <AgeStep />}
+        {isForMyself === false && isValidated && <ChildAgeStep />}
       </>
     </EligibilityContext.Provider>
   );

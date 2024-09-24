@@ -9,9 +9,14 @@ import { useRemoveAttributeById } from '@/app/hooks/useRemoveAttributeById';
 
 const ChildAgeStep = () => {
   const [childAge, setChildAge] = useState<CHILD_AGE | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
 
   const fieldsetId = 'childAgeStep-fieldset';
   useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
+  const buttonClickedHandler = () => {
+    setIsValidated(true);
+  };
 
   const failureCallOut = (
     <VerdictPanel
@@ -48,31 +53,42 @@ const ChildAgeStep = () => {
         id={fieldsetId}
         name="childAgeStep"
         legendLine1="Quel âge a votre enfant ?"
+        isOkButtonDisabled={isValidated}
+        onOkButtonClicked={buttonClickedHandler}
         options={[
           {
             label: 'Moins de 6 ans',
             nativeInputProps: {
-              onChange: () => setChildAge(CHILD_AGE.LESS_THAN_SIX),
+              onChange: () => {
+                setIsValidated(false);
+                setChildAge(CHILD_AGE.LESS_THAN_SIX);
+              },
             },
           },
           {
             label: 'Entre 6 et 30 ans',
             nativeInputProps: {
-              onChange: () => setChildAge(CHILD_AGE.BTW_SIX_AND_THIRTY),
+              onChange: () => {
+                setIsValidated(false);
+                setChildAge(CHILD_AGE.BTW_SIX_AND_THIRTY);
+              },
             },
           },
           {
             label: 'Plus de 30 ans',
             nativeInputProps: {
-              onChange: () => setChildAge(CHILD_AGE.MORE_THAN_THIRTY),
+              onChange: () => {
+                setIsValidated(false);
+                setChildAge(CHILD_AGE.MORE_THAN_THIRTY);
+              },
             },
           },
         ]}
       />
 
-      {childAge === CHILD_AGE.LESS_THAN_SIX && failureCallOut}
-      {childAge === CHILD_AGE.BTW_SIX_AND_THIRTY && <AllowancesStep isForChild />}
-      {childAge === CHILD_AGE.MORE_THAN_THIRTY && failureCallOut}
+      {isValidated && childAge === CHILD_AGE.LESS_THAN_SIX && failureCallOut}
+      {isValidated && childAge === CHILD_AGE.BTW_SIX_AND_THIRTY && <AllowancesStep isForChild />}
+      {isValidated && childAge === CHILD_AGE.MORE_THAN_THIRTY && failureCallOut}
     </>
   );
 };

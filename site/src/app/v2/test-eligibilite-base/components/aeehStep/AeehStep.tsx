@@ -15,10 +15,16 @@ interface Props {
 
 const AeehStep = ({ ageRange }: Props) => {
   const [hasAeehAllocation, setHasAeehAllocation] = useState<boolean | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
+
   const router = useRouter();
 
   const fieldsetId = 'aeehStep-fieldset';
   useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
+  const buttonClickedHandler = () => {
+    setIsValidated(true);
+  };
 
   const displaySuccess = hasAeehAllocation;
   const displayFailure =
@@ -38,24 +44,32 @@ const AeehStep = ({ ageRange }: Props) => {
             </>
           }
           legendLine2="Si vous ne le savez pas, rapprochez vous de vos parents, ils sauront vous répondre."
+          isOkButtonDisabled={isValidated}
+          onOkButtonClicked={buttonClickedHandler}
           options={[
             {
               label: 'Oui',
               nativeInputProps: {
-                onChange: () => setHasAeehAllocation(true),
+                onChange: () => {
+                  setHasAeehAllocation(true);
+                  setIsValidated(false);
+                },
               },
             },
             {
               label: 'Non',
               nativeInputProps: {
-                onChange: () => setHasAeehAllocation(false),
+                onChange: () => {
+                  setHasAeehAllocation(false);
+                  setIsValidated(false);
+                },
               },
             },
           ]}
         />
       )}
 
-      {displaySuccess && (
+      {isValidated && displaySuccess && (
         <VerdictPanel
           title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous
           êtes éligible au pass Sport."
@@ -75,7 +89,7 @@ const AeehStep = ({ ageRange }: Props) => {
         </VerdictPanel>
       )}
 
-      {displayFailure && <FullNegativeVerdictPanel isLean={false} />}
+      {isValidated && displayFailure && <FullNegativeVerdictPanel isLean={false} />}
     </>
   );
 };
