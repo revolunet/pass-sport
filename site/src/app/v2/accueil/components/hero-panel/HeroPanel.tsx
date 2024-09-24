@@ -26,7 +26,6 @@ const HeroPanel = () => {
           size="large"
           linkProps={{
             href: '/v2/test-ou-code',
-            'aria-label': "Je fais le test d'éligibilité ou je récupère mon pass Sport",
             onClick: eligibilityTestOnClick,
           }}
         >

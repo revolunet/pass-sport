@@ -106,12 +106,12 @@ export const onFocus = <Option, Group extends GroupBase<Option>>(
     arr && arr.length ? `${arr.indexOf(item) + 1} sur ${arr.length}` : '';
 
   if (context === 'value' && selectValue) {
-    return `value ${label} focused, ${getArrayIndex(selectValue, focused)}.`;
+    return `valeur ${label} sélectionné, ${getArrayIndex(selectValue, focused)}.`;
   }
 
   if (context === 'menu' && isAppleDevice) {
     const disabled = isDisabled ? ' disabled' : '';
-    const status = `${isSelected ? ' selected' : ''}${disabled}`;
+    const status = `${isSelected ? ' sélectionné' : ''}${disabled}`;
     return `${label}${status}, ${getArrayIndex(options, focused)}.`;
   }
 
