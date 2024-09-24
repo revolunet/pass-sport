@@ -158,7 +158,7 @@ export function useEnhanceCrispChatBox() {
     if (!warnText) {
       return;
     }
-    warnText.remove();
+    warnText.style.setProperty('display', 'none', 'important');
   };
 
   const mutators = [
