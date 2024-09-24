@@ -214,9 +214,8 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     name: 'firstname',
                     onChange: (e: ChangeEvent<HTMLInputElement>) =>
                       onInputChanged(e.target.value, 'firstname'),
-                    'aria-label': 'Saisir votre prénom',
                     autoComplete: 'given-name',
-                    'aria-autocomplete': 'none',
+                    'aria-autocomplete': 'inline',
                   }}
                   state={inputStates.firstname.state}
                   stateRelatedMessage={inputStates.firstname.errorMsg}
@@ -230,9 +229,8 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     name: 'lastname',
                     onChange: (e: ChangeEvent<HTMLInputElement>) =>
                       onInputChanged(e.target.value, 'lastname'),
-                    'aria-label': 'Saisir votre nom',
                     autoComplete: 'family-name',
-                    'aria-autocomplete': 'none',
+                    'aria-autocomplete': 'inline',
                   }}
                   state={inputStates.lastname.state}
                   stateRelatedMessage={inputStates.lastname.errorMsg}
@@ -247,8 +245,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     name: 'siret',
                     onChange: (e: ChangeEvent<HTMLInputElement>) =>
                       onInputChanged(e.target.value, 'siret'),
-                    'aria-label': 'Saisir le SIRET de votre association',
-                    'aria-autocomplete': 'none',
                   }}
                   state={inputStates.siret.state}
                   stateRelatedMessage={inputStates.siret.errorMsg}
@@ -262,9 +258,8 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   name: 'email',
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
                     onInputChanged(e.target.value, 'email'),
-                  'aria-label': 'Saisir votre adresse e-mail',
                   autoComplete: 'email',
-                  'aria-autocomplete': 'none',
+                  'aria-autocomplete': 'list',
                 }}
                 state={inputStates.email.state}
                 stateRelatedMessage={inputStates.email.errorMsg}
@@ -278,7 +273,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   onChange: (e: SyntheticEvent<HTMLSelectElement>) =>
                     onInputChanged(e.currentTarget.value, 'reason'),
                   defaultValue: '',
-                  'aria-label': "Selectionnez l'objet de votre demande",
                 }}
                 state={inputStates.reason.state}
                 stateRelatedMessage={inputStates.reason.errorMsg}
@@ -306,7 +300,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                 name: 'message',
                 onChange: (e: ChangeEvent<HTMLTextAreaElement>) =>
                   onInputChanged(e.target.value, 'message'),
-                'aria-label': 'Saisir votre message',
               }}
               state={inputStates.message.state}
               stateRelatedMessage={inputStates.message.errorMsg}
