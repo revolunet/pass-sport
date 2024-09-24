@@ -89,11 +89,11 @@ export default function PassSportFooter() {
       {
         // @ts-ignore
         linkProps: {
-          'aria-label': 'Ouvrir une nouvelle fenêtre vers le CROUS',
+          'aria-label': 'Ouvrir une nouvelle fenêtre vers lescrous.fr',
           href: 'https://www.lescrous.fr/',
         },
         imgUrl: crousLogo.src,
-        alt: 'CROUS',
+        alt: 'les CROUS',
       },
       {
         // @ts-ignore
