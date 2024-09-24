@@ -31,7 +31,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
   const [inputStates, setInputStates] = useState<StepOneFormInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
   const [error, setError] = useState<string | null>();
-
   const isFormValid = (
     formData: FormData,
   ): { isValid: boolean; states: StepOneFormInputsState } => {
@@ -149,7 +148,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
       <Legend
         wrapInParagraph
         line1="Veuillez rentrer les informations ci-dessous sur vous ou sur votre enfant :"
-      ></Legend>
+      />
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <Input
           label="Nom du bénéficiaire*"
@@ -159,6 +158,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
               onInputChanged(e.target.value, 'beneficiaryLastname'),
             autoComplete: 'family-name',
             'aria-autocomplete': 'inline',
+            autoFocus: true,
           }}
           state={inputStates.beneficiaryLastname.state}
           stateRelatedMessage={inputStates.beneficiaryLastname.errorMsg}

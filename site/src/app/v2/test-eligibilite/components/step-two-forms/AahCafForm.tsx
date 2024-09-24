@@ -160,6 +160,7 @@ const AahCafForm = ({
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
               'aria-label': "Saisir le numéro de l'allocataire CAF",
+              autoFocus: true,
             },
             state: inputStates.recipientCafNumber.state,
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
