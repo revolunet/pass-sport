@@ -215,7 +215,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                       onInputChanged(e.target.value, 'firstname'),
                     autoComplete: 'given-name',
                     required: true,
-                    'aria-autocomplete': 'inline',
                   }}
                   state={inputStates.firstname.state}
                   stateRelatedMessage={inputStates.firstname.errorMsg}
@@ -231,7 +230,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                       onInputChanged(e.target.value, 'lastname'),
                     autoComplete: 'family-name',
                     required: true,
-                    'aria-autocomplete': 'inline',
                   }}
                   state={inputStates.lastname.state}
                   stateRelatedMessage={inputStates.lastname.errorMsg}
@@ -262,7 +260,6 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     onInputChanged(e.target.value, 'email'),
                   autoComplete: 'email',
                   required: true,
-                  'aria-autocomplete': 'list',
                 }}
                 state={inputStates.email.state}
                 stateRelatedMessage={inputStates.email.errorMsg}
