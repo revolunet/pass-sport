@@ -72,7 +72,6 @@ export default function PassSportNavigationPro() {
             iconId: 'fr-icon-arrow-right-line',
             linkProps: {
               href: '/v2/accueil',
-              'aria-label': `Visiter la page d'accueil dédiée aux particuliers`,
               className: 'fr-btn--tertiary fr-btn--icon-right',
             },
           },

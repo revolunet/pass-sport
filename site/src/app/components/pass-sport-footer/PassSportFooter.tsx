@@ -174,7 +174,6 @@ export default function PassSportFooter() {
 
   // @ts-ignore
   const homeLinkProps: NonNullable<FooterProps['homeLinkProps']> = {
-    'aria-label': `Retourner à l'accueil du site pass Sport`,
     href: '/v2/accueil',
   };
 
@@ -254,9 +253,6 @@ export default function PassSportFooter() {
           text: isProVersion ? 'Je suis un particulier' : 'Je suis une structure partenaire',
           linkProps: {
             href: isProVersion ? '/v2/accueil' : '/v2/pro/accueil',
-            'aria-label': isProVersion
-              ? 'Visiter le site dédié aux structures partenaires'
-              : `Visiter le site dédié aux particuliers`,
           },
         },
         ...((isProVersion
@@ -274,7 +270,6 @@ export default function PassSportFooter() {
           linkProps: {
             href: 'https://lecompteasso.associations.gouv.fr/carto/dashboard',
             target: '_blank',
-            'aria-label': 'Ouvrir une nouvelle fenêtre vers le Tableau de bord',
           },
         },
       ],
