@@ -9,10 +9,13 @@ import { useUpdateList } from '@/app/hooks/accessibility/use-update-list';
 import { useRef } from 'react';
 import { HEADER_CLASSES } from '@/app/constants/dsfr-classes';
 import { useReplaceTitlesByAriaLabels } from '@/app/hooks/accessibility/use-replace-titles-by-aria-labels';
+import { useRemoveHeaderAttributes } from '@/app/hooks/accessibility/use-remove-header-attributes';
+import { useRemoveHeaderThemeControls } from '@/app/hooks/accessibility/use-remove-header-theme-controls';
 
 export default function PassSportNavigationPro() {
   const paths: string | null = usePathname();
-  const headerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const headerContainerRef = useRef<HTMLDivElement | null>(null);
 
   const isActive = (path: string) => {
     return !!(paths && paths.includes(path));
@@ -38,8 +41,10 @@ export default function PassSportNavigationPro() {
     ],
   });
 
+  useRemoveHeaderAttributes(headerRef);
+  useRemoveHeaderThemeControls(headerContainerRef);
   return (
-    <div>
+    <div ref={headerContainerRef}>
       <Header
         ref={headerRef}
         className={styles.header}
@@ -75,14 +80,13 @@ export default function PassSportNavigationPro() {
         // @ts-ignore
         homeLinkProps={{
           href: '/v2/pro/accueil',
-          'aria-label': `Visiter la page d'accueil du pass Sport`,
         }}
         navigation={navigationItemPro.map((item) => ({
           isActive: isActive(item.link),
           linkProps: {
             href: item.link,
             target: !!item.isExternal ? '_blank' : '_self',
-            'aria-label': item.ariaLabel,
+            ...(item.ariaLabel && { 'aria-label': item.ariaLabel }),
             ...(item.title && { title: item.title }),
           },
           text: item.text,

@@ -48,7 +48,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
           'aria-label': 'Ouvrir une nouvelle fenêtre vers le site Je veux aider.gouv.fr',
         }}
         size="medium"
-        title="Ouvrir une nouvelle fenêtre vers le site Je veux aider.gouv.fr"
+        title="Je veux aider.gouv.fr"
         titleAs="h3"
         classes={{
           end: styles.end,
@@ -79,7 +79,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
             'Ouvrir une nouvelle fenêtre vers le site Le SNU, pour moi, pour les autres, et pour la France.',
         }}
         size="medium"
-        title="Ouvrir une nouvelle fenêtre vers le site Le SNU, pour moi, pour les autres, et pour la France."
+        title="Le SNU, pour moi, pour les autres, et pour la France."
         titleAs="h3"
         classes={{
           end: styles.end,
@@ -108,7 +108,7 @@ const MissionCards = ({ isUsingSuccessUrls }: Props) => {
             'Ouvrir une nouvelle fenêtre vers le site le Service Civique, une mission pour chacun au service de tous',
         }}
         size="medium"
-        title="Ouvrir une nouvelle fenêtre vers le site le Service Civique, une mission pour chacun au service de tous"
+        title="Service Civique, une mission pour chacun au service de tous"
         titleAs="h3"
         classes={{
           end: styles.end,

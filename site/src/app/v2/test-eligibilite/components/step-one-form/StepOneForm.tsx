@@ -1,4 +1,3 @@
-import Question from '@/app/v2/test-eligibilite-base/components/Question/Question';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Input from '@codegouvfr/react-dsfr/Input';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
@@ -12,6 +11,8 @@ import { mapper } from '../../helpers/helper';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchEligible } from '../../agent';
 import { push } from '@socialgouv/matomo-next';
+import Legend from '@/app/v2/test-eligibilite-base/components/customRadioButtons/legend/Legend';
+import { CAF, MSA } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 interface Props {
   onDataReceived: (data: SearchResponseBody) => void;
@@ -30,7 +31,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
   const [inputStates, setInputStates] = useState<StepOneFormInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
   const [error, setError] = useState<string | null>();
-
   const isFormValid = (
     formData: FormData,
   ): { isValid: boolean; states: StepOneFormInputsState } => {
@@ -145,75 +145,90 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
 
   return (
     <>
-      <Question question="Veuillez rentrer les informations ci-dessous sur vous ou sur votre enfant :">
-        <form ref={formRef} onSubmit={onSubmitHandler}>
-          <Input
-            label="Nom du bénéficiaire*"
-            nativeInputProps={{
-              name: 'beneficiaryLastname',
-              'aria-label': 'Saisir le nom du bénéficiaire',
-              onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                onInputChanged(e.target.value, 'beneficiaryLastname'),
-              autoComplete: 'family-name',
-              'aria-autocomplete': 'none',
-            }}
-            state={inputStates.beneficiaryLastname.state}
-            stateRelatedMessage={inputStates.beneficiaryLastname.errorMsg}
-            disabled={isFormDisabled}
-            hintText="Format attendu : Votre nom tel qu’il est écrit sur vos papiers de la CAF ou la MSA"
-          />
+      <Legend
+        wrapInParagraph
+        line1="Veuillez rentrer les informations ci-dessous sur vous ou sur votre enfant :"
+      />
+      <form ref={formRef} onSubmit={onSubmitHandler}>
+        <Input
+          label="Nom du bénéficiaire*"
+          nativeInputProps={{
+            name: 'beneficiaryLastname',
+            onChange: (e: ChangeEvent<HTMLInputElement>) =>
+              onInputChanged(e.target.value, 'beneficiaryLastname'),
+            autoComplete: 'family-name',
+            'aria-autocomplete': 'none',
+            required: true,
+            autoFocus: true,
+          }}
+          state={inputStates.beneficiaryLastname.state}
+          stateRelatedMessage={inputStates.beneficiaryLastname.errorMsg}
+          disabled={isFormDisabled}
+          hintText={
+            <>
+              Format attendu : Votre nom tel qu’il est écrit sur vos papiers de la <CAF /> ou la{' '}
+              <MSA />
+            </>
+          }
+        />
 
-          <Input
-            label="Prénom du bénéficiaire*"
-            nativeInputProps={{
-              name: 'beneficiaryFirstname',
-              'aria-label': 'Saisir le prénom du bénéficiaire',
-              onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                onInputChanged(e.target.value, 'beneficiaryFirstname'),
-              autoComplete: 'given-name',
-              'aria-autocomplete': 'none',
-            }}
-            state={inputStates.beneficiaryFirstname.state}
-            stateRelatedMessage={inputStates.beneficiaryFirstname.errorMsg}
-            disabled={isFormDisabled}
-            hintText="Format attendu : Votre prénom tel qu’il est écrit sur vos papiers de la CAF ou la MSA"
-          />
+        <Input
+          label="Prénom du bénéficiaire*"
+          nativeInputProps={{
+            name: 'beneficiaryFirstname',
+            onChange: (e: ChangeEvent<HTMLInputElement>) =>
+              onInputChanged(e.target.value, 'beneficiaryFirstname'),
+            autoComplete: 'given-name',
+            'aria-autocomplete': 'none',
+            required: true,
+          }}
+          state={inputStates.beneficiaryFirstname.state}
+          stateRelatedMessage={inputStates.beneficiaryFirstname.errorMsg}
+          disabled={isFormDisabled}
+          hintText={
+            <>
+              Format attendu : Votre prénom tel qu’il est écrit sur vos papiers de la <CAF /> ou la{' '}
+              <MSA />
+            </>
+          }
+        />
 
-          <Input
-            label="Date de naissance du bénéficiaire*"
-            hintText="Format attendu: JJ/MM/AAAA"
-            nativeInputProps={{
-              name: 'beneficiaryBirthDate',
-              'aria-label': 'Saisir la date de naissance du bénéficiaire',
-              type: 'date',
-              onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                onInputChanged(e.target.value, 'beneficiaryBirthDate'),
-            }}
-            state={inputStates.beneficiaryBirthDate.state}
-            stateRelatedMessage={inputStates.beneficiaryBirthDate.errorMsg}
-            disabled={isFormDisabled}
-          />
+        <Input
+          label="Date de naissance du bénéficiaire*"
+          hintText="Format attendu: JJ/MM/AAAA"
+          nativeInputProps={{
+            name: 'beneficiaryBirthDate',
+            type: 'date',
+            required: true,
+            onChange: (e: ChangeEvent<HTMLInputElement>) =>
+              onInputChanged(e.target.value, 'beneficiaryBirthDate'),
+          }}
+          state={inputStates.beneficiaryBirthDate.state}
+          stateRelatedMessage={inputStates.beneficiaryBirthDate.errorMsg}
+          disabled={isFormDisabled}
+        />
 
-          <CityFinder
-            legend="Commune de résidence de l’allocataire*"
-            isDisabled={isFormDisabled}
-            inputName="recipientResidencePlace"
-            inputState={inputStates.recipientResidencePlace}
-            onChanged={(text) => onInputChanged(text, 'recipientResidencePlace')}
-          />
+        <CityFinder
+          legend="Commune de résidence de l’allocataire*"
+          isDisabled={isFormDisabled}
+          inputName="recipientResidencePlace"
+          inputState={inputStates.recipientResidencePlace}
+          onChanged={(text) => onInputChanged(text, 'recipientResidencePlace')}
+          required={true}
+        />
 
-          <Button
-            priority="primary"
-            type="submit"
-            disabled={isFormDisabled}
-            iconId={isFormDisabled ? 'fr-icon-success-line' : 'fr-icon-arrow-right-line'}
-            iconPosition="right"
-            className="fr-mb-6w fr-mt-3w"
-          >
-            Je valide les informations
-          </Button>
-        </form>
-      </Question>
+        <Button
+          priority="primary"
+          type="submit"
+          disabled={isFormDisabled}
+          iconId={isFormDisabled ? 'fr-icon-success-line' : 'fr-icon-arrow-right-line'}
+          iconPosition="right"
+          className="fr-mb-6w fr-mt-3w"
+        >
+          Je valide les informations
+        </Button>
+      </form>
+
       {error && <ErrorAlert title={error} />}
     </>
   );

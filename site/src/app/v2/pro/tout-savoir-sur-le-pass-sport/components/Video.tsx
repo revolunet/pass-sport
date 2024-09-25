@@ -1,8 +1,9 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 import styles from './styles.module.scss';
 import cn from 'classnames';
+import { useUpdateTitleIframe } from '@/app/hooks/accessibility/use-update-title-iframe';
 
 interface Props {
   videoId: string;
@@ -14,9 +15,16 @@ interface Props {
 }
 
 const Video = ({ videoId, videoPathUrl, videoFullUrl, title, transcriptionContent }: Props) => {
+  const parentRef = useRef<HTMLDivElement | null>(null);
+
+  useUpdateTitleIframe({
+    parentRef,
+    title,
+  });
+
   return (
-    <div>
-      <figure role="group" className="fr-mt-n2w fr-content-media">
+    <div ref={parentRef}>
+      <figure className="fr-mt-n2w fr-content-media">
         <div className={cn('vimeo_player', styles['vimeo_player'])} data-videoid={videoPathUrl} />
         <figcaption className="fr-content-media__caption">
           {title}
@@ -58,7 +66,7 @@ const Video = ({ videoId, videoPathUrl, videoFullUrl, title, transcriptionConten
                 </button>
               </div>
             </div>
-            <div
+            <dialog
               id={`fr-transcription-modal-transcription-${videoId}`}
               className="fr-modal"
               aria-labelledby={`fr-transcription-modal-transcription-${videoId}-title`}
@@ -92,7 +100,7 @@ const Video = ({ videoId, videoPathUrl, videoFullUrl, title, transcriptionConten
                   </div>
                 </div>
               </div>
-            </div>
+            </dialog>
           </div>
         </div>
       </figure>

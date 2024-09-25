@@ -10,6 +10,7 @@ import FormButton from './FormButton';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
 import CustomInput from '@/app/v2/test-eligibilite/components/custom-input/CustomInput';
+import { CAF } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 const initialInputsState: AahCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -49,10 +50,14 @@ const AahCafForm = ({
       } else {
         if (typeof value === 'string') {
           if (fieldName === 'recipientCafNumber') {
-            if (!/^\d{6,7}$/.test(value)) {
+            if (!/^\d{7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 6, 7 chiffres',
+                errorMsg: (
+                  <>
+                    Le numéro&nbsp; <CAF /> &nbsp;doit être composé de 7 chiffres
+                  </>
+                ),
               };
 
               isValid = false;
@@ -142,23 +147,33 @@ const AahCafForm = ({
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <CustomInput
           inputProps={{
-            label: 'Numéro de l’allocataire CAF*',
-            hintText: 'Format attendu : 6, 7 chiffres',
+            label: (
+              <>
+                Numéro de l’allocataire <CAF />*
+              </>
+            ),
+            hintText: 'Format attendu : 7 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
               placeholder: 'ex: 0000000',
               type: 'text',
+              required: true,
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
               'aria-label': "Saisir le numéro de l'allocataire CAF",
+              autoFocus: true,
             },
             state: inputStates.recipientCafNumber.state,
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
             disabled: isFormDisabled,
           }}
-          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
-          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
-          espace personnel."
+          secondHint={
+            <>
+              Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers
+              émis par la <CAF /> ainsi que sur toutes les attestations que vous pouvez télécharger
+              depuis votre espace personnel.
+            </>
+          }
         />
 
         <FormButton isDisabled={isFormDisabled} />

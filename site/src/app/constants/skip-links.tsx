@@ -5,5 +5,4 @@ export const SKIP_LINKS_ID = {
   footer: 'footer',
   contactUsByMail: 'contact-us-by-mail',
   mainContent: 'main',
-  chatbot: 'crisp-chatbot',
 };

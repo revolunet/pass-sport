@@ -1,10 +1,11 @@
 import Input, { InputProps } from '@codegouvfr/react-dsfr/Input';
 import cn from 'classnames';
 import styles from './styles.module.scss';
+import { ReactNode } from 'react';
 
 interface Props {
   inputProps: InputProps;
-  secondHint: string;
+  secondHint: ReactNode;
 }
 
 const CustomInput = ({ inputProps, secondHint }: Props) => (

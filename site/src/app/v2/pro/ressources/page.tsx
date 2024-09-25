@@ -73,11 +73,7 @@ export default function ToutSavoirSurLePassSport() {
           </div>
 
           <div>
-            <ul>
-              <li>
-                <h3 className="fr-h6">Nos outils de communications</h3>
-              </li>
-            </ul>
+            <h3 className="fr-h6">Nos outils de communications</h3>
 
             <div>
               <Accordion label="Logo">

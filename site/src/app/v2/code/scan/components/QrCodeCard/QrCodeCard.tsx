@@ -6,7 +6,8 @@ import styles from './styles.module.scss';
 import Button from '@codegouvfr/react-dsfr/Button';
 import { push } from '@socialgouv/matomo-next';
 import { useCopyToClipboard } from '@uidotdev/usehooks';
-import { useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { Alert } from '@codegouvfr/react-dsfr/Alert';
 
 interface Props {
   data: {
@@ -21,6 +22,8 @@ interface Props {
 
 const QrCodeCard = ({ data, qrCodeValue }: Props) => {
   const { firstname, lastname, gender, code, birthDate } = data;
+  const notifRef = useRef<HTMLDivElement | null>(null);
+  const [isNotificationDisplayed, setIsNotificationDisplayed] = useState(false);
 
   const formatBirthDate = (rawDate: string | undefined, gender: string | undefined) => {
     if (!rawDate) {
@@ -46,6 +49,9 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
   const onCopyCallback = useCallback(() => {
     push(['trackEvent', 'Copy Code', 'Clicked', 'QR Recap page']);
 
+    setIsNotificationDisplayed(true);
+    notifRef.current?.focus();
+
     return copyToClipboard(data.code);
   }, [copyToClipboard, data.code]);
 
@@ -61,10 +67,10 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
         </div>
 
         <div>
-          <p className={cn('fr-mb-1w', 'fr-h6', styles.fullname)}>
+          <h2 className={cn('fr-mb-1w', 'fr-h6', styles.fullname)}>
             <span className={styles['text-casing']}>{firstname}</span>{' '}
             <span className={styles['text-casing']}>{lastname}</span>
-          </p>
+          </h2>
 
           <p className="fr-mb-2w fr-text--md">{formatBirthDate(birthDate, gender)}</p>
           <p className="fr-text--md fr-text--bold fr-mb-0">Code:</p>
@@ -77,18 +83,25 @@ const QrCodeCard = ({ data, qrCodeValue }: Props) => {
             onClick={onCopyCallback}
             size="small"
           >
-            Copier
+            Copier le code
           </Button>
+
+          <Alert
+            className="fr-mt-2w"
+            ref={notifRef}
+            severity="success"
+            title="Code copié"
+            description=""
+            closable
+            small
+            isClosed={!isNotificationDisplayed}
+            onClose={() => setIsNotificationDisplayed(false)}
+          />
         </div>
       </div>
 
       <div className="fr-grid-row fr-grid-row--center fr-mt-3w">
-        <Button
-          id="print-button"
-          size="large"
-          onClick={printQRCode}
-          aria-label="Bouton pour imprimer la page contenant le QR Code"
-        >
+        <Button id="print-button" size="large" onClick={printQRCode}>
           Imprimer mon pass Sport au format PDF
         </Button>
       </div>

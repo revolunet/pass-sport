@@ -1,12 +1,14 @@
+import { ReactNode } from 'react';
 import {
   StepOneFormInputsState,
   YoungCafInputsState,
   YoungMsaInputsState,
 } from 'types/EligibilityTest';
+import { CAF } from '../../accueil/components/acronymes/Acronymes';
 
 export const mapper: Record<
   keyof StepOneFormInputsState | keyof YoungCafInputsState | keyof YoungMsaInputsState,
-  string
+  ReactNode
 > = {
   beneficiaryLastname: 'Le nom est requis',
   beneficiaryFirstname: 'Le prénom est requis',
@@ -17,7 +19,11 @@ export const mapper: Record<
   recipientBirthDate: 'La date de naissance est requise',
   recipientBirthPlace: 'La commune de naissance est requise',
   recipientBirthCountry: 'Le pays de naissance est requis',
-  recipientCafNumber: 'Le matricule CAF est requis',
+  recipientCafNumber: (
+    <>
+      Le matricule <CAF /> est requis
+    </>
+  ),
 };
 
 export const convertDate = (date: string): string | null => {

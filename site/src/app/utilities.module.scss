@@ -48,3 +48,12 @@
     }
   }
 }
+
+.span {
+  &--with-linebreak {
+    &::after {
+      content: '\a';
+      white-space: pre;
+    }
+  }
+}

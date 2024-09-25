@@ -11,6 +11,7 @@ import FormButton from './FormButton';
 import CustomInput from '../custom-input/CustomInput';
 import ErrorAlert from '../error-alert/ErrorAlert';
 import { fetchPspCode } from '../../agent';
+import { CAF } from '@/app/v2/accueil/components/acronymes/Acronymes';
 
 const initialInputsState: YoungCafInputsState = {
   recipientCafNumber: { state: 'default' },
@@ -56,7 +57,11 @@ const YoungCafForm = ({
             if (!/^\d{7}$/.test(value)) {
               states[fieldName] = {
                 state: 'error',
-                errorMsg: 'Le numéro CAF doit être composé de 7 chiffres',
+                errorMsg: (
+                  <>
+                    Le numéro&nbsp; <CAF /> &nbsp;doit être composé de 7 chiffres
+                  </>
+                ),
               };
 
               isValid = false;
@@ -148,30 +153,45 @@ const YoungCafForm = ({
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <CustomInput
           inputProps={{
-            label: 'Numéro de l’allocataire CAF*',
+            label: (
+              <>
+                Numéro de l’allocataire <CAF />*
+              </>
+            ),
             hintText: 'Format attendu : 7 chiffres',
             nativeInputProps: {
               name: 'recipientCafNumber',
               placeholder: 'ex: 0000000',
               type: 'text',
+              required: true,
               onChange: (e: ChangeEvent<HTMLInputElement>) =>
                 onInputChanged(e.target.value, 'recipientCafNumber'),
               'aria-label': "Saisir le numéro de l'allocataire CAF",
+              autoFocus: true,
             },
             state: inputStates.recipientCafNumber.state,
             stateRelatedMessage: inputStates.recipientCafNumber.errorMsg,
             disabled: isFormDisabled,
           }}
-          secondHint="Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers émis
-          par la CAF ainsi que sur toutes les attestations que vous pouvez télécharger depuis votre
-          espace personnel."
+          secondHint={
+            <>
+              Appelé « numéro de dossier » Le numéro figure en haut à gauche de tous les courriers
+              émis par la <CAF /> ainsi que sur toutes les attestations que vous pouvez télécharger
+              depuis votre espace personnel.
+            </>
+          }
         />
 
         <Input
-          label="Nom de l’allocataire CAF*"
+          label={
+            <>
+              Nom de l’allocataire <CAF />*
+            </>
+          }
           nativeInputProps={{
             name: 'recipientLastname',
             placeholder: 'ex: Dupont',
+            required: true,
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'recipientLastname'),
             'aria-label': "Saisir le nom de l'allocataire CAF",
@@ -179,13 +199,24 @@ const YoungCafForm = ({
           state={inputStates.recipientLastname.state}
           stateRelatedMessage={inputStates.recipientLastname.errorMsg}
           disabled={isFormDisabled}
-          hintText="Format attendu : Nom de l'allocataire tel qu’il est écrit sur les papiers de la CAF"
+          hintText={
+            <>
+              Format attendu : Nom de l&apos;allocataire tel qu&apos;il est écrit sur les papiers de
+              la
+              <CAF />
+            </>
+          }
         />
         <Input
-          label="Prénom de l’allocataire CAF*"
+          label={
+            <>
+              Prénom de l’allocataire <CAF />*
+            </>
+          }
           nativeInputProps={{
             name: 'recipientFirstname',
             placeholder: 'ex: Marie',
+            required: true,
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'recipientFirstname'),
             'aria-label': "Saisir le prénom de l'allocataire CAF",
@@ -193,7 +224,12 @@ const YoungCafForm = ({
           state={inputStates.recipientFirstname.state}
           stateRelatedMessage={inputStates.recipientFirstname.errorMsg}
           disabled={isFormDisabled}
-          hintText="Format attendu : Prénom de l'allocataire tel qu’il est écrit sur les papiers de la CAF"
+          hintText={
+            <>
+              Format attendu : Prénom de l&apos;allocataire tel qu&apos;il est écrit sur les papiers
+              de la <CAF />
+            </>
+          }
         />
         <FormButton isDisabled={isFormDisabled} />
       </form>
