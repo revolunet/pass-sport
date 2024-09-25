@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { Club } from 'types/Club';
 import { useRef } from 'react';
 import { useLeafletAccessibility } from '@/app/hooks/useLeafletAccessibility';
+import MapZoomHandler from '../../../components/clubs-map/MapZoomHandler';
 
 interface Props {
   club: Club;
@@ -28,16 +29,18 @@ const Map = ({ club }: Props) => {
         scrollWheelZoom={false}
         zoomControl={false}
       >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; contributeurs <a target="_blank" aria-label="Ouvrir openstreetmap.org dans une nouvelle fenêtre" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        />
+        <MapZoomHandler />
 
         <Marker position={position} alt="Voir le nom du club">
           <Popup>{club.nom}</Popup>
         </Marker>
 
-        <ZoomControl zoomInTitle="Agrandir" zoomOutTitle="Dézoomer" />
+        <ZoomControl zoomInTitle="Zoomer" zoomOutTitle="Dézoomer" />
+
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; contributeurs <a target="_blank" aria-label="Ouvrir openstreetmap.org dans une nouvelle fenêtre" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        />
       </MapContainer>
     </div>
   );

@@ -8,6 +8,7 @@ import Clusterizer from './Clusterizer';
 import MapEventHandler from './MapEventHandler';
 import { useLeafletAccessibility } from '@/app/hooks/useLeafletAccessibility';
 import { useRef } from 'react';
+import MapZoomHandler from './MapZoomHandler';
 
 interface Props {
   clubs: ExportedClub[];
@@ -33,11 +34,12 @@ const ClubsMap: React.FC<Props> = ({ clubs, centerPosition, userPosition, distan
         zoomControl={false}
       >
         <MapEventHandler />
+        <MapZoomHandler />
 
         <Clusterizer clubs={clubs} />
 
         {userPosition && <Circle center={[userPosition.lat, userPosition.lng]} radius={distance} />}
-        <ZoomControl zoomInTitle="Agrandir" zoomOutTitle="Dézoomer" />
+        <ZoomControl zoomInTitle="Zoomer" zoomOutTitle="Dézoomer" />
 
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
