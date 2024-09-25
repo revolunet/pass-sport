@@ -68,13 +68,7 @@ export default function PlanDuSite() {
             </li>
           </ul>
 
-          <Link
-            target="_blank"
-            href="/v2/pro/accueil"
-            aria-label={
-              "Ouvrir une nouvelle fenêtre vers la page d'accueil dédiée aux structures partenaires"
-            }
-          >
+          <Link target="_blank" href="/v2/pro/accueil">
             Site structure partenaire
           </Link>
         </section>

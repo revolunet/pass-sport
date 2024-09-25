@@ -83,11 +83,7 @@ export default function PlanDuSite() {
           </p>
 
           <p>
-            <Link
-              target="_blank"
-              href="/v2/accueil"
-              aria-label="Ouvrir une nouvelle fenêtre vers la page d'accueil dédiée particuliers"
-            >
+            <Link target="_blank" href="/v2/accueil">
               Site je suis un particulier
             </Link>
           </p>
