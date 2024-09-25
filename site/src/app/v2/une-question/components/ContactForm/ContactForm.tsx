@@ -9,7 +9,7 @@ import React, { ChangeEvent, FormEvent, SyntheticEvent, useRef, useState } from 
 import { InputsState } from '../../../../../../types/Contact';
 import { postContact } from '../../client-agent';
 import styles from './styles.module.scss';
-import { EMAIL_REGEX } from '../../../../../../utils/email';
+import { EMAIL_REGEX } from '@/utils/email';
 
 const visitorReasons = {
   'aije-droit': 'Ai-je droit au pass Sport ?',
@@ -97,8 +97,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
 
     if (states.email.state !== 'error' && !EMAIL_REGEX.test(emailInput)) {
       states.email.state = 'error';
-      states.email.errorMsg =
-        'Veuillez saisir une adresse e-mail valide. Par exemple : john.doe@access42.net';
+      states.email.errorMsg = 'Format attendu : nom@domaine.fr';
       isValid = false;
     }
 
@@ -214,9 +213,8 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     name: 'firstname',
                     onChange: (e: ChangeEvent<HTMLInputElement>) =>
                       onInputChanged(e.target.value, 'firstname'),
-                    'aria-label': 'Saisir votre prénom',
                     autoComplete: 'given-name',
-                    'aria-autocomplete': 'none',
+                    required: true,
                   }}
                   state={inputStates.firstname.state}
                   stateRelatedMessage={inputStates.firstname.errorMsg}
@@ -230,9 +228,8 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     name: 'lastname',
                     onChange: (e: ChangeEvent<HTMLInputElement>) =>
                       onInputChanged(e.target.value, 'lastname'),
-                    'aria-label': 'Saisir votre nom',
                     autoComplete: 'family-name',
-                    'aria-autocomplete': 'none',
+                    required: true,
                   }}
                   state={inputStates.lastname.state}
                   stateRelatedMessage={inputStates.lastname.errorMsg}
@@ -247,8 +244,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     name: 'siret',
                     onChange: (e: ChangeEvent<HTMLInputElement>) =>
                       onInputChanged(e.target.value, 'siret'),
-                    'aria-label': 'Saisir le SIRET de votre association',
-                    'aria-autocomplete': 'none',
+                    required: true,
                   }}
                   state={inputStates.siret.state}
                   stateRelatedMessage={inputStates.siret.errorMsg}
@@ -262,12 +258,12 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   name: 'email',
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
                     onInputChanged(e.target.value, 'email'),
-                  'aria-label': 'Saisir votre adresse e-mail',
                   autoComplete: 'email',
-                  'aria-autocomplete': 'none',
+                  required: true,
                 }}
                 state={inputStates.email.state}
                 stateRelatedMessage={inputStates.email.errorMsg}
+                hintText="Format attendu : nom@domaine.fr"
               />
             </div>
             <div>
@@ -278,7 +274,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   onChange: (e: SyntheticEvent<HTMLSelectElement>) =>
                     onInputChanged(e.currentTarget.value, 'reason'),
                   defaultValue: '',
-                  'aria-label': "Selectionnez l'objet de votre demande",
+                  required: true,
                 }}
                 state={inputStates.reason.state}
                 stateRelatedMessage={inputStates.reason.errorMsg}
@@ -306,7 +302,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                 name: 'message',
                 onChange: (e: ChangeEvent<HTMLTextAreaElement>) =>
                   onInputChanged(e.target.value, 'message'),
-                'aria-label': 'Saisir votre message',
+                required: true,
               }}
               state={inputStates.message.state}
               stateRelatedMessage={inputStates.message.errorMsg}
@@ -321,6 +317,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                   'En cochant cette case, vous comprenez que les données personnelles entrées, adresse IP comprise, pourront être utilisées afin de vous contacter dans le cadre de votre intérêt légitime.*',
                 nativeInputProps: {
                   name: 'consent',
+                  required: true,
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
                     onInputChanged(e.target.checked ? 'yes' : null, 'consent'),
                 },
@@ -342,26 +339,29 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
           </Button>
         </div>
       </form>
-      {apiError && (
-        <Alert
-          className="fr-mt-2w"
-          severity="error"
-          isClosed={!isError}
-          onClose={() => setIsError(false)}
-          title="Un problème est survenu"
-          description="Veuillez réessayer plus tard"
-          closable
-        />
-      )}
-      {isOk && (
-        <Alert
-          className="fr-mt-2w"
-          severity="success"
-          title="Votre demande à bien été envoyée"
-          description="Votre message nous a bien été transmis."
-          closable
-        />
-      )}
+
+      <div role="status">
+        {apiError && (
+          <Alert
+            className="fr-mt-2w"
+            severity="error"
+            isClosed={!isError}
+            onClose={() => setIsError(false)}
+            title="Un problème est survenu"
+            description="Veuillez réessayer plus tard"
+            closable
+          />
+        )}
+        {isOk && (
+          <Alert
+            className="fr-mt-2w"
+            severity="success"
+            title="Votre demande à bien été envoyée"
+            description="Votre message nous a bien été transmis."
+            closable
+          />
+        )}
+      </div>
     </>
   );
 };

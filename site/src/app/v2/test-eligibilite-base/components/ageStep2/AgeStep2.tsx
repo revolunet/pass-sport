@@ -16,10 +16,16 @@ interface AgeStep2Props {
 
 const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
   const [confirmed, setConfirmed] = useState<boolean | null>(null);
+  const [isValidated, setIsValidated] = useState(true);
+
   const router = useRouter();
 
   const fieldsetId = 'ageStep2-fieldset';
   useRemoveAttributeById(fieldsetId, 'aria-labelledby');
+
+  const buttonClickedHandler = () => {
+    setIsValidated(true);
+  };
 
   if (ageRange === AGE_RANGE.GREATER_THAN_30) return null;
 
@@ -76,23 +82,31 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
         name="ageStep2"
         hintText={questionDescription}
         legendLine1={legendLine1}
+        isOkButtonDisabled={isValidated}
+        onOkButtonClicked={buttonClickedHandler}
         options={[
           {
             label: 'Oui',
             nativeInputProps: {
-              onChange: () => setConfirmed(true),
+              onChange: () => {
+                setIsValidated(false);
+                setConfirmed(true);
+              },
             },
           },
           {
             label: 'Non',
             nativeInputProps: {
-              onChange: () => setConfirmed(false),
+              onChange: () => {
+                setIsValidated(false);
+                setConfirmed(false);
+              },
             },
           },
         ]}
       />
 
-      {confirmed && (
+      {isValidated && confirmed && (
         <VerdictPanel
           title="Bonne nouvelle ! D'après les informations que vous nous avez transmises, vous
           êtes éligible au pass Sport."
@@ -112,7 +126,7 @@ const AgeStep2 = ({ ageRange }: AgeStep2Props) => {
         </VerdictPanel>
       )}
 
-      {confirmed === false && <AeehStep ageRange={ageRange} />}
+      {isValidated && confirmed === false && <AeehStep ageRange={ageRange} />}
     </div>
   );
 };

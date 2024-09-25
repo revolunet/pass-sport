@@ -31,7 +31,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
   const [inputStates, setInputStates] = useState<StepOneFormInputsState>(initialInputsState);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
   const [error, setError] = useState<string | null>();
-
   const isFormValid = (
     formData: FormData,
   ): { isValid: boolean; states: StepOneFormInputsState } => {
@@ -149,18 +148,18 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
       <Legend
         wrapInParagraph
         line1="Veuillez rentrer les informations ci-dessous sur vous ou sur votre enfant :"
-      ></Legend>
+      />
       <form ref={formRef} onSubmit={onSubmitHandler}>
         <Input
           label="Nom du bénéficiaire*"
           nativeInputProps={{
             name: 'beneficiaryLastname',
-            'aria-label': 'Saisir le nom du bénéficiaire',
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'beneficiaryLastname'),
             autoComplete: 'family-name',
             'aria-autocomplete': 'none',
             required: true,
+            autoFocus: true,
           }}
           state={inputStates.beneficiaryLastname.state}
           stateRelatedMessage={inputStates.beneficiaryLastname.errorMsg}
@@ -177,7 +176,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           label="Prénom du bénéficiaire*"
           nativeInputProps={{
             name: 'beneficiaryFirstname',
-            'aria-label': 'Saisir le prénom du bénéficiaire',
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'beneficiaryFirstname'),
             autoComplete: 'given-name',
@@ -200,7 +198,6 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           hintText="Format attendu: JJ/MM/AAAA"
           nativeInputProps={{
             name: 'beneficiaryBirthDate',
-            'aria-label': 'Saisir la date de naissance du bénéficiaire',
             type: 'date',
             required: true,
             onChange: (e: ChangeEvent<HTMLInputElement>) =>

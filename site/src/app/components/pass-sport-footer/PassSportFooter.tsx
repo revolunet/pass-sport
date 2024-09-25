@@ -89,11 +89,11 @@ export default function PassSportFooter() {
       {
         // @ts-ignore
         linkProps: {
-          'aria-label': 'Ouvrir une nouvelle fenêtre vers le CROUS',
+          'aria-label': 'Ouvrir une nouvelle fenêtre vers lescrous.fr',
           href: 'https://www.lescrous.fr/',
         },
         imgUrl: crousLogo.src,
-        alt: 'CROUS',
+        alt: 'les CROUS',
       },
       {
         // @ts-ignore
@@ -189,35 +189,30 @@ export default function PassSportFooter() {
       text: 'Mentions légales',
       linkProps: {
         href: '/v2/mentions-legales',
-        'aria-label': 'Visiter la page des mentions légales',
       },
     },
     {
       text: 'Données personnelles',
       linkProps: {
         href: '/v2/politique-de-confidentialite',
-        'aria-label': 'Visiter la page des données personnelles',
       },
     },
     {
       text: 'Plan du site',
       linkProps: {
         href: isProVersion ? '/v2/pro/plan-du-site' : '/v2/plan-du-site',
-        'aria-label': 'Visiter la page du plan du site',
       },
     },
     {
       text: 'Règlement du jeu-concours numéro 1 - pass Sport',
       linkProps: {
         href: '/v2/reglement-du-jeu-concours-numero-1-pass-sport',
-        'aria-label': 'Visiter la page du règlement du jeu concours numéro 1 pass Sport',
       },
     },
     {
       text: 'Règlement du jeu-concours numéro 2 - pass Sport',
       linkProps: {
         href: '/v2/reglement-du-jeu-concours-numero-2-pass-sport',
-        'aria-label': 'Visiter la page du règlement du jeu concours numéro 2 pass Sport',
       },
     },
   ];
@@ -229,7 +224,6 @@ export default function PassSportFooter() {
           text: 'Accueil',
           linkProps: {
             href: isProVersion ? '/v2/pro/accueil' : '/v2/accueil',
-            'aria-label': "Retourner sur la page d'accueil",
           },
         },
         {
@@ -238,24 +232,18 @@ export default function PassSportFooter() {
             href: isProVersion
               ? '/v2/pro/tout-savoir-sur-le-pass-sport'
               : '/v2/tout-savoir-sur-le-pass-sport',
-            'aria-label':
-              'Visiter la page pour connaître toutes les informations sur le pass Sport',
           },
         },
         {
           text: isProVersion ? 'Carte des structures partenaires' : 'Trouver un club partenaire',
           linkProps: {
             href: isProVersion ? '/v2/pro/trouver-un-club' : '/v2/trouver-un-club',
-            'aria-label': isProVersion
-              ? 'Visiter la page pour trouver un club'
-              : 'Visiter la page sur la carte des structures partenaires',
           },
         },
         {
           text: 'Une question ?',
           linkProps: {
             href: isProVersion ? '/v2/pro/une-question' : '/v2/une-question',
-            'aria-label': 'Visiter la page de foire aux questions',
           },
         },
       ],
@@ -277,7 +265,6 @@ export default function PassSportFooter() {
                 text: 'Ressources',
                 linkProps: {
                   href: '/v2/pro/ressources',
-                  'aria-label': 'Visiter la page contenant les ressources',
                 },
               },
             ]
