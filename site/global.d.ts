@@ -6,7 +6,6 @@ export {};
 
 declare global {
   export interface Window {
-    CRISP_WEBSITE_ID: string;
     tarteaucitron?: TarteAuCitronSDK;
   }
 
