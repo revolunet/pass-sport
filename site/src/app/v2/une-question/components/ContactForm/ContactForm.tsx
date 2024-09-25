@@ -263,7 +263,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                       name: 'siret',
                       onChange: (e: ChangeEvent<HTMLInputElement>) =>
                         onInputChanged(e.target.value, 'siret'),
-                      required: true
+                      required: true,
                     }}
                     state={inputStates.siret.state}
                     stateRelatedMessage={inputStates.siret.errorMsg}
@@ -277,7 +277,7 @@ const ContactForm = ({ closeFn, isProVersion }: Props) => {
                     nativeInputProps={{
                       name: 'rna',
                       onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                        onInputChanged(e.target.value, 'rna')
+                        onInputChanged(e.target.value, 'rna'),
                     }}
                     state={inputStates.rna.state}
                     stateRelatedMessage={inputStates.rna.errorMsg}
