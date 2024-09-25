@@ -254,9 +254,6 @@ export default function PassSportFooter() {
           text: isProVersion ? 'Je suis un particulier' : 'Je suis une structure partenaire',
           linkProps: {
             href: isProVersion ? '/v2/accueil' : '/v2/pro/accueil',
-            'aria-label': isProVersion
-              ? 'Visiter le site dédié aux structures partenaires'
-              : `Visiter le site dédié aux particuliers`,
           },
         },
         ...((isProVersion
