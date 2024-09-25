@@ -5,7 +5,6 @@ import {
   SportGouvJSONRecordsResponse,
 } from 'types/Club';
 import * as Sentry from '@sentry/nextjs';
-import { MAP_LIMIT } from 'utils/club-finder';
 
 export interface SqlSearchParams {
   offset: number;
@@ -114,7 +113,7 @@ export const getClubsWithoutLimit = async (
         total_count: 0,
       };
     }
-    
+
     const results = await response.json();
 
     return {
@@ -284,8 +283,7 @@ export const getAllClubActivities = async (): Promise<ActivityResponse> => {
   let activities: ActivityResponse = { results: [] };
   let keepLooping = true;
 
-  while (activities.results.length % limit 
-         0 && keepLooping) {
+  while (activities.results.length % limit === 0 && keepLooping) {
     try {
       const activitiesBatch = (await getClubsActivitiesBatch(limit, offset)).results;
       activities.results = activities.results.concat(activitiesBatch);
