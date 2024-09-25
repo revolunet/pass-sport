@@ -22,62 +22,38 @@ export default function PlanDuSite() {
         >
           <ul>
             <li>
-              <Link href="/v2/pro/accueil" aria-label={"Retourner à la page d'accueil"}>
-                Accueil
-              </Link>
+              <Link href="/v2/pro/accueil">Accueil</Link>
             </li>
             <li>
-              <Link
-                href="/v2/pro/tout-savoir-sur-le-pass-sport"
-                aria-label="Visiter la page pour connaître toutes les informations sur le pass Sport"
-              >
+              <Link href="/v2/pro/tout-savoir-sur-le-pass-sport">
                 Tout savoir sur le pass Sport
               </Link>
             </li>
 
             <li>
-              <Link
-                href="/v2/pro/trouver-un-club"
-                aria-label="Visiter la page sur la carte des structures partenaires"
-              >
-                Carte des structures partenaires
-              </Link>
+              <Link href="/v2/pro/trouver-un-club">Carte des structures partenaires</Link>
             </li>
             <li>
-              <Link href="/v2/pro/une-question" aria-label="Visiter la page de foire aux questions">
-                Une question ?
-              </Link>
+              <Link href="/v2/pro/une-question">Une question ?</Link>
             </li>
             <li>
               <Link
                 href="https://lecompteasso.associations.gouv.fr/carto/dashboard"
                 target="_blank"
-                aria-label="Ouvrir une nouvelle fenêtre vers le tableau de bord de pass Sport"
               >
                 Tableau de bord
               </Link>
             </li>
             <li>
-              <Link href="/v2/mentions-legales" aria-label="Visiter la page des mentions légales">
-                Mentions légales
-              </Link>
+              <Link href="/v2/mentions-legales">Mentions légales</Link>
             </li>
             <li>
-              <Link
-                href="/v2/politique-de-confidentialite"
-                aria-label="Visiter la page des données personnelles"
-              >
-                Données personnelles
-              </Link>
+              <Link href="/v2/politique-de-confidentialite">Données personnelles</Link>
             </li>
           </ul>
 
           <p className="fr-mb-1w">
-            <Link
-              target="_blank"
-              href="https://lecompteasso.associations.gouv.fr/"
-              aria-label="Ouvrir une nouvelle fenêtre vers Le Compte Asso"
-            >
+            <Link target="_blank" href="https://lecompteasso.associations.gouv.fr/">
               Le Compte Asso
             </Link>
           </p>
