@@ -14,7 +14,6 @@ import React from 'react';
 import Matomo from './Matomo';
 import PassSportFooter from './components/pass-sport-footer/PassSportFooter';
 import PassSportNavigation from './components/pass-sport-navigation/PassSportNavigation';
-import Crisp from './components/crisp-chatbot/Crisp';
 import TarteAuCitron from './components/tarte-au-citron/tarte-au-citron';
 
 export const metadata: Metadata = {
@@ -52,7 +51,6 @@ export default function RootLayout({
         <PassSportBreadcrumb />
         <DsfrProvider lang={lang}>{children}</DsfrProvider>
         <PassSportFooter />
-        <Crisp />
       </body>
     </html>
   );
