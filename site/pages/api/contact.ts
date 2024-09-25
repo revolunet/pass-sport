@@ -14,6 +14,7 @@ const contactFormSchema = z
     reason: z.string(),
     isProRequest: z.boolean(),
     siret: z.string().optional(),
+    rna: z.string().optional(),
   })
   .refine((schema) => !schema.isProRequest || schema.siret, {
     message: 'siret is mandatory for a pro request',
@@ -56,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).send((e as Error).message);
   }
 
-  const { isProRequest, firstname, lastname, email, reason, message, siret } = body;
+  const { isProRequest, firstname, lastname, email, reason, message, siret, rna } = body;
 
   const conversation = await crispClient.website.createNewConversation(envVars.CRISP_WEBSITE);
 
@@ -70,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     {
       nickname: `${firstname} ${lastname}`,
       email,
-      data: { email, siret },
+      data: { email, siret: siret || '', rna: rna || '' },
       segments: [byWhoSegment, reason.slice(0, MAX_LENGTH_REASON), failedAttemptSegment].filter(
         Boolean,
       ),

@@ -5,35 +5,25 @@
   top: -100px;
   background-color: var(--color-white);
   display: flex;
-  flex-direction: column;
   max-width: $layout-max-width;
   margin: 24px 24px -80px;
   padding-top: 24px;
+  flex-direction: column;
+
+  &__article-title {
+    color: var(--text-action-high-blue-france);
+  }
+
+  &__accordion-expanded-container {
+    display: flex;
+    flex-direction:column;
+    gap: 40px;
+    background-color: #EEE;
+  }
 
   @media (min-width: $md) {
     top: -60px;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 24px;
     margin: 0 auto -64px;
-  }
-
-  &__summary {
-    background-color: var(--color-white);
-  }
-
-  &__questions {
-    width: 100%;
-
-    @media (min-width: $md) {
-      width: 792px;
-    }
-  }
-
-  &__category {
-    &--selected {
-      color: #000091;
-    }
   }
 
   &__markdown {
@@ -47,16 +37,6 @@
 
     img {
       max-width: 100%;
-    }
-  }
-
-  &__callout {
-    &-text {
-      position: relative;
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      gap: 2rem;
     }
   }
 

@@ -8,4 +8,5 @@ export interface InputsState {
   message: InputState;
   consent: InputState;
   siret: InputState;
+  rna: InputState;
 }
