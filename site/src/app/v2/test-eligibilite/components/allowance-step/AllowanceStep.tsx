@@ -115,7 +115,7 @@ const AllowanceStep = () => {
       />
 
       {isValidated && (
-        <fieldset id="second-step-form" className="fr-fieldset">
+        <>
           {[ALLOWANCE.ARS_AEEH_AAH, ALLOWANCE.CROUS].includes(allowance as ALLOWANCE) && (
             <legend
               className="fr-fieldset__legend--regular fr-fieldset__legend fr-pt-1w fr-pb-2w"
@@ -128,7 +128,7 @@ const AllowanceStep = () => {
           {allowance === ALLOWANCE.NONE && <FullNegativeVerdictPanel isLean />}
           {allowance === ALLOWANCE.ARS_AEEH_AAH && <EligibilityTestForms />}
           {allowance === ALLOWANCE.CROUS && <CrousStep />}
-        </fieldset>
+        </>
       )}
     </EligibilityTestContext.Provider>
   );

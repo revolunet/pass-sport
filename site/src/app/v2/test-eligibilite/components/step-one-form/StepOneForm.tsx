@@ -157,6 +157,8 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'beneficiaryLastname'),
             autoComplete: 'family-name',
+            'aria-autocomplete': 'none',
+            required: true,
             autoFocus: true,
           }}
           state={inputStates.beneficiaryLastname.state}
@@ -177,6 +179,8 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'beneficiaryFirstname'),
             autoComplete: 'given-name',
+            'aria-autocomplete': 'none',
+            required: true,
           }}
           state={inputStates.beneficiaryFirstname.state}
           stateRelatedMessage={inputStates.beneficiaryFirstname.errorMsg}
@@ -195,6 +199,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           nativeInputProps={{
             name: 'beneficiaryBirthDate',
             type: 'date',
+            required: true,
             onChange: (e: ChangeEvent<HTMLInputElement>) =>
               onInputChanged(e.target.value, 'beneficiaryBirthDate'),
           }}
@@ -209,6 +214,7 @@ const StepOneForm = ({ onDataReceived, onEligibilityFailure }: Props) => {
           inputName="recipientResidencePlace"
           inputState={inputStates.recipientResidencePlace}
           onChanged={(text) => onInputChanged(text, 'recipientResidencePlace')}
+          required={true}
         />
 
         <Button

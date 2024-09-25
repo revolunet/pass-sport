@@ -30,11 +30,19 @@ interface Props {
   inputName: string;
   isDisabled: boolean;
   onChanged: (text: string | null) => void;
+  required?: boolean;
 }
 
 const CustomInput = createCustomInput('Entrez le nom de commune');
 
-const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Props) => {
+const CityFinder = ({
+  inputState,
+  legend,
+  inputName,
+  isDisabled,
+  onChanged,
+  required = false,
+}: Props) => {
   const [inputValue, setInputValue] = useState('');
   const [value, setValue] = useState<Option>({
     label: '',
@@ -90,6 +98,7 @@ const CityFinder = ({ inputState, legend, inputName, isDisabled, onChanged }: Pr
           loadOptions={fetchCityOptions}
           onChange={birthPlaceChangedHandler}
           onInputChange={onInputChange}
+          required={required}
           styles={{
             ...selectStyles,
             input: (_, state) => {
