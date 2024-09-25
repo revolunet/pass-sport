@@ -3,8 +3,6 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
-import { useHandleCrispPlaceholderButton } from '@/app/components/tarte-au-citron/hooks/use-handle-crisp-placeholder-button';
 import {
   PASS_SPORT_URI,
   SUPPORT_COOKIE_KEY,
@@ -18,7 +16,6 @@ export const TarteAuCitron = () => {
   const domain = process.env.NEXT_PUBLIC_TARTEAUCITRON_DOMAIN;
   const pathname = usePathname();
 
-  useHandleCrispPlaceholderButton();
   useEnhanceCookieManagerAccessibility();
 
   useEffect(() => {
@@ -66,19 +63,6 @@ export const TarteAuCitron = () => {
             (tac.job = tac.job || []).push(SUPPORT_COOKIE_KEY);
           }
         });
-
-        // Handle crisp placeholder button
-        // When the consent is not given, the placeholder should appear, otherwise it should be hidden
-        // Need a timeout in order to wait for the state to be populated...
-        setTimeout(() => {
-          if (tac?.state?.crisp) {
-            const el = document.getElementById(SKIP_LINKS_ID.chatbot);
-
-            if (el) {
-              el.style.display = 'none';
-            }
-          }
-        }, 500);
       }}
     />
   );
