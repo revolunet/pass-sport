@@ -107,6 +107,10 @@ export default function PassSportFooter() {
       },
       {
         // @ts-ignore
+        linkProps: {
+          'aria-label': 'Ouvrir une nouvelle fenêtre vers Neoness',
+          href: 'https://www.neoness.fr/',
+        },
         imgUrl: neonessLogo.src,
         alt: 'Keepcool Neoness Metabolik',
       },
