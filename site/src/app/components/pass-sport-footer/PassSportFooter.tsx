@@ -20,6 +20,7 @@ import helloAssoLogo from '@/images/footer/hello-asso-logo.svg';
 import cnafLogo from '@/images/footer/cnaf-logo.png';
 import fneaplLogo from '@/images/footer/fneapl-logo.png';
 import unionSportCycleLogo from '@/images/footer/union-sport-cycle-logo.png';
+import neonessLogo from '@/images/footer/logo-reseau-kc-neo.png';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import { useRef } from 'react';
 import { useUpdateHeadings } from '@/app/hooks/accessibility/use-update-headings';
@@ -103,6 +104,15 @@ export default function PassSportFooter() {
         },
         imgUrl: decathlonLogo.src,
         alt: 'Decathlon',
+      },
+      {
+        // @ts-ignore
+        linkProps: {
+          'aria-label': 'Ouvrir une nouvelle fenêtre vers Neoness',
+          href: 'https://www.neoness.fr/',
+        },
+        imgUrl: neonessLogo.src,
+        alt: 'Keepcool Neoness Metabolik',
       },
       {
         // @ts-ignore
