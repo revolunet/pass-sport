@@ -19,8 +19,6 @@ const SkipLinksWrapper = () => {
       '/v2/une-question',
       '/v2/politique-de-confidentialite',
       '/v2/mentions-legales',
-      '/v2/reglement-du-jeu-concours-numero-1-pass-sport',
-      '/v2/reglement-du-jeu-concours-numero-2-pass-sport',
     ].includes(pathname)
       ? {
           label: "Test d'éligibilité",
