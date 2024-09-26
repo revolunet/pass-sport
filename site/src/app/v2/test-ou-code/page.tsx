@@ -2,6 +2,11 @@ import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import cn from 'classnames';
 import styles from './styles.module.scss';
 import GetOrTestChoice from './components/get-or-test-step/GetOrTestStep';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Je fais le test - pass Sport',
+};
 
 const TestOuCode = () => {
   return (

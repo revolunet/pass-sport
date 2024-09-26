@@ -2,6 +2,11 @@ import ForWhoStep from './components/forWhoStep/ForWhoStep';
 import styles from './styles.module.scss';
 import cn from 'classnames';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Puis-je bénéficier du pass Sport ? - pass Sport',
+};
 
 const EligibilityTest = () => {
   return (
