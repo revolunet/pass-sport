@@ -3,7 +3,6 @@ import SocialMediaPanel from '../../../components/social-media-panel/SocialMedia
 import Link from 'next/link';
 import Button from '@codegouvfr/react-dsfr/Button';
 import Accordion from '@codegouvfr/react-dsfr/Accordion';
-import cn from 'classnames';
 import {
   multisportsAndaffinitaires,
   olympiquesAndparalympiques,
@@ -14,11 +13,10 @@ import Video from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/Video';
 import TranscriptionVisibilityClub from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionVisibilityClub';
 import { SKIP_LINKS_ID } from '@/app/constants/skip-links';
 import TranscriptionRefundPassSport from '@/app/v2/pro/tout-savoir-sur-le-pass-sport/components/TranscriptionRefundPassSport';
-import Highlight from '@codegouvfr/react-dsfr/Highlight';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { headers } from 'next/headers';
 import CustomHighlight from '@/app/components/custom-highlight/CustomHighlight';
-
+import rootStyles from '@/app/utilities.module.scss';
 export const metadata: Metadata = {
   title: 'Structure partenaire - Tout savoir sur le pass Sport - pass Sport',
 };
@@ -72,13 +70,21 @@ export default function ToutSavoirSurLePassSport() {
                   </li>
                   <li>6420Z : activités des sociétés holding</li>
                 </ol>
-                Télécharger la{' '}
+                <span className={rootStyles['span--with-linebreak']}>
+                  <Link
+                    href="/assets/ressources/charte-lsm-pour-non-adherents-2024.docx"
+                    target="_blank"
+                    aria-label="Ouvrir une nouvelle fenêtre pour télécharger la charte LSM pour non adhérents de l'année 2024"
+                  >
+                    Télécharger la charte d’engagement loisir sportif marchand non adhérent
+                  </Link>
+                </span>
                 <Link
-                  href="/assets/ressources/charte-lsm-pour-non-adherentes-2024.docx"
+                  href="/assets/ressources/charte-lsm-pour-adherents-2024.docx"
                   target="_blank"
-                  aria-label="Ouvrir une nouvelle fenêtre pour télécharger la charte LSM pour non adhérentes de l'année 2024"
+                  aria-label="Ouvrir une nouvelle fenêtre pour télécharger la charte LSM pour adhérents de l'année 2024"
                 >
-                  charte d’engagement loisir sportif marchand
+                  Télécharger la charte d’engagement loisir sportif marchand adhérent
                 </Link>
               </li>
             </ol>
